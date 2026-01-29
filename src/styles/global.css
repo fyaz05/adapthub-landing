@@ -1,0 +1,429 @@
+@import "tailwindcss";
+
+@theme {
+    /* TYPOGRAPHY TOKENS */
+    --font-serif: "Lora", serif;
+    --font-sans: "Geist Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+
+    /* COLOR PALETTE - CINEMATIC INTELLECTUAL */
+    --color-brand-violet: #5b21b6;
+    --color-brand-teal: #0d9488;
+    --color-paper: #faf3e9;
+    --color-paper-light: #fdfbf7;
+    --color-void: #050505;
+    --color-charcoal: #122121;
+
+    --color-accent-yellow: #FCD34D;
+    --color-accent-pink: #ec4899;
+    --color-accent-red: #ef4444;
+    --color-accent-violet-light: #7c3aed;
+
+    /* SHAPE TOKENS */
+    --radius-pill: 9999px;
+    --radius-card: 20px;
+
+    /* Z-INDEX SCALE */
+    --z-index-behind: -1;
+    --z-index-default: 1;
+    --z-index-elevate: 10;
+    --z-index-sticky: 50;
+    --z-index-overlay: 100;
+    --z-index-max: 9999;
+
+    /* MOTION TOKENS - PHYSICS BASED */
+    /* Surgical Spring: stiff, precise, no wobble */
+    --transition-spring-stiffness: 150;
+    --transition-spring-damping: 25;
+    /* CSS Approximation of the spring */
+    --transition-timing-surgical: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --transition-duration-fast: 0.3s;
+    --transition-duration-normal: 0.6s;
+    --transition-duration-slow: 0.8s;
+
+    /* BREAKPOINTS */
+    --breakpoint-xs: 475px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ACCESSIBILITY & PERFORMANCE DEGRADATION                                    */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 
+   Disable expensive backdrop filters on mobile 
+   to ensure 60fps scrolling on lower-end devices.
+*/
+@media (max-width: 768px) {
+
+    .backdrop-blur-md,
+    .backdrop-blur-lg,
+    .backdrop-blur-xl,
+    .backdrop-blur-2xl,
+    .backdrop-blur-3xl {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background-color: rgba(10, 10, 10, 0.9) !important;
+        /* Fallback opacity */
+    }
+
+    /* Reduce grain overhead on mobile */
+    .grain-surface {
+        opacity: 0.02;
+    }
+}
+
+/* 
+   Global Performance Gating for Low-End Devices 
+   Managed via .is-reduced class on <html> or <body>
+*/
+.is-reduced *,
+.is-reduced ::before,
+.is-reduced ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.is-reduced .grain-surface {
+    display: none !important;
+}
+
+.is-reduced .glow-mesh {
+    display: none !important;
+}
+
+::view-transition-group(root) {
+    animation-duration: var(--transition-duration-slow);
+    animation-timing-function: var(--transition-timing-surgical);
+}
+
+::view-transition-old(root) {
+    animation:
+        0.6s var(--transition-timing-surgical) both fade-out,
+        0.8s var(--transition-timing-surgical) both scale-down-exit;
+    transform-origin: 50% 100%;
+}
+
+::view-transition-new(root) {
+    animation:
+        0.8s var(--transition-timing-surgical) both fade-in,
+        0.8s var(--transition-timing-surgical) both slide-up-enter;
+    mix-blend-mode: normal;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ATMOSPHERICS & TEXTURE                                                     */
+/* -------------------------------------------------------------------------- */
+
+/* L2: Global Hairline Grid (Engineering Aesthetic) */
+.global-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    /* Elevated to show through opaque sections */
+    opacity: 0.15;
+    /* Increased opacity for baseline visibility */
+    background-size: 40px 40px;
+    background-image:
+        linear-gradient(to right, rgba(13, 148, 136, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(13, 148, 136, 0.1) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    mix-blend-mode: plus-lighter;
+    /* Better visibility on dark, subtle on light */
+}
+
+@media (max-width: 768px) {
+    .global-grid {
+        display: none;
+    }
+}
+
+/* Base Grain Surface - Always present but subtle */
+.grain-surface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    transition: opacity 0.5s var(--transition-timing-surgical);
+}
+
+@media (max-width: 768px) {
+    .grain-surface {
+        display: none;
+    }
+}
+
+/* Displacement Filter for "Digital Distortion" on Void Backgrounds */
+.displacement-filter {
+    filter: url('#turbulence-noise');
+}
+
+/* Intensify grain during transitions */
+::view-transition-image-pair(root) {
+    isolation: isolate;
+}
+
+
+html,
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+html {
+    scroll-padding-top: 100px;
+    height: auto;
+    /* Firefox Cinematic Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+@layer base {
+
+    /* 
+       Performance: Enforce font-display: swap for all fonts to prevent FOIT
+       This helps perceived performance on mobile networks.
+    */
+    :root {
+        font-display: swap;
+    }
+
+    body {
+        @apply font-sans antialiased text-base md:text-lg;
+        /* Prevent horizontal scroll on mobile */
+        overflow-x: hidden;
+        letter-spacing: 0.015em;
+        /* Standardized Body Spacing */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-serif;
+        letter-spacing: -0.02em;
+        /* Standardized Heading Tracking */
+    }
+
+    /* Custom Text Selection */
+    ::selection {
+        background-color: #7c3aed4d;
+        /* Accent Violet Light at ~30% for visibility on dark & light */
+        color: inherit;
+    }
+
+    /* Cinematic Scrollbar - Adapted for Dark/Void Theme */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        /* Neutral White Glass (Cleaner idle state) */
+        border-radius: var(--radius-pill);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(250, 243, 233, 0.3);
+        /* Warm Cream Glass (User preferred state) */
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: var(--color-brand-violet);
+    }
+}
+
+@layer utilities {
+
+    /* BentoGrid Mobile Fixes */
+    .mobile-visual-fix {
+        @apply min-h-[250px] md:min-h-0;
+    }
+
+    .mobile-min-height {
+        @apply min-h-[200px] md:min-h-0;
+    }
+}
+
+@layer components {
+    .glow-mesh {
+        @apply absolute blur-[160px] opacity-40;
+    }
+
+    /* Orchestration Utilities */
+    .animate-in {
+        animation-fill-mode: both;
+        animation-duration: 1000ms;
+        animation-timing-function: var(--transition-timing-surgical);
+    }
+
+    .fade-in {
+        animation-name: fadeIn;
+    }
+
+    .slide-in-from-bottom-4 {
+        animation-name: slideInBottom4;
+    }
+
+    .slide-in-from-bottom-8 {
+        animation-name: slideInBottom8;
+    }
+
+    .slide-in-from-bottom-12 {
+        animation-name: slideInBottom12;
+    }
+
+    .slide-in-from-bottom-16 {
+        animation-name: slideInBottom16;
+    }
+
+    .zoom-in-95 {
+        animation-name: zoomIn95;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInBottom4 {
+        from {
+            opacity: 0;
+            transform: translateY(1rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInBottom8 {
+        from {
+            opacity: 0;
+            transform: translateY(2rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInBottom12 {
+        from {
+            opacity: 0;
+            transform: translateY(3rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInBottom16 {
+        from {
+            opacity: 0;
+            transform: translateY(4rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes zoomIn95 {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes scale-down-exit {
+        to {
+            transform: scale(0.96) translateY(-2vh);
+            filter: blur(2px) grayscale(0.4);
+        }
+    }
+
+    @keyframes slide-up-enter {
+        from {
+            transform: translateY(4vh);
+            filter: blur(4px);
+        }
+
+        to {
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes fade-out {
+        to {
+            opacity: 0;
+        }
+    }
+
+    .delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .delay-300 {
+        animation-delay: 300ms;
+    }
+
+    .delay-400 {
+        animation-delay: 400ms;
+    }
+
+    .delay-500 {
+        animation-delay: 500ms;
+    }
+
+    .delay-700 {
+        animation-delay: 700ms;
+    }
+}

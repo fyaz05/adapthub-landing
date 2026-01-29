@@ -1,0 +1,126 @@
+---
+import "../styles/global.css";
+import "@fontsource/geist-sans";
+import "@fontsource/geist-mono";
+import "@fontsource/lora/400.css";
+import "@fontsource/lora/700.css";
+import "@fontsource/lora/400-italic.css";
+import { ClientRouter } from "astro:transitions";
+import LenisWrapper from "../components/LenisWrapper";
+import { CONTENT } from "../constants/content";
+
+import NoiseOverlay from "../components/NoiseOverlay.astro";
+import LoadingScreen from "../components/LoadingScreen";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = CONTENT.metadata.defaultDescription } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="bg-void relative">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={CONTENT.assets.logoLight} />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.avif" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#050505" /> {/* Matches base.void */}
+    
+    {/* Canonical URL */}
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+    {/* Primary Meta Tags */}
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL("/og-image.avif", Astro.site)} />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL("/og-image.avif", Astro.site)} />
+
+    {/* Structured Data */}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": CONTENT.global.brandName,
+      "url": Astro.site,
+      "logo": new URL(CONTENT.assets.logoLight, Astro.site),
+      "description": CONTENT.metadata.defaultDescription,
+      "sameAs": CONTENT.footer.connect.links.map(l => l.href).filter(h => h !== "#")
+    })} />
+
+    <ClientRouter />
+    <style is:global>
+      html,
+      body {
+        position: relative !important;
+        min-height: 100% !important;
+      }
+
+      html.lenis {
+        height: auto !important;
+      }
+
+      .lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      body {
+        overflow-x: hidden !important;
+      }
+    </style>
+    
+    {/* Low-End Device Detection & Performance Optimization Script */}
+    <script is:inline>
+      (function() {
+        try {
+          // 1. Check User Preference
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          
+          // 2. Check Hardware Concurrency (Logical Cores)
+          const logicalProcessors = navigator.hardwareConcurrency || 4;
+          
+          // 3. Check Device Memory (RAM in GB) - API not available in all browsers
+          const deviceMemory = navigator.deviceMemory || 8;
+          
+          // 4. Heuristic: Flag as "low-end" if cores < 4 or RAM < 4GB
+          const isLowEnd = logicalProcessors < 4 || deviceMemory < 4;
+          
+          // 5. Apply Global Performance Class
+          if (prefersReduced || isLowEnd) {
+            document.documentElement.classList.add('is-reduced');
+            // Optional: Add data attribute for CSS selectors
+            document.documentElement.setAttribute('data-performance', 'low');
+          } else {
+            document.documentElement.setAttribute('data-performance', 'high');
+          }
+        } catch (e) {
+          // Fallback: If anything fails, assume high performance to avoid breaking UI, 
+          // but could default to low if conservative.
+        }
+      })();
+    </script>
+  </head>
+  <body class="relative min-h-screen">
+    <LenisWrapper client:load>
+      <div class="global-grid"></div>
+      <NoiseOverlay />
+      <LoadingScreen client:load /> {/* Ensure it hydrates immediately */}
+      <slot />
+    </LenisWrapper>
+  </body>
+</html>

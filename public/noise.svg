@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <filter id="noise" x="0" y="0">
+      <!-- Kept your original frequency for that fine texture -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      
+      <!-- ADDED: This turns the rainbow pixels into grayscale paper grain -->
+      <feColorMatrix type="saturate" values="0"/>
+      
+      <!-- Blend mode kept the same -->
+      <feBlend mode="screen"/>
+    </filter>
+    
+    <!-- Opacity slightly lowered to 0.4 for better blending on websites -->
+    <rect width="500" height="500" filter="url(#noise)" opacity="0.4"/>
+</svg>

@@ -1,0 +1,130 @@
+---
+const currentYear = new Date().getFullYear();
+import { CONTENT } from "../constants/content";
+import SectionSpotlight from "./SectionSpotlight";
+---
+
+<footer class="bg-paper pt-16 md:pt-32 pb-16 overflow-hidden border-t border-charcoal/5 relative" id="footer">
+  <SectionSpotlight client:visible color="rgba(91, 33, 182, 0.15)" blendMode="multiply" />
+  {/* Texture Overlay */}
+  <div class="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none" style={`background-image: url('${CONTENT.assets.noiseTexture}'); filter: contrast(120%) brightness(100%);`}></div>
+
+  <div class="container mx-auto px-4 sm:px-6 relative z-elevate">
+    {/* Architectural Spine - Full Height (Desktop Only) */}
+    <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-charcoal/10 -translate-x-1/2"></div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-12 mb-20 sm:mb-32 relative z-10">
+       {/* Brand Column */}
+       <div class="sm:col-span-2 md:col-span-6 flex flex-col justify-between pr-0 md:pr-12">
+          <div class="mb-8 sm:mb-0">
+            <div class="flex items-center gap-2 mb-4">
+               <img src={CONTENT.assets.logoDark} alt={CONTENT.footer.brand.name} class="w-10 h-10 md:w-18 md:h-18 opacity-90" loading="lazy" />
+               <span class="font-serif text-xl sm:text-2xl text-charcoal font-medium tracking-tight">{CONTENT.footer.brand.name}</span>
+            </div>
+            <p class="max-w-md text-zinc-600 leading-relaxed font-serif text-base sm:text-lg italic">
+               {CONTENT.footer.brand.quote}
+               <span class="block text-zinc-500 font-sans text-sm not-italic mt-3 leading-relaxed">
+                  {CONTENT.footer.brand.description}
+               </span>
+            </p>
+          </div>
+       </div>
+
+       {/* Links Column 1 */}
+       <div class="md:col-span-3 pl-0 md:pl-8">
+          <h4 class="font-serif text-sm font-semibold text-charcoal mb-4 sm:mb-6 flex items-center gap-2">
+             {CONTENT.footer.directory.title}
+             <span class="h-px w-8 bg-charcoal/10"></span>
+          </h4>
+          <ul class="space-y-4">
+             {CONTENT.footer.directory.links.map(link => (
+                <li>
+                  <a href={link.href} class="group flex items-center gap-2 text-zinc-600 hover:text-brand-violet transition-all duration-300 min-h-[44px] touch-manipulation">
+                    <span class="w-1 h-1 rounded-full bg-brand-teal opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span class="transform group-hover:translate-x-1 transition-transform relative">
+                        {link.label}
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-brand-violet/30 transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                  </a>
+                </li>
+             ))}
+          </ul>
+       </div>
+
+       {/* Links Column 2 */}
+       <div class="md:col-span-3">
+          <h4 class="font-serif text-sm font-semibold text-charcoal mb-4 sm:mb-6 flex items-center gap-2">
+             {CONTENT.footer.connect.title}
+             <span class="h-px w-8 bg-charcoal/10"></span>
+          </h4>
+          <ul class="space-y-4">
+             {CONTENT.footer.connect.links.map(link => (
+                <li>
+                  <a href={link.href} class="group flex items-center gap-2 text-zinc-600 hover:text-brand-violet transition-all duration-300 min-h-[32px]">
+                     <span class="w-1 h-1 rounded-full bg-brand-teal opacity-0 group-hover:opacity-100 transition-opacity" />
+                     <span class="transform group-hover:translate-x-1 transition-transform relative">
+                        {link.label}
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-brand-violet/30 transition-all duration-300 group-hover:w-full"></span>
+                     </span>
+                  </a>
+                </li>
+             ))}
+          </ul>
+       </div>
+    </div>
+
+    <div class="border-t border-charcoal/10 pt-12 relative overflow-visible">
+       {/* Giant Watermark - Hidden on mobile for performance */}
+       <div class="block absolute left-0 right-0 top-0 h-64 pointer-events-none opacity-[0.03] select-none overflow-hidden mix-blend-multiply">
+          <svg width="100%" height="100%" viewBox="0 0 1440 300" preserveAspectRatio="none" class="w-full h-full min-w-[1000px]">
+             <defs>
+                <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5" />
+                </pattern>
+             </defs>
+             {/* Technical Grid Background */}
+             <rect width="100%" height="100%" fill="url(#grid-pattern)" class="text-charcoal" />
+             
+             {/* Calibration Reticles */}
+             <g class="text-charcoal">
+                <circle cx="100" cy="150" r="80" fill="none" stroke="currentColor" stroke-width="1" />
+                <circle cx="100" cy="150" r="40" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 4" />
+                <line x1="20" y1="150" x2="180" y2="150" stroke="currentColor" stroke-width="0.5" />
+                <line x1="100" y1="70" x2="100" y2="230" stroke="currentColor" stroke-width="0.5" />
+             </g>
+
+             <g class="text-charcoal" transform="translate(1340, 150)">
+                 <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1" />
+                 <line x1="-50" y1="0" x2="50" y2="0" stroke="currentColor" stroke-width="0.5" />
+                 <line x1="0" y1="-50" x2="0" y2="50" stroke="currentColor" stroke-width="0.5" />
+             </g>
+
+             {/* Connecting Data Lines */}
+             <path d="M 180 150 L 300 150 L 320 100 L 1120 100 L 1140 150 L 1300 150" fill="none" stroke="currentColor" stroke-width="0.5" class="text-charcoal" />
+             
+             {/* Data Points */}
+             {[320, 520, 720, 920, 1120].map(x => (
+                 <circle cx={x} cy="100" r="2" class="fill-charcoal" />
+             ))}
+             
+             {/* Label Text (SVG) */}
+             <text x="720" y="220" text-anchor="middle" font-family="monospace" font-size="10" letter-spacing="0.2em" class="fill-charcoal uppercase opacity-50">
+                {CONTENT.footer.system.label}
+             </text>
+          </svg>
+       </div>
+       
+       <div class="flex flex-col md:flex-row justify-between items-end gap-6 relative z-10">
+          <div class="flex flex-col gap-2">
+             <span class="font-mono text-[10px] text-zinc-400 pl-1">{CONTENT.footer.legal.copyright(currentYear)}</span>
+          </div>
+          
+          <div class="flex gap-8 font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+             {CONTENT.footer.legal.links.map(link => (
+               <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:text-brand-violet transition-colors underline decoration-transparent hover:decoration-brand-violet/30 underline-offset-4">{link.label}</a>
+             ))}
+          </div>
+       </div>
+    </div>
+  </div>
+</footer>

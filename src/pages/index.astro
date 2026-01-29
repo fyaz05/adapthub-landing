@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Navbar from "../components/Navbar";
+import BentoGrid from "../components/BentoGrid";
+import TheLens from "../components/TheLens";
+import FAQ from "../components/FAQ";
+import BackgroundPulse from "../components/BackgroundPulse";
+import PhilosophySection from "../components/PhilosophySection.astro";
+import Footer from "../components/Footer.astro";
+import { CONTENT } from "../constants/content";
+---
+
+<Layout title={CONTENT.metadata.indexPage.title}>
+  <Navbar client:load transition:persist />
+  <main class="relative isolate">
+    <BackgroundPulse client:load />
+    <Hero />
+    <PhilosophySection />
+    <TheLens client:visible />
+    <BentoGrid client:visible />
+    <FAQ client:visible />
+  </main>
+  <Footer />
+</Layout>

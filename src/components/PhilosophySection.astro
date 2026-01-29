@@ -1,0 +1,45 @@
+---
+import { CONTENT } from "../constants/content";
+import SectionSpotlight from "./SectionSpotlight";
+---
+
+<section class="relative w-full py-32 md:py-48 bg-paper-light text-zinc-900 overflow-hidden" id="philosophy">
+  {/* Paper Texture Overlay */}
+  <div class="absolute inset-0 pointer-events-none opacity-60 mix-blend-multiply" 
+       style={`background-image: url('${CONTENT.assets.noiseTexture}'); filter: contrast(120%) brightness(100%);`}>
+  </div>
+  <SectionSpotlight client:visible color="rgba(91, 33, 182, 0.15)" blendMode="multiply" />
+  
+  <div class="container mx-auto px-4 sm:px-6 relative z-10">
+    <div class="max-w-5xl mx-auto text-center">
+      {/* Headline - Editorial Stacking */}
+      <h2 class="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-12 sm:mb-20 text-charcoal">
+        {CONTENT.philosophy.headline.line1}<br />
+        <span class="block my-2">{CONTENT.philosophy.headline.line2}</span>
+        {CONTENT.philosophy.headline.line3}<br />
+        <span class="italic text-brand-teal font-normal relative inline-block">
+            {CONTENT.philosophy.headline.highlight}
+            <svg class="absolute -bottom-4 left-0 w-full h-4 text-brand-teal/40" viewBox="0 0 100 20" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 25 100 5" stroke="currentColor" stroke-width="3" fill="none" />
+            </svg>
+        </span><br />
+        {CONTENT.philosophy.headline.line4}
+      </h2>
+
+      {/* Divider */}
+      <div class="w-full h-px bg-charcoal/10 mb-12 sm:mb-20"></div>
+
+      {/* 3-Column Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 sm:gap-y-12 text-left">
+        {CONTENT.philosophy.pillars.map(pillar => (
+          <div class="space-y-4 group">
+            <h3 class="font-serif text-xl sm:text-2xl text-zinc-900 group-hover:text-brand-violet transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">{pillar.title}</h3>
+            <p class="font-sans text-sm sm:text-base text-zinc-600 leading-relaxed max-w-sm group-hover:text-zinc-900 transition-colors duration-500">
+              {pillar.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
