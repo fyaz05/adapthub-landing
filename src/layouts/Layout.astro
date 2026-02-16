@@ -15,53 +15,157 @@ import LoadingScreen from "../components/LoadingScreen";
 interface Props {
   title: string;
   description?: string;
+  keywords?: string[];
+  noindex?: boolean;
 }
 
-const { title, description = CONTENT.metadata.defaultDescription } = Astro.props;
+const {
+  title,
+  description = CONTENT.metadata.defaultDescription,
+  keywords = CONTENT.metadata.defaultKeywords,
+  noindex = false,
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(CONTENT.metadata.ogImage, Astro.site);
+const ogImageFallbackURL = new URL(CONTENT.metadata.ogImageFallback, Astro.site);
+const supportEmail = CONTENT.links.support.replace("mailto:", "");
+const socialProfileLinks = CONTENT.footer.connect.links
+  .map((link) => link.href)
+  .filter((href) => href.startsWith("https://") || href.startsWith("http://"));
+
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="bg-void relative">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={CONTENT.assets.logoLight} />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.avif" />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-W4K3Z0TPD8"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W4K3Z0TPD8');
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#050505" /> {/* Matches base.void */}
+    <meta name="theme-color" content="#050505" />
     
     {/* Canonical URL */}
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large"} />
 
     {/* Primary Meta Tags */}
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(", ")} />
+    <meta name="author" content={CONTENT.global.brandName} />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content={CONTENT.global.brandName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL("/og-image.avif", Astro.site)} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/avif" />
+    {/* PNG fallback for crawlers that don't support AVIF */}
+    <meta property="og:image" content={ogImageFallbackURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
 
-    {/* Twitter */}
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL("/og-image.avif", Astro.site)} />
+    {/* Twitter — PNG for broadest compatibility */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageFallbackURL} />
 
-    {/* Structured Data */}
+    {/* Structured Data — Single @graph for all entities */}
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": CONTENT.global.brandName,
-      "url": Astro.site,
-      "logo": new URL(CONTENT.assets.logoLight, Astro.site),
-      "description": CONTENT.metadata.defaultDescription,
-      "sameAs": CONTENT.footer.connect.links.map(l => l.href).filter(h => h !== "#")
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": CONTENT.global.brandName,
+          "url": Astro.site,
+          "logo": new URL(CONTENT.assets.logoLight, Astro.site),
+          "description": CONTENT.metadata.defaultDescription,
+          "email": supportEmail,
+          ...(socialProfileLinks.length > 0 ? { "sameAs": socialProfileLinks } : {})
+        },
+        {
+          "@type": "WebSite",
+          "name": CONTENT.global.brandName,
+          "url": Astro.site,
+          "description": CONTENT.metadata.defaultDescription,
+          "inLanguage": "en",
+          "publisher": {
+            "@type": "Organization",
+            "name": CONTENT.global.brandName
+          }
+        },
+{
+          "@type": "WebPage",
+          "name": title,
+          "url": canonicalURL,
+          "description": description,
+          "keywords": keywords.join(", "),
+          "datePublished": "2025-01-01",
+          "dateModified": "2026-02-16",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": CONTENT.global.brandName,
+            "url": Astro.site
+          },
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["h1", "[data-speakable]", "h2"]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": Astro.site
+          }]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": CONTENT.global.brandName,
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": Astro.site,
+          "description": description,
+          "featureList": [
+            "Adaptive study plans for CAT exam preparation",
+            "AI-powered coaching with contextual explanations",
+            "Real-time performance analytics and diagnostics",
+            "Dynamic difficulty adjustment using Zone of Proximal Development",
+            "Concept library for rapid revision"
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
     })} />
+    <slot name="head" />
 
     <ClientRouter />
     <style is:global>
@@ -107,6 +211,14 @@ const { title, description = CONTENT.metadata.defaultDescription } = Astro.props
             document.documentElement.setAttribute('data-performance', 'low');
           } else {
             document.documentElement.setAttribute('data-performance', 'high');
+          }
+
+          // 6. Announcement Banner Persistence Check (Anti-Flicker)
+          const isDismissed = sessionStorage.getItem("announcement-dismissed") === "true";
+          if (isDismissed) {
+            document.documentElement.setAttribute('data-announcement', 'dismissed');
+          } else {
+            document.documentElement.setAttribute('data-announcement', 'visible');
           }
         } catch (e) {
           // Fallback: If anything fails, assume high performance to avoid breaking UI, 

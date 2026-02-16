@@ -8,18 +8,39 @@ import SurgicalBrackets from "./SurgicalBrackets";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(() => {
+    if (typeof document !== "undefined") {
+      return (
+        document.documentElement.getAttribute("data-announcement") !==
+        "dismissed"
+      );
+    }
+    return true;
+  });
   const isReduced = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleDismiss = () => setBannerVisible(false);
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("announcement-dismiss", handleDismiss);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("announcement-dismiss", handleDismiss);
+    };
   }, []);
 
   return (
     <>
-      <div
-        className="fixed top-6 inset-x-0 z-overlay flex justify-center px-6"
+      <motion.div
+        className="fixed inset-x-0 z-overlay flex justify-center px-6"
+        initial={{ top: "4rem" }}
+        animate={{
+          top: bannerVisible && !scrolled ? "4rem" : "1.5rem",
+        }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }} // Slower, smoother adjust
         data-lenis-prevent
       >
         <motion.nav
@@ -40,7 +61,7 @@ const Navbar = () => {
                 className="w-8 h-8 md:w-14 md:h-14 opacity-90 group-hover:opacity-100 transition-opacity"
                 loading="eager"
               />
-              <span className="font-serif text-sm md:text-lg text-white font-medium tracking-tight">
+              <span className="font-serif text-base md:text-xl text-white font-medium tracking-tight">
                 {CONTENT.global.brandName}
               </span>
             </a>
@@ -100,7 +121,7 @@ const Navbar = () => {
             />
           </button>
         </motion.nav>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>

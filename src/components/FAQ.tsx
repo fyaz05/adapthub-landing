@@ -30,6 +30,7 @@ const FAQ = () => {
               <button
                 type="button"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                aria-expanded={openIndex === index}
                 className="w-full py-8 sm:py-12 flex items-start text-left group transition-all touch-manipulation min-h-[60px]"
               >
                 <span className="font-mono text-xs sm:text-sm text-zinc-600 mr-4 sm:mr-12 mt-1 sm:mt-2">
@@ -47,7 +48,10 @@ const FAQ = () => {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <p className="pt-6 sm:pt-8 text-base sm:text-xl text-zinc-500 leading-relaxed max-w-3xl">
+                        <p
+                          data-speakable
+                          className="pt-6 sm:pt-8 text-base sm:text-xl text-zinc-500 leading-relaxed max-w-3xl"
+                        >
                           {faq.answer}
                         </p>
                       </motion.div>

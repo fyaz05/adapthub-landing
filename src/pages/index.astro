@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
+import AnnouncementBar from "../components/AnnouncementBar";
 import Navbar from "../components/Navbar";
 import BentoGrid from "../components/BentoGrid";
 import TheLens from "../components/TheLens";
@@ -11,7 +12,29 @@ import Footer from "../components/Footer.astro";
 import { CONTENT } from "../constants/content";
 ---
 
-<Layout title={CONTENT.metadata.indexPage.title}>
+<Layout
+  title={CONTENT.metadata.indexPage.title}
+  description={CONTENT.metadata.indexPage.description}
+  keywords={CONTENT.metadata.indexPage.keywords}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": CONTENT.faq.items.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    })}
+  />
+  <AnnouncementBar client:load transition:persist />
   <Navbar client:load transition:persist />
   <main class="relative isolate">
     <BackgroundPulse client:load />
