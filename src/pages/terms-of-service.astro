@@ -1,0 +1,272 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer.astro";
+import { resolvedContent as CONTENT } from "../utils/config";
+
+const lastUpdated = "22 February 2026";
+---
+
+<Layout 
+  title={CONTENT.metadata.termsOfService.title}
+  description={CONTENT.metadata.termsOfService.description}
+  keywords={CONTENT.metadata.termsOfService.keywords}
+>
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 pb-32 min-h-screen bg-void selection:bg-brand-teal/30 selection:text-white">
+    {/* Cinematic Film Grain */}
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="legal-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#legal-grain)" />
+    </svg>
+
+    {/* Ambient Architectural Grid Lines */}
+    <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-50 overflow-hidden" aria-hidden="true">
+      <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.02] to-transparent hidden lg:block"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
+      
+      <header class="mb-16 md:mb-24 page-stagger max-w-4xl" style="--i:1">
+        <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+          <span class="w-2 h-2 bg-brand-teal block"></span>
+          Document Classification: Legal
+        </div>
+        <h1 class="text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-serif text-white tracking-tight leading-none mb-8 relative">
+          Terms <br/>
+          <span class="text-zinc-500 italic block pb-2 mt-2">of Service</span>
+        </h1>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 text-zinc-400 font-mono text-xs md:text-sm border-b border-white/10 pb-8">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse"></span>
+            <span>STATUS: ACTIVE</span>
+          </div>
+          <span class="hidden sm:block text-white/20">|</span>
+          <span>LAST UPDATED: {lastUpdated}</span>
+          <span class="hidden sm:block text-white/20">|</span>
+          <span>ENTITY: ADAPTHUB PVT. LTD.</span>
+        </div>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        
+        {/* Sticky Sidebar / TOC */}
+        <aside class="lg:col-span-4 relative hidden md:block">
+          <div class="sticky top-32 page-stagger" style="--i:2">
+            <h2 class="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-zinc-500 uppercase mb-6 flex items-center gap-3">
+              <span class="w-2 h-2 bg-brand-teal/40 block"></span>
+              Index Directory
+            </h2>
+            <nav class="flex flex-col gap-3 border-l border-white/10 pl-4 relative" id="toc-nav">
+              
+              <a href="#sec-1" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">01. Acceptance</a>
+              <a href="#sec-2" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">02. Eligibility</a>
+              <a href="#sec-3" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">03. Intellectual Property</a>
+              <a href="#sec-4" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">04. User Content</a>
+              <a href="#sec-5" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">05. Prohibited Acts</a>
+              <a href="#sec-6" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">06. Fees</a>
+              <a href="#sec-7" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">07. Termination</a>
+              <a href="#sec-8" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">08. Disclaimers</a>
+              <a href="#sec-9" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">09. Limitation of Liability</a>
+              <a href="#sec-10" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">10. Indemnification</a>
+              <a href="#sec-11" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">11. Governing Law</a>
+              <a href="#sec-12" class="font-mono text-sm text-zinc-400 hover:text-brand-teal transition-colors py-1 hover:translate-x-2 transform duration-300 w-fit focus-visible:outline-none focus-visible:text-brand-teal">12. General Terms</a>
+            </nav>
+          </div>
+        </aside>
+
+        {/* Content Body */}
+        <div class="lg:col-span-8 max-w-3xl prose prose-invert prose-zinc prose-headings:font-serif prose-headings:text-white prose-headings:font-medium prose-h2:text-2xl md:prose-h2:text-3xl md:prose-h2:mt-16 prose-h2:mt-12 prose-h2:mb-6 prose-p:text-zinc-400 prose-p:leading-[1.75] prose-p:font-sans prose-p:text-base md:prose-p:text-lg prose-a:text-brand-teal prose-a:no-underline hover:prose-a:text-brand-violet transition-colors prose-li:text-zinc-400 prose-li:leading-[1.75] prose-strong:text-zinc-200 prose-strong:font-medium page-stagger" style="--i:3">
+          
+          <p class="text-xl md:text-2xl text-zinc-300 font-serif leading-relaxed mb-12">
+            <strong>AdaptHub Private Limited</strong> ("AdaptHub", "we", "us", or "our") operates adapthub.in and provides the Service subject to these Terms. By using the Service, you ("User", "you") agree to these Terms.
+          </p>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-1">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.01 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Acceptance</h2>
+            <p>These Terms are binding. We may modify these Terms at our sole discretion with 30 days’ prior notice (via email or in-app). Your continued use constitutes acceptance.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-2">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.02 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Eligibility</h2>
+            <p>You represent you are at least 18 years old and have full legal capacity. You are solely responsible for account security and all activity under your credentials. We are not liable for any unauthorized access.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-3">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.03 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Intellectual Property</h2>
+            <p>We own the Service, code, algorithms, and outputs (except your User Content). You receive a limited, revocable license for personal use only. Any feedback you provide becomes ours without compensation.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-4">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.04 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">User Content</h2>
+            <p>You retain ownership of uploads. By submitting any User Content, you grant us a <strong class="text-white border-b border-brand-teal/40">worldwide, perpetual, irrevocable, royalty-free, sublicensable, transferable license</strong> to use, reproduce, modify, adapt, publish, translate, distribute, create derivative works, and commercially exploit it for any purpose (including AI training, model improvement, marketing, and product development).</p>
+            <p>You are solely responsible for your User Content and any outputs generated from it. We may delete or refuse any User Content at any time without notice.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-5">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.05 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Prohibited Acts</h2>
+            <p>You agree not to:</p>
+            <ul class="space-y-4 max-w-2xl mt-6">
+               <li class="flex items-start gap-4">
+                 <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0"></div>
+                 <span>Use the Service for any illegal or harmful purpose.</span>
+               </li>
+               <li class="flex items-start gap-4">
+                 <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0"></div>
+                 <span>Reverse engineer, decompile, or scrape the Service.</span>
+               </li>
+               <li class="flex items-start gap-4">
+                 <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0"></div>
+                 <span>Upload viruses, malware, or harmful material.</span>
+               </li>
+               <li class="flex items-start gap-4">
+                 <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0"></div>
+                 <span>Interfere with security or operation of the Service.</span>
+               </li>
+               <li class="flex items-start gap-4">
+                 <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0"></div>
+                 <span>Rely on outputs for high-risk decisions (medical, legal, financial, safety) without independent professional verification.</span>
+               </li>
+            </ul>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-6">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.06 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Fees</h2>
+            <p>Fees are due immediately. <strong class="text-white">Except where required by law, all fees are non-refundable.</strong></p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-7">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.07 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Termination</h2>
+            <p>We may terminate or suspend your access <strong class="text-white border-b border-brand-teal/40">at any time, with or without notice, for any reason</strong>. Upon termination, your rights cease immediately and we may delete your data. The sections on licenses, disclaimers, liability, and indemnification survive.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-8">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.08 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Disclaimers</h2>
+            <div class="bg-white/5 border border-white/10 p-6 md:p-8 rounded-sm font-mono text-sm md:text-base leading-relaxed text-zinc-300">
+               <p class="mt-0 mb-4">THE SERVICE AND ALL OUTPUTS ARE PROVIDED <strong>"AS IS" AND "AS AVAILABLE"</strong> WITHOUT ANY WARRANTY.</p>
+               <p class="m-0">WE DISCLAIM ALL WARRANTIES (EXPRESS OR IMPLIED) INCLUDING ACCURACY, RELIABILITY, COMPLETENESS, MERCHANTABILITY, FITNESS FOR PURPOSE, OR NON-INFRINGEMENT. <strong>AI OUTPUTS MAY CONTAIN ERRORS, HALLUCINATIONS, BIASES, OR OUTDATED INFORMATION.</strong> You assume <strong>all risk</strong> of use or reliance on the Service and any outputs.</p>
+            </div>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-9">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.09 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Limitation of Liability</h2>
+            <p><strong class="text-white">TO THE MAXIMUM EXTENT PERMITTED BY LAW</strong>, ADAPTHUB SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES (INCLUDING LOSS OF PROFITS, DATA, GOODWILL, OR BUSINESS INTERRUPTION).</p>
+            <p><strong class="text-white">OUR TOTAL LIABILITY TO YOU SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE CLAIM</strong>, or ₹5,000, whichever is lower.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-10">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.10 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless AdaptHub, its directors, officers, employees, and agents from <strong class="text-white">any and all</strong> claims, damages, losses, liabilities, costs, and expenses (including attorney fees) arising from:</p>
+            <ul class="space-y-2 mt-4">
+              <li>Your use of the Service or any outputs.</li>
+              <li>Your User Content.</li>
+              <li>Your violation of these Terms or any law.</li>
+              <li>Any third-party claim related to your account or actions.</li>
+            </ul>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-11">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.11 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">Governing Law</h2>
+            <p>Governed by the laws of India. All disputes shall be resolved by binding arbitration in New Delhi under the Arbitration and Conciliation Act, 1996, conducted in English. You waive any right to class actions or jury trials.</p>
+          </div>
+
+          <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 mt-16 scroll-mt-32" id="sec-12">
+            <div class="flex items-end justify-between mb-6 md:mb-8">
+              <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">[ Section.12 ]</div>
+              <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+            </div>
+            <h2 class="mt-0 pt-0">General Terms</h2>
+            <ul class="space-y-2 mt-4">
+              <li><strong class="text-white font-mono text-xs uppercase tracking-wider mr-2">Severability</strong> Invalid provisions do not affect the rest.</li>
+              <li><strong class="text-white font-mono text-xs uppercase tracking-wider mr-2">Assignment</strong> We may assign; you may not.</li>
+              <li><strong class="text-white font-mono text-xs uppercase tracking-wider mr-2">Entire Agreement</strong> This is the complete agreement.</li>
+              <li><strong class="text-white font-mono text-xs uppercase tracking-wider mr-2">No Waiver</strong> Failure to enforce any right does not waive it.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    // Simple intersection observer to highlight TOC
+    document.addEventListener('astro:page-load', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+             const id = entry.target.getAttribute('id');
+             const links = document.querySelectorAll('#toc-nav a');
+             links.forEach(link => {
+                if (link.getAttribute('href') === `#${id}`) {
+                   link.classList.add('text-brand-teal', 'translate-x-2');
+                   link.classList.remove('text-zinc-400');
+                } else {
+                   link.classList.remove('text-brand-teal', 'translate-x-2');
+                   link.classList.add('text-zinc-400');
+                }
+             });
+          }
+        });
+      }, { rootMargin: '-20% 0px -80% 0px' });
+
+      document.querySelectorAll('[id^="sec-"]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</Layout>

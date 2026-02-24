@@ -1,0 +1,228 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+import { resolvedContent as CONTENT } from "../utils/config";
+import { BLOG_ARTICLES } from "../constants/blog-data";
+
+const articles = BLOG_ARTICLES;
+const featuredArticle = articles[0];
+const feedArticles = articles.slice(1);
+
+const siteUrl = Astro.site || "https://adapthub.in";
+---
+
+<Layout 
+  title={CONTENT.metadata.blog.title}
+  description={CONTENT.metadata.blog.description}
+  keywords={CONTENT.metadata.blog.keywords}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": new URL("blog/#webpage", siteUrl).href,
+        "url": new URL("blog/", siteUrl).href,
+        "name": CONTENT.metadata.blog.title || "Signals & Noise",
+        "description": CONTENT?.metadata?.blog?.description || "Strategic insights for CAT 2026"
+      },
+      {
+        "@type": "Blog",
+        "@id": `${siteUrl}blog/#blog`,
+        "name": "AdaptHub Signals & Noise",
+        "description": "Strategic insights for CAT 2026",
+        "publisher": { "@type": "Organization", "name": "AdaptHub" },
+        "blogPost": articles.map(a => ({
+          "@type": "BlogPosting",
+          "headline": a.title,
+          "description": a.excerpt,
+          "datePublished": new Date(a.date).toISOString(),
+          "url": `${siteUrl}blog/${a.slug}`
+        }))
+      }
+    ]
+  })} />
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-24 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    
+    <BackgroundPulse client:load />
+    
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="ledger-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#ledger-grain)" />
+    </svg>
+
+    <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-40 overflow-hidden" aria-hidden="true">
+      <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden lg:block ml-[41.666%]"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] mt-12 md:mt-20">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        
+        {/* Left Column */}
+        <div class="lg:col-span-5 relative">
+          <div class="lg:sticky lg:top-40 flex flex-col gap-16 lg:gap-24 pb-12">
+            
+            <header>
+              <h1 class="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-serif text-white tracking-tighter leading-none mb-8 relative page-stagger" style="--i:1">
+                Signals <br />
+                <span class="italic text-brand-teal block pb-2 ml-4 md:ml-8 mt-2 md:mt-4">
+                  <span class="font-sans text-brand-teal/70 font-light">&amp;</span> Noise.
+                </span>
+              </h1>
+              <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-md tracking-wide page-stagger pl-1" style="--i:2">
+                CAT 2026 strategy breakdowns, section-level logic analysis, and cognitive techniques to accelerate your percentile growth.
+              </p>
+            </header>
+
+            {/* Featured Article */}
+            <a href={`/blog/${featuredArticle.slug}`} class="relative group page-stagger block active:scale-[0.99] transition-transform duration-300" style="--i:3">
+              <div class="absolute -inset-6 border border-white/5 bg-white/[0.01] pointer-events-none group-hover:bg-white/[0.02] group-hover:border-brand-teal/20 transition-all duration-700" aria-hidden="true">
+                <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-brand-teal/50"></div>
+                <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-brand-teal/50"></div>
+              </div>
+              <div class="absolute -inset-6 bg-[radial-gradient(circle_at_100%_100%,rgba(13,148,136,0.08)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" aria-hidden="true"></div>
+
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-8">
+                  <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse" aria-hidden="true"></span>
+                    <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.25em]">Primary Intercept</span>
+                  </div>
+                  <span class="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.2em]">{featuredArticle.date}</span>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-white leading-tight tracking-tight mb-6 group-hover:text-brand-teal transition-colors duration-500 text-balance">
+                  {featuredArticle.title}
+                </h2>
+                
+                <p class="text-zinc-400 font-sans text-base leading-relaxed mb-10">
+                  {featuredArticle.excerpt}
+                </p>
+
+                <div class="flex items-end justify-between gap-6">
+                  <span class="inline-flex items-center gap-3 py-3 font-mono text-[10px] sm:text-xs text-brand-teal uppercase tracking-[0.2em]">
+                    <span class="block w-4 h-px bg-brand-teal/50" aria-hidden="true"></span>
+                    Read Article
+                  </span>
+                  <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 transition-all duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        {/* Right Column: Ledger */}
+        <div class="lg:col-span-7 mt-16 lg:mt-0">
+          
+          <div class="flex items-center justify-between border-b border-white/10 pb-6 mb-8 page-stagger" style="--i:4">
+            <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.25em]">Chronological Ledger</span>
+            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.2em]">[ SYS.LOG ]</span>
+          </div>
+
+          <div class="w-full bg-white/[0.06] border border-white/[0.06] p-[1px] relative page-stagger" style="--i:4.5">
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+
+            <div class="flex flex-col gap-[1px]">
+              {feedArticles.map((article, index) => (
+                <a
+                  href={`/blog/${article.slug}`}
+                  class="ledger-row group block relative bg-void py-10 md:py-14 pl-4 sm:pl-8 pr-4 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal active:scale-[0.99] transition-all duration-700 page-stagger"
+                  style={`--i:${5 + index}`}
+                >
+                  <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-out pointer-events-none z-20" aria-hidden="true"></div>
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(13,148,136,0.08)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" aria-hidden="true"></div>
+                  
+                  <div class="relative z-10 flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 mb-4">
+                    <span class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.25em] md:w-32 shrink-0">
+                      {article.category}
+                    </span>
+                    <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em]">
+                      {article.date}
+                    </span>
+                  </div>
+
+                  <div class="relative z-10 md:pl-40">
+                    <h3 class="text-2xl md:text-3xl font-serif text-zinc-200 group-hover:text-white leading-snug tracking-tight mb-4 transition-colors duration-300">
+                      {article.title}
+                    </h3>
+                    <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-sm md:text-base leading-relaxed transition-colors duration-300 mb-6 max-w-xl">
+                      {article.excerpt}
+                    </p>
+                    <div class="flex items-end justify-between gap-6 overflow-hidden">
+                      <div class="flex items-center gap-6">
+                        <div class="flex items-center gap-2 transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                          <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.2em]">Read</span>
+                        </div>
+                        <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.2em] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out border-l border-zinc-700 px-6">
+                          EST_TIME: {article.readTime}
+                        </span>
+                      </div>
+                      <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 transition-all duration-500 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+
+              <div class="bg-void py-16 flex flex-col items-center justify-center text-center page-stagger relative overflow-hidden group" style="--i:7">
+                <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.02)_50%,transparent_100%)] -translate-y-full group-hover:animate-[scan_2s_ease-in-out_infinite]" aria-hidden="true"></div>
+                <div class="text-center relative z-10">
+                  <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="w-1.5 h-1.5 bg-brand-teal/50 animate-pulse"></span>
+                    <span class="w-1.5 h-1.5 bg-brand-teal/30 animate-pulse" style="animation-delay: 200ms"></span>
+                    <span class="w-1.5 h-1.5 bg-brand-teal/10 animate-pulse" style="animation-delay: 400ms"></span>
+                  </div>
+                  <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">
+                    End of Log <br /> Awaiting Transmission
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse { animation: none; opacity: 0.8; }
+    .ledger-row * { transition: none !important; }
+    .ledger-row:hover .opacity-0 { opacity: 1 !important; transform: none !important; }
+  }
+</style>

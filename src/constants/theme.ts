@@ -4,8 +4,8 @@
 export const THEME_COLORS = {
   brand: {
     violet: "#5b21b6", // 800
-    teal: "#0d9488", // 600
-    tealLight: "#2dd4bf", // 400
+    teal: "#2dd4bf", // 400 (Upgraded for AAA contrast on bg-void)
+    tealLight: "#5eead4", // 300
   },
   accent: {
     pink: "#ec4899", // 500

@@ -8,7 +8,8 @@
 
     /* COLOR PALETTE - CINEMATIC INTELLECTUAL */
     --color-brand-violet: #5b21b6;
-    --color-brand-teal: #0d9488;
+    --color-brand-teal: #2dd4bf;
+    /* Elevating from teal-600 to teal-400 for AAA contrast */
     --color-paper: #faf3e9;
     --color-paper-light: #fdfbf7;
     --color-void: #050505;
@@ -23,7 +24,18 @@
     --radius-pill: 9999px;
     --radius-card: 20px;
 
-    /* Z-INDEX SCALE */
+    /* Z-INDEX SCALE
+     * Layer hierarchy (low to high):
+     * - behind (-1): Background elements, decorative layers
+     * - default (1): Normal flow content
+     * - elevate (10): Raised content, cards with interaction
+     * - sticky (50): Fixed headers, sticky navigation, scroll indicators
+     * - overlay (100): Modals, dropdowns, mobile menus
+     * - max (9999): Loading screens, toast notifications, critical overlays
+     *
+     * Global grid uses z-index: 1 to sit above background but below elevated content.
+     * Grain overlay uses z-index: 9999 to appear above all page content.
+     */
     --z-index-behind: -1;
     --z-index-default: 1;
     --z-index-elevate: 10;
@@ -44,6 +56,21 @@
 
     /* BREAKPOINTS */
     --breakpoint-xs: 475px;
+
+    /* ANIMATIONS */
+    --animate-pulse-fade-in: pulse-fade-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes pulse-fade-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -212,6 +239,7 @@ html {
     */
     :root {
         font-display: swap;
+        color-scheme: dark;
     }
 
     body {
@@ -274,6 +302,29 @@ html {
     .mobile-min-height {
         @apply min-h-[200px] md:min-h-0;
     }
+
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
 }
 
 @layer components {
@@ -289,30 +340,30 @@ html {
     }
 
     .fade-in {
-        animation-name: fadeIn;
+        animation-name: fade-in;
     }
 
     .slide-in-from-bottom-4 {
-        animation-name: slideInBottom4;
+        animation-name: slide-in-bottom-4;
     }
 
     .slide-in-from-bottom-8 {
-        animation-name: slideInBottom8;
+        animation-name: slide-in-bottom-8;
     }
 
     .slide-in-from-bottom-12 {
-        animation-name: slideInBottom12;
+        animation-name: slide-in-bottom-12;
     }
 
     .slide-in-from-bottom-16 {
-        animation-name: slideInBottom16;
+        animation-name: slide-in-bottom-16;
     }
 
     .zoom-in-95 {
-        animation-name: zoomIn95;
+        animation-name: zoom-in-95;
     }
 
-    @keyframes fadeIn {
+    @keyframes fade-in {
         from {
             opacity: 0;
         }
@@ -322,7 +373,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom4 {
+    @keyframes slide-in-bottom-4 {
         from {
             opacity: 0;
             transform: translateY(1rem);
@@ -334,7 +385,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom8 {
+    @keyframes slide-in-bottom-8 {
         from {
             opacity: 0;
             transform: translateY(2rem);
@@ -346,7 +397,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom12 {
+    @keyframes slide-in-bottom-12 {
         from {
             opacity: 0;
             transform: translateY(3rem);
@@ -358,7 +409,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom16 {
+    @keyframes slide-in-bottom-16 {
         from {
             opacity: 0;
             transform: translateY(4rem);
@@ -370,7 +421,7 @@ html {
         }
     }
 
-    @keyframes zoomIn95 {
+    @keyframes zoom-in-95 {
         from {
             opacity: 0;
             transform: scale(0.95);
@@ -425,5 +476,160 @@ html {
 
     .delay-700 {
         animation-delay: 700ms;
+    }
+
+    /* ── Page Reveal Choreography (Shared across all content pages) ── */
+    .page-stagger {
+        opacity: 0;
+        transform: translateY(24px) translateZ(0);
+        animation: pageReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--i, 0) * 120ms + 100ms);
+        will-change: transform, opacity;
+    }
+
+    @keyframes pageReveal {
+        to {
+            opacity: 1;
+            transform: translateY(0) translateZ(0);
+        }
+    }
+
+    /* ── Hero Section Animations ── */
+    .hero-stagger {
+        opacity: 0;
+        transform: translateY(24px) translateZ(0);
+        animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--i, 0) * 120ms + 100ms);
+        will-change: transform, opacity;
+    }
+
+    .hero-fade {
+        opacity: 0;
+        animation: heroFadeIn 1.2s ease forwards;
+        animation-delay: var(--delay, 800ms);
+    }
+
+    @keyframes heroReveal {
+        to {
+            opacity: 1;
+            transform: translateY(0) translateZ(0);
+        }
+    }
+
+    @keyframes heroFadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* ── 404 Error Page Animations ── */
+    .mask-laser {
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    }
+
+    .animate-scan {
+        animation: scanVertical 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        will-change: transform;
+    }
+
+    @keyframes scanVertical {
+        0% {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        50% {
+            transform: translateY(110%);
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+    }
+
+    /* ── BentoGrid Data Spectrum ── */
+    .mask-spectrum {
+        -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
+        mask-image: linear-gradient(to top, black 30%, transparent 100%);
+    }
+
+    .data-bar {
+        transform-origin: bottom;
+        animation: pulseBar 4s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    @keyframes pulseBar {
+        0%,
+        100% {
+            transform: scaleY(1);
+        }
+
+        50% {
+            transform: scaleY(1.15);
+        }
+    }
+
+    /* ── Hero Scroll Arrow ── */
+    .hero-scroll-arrow {
+        animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+        0%,
+        100% {
+            opacity: 0.3;
+            transform: translateY(-3px);
+        }
+
+        50% {
+            opacity: 1;
+            transform: translateY(3px);
+        }
+    }
+
+    /* ── Reduced Motion Guardrails ── */
+    @media (prefers-reduced-motion: reduce) {
+        .page-stagger,
+        .hero-stagger,
+        .hero-fade {
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+
+        .hero-scanline {
+            display: none;
+        }
+
+        .hero-scroll-arrow {
+            animation: none;
+            opacity: 0.6;
+            transform: none;
+        }
+
+        .animate-ping {
+            animation: none;
+            opacity: 0;
+        }
+
+        .data-bar {
+            animation: none;
+        }
+
+        .animate-scan {
+            animation: none;
+            display: none;
+        }
     }
 }

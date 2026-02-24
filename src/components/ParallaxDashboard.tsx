@@ -98,8 +98,12 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
           <img
             src={heroImage || CONTENT.assets.heroImage}
             alt={CONTENT.parallaxDashboard.alt}
+            width={1200}
+            height={800}
             className="w-full h-auto opacity-90"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           {/* Gloss */}
           {!isReduced && (
@@ -161,7 +165,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
               +{count}
               {CONTENT.parallaxDashboard.growth.suffix}
             </span>
-            <span className="text-[8px] sm:text-[10px] lg:text-xs text-zinc-500 mb-0.5 sm:mb-1">
+            <span className="text-[8px] sm:text-[10px] lg:text-xs text-zinc-400 mb-0.5 sm:mb-1">
               {CONTENT.parallaxDashboard.growth.comparison}
             </span>
           </div>

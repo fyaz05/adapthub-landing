@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "Is it possible to clear CAT without coaching?",
+    answer: "Absolutely. Many 99+ percentilers are self-taught. What you actually need is discipline, a structured study plan, and high-quality mock tests with granular analytics. AdaptHub provides these for free."
+  },
+  {
+    question: "How should a beginner start preparing for CAT at home?",
+    answer: "Start by taking a diagnostic mock test to identify weak areas. Then refer to standard CAT preparation books for basics, and use adaptive platforms like AdaptHub to dynamically adjust difficulty as you improve."
+  },
+  {
+    question: "Are free mocks enough for CAT?",
+    answer: "Yes, if the mocks adapt to your level and provide actionable performance diagnostics (like Error Distractor Analysis), this data is often superior to generalized paid coaching feedback."
+  }
+];
+
+---
+
+<Layout 
+  title="How to Prepare for CAT Without Coaching | AdaptHub"
+  description="A complete guide to cracking the CAT exam without paid coaching. Discover free study plans, adaptive learning tools, and self-study strategies to score 99+ percentile."
+  keywords={["prepare for cat without coaching", "cat self study", "free cat coaching", "how to crack cat at home", "cat preparation guide"]}
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": new URL("cat-preparation-without-coaching/#webpage", siteUrl).href,
+        "url": new URL("cat-preparation-without-coaching", siteUrl).href,
+        "name": "How to Prepare for CAT Without Coaching",
+        "description": "Complete guide for CAT self-study and cracking the exam without expensive coaching classes.",
+        "inLanguage": "en",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".speakable-content"]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("cat-preparation-without-coaching/#faq", siteUrl).href,
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      }
+    ]
+  })}></script>
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    <BackgroundPulse client:load />
+
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="blog-grain2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#blog-grain2)" />
+    </svg>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-4xl mt-8">
+      
+      {/* ── GEO: Key Takeaways Box ── */}
+      <div class="mb-12 border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
+        <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
+        <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
+
+        <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">
+          [ Free Prep Blueprint ]
+        </p>
+        
+        <div class="space-y-4 speakable-content text-zinc-300 font-sans text-lg md:text-xl leading-relaxed">
+          <p><strong>Step 1:</strong> Baseline Diagnostic (Identify absolute starting point in QA/VARC/DILR).</p>
+          <p><strong>Step 2:</strong> Targeted Concept Building (Books: Arun Sharma, Sarvesh K Verma).</p>
+          <p><strong>Step 3:</strong> Adaptive Practice (Use algorithms mapping to the Zone of Proximal Development).</p>
+          <p><strong>Step 4:</strong> Mock Telemetry Analysis (Track Learning Velocity, not just accuracy).</p>
+        </div>
+      </div>
+
+      <article class="prose prose-invert prose-brand max-w-none">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8">How to Prepare for CAT Without Paid Coaching</h1>
+        
+        <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+          The traditional coaching model for CAT preparation is broken. Static syllabus structures force fast learners to wait, while slow learners get left behind. To score 99+ percentile, you do not need 1 Lakh INR in coaching fees. You need structural discipline and data.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why Self-Study Often Beats Traditional Coaching</h2>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          Traditional coaching institutes operate on a "one-size-fits-all" batch schedule. If you are extremely proficient in Algebra but weak in Arithmetic, you still sit through 3 weeks of Algebra lectures. Self-study allows asynchronous learning governed by a <strong>Zone of Proximal Development (ZPD)</strong> algorithm—which dynamically adjusts focus to what you actually need to learn next.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The 4-Pillar Free Prep Strategy</h2>
+        <ul class="list-disc pl-6 text-zinc-400 mb-12 space-y-4">
+          <li><strong>Diagnostic Calibration:</strong> Take a full-length mock exactly as you are today. This establishes a true baseline devoid of conceptual recency bias.</li>
+          <li><strong>Algorithmic Weakness Targeting:</strong> Do not study linearly. Study algorithmically. If a platform detects you fail 80% of Circular Seating arrangements due to logic inversion errors, drill that specific flaw.</li>
+          <li><strong>Active Recall over Passive Consumption:</strong> Avoid watching 10 hours of solution videos. Engage with Socratic AI Coaches that penalize direct answers and instead prompt logical next steps.</li>
+          <li><strong>Spaced Repetition:</strong> Ensure errors are re-tested dynamically 3, 7, and 14 days later to confirm memory encoding.</li>
+        </ul>
+
+        <div class="mt-16 text-center border-t border-white/10 pt-16">
+          <h3 class="text-2xl font-serif text-white mb-6">Ready to ditch standard coaching?</h3>
+          <p class="text-zinc-400 mb-8 max-w-lg mx-auto">AdaptHub provides elite metric analysis, Spaced Repetition Queues, and adaptive routing—<strong>100% free, forever.</strong></p>
+          <a 
+            href="/pricing"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-white"
+          >
+            Start Your Algorithm
+            <span class="text-brand-teal font-sans">→</span>
+          </a>
+        </div>
+      </article>
+
+      {/* FAQs */}
+      <section class="mt-24 pt-16 border-t border-white/10">
+        <h2 class="text-3xl font-serif text-white tracking-tight mb-8">Related Questions</h2>
+        <div class="border-t border-white/10">
+          {faqs.map((faq) => (
+            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+              <summary class="py-6 font-serif text-lg md:text-xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none active:scale-[0.99] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50">
+                <span class="pr-8 tracking-tight leading-snug">{faq.question}</span>
+                <span class="font-mono text-zinc-500 group-hover:text-brand-teal text-xl transition-colors">
+                  <span class="group-open:hidden">+</span>
+                  <span class="hidden group-open:inline">-</span>
+                </span>
+              </summary>
+              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans">
+                <div class="border-l border-brand-teal/30 pl-6 max-w-[65ch]">
+                  {faq.answer}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

@@ -1,21 +1,30 @@
 ---
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Navbar from "../components/Navbar";
 import BentoGrid from "../components/BentoGrid";
+import VelocityDashboard from "../components/VelocityDashboard";
+import StreakMatrix from "../components/StreakMatrix";
 import TheLens from "../components/TheLens";
 import FAQ from "../components/FAQ";
 import BackgroundPulse from "../components/BackgroundPulse";
 import PhilosophySection from "../components/PhilosophySection.astro";
+import SocraticCoach from "../components/SocraticCoach";
 import Footer from "../components/Footer.astro";
-import { CONTENT } from "../constants/content";
+import { resolvedContent as CONTENT } from "../utils/config";
 ---
 
 <Layout
   title={CONTENT.metadata.indexPage.title}
   description={CONTENT.metadata.indexPage.description}
   keywords={CONTENT.metadata.indexPage.keywords}
+  showLoadingScreen={true}
 >
   <script
     slot="head"
@@ -24,7 +33,7 @@ import { CONTENT } from "../constants/content";
     set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": CONTENT.faq.items.map((item) => ({
+      "mainEntity": CONTENT.faq.items.map((item: FAQItem) => ({
         "@type": "Question",
         "name": item.question,
         "acceptedAnswer": {
@@ -36,12 +45,15 @@ import { CONTENT } from "../constants/content";
   />
   <AnnouncementBar client:load transition:persist />
   <Navbar client:load transition:persist />
-  <main class="relative isolate">
+  <main id="main-content" class="relative isolate">
     <BackgroundPulse client:load />
     <Hero />
     <PhilosophySection />
+    <SocraticCoach client:visible />
     <TheLens client:visible />
     <BentoGrid client:visible />
+    <VelocityDashboard client:visible />
+    <StreakMatrix client:visible />
     <FAQ client:visible />
   </main>
   <Footer />

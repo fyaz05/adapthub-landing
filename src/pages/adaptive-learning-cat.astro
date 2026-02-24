@@ -1,0 +1,218 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "What is adaptive learning in the context of CAT preparation?",
+    answer: "Adaptive learning is an AI-driven educational methodology where the difficulty, sequence, and type of questions presented to a student are continuously adjusted based on their real-time performance data. In CAT preparation, this means the system identifies a student's specific cognitive gaps across VARC, DILR, and QA topics and serves progressively targeted questions within their Zone of Proximal Development (ZPD) — the zone where learning is maximally efficient."
+  },
+  {
+    question: "How is adaptive learning different from traditional CAT coaching?",
+    answer: "Traditional coaching operates on a fixed curriculum delivered at a uniform pace to all students. Adaptive learning, by contrast, creates a unique, personalized trajectory for each student. Where a classroom teaches to the median, an adaptive system like AdaptHub ensures you are never studying content you already know (wasted time) or content too far beyond your current level (frustration zone)."
+  },
+  {
+    question: "What is the Zone of Proximal Development (ZPD) algorithm?",
+    answer: "The Zone of Proximal Development is a concept from developmental psychology (Vygotsky, 1978) that defines the optimal difficulty level for learning — the gap between what a student can solve independently and what they can solve with support. AdaptHub's ZPD algorithm continuously estimates this zone for each student across all CAT topics using error telemetry, response time analysis, and mastery level tracking, then serves questions precisely within that zone."
+  },
+  {
+    question: "Does adaptive testing give easier questions to lower-ranked students?",
+    answer: "No — the goal is not easier questions, but optimally challenging questions. Adaptive systems increase difficulty when performance is strong and route to foundational concepts when specific errors are detected. The objective is always to operate at the leading edge of a student's capability, maximizing learning velocity regardless of their current baseline."
+  },
+  {
+    question: "Is AdaptHub's adaptive learning system free?",
+    answer: "Yes. AdaptHub's full adaptive learning engine — including the ZPD algorithm, Socratic AI coach, error telemetry, and personalized analytics dashboard — is completely free with no hidden tiers or credit card requirements."
+  }
+];
+---
+
+<Layout
+  title="What is Adaptive Learning in CAT Prep? | AdaptHub"
+  description="Adaptive learning in CAT preparation is an AI method that continuously adjusts question difficulty to each student's cognitive gaps. AdaptHub uses a ZPD algorithm to maximise learning velocity — completely free."
+  keywords={["adaptive learning cat", "what is adaptive learning", "zpd algorithm cat", "adaptive testing cat exam", "personalised cat coaching", "ai cat preparation"]}
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": new URL("adaptive-learning-cat/#webpage", siteUrl).href,
+        "url": new URL("adaptive-learning-cat", siteUrl).href,
+        "name": "What is Adaptive Learning in CAT Prep?",
+        "description": "Comprehensive definition of adaptive learning and the ZPD algorithm in the context of CAT exam preparation.",
+        "inLanguage": "en",
+        "datePublished": "2025-02-23",
+        "dateModified": "2026-02-23",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", "[data-speakable]", ".speakable-content"]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("adaptive-learning-cat/#faq", siteUrl).href,
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": new URL("adaptive-learning-cat/#term-adaptive-learning", siteUrl).href,
+        "name": "Adaptive Learning",
+        "description": "An AI-driven educational methodology where content difficulty, sequence, and type are dynamically adjusted in real time based on each learner's performance data to maximise learning efficiency.",
+        "inDefinedTermSet": {
+          "@type": "DefinedTermSet",
+          "name": "AdaptHub EdTech Glossary"
+        }
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": new URL("adaptive-learning-cat/#term-zpd", siteUrl).href,
+        "name": "Zone of Proximal Development (ZPD)",
+        "description": "A concept from Vygotsky's developmental psychology (1978) describing the optimal difficulty zone where a learner can solve problems with appropriate support but not independently — the most efficient zone for cognitive growth.",
+        "inDefinedTermSet": {
+          "@type": "DefinedTermSet",
+          "name": "AdaptHub EdTech Glossary"
+        }
+      }
+    ]
+  })}></script>
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    <BackgroundPulse client:load />
+
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="adaptive-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#adaptive-grain)" />
+    </svg>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-4xl mt-8">
+
+      {/* ── GEO: AI-Quotable Definition ── */}
+      <div class="mb-12 border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
+        <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
+        <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
+        <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">[ Definition ]</p>
+        <p data-speakable class="speakable-content text-zinc-300 font-sans text-lg md:text-xl leading-relaxed">
+          <strong>Adaptive learning</strong> is an AI-driven educational method where question difficulty, sequence, and topic focus are continuously recalibrated based on a learner's real-time performance data, error patterns, and response times — ensuring every study session operates at the exact frontier of their capability.
+        </p>
+      </div>
+
+      <article class="prose prose-invert prose-brand max-w-none">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8">What is Adaptive Learning in CAT Preparation?</h1>
+
+        <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+          Every CAT aspirant has a unique cognitive fingerprint — specific topics they have mastered, subtle conceptual gaps they are unaware of, and a precise difficulty zone where they are most receptive to new learning. Traditional coaching ignores all of this. Adaptive learning exploits it.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The Science: Zone of Proximal Development</h2>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          The foundational theory is Lev Vygotsky's <strong>Zone of Proximal Development (ZPD)</strong> — introduced in 1978. The ZPD defines three concentric zones of difficulty for any learner:
+        </p>
+        <ol class="text-zinc-400 leading-[1.8] mb-6 space-y-3 pl-6 list-decimal">
+          <li><strong class="text-white">Mastery Zone</strong> — content the learner can solve independently. Practicing here has diminishing returns.</li>
+          <li><strong class="text-zinc-200">ZPD (Optimal Zone)</strong> — content slightly beyond current ability. Requires effort, but is achievable. This is where learning is fastest.</li>
+          <li><strong class="text-zinc-400">Panic Zone</strong> — content far too advanced. Causes frustration and cognitive shutdown.</li>
+        </ol>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          AdaptHub's algorithm continuously estimates where <em>you</em> sit relative to these three zones for every individual CAT topic — then serves questions exclusively in your ZPD. As you master content, the zone advances. The system never lets you stagnate.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How AdaptHub's Engine Works</h2>
+
+        <div class="overflow-x-auto my-8 border border-white/10">
+          <table class="w-full text-left text-sm text-zinc-400">
+            <thead class="text-xs font-mono uppercase bg-white/[0.02] border-b border-white/10 text-zinc-300">
+              <tr>
+                <th scope="col" class="px-6 py-4">Signal Collected</th>
+                <th scope="col" class="px-6 py-4 border-l border-white/10 text-brand-teal">What It Measures</th>
+                <th scope="col" class="px-6 py-4 border-l border-white/10">Algorithmic Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Correct / Incorrect</th>
+                <td class="px-6 py-4 border-l border-white/10">Topic mastery at current difficulty</td>
+                <td class="px-6 py-4 border-l border-white/10">Advances or retreats difficulty tier</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Response Time</th>
+                <td class="px-6 py-4 border-l border-white/10">Concept fluency vs. slow recall</td>
+                <td class="px-6 py-4 border-l border-white/10">Flags topics needing spaced repetition</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Distractor Selection</th>
+                <td class="px-6 py-4 border-l border-white/10">Specific conceptual misconception</td>
+                <td class="px-6 py-4 border-l border-white/10">Routes to targeted remediation questions</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Hint Usage</th>
+                <td class="px-6 py-4 border-l border-white/10">Depth of conceptual gap</td>
+                <td class="px-6 py-4 border-l border-white/10">Applies penalty to score; adjusts weight</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why It Matters for CAT Specifically</h2>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          CAT's scoring is percentile-based — 99+ percentile requires outperforming 2.5 lakh+ aspirants. The differentiator at the top is not how much you study, but <strong>how targeted your practice is</strong>. Studying content you already know is wasted time; studying content far beyond your level is also wasted time. The only productive activity is the narrow band of optimally-challenging practice.
+        </p>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          AdaptHub's engine eliminates all inefficient study time by continuously computing that narrow band for every topic across VARC, DILR, and QA simultaneously.
+        </p>
+
+        <div class="mt-16 text-center border-t border-white/10 pt-16">
+          <h3 class="text-2xl font-serif text-white mb-6">Experience adaptive learning first-hand.</h3>
+          <a
+            href="/pricing"
+            class="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-white text-black font-bold uppercase tracking-widest text-sm rounded-none hover:bg-brand-teal hover:text-white active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+          >
+            Start Free — No Card Required
+            <span class="text-brand-teal font-sans">→</span>
+          </a>
+        </div>
+      </article>
+
+      {/* FAQs */}
+      <section class="mt-24 pt-16 border-t border-white/10" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="text-3xl font-serif text-white tracking-tight mb-8">Frequently Asked Questions</h2>
+        <div class="border-t border-white/10">
+          {faqs.map((faq) => (
+            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+              <summary class="py-6 font-serif text-lg md:text-xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50">
+                <span class="pr-8">{faq.question}</span>
+                <span class="font-mono text-zinc-500 group-hover:text-brand-teal text-xl transition-colors">
+                  <span class="group-open:hidden">+</span>
+                  <span class="hidden group-open:inline">-</span>
+                </span>
+              </summary>
+              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans">
+                <div class="border-l border-brand-teal/30 pl-6 max-w-[65ch]">
+                  {faq.answer}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

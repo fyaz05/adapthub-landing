@@ -1,0 +1,30 @@
+# AdaptHub — robots.txt
+# Allow all major crawlers including search engines and AI agents
+
+User-agent: *
+Allow: /
+
+# AI crawlers — explicitly permitted
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://adapthub.in/sitemap-index.xml

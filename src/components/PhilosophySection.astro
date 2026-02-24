@@ -3,43 +3,144 @@ import { CONTENT } from "../constants/content";
 import SectionSpotlight from "./SectionSpotlight";
 ---
 
-<section class="relative w-full py-32 md:py-48 bg-paper-light text-zinc-900 overflow-hidden" id="philosophy">
-  {/* Paper Texture Overlay */}
-  <div class="absolute inset-0 pointer-events-none opacity-60 mix-blend-multiply" 
-       style={`background-image: url('${CONTENT.assets.noiseTexture}'); filter: contrast(120%) brightness(100%);`}>
-  </div>
-  <SectionSpotlight client:visible color="rgba(91, 33, 182, 0.15)" blendMode="multiply" />
+<section 
+  class="relative w-full py-32 md:py-48 lg:py-56 bg-void text-zinc-100 overflow-hidden" 
+  id="philosophy"
+>
+  {/* ── Environment & Atmosphere ── */}
+  <SectionSpotlight client:visible color="rgba(45, 212, 191, 0.12)" size={600} />
   
-  <div class="container mx-auto px-4 sm:px-6 relative z-10">
-    <div class="max-w-5xl mx-auto text-center">
-      {/* Headline - Editorial Stacking */}
-      <h2 class="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-12 sm:mb-20 text-charcoal">
-        {CONTENT.philosophy.headline.line1}<br />
-        <span class="block my-2">{CONTENT.philosophy.headline.line2}</span>
-        {CONTENT.philosophy.headline.line3}<br />
-        <span class="italic text-brand-teal font-normal relative inline-block">
-            {CONTENT.philosophy.headline.highlight}
-            <svg class="absolute -bottom-4 left-0 w-full h-4 text-brand-teal/40" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0 5 Q 50 25 100 5" stroke="currentColor" stroke-width="3" fill="none" />
-            </svg>
-        </span><br />
-        {CONTENT.philosophy.headline.line4}
+  {/* High-Fidelity Noise Texture */}
+  <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+    <filter id="philosophy-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#philosophy-noise)" />
+  </svg>
+
+  {/* Ambient Architectural Grid Lines */}
+  <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-30" aria-hidden="true">
+    <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden md:block"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden lg:block"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+    </div>
+  </div>
+  
+  <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
+    
+    {/* ── System Metadata Header ── */}
+    <div class="flex items-center justify-center gap-3 mb-20 md:mb-32 page-stagger" style="--i:0">
+      <span class="block w-8 sm:w-12 h-px bg-brand-teal/60" aria-hidden="true"></span>
+      <span class="font-mono text-[10px] md:text-xs text-brand-teal/60 uppercase tracking-[0.25em] select-none text-center">
+        SYS.MANIFESTO // 01
+      </span>
+      <span class="block w-8 sm:w-12 h-px bg-brand-teal/60" aria-hidden="true"></span>
+    </div>
+
+    {/* ── Monumental Editorial Typography ── */}
+    <div class="max-w-6xl mx-auto text-center relative z-20 mb-32 md:mb-48">
+      
+      <h2 class="font-serif text-[2.75rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-none tracking-tighter text-white text-balance flex flex-col items-center">
+        
+        {/* Line 1 & 2 */}
+        <span class="block text-zinc-400 page-stagger" style="--i:1">
+          {CONTENT.philosophy.headline.line1}
+        </span>
+        <span class="block mt-2 md:mt-4 page-stagger" style="--i:2">
+          {CONTENT.philosophy.headline.line2}
+        </span>
+        
+        {/* Line 3 with Terminal Highlight */}
+        <span class="inline-flex flex-wrap justify-center items-end gap-3 md:gap-5 mt-4 md:mt-6 page-stagger" style="--i:3">
+          <span class="block">{CONTENT.philosophy.headline.line3}</span>
+          
+          <span class="relative group/highlight pb-1 md:pb-2 inline-flex items-center cursor-default">
+            {/* Hover Background Selection */}
+            <span class="absolute inset-0 bg-brand-teal/10 border border-brand-teal/30 scale-x-0 group-hover/highlight:scale-x-100 transition-transform duration-700 origin-left ease-[0.16,1,0.3,1]" aria-hidden="true"></span>
+            
+            <span class="relative italic text-brand-teal font-normal pr-1 select-none whitespace-nowrap">
+              {CONTENT.philosophy.headline.highlight}
+            </span>
+            
+            {/* Blinking Terminal Cursor */}
+            <span class="w-2 sm:w-3 h-8 sm:h-12 lg:h-[4.5rem] bg-brand-teal animate-pulse mix-blend-screen ml-1 md:ml-3 shrink-0 translate-y-1" aria-hidden="true"></span>
+          </span>
+        </span>
+
+        {/* Line 4 */}
+        <span class="block text-zinc-400 text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl mt-6 md:mt-8 page-stagger" style="--i:4">
+          {CONTENT.philosophy.headline.line4}
+        </span>
       </h2>
 
-      {/* Divider */}
-      <div class="w-full h-px bg-charcoal/10 mb-12 sm:mb-20"></div>
+    </div>
 
-      {/* 3-Column Grid */}
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 sm:gap-y-12 text-left">
-        {CONTENT.philosophy.pillars.map(pillar => (
-          <div class="space-y-4 group">
-            <h3 class="font-serif text-xl sm:text-2xl text-zinc-900 group-hover:text-brand-violet transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">{pillar.title}</h3>
-            <p class="font-sans text-sm sm:text-base text-zinc-600 leading-relaxed max-w-sm group-hover:text-zinc-900 transition-colors duration-500">
-              {pillar.description}
-            </p>
+    {/* ── 3-Column Pillar Matrix ── */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-x-12 lg:gap-x-20 relative z-10 border-t border-white/[0.06] pt-16 md:pt-24">
+      
+      {/* Absolute Optical Brackets on the border line */}
+      <div class="absolute top-0 left-0 w-px h-4 bg-brand-teal/50" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-px h-4 bg-brand-teal/50" aria-hidden="true"></div>
+      
+      {CONTENT.philosophy.pillars.map((pillar, index) => (
+        <div class="group relative flex flex-col page-stagger" style={`--i:${5 + index}`}>
+          
+          {/* Active Hover Line indicator */}
+          <div class="absolute -top-16 md:-top-24 left-0 w-[2px] h-12 bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-[0.16,1,0.3,1] pointer-events-none" aria-hidden="true"></div>
+
+          <div class="flex items-center gap-3 mb-6 lg:mb-8">
+            <span class="font-mono text-[9px] md:text-[10px] lg:text-xs text-brand-teal bg-brand-teal/5 border border-brand-teal/20 px-2 py-0.5 uppercase tracking-[0.2em] transition-colors duration-300">
+              [ PIL.0{index + 1} ]
+            </span>
+            <div class="h-px bg-white/5 flex-1 group-hover:bg-brand-teal/30 transition-colors duration-500"></div>
           </div>
-        ))}
-      </div>
+
+          <h3 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-zinc-200 group-hover:text-white leading-tight tracking-tight mb-4 md:mb-6 transition-colors duration-300 text-balance">
+            {pillar.title}
+          </h3>
+          
+          <p class="font-sans text-sm md:text-base lg:text-[1.0625rem] text-zinc-400 group-hover:text-zinc-300 leading-[1.75] md:leading-[1.8] tracking-wide transition-colors duration-300 text-pretty">
+            {pillar.description}
+          </p>
+          
+        </div>
+      ))}
+      
     </div>
   </div>
 </section>
+
+<style>
+  /* ── 1. Intersection Observer Animation ── */
+  /* Handled via standard CSS rather than fragile inline script strings */
+  .page-stagger {
+    opacity: 0;
+    transform: translateY(24px) translateZ(0);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 120ms);
+    will-change: transform, opacity;
+  }
+
+  /* This class is added by the global IntersectionObserver setup in your main layout/scripts, 
+     but adding a fallback animation here ensures it works if the JS fails */
+  @keyframes autoReveal {
+    to { opacity: 1; transform: translateY(0) translateZ(0); }
+  }
+  
+  .page-stagger {
+    animation: autoReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 120ms);
+    /* In a real Astro setup, you'd trigger this via an observer class like .is-visible. 
+       Using keyframes directly here ensures the code functions immediately upon drop-in. */
+  }
+
+  /* ── 2. Hardware Guardrails ── */
+  @media (prefers-reduced-motion: reduce) {
+    .page-stagger { opacity: 1; transform: none; animation: none; transition: none; }
+    .animate-pulse { animation: none; opacity: 0.8; }
+    .group-hover\/highlight\:scale-x-100 { transform: none !important; opacity: 1; }
+  }
+</style>

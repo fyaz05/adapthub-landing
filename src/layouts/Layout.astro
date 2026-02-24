@@ -7,7 +7,7 @@ import "@fontsource/lora/700.css";
 import "@fontsource/lora/400-italic.css";
 import { ClientRouter } from "astro:transitions";
 import LenisWrapper from "../components/LenisWrapper";
-import { CONTENT } from "../constants/content";
+import { resolvedContent as CONTENT } from "../utils/config";
 
 import NoiseOverlay from "../components/NoiseOverlay.astro";
 import LoadingScreen from "../components/LoadingScreen";
@@ -17,29 +17,48 @@ interface Props {
   description?: string;
   keywords?: string[];
   noindex?: boolean;
+  showLoadingScreen?: boolean;
+  datePublished?: string;
+  dateModified?: string;
+  ogType?: "website" | "article";
 }
 
 const {
-  title,
+  title = CONTENT.metadata.defaultTitle,
   description = CONTENT.metadata.defaultDescription,
   keywords = CONTENT.metadata.defaultKeywords,
   noindex = false,
+  showLoadingScreen = false,
+  datePublished,
+  dateModified = datePublished,
+  ogType = "website",
 } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(CONTENT.metadata.ogImage, Astro.site);
-const ogImageFallbackURL = new URL(CONTENT.metadata.ogImageFallback, Astro.site);
-const supportEmail = CONTENT.links.support.replace("mailto:", "");
-const socialProfileLinks = CONTENT.footer.connect.links
-  .map((link) => link.href)
-  .filter((href) => href.startsWith("https://") || href.startsWith("http://"));
+const siteUrl = Astro.site || "https://adapthub.in";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+// Dynamic breadcrumbs from URL path
+const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const breadcrumbItems: { "@type": string; position: number; name: string; item: string }[] = [
+  { "@type": "ListItem", position: 1, name: "Home", item: String(siteUrl) }
+];
+if (pathSegments.length > 0) {
+  const pageName = pathSegments[pathSegments.length - 1]
+    .split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  breadcrumbItems.push({ "@type": "ListItem", position: 2, name: pageName, item: canonicalURL.href });
+}
+const ogImageURL = new URL(CONTENT?.metadata?.ogImage || "/og-default.png", siteUrl);
+const ogImageFallbackURL = new URL(CONTENT?.metadata?.ogImageFallback || "/og-default.png", siteUrl);
+const supportEmail = CONTENT?.links?.support?.replace("mailto:", "") || "support@adapthub.in";
 
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="bg-void relative">
+<html lang="en" class="bg-void relative" style="color-scheme: dark">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-W4K3Z0TPD8"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -67,7 +86,7 @@ const socialProfileLinks = CONTENT.footer.connect.links
     <meta name="author" content={CONTENT.global.brandName} />
 
     {/* Open Graph / Facebook */}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content={CONTENT.global.brandName} />
@@ -82,6 +101,9 @@ const socialProfileLinks = CONTENT.footer.connect.links
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={description} />
+    {ogType === "article" && datePublished && <meta property="article:published_time" content={datePublished} />}
+    {ogType === "article" && dateModified && <meta property="article:modified_time" content={dateModified} />}
 
     {/* Twitter — PNG for broadest compatibility */}
     <meta name="twitter:card" content="summary_large_image" />
@@ -96,37 +118,54 @@ const socialProfileLinks = CONTENT.footer.connect.links
       "@graph": [
         {
           "@type": "Organization",
+          "@id": siteUrl,
           "name": CONTENT.global.brandName,
-          "url": Astro.site,
-          "logo": new URL(CONTENT.assets.logoLight, Astro.site),
+          "url": siteUrl,
+          "logo": new URL(CONTENT.assets.logoLight, siteUrl).href,
           "description": CONTENT.metadata.defaultDescription,
           "email": supportEmail,
-          ...(socialProfileLinks.length > 0 ? { "sameAs": socialProfileLinks } : {})
+          "foundingDate": "2025",
+          "founder": {
+            "@type": "Person",
+            "name": "Fyaz Mohammed",
+            "jobTitle": "Founder",
+            "sameAs": ["https://www.linkedin.com/in/fyaz05/"]
+          },
+          "numberOfEmployees": "1-10",
+          "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "Educational technology"],
+          "areaServed": "IN",
+          "sameAs": [
+            "https://www.linkedin.com/company/adapthub-labs/"
+          ]
         },
         {
           "@type": "WebSite",
+          "@id": new URL("#website", siteUrl).href,
           "name": CONTENT.global.brandName,
-          "url": Astro.site,
+          "url": siteUrl,
           "description": CONTENT.metadata.defaultDescription,
           "inLanguage": "en",
           "publisher": {
             "@type": "Organization",
+            "@id": `${siteUrl}#organization`,
             "name": CONTENT.global.brandName
           }
         },
-{
+        {
           "@type": "WebPage",
+          "@id": `${canonicalURL.href}#webpage`,
           "name": title,
-          "url": canonicalURL,
+          "url": canonicalURL.href,
           "description": description,
           "keywords": keywords.join(", "),
-          "datePublished": "2025-01-01",
-          "dateModified": "2026-02-16",
+          ...(datePublished ? { "datePublished": datePublished } : {}),
+          ...(dateModified ? { "dateModified": dateModified } : {}),
           "inLanguage": "en",
           "isPartOf": {
             "@type": "WebSite",
-            "name": CONTENT.global.brandName,
-            "url": Astro.site
+            "@id": siteUrl,
+            "name": "Home",
+            "url": siteUrl
           },
           "speakable": {
             "@type": "SpeakableSpecification",
@@ -135,26 +174,25 @@ const socialProfileLinks = CONTENT.footer.connect.links
         },
         {
           "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": Astro.site
-          }]
+          "itemListElement": breadcrumbItems
         },
         {
           "@type": "SoftwareApplication",
+          "@id": new URL("#software", siteUrl).href,
           "name": CONTENT.global.brandName,
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "Web",
-          "url": Astro.site,
+          "url": siteUrl,
           "description": description,
+          "screenshot": new URL("/og-image.avif", siteUrl).href,
           "featureList": [
-            "Adaptive study plans for CAT exam preparation",
-            "AI-powered coaching with contextual explanations",
-            "Real-time performance analytics and diagnostics",
-            "Dynamic difficulty adjustment using Zone of Proximal Development",
-            "Concept library for rapid revision"
+            "Adaptive Diagnostic Calibration (ZPD Algorithm)",
+            "Socratic AI Coaching with Hint Penalties",
+            "Learning Velocity Telemetry (7-day rolling window)",
+            "Spaced Repetition Queue (SRS) for memory decay prevention",
+            "Mastery-Based Cognitive Locks (5-level progression)",
+            "Quality Streaks (>70% accuracy, 15-min minimum sessions)",
+            "Distractor Error Tagging (Trap identification & Calculation Errors)"
           ],
           "offers": {
             "@type": "Offer",
@@ -220,18 +258,40 @@ const socialProfileLinks = CONTENT.footer.connect.links
           } else {
             document.documentElement.setAttribute('data-announcement', 'visible');
           }
+
+          // 7. Loading Screen Hash Check
+          if (window.location.hash) {
+            document.documentElement.classList.add('hide-loader');
+          }
         } catch (e) {
-          // Fallback: If anything fails, assume high performance to avoid breaking UI, 
-          // but could default to low if conservative.
+          console.error(e);
         }
       })();
     </script>
+    <style>
+      html.hide-loader #loading-screen {
+        display: none !important;
+      }
+    </style>
   </head>
   <body class="relative min-h-screen">
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+      <defs>
+        <filter id="global-noise-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+        </filter>
+      </defs>
+    </svg>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-accent-yellow focus:text-black focus:rounded-full focus:font-bold focus:text-sm focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
     <LenisWrapper client:load>
       <div class="global-grid"></div>
       <NoiseOverlay />
-      <LoadingScreen client:load /> {/* Ensure it hydrates immediately */}
+      {showLoadingScreen && <LoadingScreen client:load />}
       <slot />
     </LenisWrapper>
   </body>

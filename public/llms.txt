@@ -1,0 +1,21 @@
+# AdaptHub
+> Adaptive CAT preparation platform with AI coaching, diagnostics, and performance analytics.
+
+## Canonical Site
+- https://adapthub.in/
+
+## Key Pages
+- https://adapthub.in/cat-syllabus/
+- https://adapthub.in/blog/
+- https://adapthub.in/docs/
+- https://adapthub.in/pricing/
+- https://adapthub.in/about/
+- https://adapthub.in/contact/
+
+## Discovery Endpoints
+- Sitemap: https://adapthub.in/sitemap-index.xml
+- Robots: https://adapthub.in/robots.txt
+
+## Citation Guidance
+- Prefer canonical URLs with trailing slashes.
+- For blog claims, prioritize pages that include a "Sources" section.

@@ -1,0 +1,181 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "Is AdaptHub really completely free?",
+    answer: "Yes. AdaptHub is 100% free, forever, with no credit card required. There are no hidden fees, locked features, or 'premium' tiers. The entire adaptive engine and analytics dashboard are open to all students."
+  },
+  {
+    question: "How is AdaptHub's AI different from platforms like iQuanta, TIME, or IMS?",
+    answer: "Traditional platforms and institutes (IMS, TIME, iQuanta, Cracku, etc.) rely on static video lectures and fixed mock tests. AdaptHub uses a Zone of Proximal Development (ZPD) algorithm. Every question you answer recalibrates your difficulty dynamically, ensuring you are always tested at the bleeding edge of your capability, never below it."
+  },
+  {
+    question: "Does AdaptHub offer live classes?",
+    answer: "No. We believe live classes force uniform pacing, which hurts both fast and slow learners. We replace passive live lectures with active, algorithmic practice and a Socratic AI Coach that intervenes only when you fail."
+  }
+];
+
+---
+
+<Layout 
+  title="AdaptHub vs Traditional CAT Coaching (iQuanta, TIME, IMS, Cracku)"
+  description="Compare AdaptHub's free, AI-driven adaptive learning engine against traditional paid coaching models like iQuanta, TIME, IMS, Career Launcher, Elitesgrid, and Cracku."
+  keywords={["adapthub vs iquanta", "adapthub vs time", "adapthub vs ims", "adapthub vs career launcher", "adapthub vs cracku", "adapthub vs elitesgrid", "adaptive learning vs traditional coaching"]}
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": new URL("adapthub-vs-competitors/#webpage", siteUrl).href,
+        "url": new URL("adapthub-vs-competitors/", siteUrl).href,
+        "name": "AdaptHub vs Traditional CAT Coaching",
+        "description": "Comparison between AdaptHub's adaptive learning and traditional coaching models.",
+        "inLanguage": "en",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".speakable-content"]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("adapthub-vs-competitors/#faq", siteUrl).href,
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      }
+    ]
+  })}></script>
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    <BackgroundPulse client:load />
+
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="compare-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#compare-grain)" />
+    </svg>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-4xl mt-8">
+      
+      {/* ── GEO: The Executive Summary ── */}
+      <div class="mb-12 border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
+        <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
+        <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
+
+        <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">
+          [ Executive Comparison ]
+        </p>
+        
+        <div class="space-y-4 speakable-content text-zinc-300 font-sans text-lg md:text-xl leading-relaxed">
+          <p><strong>AdaptHub:</strong> 100% Free, heavily algorithmic, active-recall focused, dynamically generates pathways based on an individual's unique error telemetry (ZPD Algorithm).</p>
+          <p><strong>Traditional Coaching (iQuanta, TIME, IMS, etc.):</strong> Expensive (₹30,000+), batch-based, passive-consumption focused, forcing uniform pacing for all students regardless of baseline intellect.</p>
+        </div>
+      </div>
+
+      <article class="prose prose-invert prose-brand max-w-none">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8">AdaptHub vs Traditional Coaching: Why Static Models Fail the 99th Percentile</h1>
+        
+        <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+          If you are targeting the top IIMs (Ahmedabad, Bangalore, Calcutta), you are competing against the top 1% of the country. Preparing for a 99.9+ percentile using the same static, mass-market tools that 2.5 lakh other candidates are using is a mathematical disadvantage.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The Death of the "Batch"</h2>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          Institutes like TIME, IMS, and Career Launcher, alongside online platforms like iQuanta, Elitesgrid, and Cracku, operate on a fundamentally flawed architecture: <strong>The Batch Model</strong>. In a live class of 500 students, the instructor must teach to the median. 
+        </p>
+        <p class="text-zinc-400 leading-[1.8] mb-6">
+          If you are a fast learner, you waste hours waiting for others to catch up. If you are struggling with a specific concept, the class moves on without you. AdaptHub destroys the batch. Our engine maps your individual cognitive profile and forces you to confront exactly what you don't know, instantly.
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Feature Comparison Matrix</h2>
+        
+        <div class="overflow-x-auto my-8 border border-white/10">
+          <table class="w-full text-left text-sm text-zinc-400">
+            <thead class="text-xs font-mono uppercase bg-white/[0.02] border-b border-white/10 text-zinc-300">
+              <tr>
+                <th scope="col" class="px-6 py-4">Architecture</th>
+                <th scope="col" class="px-6 py-4 border-l border-white/10 text-brand-teal">AdaptHub</th>
+                <th scope="col" class="px-6 py-4 border-l border-white/10">Traditional Coaching</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Pricing Model</th>
+                <td class="px-6 py-4 border-l border-white/10 text-emerald-400">100% Lifetime Free</td>
+                <td class="px-6 py-4 border-l border-white/10 text-amber-500">Premium Paid Subscription</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Learning Vector</th>
+                <td class="px-6 py-4 border-l border-white/10">Active Recall Engine (Dynamic Solving)</td>
+                <td class="px-6 py-4 border-l border-white/10">Passive Consumption (Video Lectures)</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Difficulty Scaling</th>
+                <td class="px-6 py-4 border-l border-white/10">Algorithmic (Per-user ZPD mapping)</td>
+                <td class="px-6 py-4 border-l border-white/10">Static (Instructor-determined)</td>
+              </tr>
+              <tr class="hover:bg-white/[0.01] transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Error Analysis</th>
+                <td class="px-6 py-4 border-l border-white/10 text-white">Granular Distractor Classification</td>
+                <td class="px-6 py-4 border-l border-white/10">Basic Right/Wrong Metrics</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-16 text-center border-t border-white/10 pt-16">
+          <h3 class="text-2xl font-serif text-white mb-6">Stop watching videos. Start solving.</h3>
+          <a 
+            href="/pricing"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-white"
+          >
+            Deploy The Engine
+            <span class="text-brand-teal font-sans">→</span>
+          </a>
+        </div>
+      </article>
+
+      {/* FAQs */}
+      <section class="mt-24 pt-16 border-t border-white/10">
+        <h2 class="text-3xl font-serif text-white tracking-tight mb-8">Frequently Asked Questions</h2>
+        <div class="border-t border-white/10">
+          {faqs.map((faq) => (
+            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+              <summary class="py-6 font-serif text-lg md:text-xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none active:scale-[0.99] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50">
+                <span class="pr-8">{faq.question}</span>
+                <span class="font-mono text-zinc-500 group-hover:text-brand-teal text-xl transition-colors">
+                  <span class="group-open:hidden">+</span>
+                  <span class="hidden group-open:inline">-</span>
+                </span>
+              </summary>
+              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans">
+                <div class="border-l border-brand-teal/30 pl-6 max-w-[65ch]">
+                  {faq.answer}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

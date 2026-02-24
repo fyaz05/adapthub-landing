@@ -31,9 +31,10 @@ const FAQ = () => {
                 type="button"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 aria-expanded={openIndex === index}
-                className="w-full py-8 sm:py-12 flex items-start text-left group transition-all touch-manipulation min-h-[60px]"
+                aria-controls={`faq-answer-${index}`}
+                className="w-full py-8 sm:py-12 flex items-start text-left group transition-all duration-200 active:scale-[0.99] touch-manipulation min-h-[60px] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50"
               >
-                <span className="font-mono text-xs sm:text-sm text-zinc-600 mr-4 sm:mr-12 mt-1 sm:mt-2">
+                <span className="font-mono text-xs sm:text-sm text-zinc-500 mr-4 sm:mr-12 mt-1 sm:mt-2">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="flex-1">
@@ -43,6 +44,7 @@ const FAQ = () => {
                   <AnimatePresence>
                     {openIndex === index && (
                       <motion.div
+                        id={`faq-answer-${index}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -50,7 +52,7 @@ const FAQ = () => {
                       >
                         <p
                           data-speakable
-                          className="pt-6 sm:pt-8 text-base sm:text-xl text-zinc-500 leading-relaxed max-w-3xl"
+                          className="pt-6 sm:pt-8 text-base sm:text-xl text-zinc-400 leading-relaxed max-w-3xl"
                         >
                           {faq.answer}
                         </p>
@@ -61,7 +63,7 @@ const FAQ = () => {
                 <div className="ml-4 mt-1 sm:mt-2">
                   <motion.div
                     animate={{ rotate: openIndex === index ? 45 : 0 }}
-                    className="text-zinc-600 group-hover:text-brand-teal transition-colors"
+                    className="text-zinc-500 group-hover:text-brand-teal transition-colors"
                   >
                     <svg
                       width="20"
@@ -71,8 +73,7 @@ const FAQ = () => {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
-                      aria-label="Toggle FAQ"
-                      role="img"
+                      aria-hidden="true"
                     >
                       <path d="M12 5v14M5 12h14" />
                     </svg>

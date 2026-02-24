@@ -1,0 +1,297 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+import SpotlightButton from "../components/SpotlightButton";
+import { resolvedContent as CONTENT } from "../utils/config";
+
+const faqs = [
+  {
+    question: "Is AdaptHub really free?",
+    answer: "Yes. AdaptHub is Lifetime Free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0."
+  },
+  {
+    question: "Why is it free?",
+    answer: "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep — not to build another EdTech subscription. The goal is impact at scale."
+  },
+  {
+    question: "Will it stay free forever?",
+    answer: "Yes. The core engine — daily personalized study plans, AI Coach, and granular analytics — stays free. AdaptHub may add enterprise tools for coaching institutes later. Individual aspirant access stays free, always."
+  },
+  {
+    question: "Do I need a credit card to start?",
+    answer: "No. You only need an email to create an account and begin your initial diagnostic calibration. No payment details required."
+  }
+];
+
+const features = [
+  { id: "01", name: "Dynamic Daily Study Plans" },
+  { id: "02", name: "Adaptive Difficulty (ZPD)" },
+  { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
+  { id: "04", name: "Granular Performance Analytics" },
+  { id: "05", name: "Socratic AI Mistake Analysis" },
+  { id: "06", name: "Mastery-Based Cognitive Locks" }
+];
+
+const siteUrl = Astro.site || "https://adapthub.in";
+---
+
+<Layout 
+  title={CONTENT.metadata.pricing.title}
+  description={CONTENT.metadata.pricing.description}
+  keywords={CONTENT.metadata.pricing.keywords}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": new URL("pricing/#product", siteUrl).href,
+        "name": "AdaptHub Lifetime Free",
+        "description": "Complete access to adaptive study plans, AI-powered coaching, and CAT analytics at ₹0.",
+        "brand": { "@type": "Brand", "name": "AdaptHub" },
+        "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "INR", "availability": "https://schema.org/InStock" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("pricing/#faq", siteUrl).href,
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      }
+    ]
+  })} />
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-24 overflow-hidden min-h-screen bg-void selection:bg-brand-teal/30 selection:text-white">
+    {/* ── Environment & Atmosphere ── */}
+    <BackgroundPulse client:load />
+    
+    {/* High-Fidelity Noise Texture */}
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.03]" aria-hidden="true">
+      <filter id="pricing-noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#pricing-noise)" />
+    </svg>
+    
+    {/* ── Editorial Hero: Asymmetric Credential Display ── */}
+    <header class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 my-12 md:my-24 max-w-[1800px]">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
+        
+        {/* Left: Typographic Anchor */}
+        <div class="lg:col-span-6 xl:col-span-5 relative z-20">
+
+
+          <h1 class="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-none mb-6 page-stagger" style="--i:1">
+            The intelligence engine is <br class="hidden lg:block"/>
+            <span class="italic text-brand-teal relative inline-block pb-2 tracking-normal mt-2">
+              Lifetime Free.
+              <svg class="absolute -bottom-2 left-0 w-full h-[3px] text-brand-teal/70" viewBox="0 0 100 3" preserveAspectRatio="none"><path d="M0 1.5 Q 50 4.5 100 1.5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </span>
+          </h1>
+          
+          <p class="text-zinc-400 font-sans text-base md:text-lg leading-[1.75] max-w-lg mb-10 tracking-wide page-stagger" style="--i:2">
+            Quality education is a baseline, not a privilege. Get complete, unrestricted access to the adaptive CAT prep system — no credit card needed.
+          </p>
+
+          <div class="page-stagger" style="--i:3">
+            <SpotlightButton 
+              client:load
+              href={CONTENT.links.app}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden w-auto px-8 sm:px-10 py-4 sm:py-5 bg-accent-yellow text-black font-bold text-sm md:text-base rounded-full shadow-[0_0_32px_rgba(252,211,77,0.2)] hover:shadow-[0_0_56px_rgba(252,211,77,0.35)] flex items-center justify-center gap-3 transition-all duration-500 touch-manipulation whitespace-nowrap inline-flex group"
+            >
+              {/* Inner border line removed as requested */}
+              <span class="relative z-10 flex items-center gap-2 tracking-wide">
+                Start Calibration
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-400 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </SpotlightButton>
+          </div>
+        </div>
+
+        {/* Right: The Holographic Access Artifact */}
+        <div class="lg:col-start-7 lg:col-span-6 xl:col-start-7 xl:col-span-6 relative perspective-container page-stagger" style="--i:4">
+          
+          {/* Ambient Glow */}
+          <div class="absolute inset-0 bg-brand-teal/10 blur-[100px] rounded-full mix-blend-screen z-0 pointer-events-none" aria-hidden="true"></div>
+
+          {/* 3D Rotated Card */}
+          <div class="access-card relative z-10 w-full max-w-[500px] mx-auto bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 shadow-2xl overflow-hidden group">
+            
+            {/* Animated Laser Scanline */}
+            <div class="laser-scanner" aria-hidden="true"></div>
+
+            {/* Hardware Corner Brackets */}
+            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-brand-teal/30 rounded-tl-3xl pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-brand-teal/30 rounded-br-3xl pointer-events-none" aria-hidden="true"></div>
+
+            {/* Card Header */}
+            <div class="flex justify-between items-start mb-12 border-b border-white/[0.06] pb-6">
+              <div class="flex items-center gap-3">
+                <div class="relative flex w-2.5 h-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                  <span class="relative inline-flex rounded-full w-2.5 h-2.5 bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]"></span>
+                </div>
+                <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">Status: Active</span>
+              </div>
+              <div class="text-right">
+                <span class="block font-mono text-[9px] text-brand-teal uppercase tracking-[0.2em]">Credential</span>
+                <span class="block font-mono text-xs text-white uppercase tracking-widest mt-1">ADPT-00-∞</span>
+              </div>
+            </div>
+
+            {/* The Telemetry Readout */}
+            <div class="text-center relative py-4">
+              <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(13,148,136,0.05)_50%,transparent_100%)] pointer-events-none"></div>
+              <div class="flex items-start justify-center text-white select-none">
+                <span class="text-3xl md:text-5xl font-sans font-light text-zinc-500 mt-2 mr-1">₹</span>
+                <span class="text-[6rem] md:text-[9rem] font-serif leading-[0.8] tracking-tighter drop-shadow-[0_0_30px_rgba(13,148,136,0.2)]">0</span>
+              </div>
+              <span class="block font-mono text-xs text-zinc-400 uppercase tracking-[0.3em] mt-6">Cost / Platform Access</span>
+            </div>
+
+            {/* Fake Barcode */}
+            <div class="mt-12 h-8 w-full opacity-40 bg-[repeating-linear-gradient(90deg,#fff_0px,#fff_2px,transparent_2px,transparent_5px,#fff_5px,#fff_6px,transparent_6px,transparent_10px)]" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    {/* ── System Modules (Grid) ── */}
+    <section class="relative z-10 w-full border-t border-white/[0.04] bg-white/[0.01] mt-24">
+      <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-24 max-w-[1800px]">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 page-stagger" style="--i:5">
+          <div>
+            <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tight mb-3">Everything Included at ₹0</h2>
+            <p class="text-zinc-400 font-sans text-base tracking-wide">All features unlocked. No upgrade required.</p>
+          </div>
+          <span class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.2em] px-3 py-1 border border-brand-teal/20 bg-brand-teal/5">6 Nodes Online</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {features.map((feature, index) => (
+            <div class="group relative bg-white/[0.02] border border-white/[0.05] p-6 md:p-8 hover:bg-white/[0.04] hover:border-brand-teal/30 transition-all duration-500 page-stagger overflow-hidden" style={`--i:${6 + index}`}>
+              {/* Hover Glow */}
+              <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" aria-hidden="true"></div>
+              
+              <div class="flex justify-between items-start mb-12 relative z-10">
+                <span class="font-mono text-[10px] text-zinc-500 group-hover:text-brand-teal transition-colors duration-300 tracking-[0.2em]">MOD.{feature.id}</span>
+                <span class="w-1.5 h-1.5 bg-zinc-700 group-hover:bg-brand-teal rounded-full transition-colors duration-500 shadow-[0_0_0_rgba(13,148,136,0)] group-hover:shadow-[0_0_10px_rgba(13,148,136,0.8)]"></span>
+              </div>
+              <h3 class="text-lg md:text-xl font-sans text-zinc-300 group-hover:text-white font-medium transition-colors duration-300 relative z-10 leading-snug">
+                {feature.name}
+              </h3>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    {/* ── Query Logs (Editorial FAQ) ── */}
+    <section class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] py-24">
+      <div class="max-w-4xl mx-auto page-stagger" style="--i:12">
+        
+        <div class="flex items-center gap-4 mb-12">
+          <div class="w-2 h-2 bg-brand-teal/50 rotate-45" aria-hidden="true"></div>
+          <h2 class="font-mono text-[11px] text-zinc-400 uppercase tracking-[0.2em]">Common Questions</h2>
+          <div class="flex-1 h-px bg-white/5"></div>
+        </div>
+
+        <div class="border-t border-white/[0.08]">
+          {faqs.map((faq) => (
+            <details class="faq-row group bg-transparent border-b border-white/[0.08] hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+              <summary class="py-6 md:py-8 px-4 font-serif text-xl md:text-2xl lg:text-3xl text-zinc-300 group-hover:text-white list-none flex justify-between items-center outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 transition-colors">
+                <span class="leading-snug pr-8 tracking-tight">{faq.question}</span>
+                
+                {/* Monospace Toggle Nodes */}
+                <span class="font-mono text-sm md:text-base text-zinc-500 group-hover:text-brand-teal shrink-0 relative w-8 h-8 flex items-center justify-center transition-colors">
+                  <span class="absolute inset-0 flex items-center justify-center opacity-100 group-open:opacity-0 transition-opacity duration-300">[+]</span>
+                  <span class="absolute inset-0 flex items-center justify-center opacity-0 group-open:opacity-100 transition-opacity duration-300">[-]</span>
+                </span>
+              </summary>
+              
+              <div class="pb-8 px-4 text-zinc-400 leading-[1.8] font-sans text-base md:text-lg animate-in fade-in slide-in-from-top-4 duration-500 ease-out">
+                <div class="border-l border-brand-teal/30 pl-6 md:pl-8 py-1">
+                  {faq.answer}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Holographic Access Artifact (3D CSS) ── */
+  .perspective-container {
+    perspective: 1200px;
+  }
+
+  .access-card {
+    transform: rotateY(-12deg) rotateX(8deg) translateZ(0);
+    transform-style: preserve-3d;
+    animation: floatingCard 6s ease-in-out infinite;
+    box-shadow: 
+      -20px 20px 60px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  @keyframes floatingCard {
+    0%, 100% { transform: rotateY(-12deg) rotateX(8deg) translateY(0px) translateZ(0); }
+    50% { transform: rotateY(-10deg) rotateX(6deg) translateY(-15px) translateZ(0); }
+  }
+
+  .laser-scanner {
+    position: absolute;
+    inset-inline: 0;
+    height: 2px;
+    background: rgba(13, 148, 136, 0.8);
+    box-shadow: 0 0 15px 2px rgba(13, 148, 136, 0.5);
+    z-index: 20;
+    opacity: 0;
+    animation: scanPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes scanPulse {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    50% { top: 100%; opacity: 1; }
+    90% { opacity: 0; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* ── Native Details/Summary Fixes ── */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* ── Hardware Guardrails ── */
+  @media (max-width: 1023px) {
+    /* Flatten 3D effect on smaller screens to prevent clipping/overflow */
+    .access-card {
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .access-card { animation: none; }
+    .laser-scanner { display: none; }
+    .animate-ping { animation: none; opacity: 0; }
+  }
+</style>

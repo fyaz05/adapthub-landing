@@ -1,0 +1,234 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+import { resolvedContent as CONTENT } from "../utils/config";
+
+const principles = [
+  {
+    title: "Vygotsky's ZPD Applied",
+    description: "The Zone of Proximal Development states that learning happens optimally just beyond your current capability. The routing algorithm constantly pushes you to that exact margin, preventing both boredom (too easy) and anxiety (too hard)."
+  },
+  {
+    title: "Active Retrieval Beats Passive Reading",
+    description: "Watching video lectures creates an illusion of competence. AdaptHub forces active recall. The engine constantly tests you, lets you fail safely, and teaches through immediate AI Coach feedback."
+  },
+  {
+    title: "Granular Metacognition",
+    description: "AdaptHub does more than mark an answer wrong. It surfaces the exact logical misstep — a calculation error, missed VARC nuance, or missed trap."
+  }
+];
+
+const siteUrl = Astro.site || "https://adapthub.in";
+---
+
+<Layout 
+  title={CONTENT.metadata.about.title}
+  description={CONTENT.metadata.about.description}
+  keywords={CONTENT.metadata.about.keywords}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": new URL("about/#webpage", siteUrl).href,
+        "url": new URL("about", siteUrl).href,
+        "name": CONTENT?.metadata?.about?.title || "About AdaptHub",
+        "description": CONTENT?.metadata?.about?.description || "AI-powered adaptive learning for CAT"
+      },
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}#organization`,
+        "name": "AdaptHub",
+        "url": siteUrl,
+        "logo": new URL(CONTENT?.assets?.logoLight || "/logo-light.svg", siteUrl).href,
+        "description": "An AI-powered adaptive learning engine built specifically for CAT exam preparation."
+      },
+      {
+        "@type": "Person",
+        "@id": new URL("about/#founder", siteUrl).href,
+        "name": "Fyaz Mohammed",
+        "jobTitle": "Founder",
+        "url": new URL("about", siteUrl).href,
+        "sameAs": ["https://www.linkedin.com/in/fyaz05/"],
+        "worksFor": { "@type": "Organization", "@id": new URL("#organization", siteUrl).href },
+        "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "EdTech"]
+      }
+    ]
+  })} />
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-48 pb-24 overflow-hidden min-h-screen bg-void selection:bg-brand-teal/30 selection:text-white">
+    {/* ── Environment & Atmosphere ── */}
+    <BackgroundPulse client:load />
+    
+    {/* Cinematic Film Grain */}
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="about-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#about-grain)" />
+    </svg>
+
+    {/* Ambient Architectural Grid Lines */}
+    <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-50 overflow-hidden" aria-hidden="true">
+      <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.02] to-transparent hidden md:block"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+      </div>
+    </div>
+    
+    {/* ── Editorial Header ── */}
+    <header class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 my-16 md:my-24 max-w-[1800px]">
+      
+      {/* System Metadata */}
+
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        {/* Typographic Lockup */}
+        <div class="lg:col-span-7 xl:col-span-8 relative page-stagger" style="--i:1">
+          {/* Subtle Glow */}
+          <div class="absolute -top-[30%] -left-[10%] w-[80%] h-[150%] pointer-events-none select-none opacity-60 mix-blend-screen" style="background:radial-gradient(ellipse 50% 50% at 30% 50%, rgba(13,148,136,0.07) 0%, transparent 80%)" aria-hidden="true"></div>
+          
+          <h1 class="text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-serif text-white tracking-tight leading-none mb-4 relative">
+            The algorithm <br/>
+            <span class="text-brand-teal italic block pb-2 mt-2 md:mt-4">behind the intuition.</span>
+          </h1>
+        </div>
+        
+        {/* Narrative Block (Tracking Line) */}
+        <div class="lg:col-span-5 xl:col-span-4 mt-6 lg:mt-4 relative page-stagger" style="--i:2">
+          <div class="pl-6 md:pl-8 border-l border-white/10 relative">
+            {/* Active tracking node */}
+            <div class="absolute top-2 -left-[2px] w-1 h-8 bg-brand-teal" aria-hidden="true"></div>
+            
+            {/* Entity-Defining AI Quotable Statement */}
+            <p data-speakable class="text-white font-sans text-xl md:text-2xl leading-[1.6] mb-8 font-medium tracking-wide">
+              AdaptHub is a free AI-powered CAT exam preparation platform that uses a Zone of Proximal Development (ZPD) algorithm to continuously adapt study plans to each aspirant's cognitive gaps, providing personalized analytics, an adaptive question bank, and Socratic AI coaching.
+            </p>
+
+            <p class="text-zinc-300 font-sans text-lg md:text-xl leading-[1.7] mb-6 tracking-wide">
+              I looked at the state of CAT preparation and saw a failure of personalization. Millions of aspirants received the same static mocks, video lectures, and generic solutions.
+            </p>
+            <p class="text-zinc-400 font-sans text-base md:text-lg leading-[1.7] tracking-wide">
+              I engineered AdaptHub to solve one problem: <strong class="text-zinc-200 font-medium border-b border-brand-teal/40 pb-0.5">cognitive friction</strong>. I built a system that learns how you think, identifies your blind spots, and dynamically generates a curriculum that forces you to improve.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {/* Horizontal Calibration Line */}
+    <div class="w-full max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 my-20 md:my-32 page-stagger" style="--i:3" aria-hidden="true">
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative flex items-center justify-center">
+        <div class="w-2 h-2 rotate-45 border border-white/20 bg-void"></div>
+      </div>
+    </div>
+
+    {/* ── Manifesto / Principles ── */}
+    <section class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
+      
+      {/* Extraction Quote */}
+      <blockquote class="relative max-w-5xl mx-auto text-center mb-24 md:mb-40 page-stagger" style="--i:4">
+        <svg class="absolute -top-8 -left-4 md:-top-12 md:-left-8 w-12 h-12 md:w-16 md:h-16 text-white/5" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+        <p class="font-serif text-2xl md:text-4xl lg:text-5xl text-white italic leading-[1.3] tracking-tight">
+          "A static course assumes everyone learns at the same speed. An adaptive engine knows that mastery is non-linear."
+        </p>
+      </blockquote>
+      
+      <div class="grid md:grid-cols-12 gap-12 lg:gap-24 relative">
+        
+        {/* Sticky Index */}
+        <div class="md:col-span-4 lg:col-span-3">
+          <div class="sticky top-32 page-stagger" style="--i:5">
+            <h2 class="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-zinc-400 uppercase mb-6 flex items-center gap-3">
+              <span class="w-2 h-2 bg-brand-teal/40 block"></span>
+              Core Architecture
+            </h2>
+            <div class="flex flex-col gap-3 border-l border-white/10 pl-4">
+              <span class="font-mono text-sm text-brand-teal">01. Protocols</span>
+              <span class="font-mono text-sm text-zinc-500">02. Methodology</span>
+              <span class="font-mono text-sm text-zinc-500">03. Telemetry</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Protocol Blocks */}
+        <div class="md:col-span-8 lg:col-span-9 space-y-12 md:space-y-20">
+          {principles.map((principle, index) => (
+            <div class="group relative pt-8 md:pt-10 border-t border-white/[0.06] hover:border-brand-teal/30 transition-colors duration-500 page-stagger" style={`--i:${6 + index}`}>
+              
+              {/* Protocol Header */}
+              <div class="flex items-end justify-between mb-6 md:mb-8">
+                <div class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em]">
+                  [ Protocol.0{index + 1} ]
+                </div>
+                <div class="w-8 h-px bg-white/10 group-hover:bg-brand-teal/50 transition-colors duration-500 hidden sm:block"></div>
+              </div>
+
+              {/* Content */}
+              <div class="max-w-3xl">
+                <h3 class="text-2xl md:text-3xl lg:text-4xl font-serif text-white mb-4 lg:mb-6 tracking-tight">
+                  {principle.title}
+                </h3>
+                <p class="text-zinc-400 leading-[1.75] text-base md:text-lg font-sans">
+                  {principle.description}
+                </p>
+              </div>
+
+              {/* Hover Ambient Node */}
+              <div class="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" aria-hidden="true"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Team / Origin Dossier ── */}
+    <section class="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl mt-32 md:mt-48 pb-20 page-stagger" style="--i:9">
+      
+      {/* Precision Bounding Box */}
+      <div class="relative bg-white/[0.01] border border-white/[0.08] p-8 md:p-16 overflow-hidden group">
+        
+        {/* Hardware Corner Brackets */}
+        <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-brand-teal/50 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-teal/50 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-teal/50 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-brand-teal/50 pointer-events-none" aria-hidden="true"></div>
+        
+        {/* Technical Grid/Noise Background */}
+        <div 
+          class="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-screen" 
+          style={{ backgroundImage: `url('${CONTENT.assets.noiseTexture}')` }}
+          aria-hidden="true"
+        ></div>
+        
+        {/* Internal Content Grid */}
+        <div class="relative z-10 grid md:grid-cols-12 gap-8 md:gap-16 items-start">
+          <div class="md:col-span-4">
+            <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight">Engineered <br/><span class="text-zinc-400 italic">for Impact</span></h2>
+            <div class="w-8 h-px bg-brand-teal/40 mt-6"></div>
+          </div>
+          
+          <div class="md:col-span-8 space-y-6">
+            <p class="text-zinc-300 leading-[1.75] font-sans text-base md:text-lg tracking-wide">
+              AdaptHub is a solo project — built by a single founder with a 99.9+ percentile in competitive exams and direct experience shipping production software.
+            </p>
+            <p class="text-zinc-400 leading-[1.75] font-sans text-base md:text-lg tracking-wide">
+              I built AdaptHub outside the traditional EdTech model. That is why the core platform is, and always will be, <span class="text-white font-medium">Lifetime Free — no credit card needed</span>. It is the tool I wish I had.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
