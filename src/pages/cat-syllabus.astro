@@ -1,0 +1,403 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import BackgroundPulse from "../components/BackgroundPulse";
+import { resolvedContent as CONTENT } from "../utils/config";
+
+const syllabusData = [
+  {
+    id: "VARC",
+    title: "Verbal Ability & Reading Comprehension",
+    questions: "24 Qs",
+    time: "40 Mins",
+    topics: [
+      { name: "Reading Comprehension", weight: "16 Qs (4 Passages)", details: "Dense passages from Philosophy, Sociology, History, Science, Economics, and Modern Technology. Question types: Central Idea, Inference, Tone, Author's Purpose, Fact vs Judgment." },
+      { name: "Para Jumbles", weight: "2-3 Qs", details: "Rearranging 4-5 sentences into a logically coherent paragraph. Primarily TITA format. Requires identification of transitional words, connectors, and logical flow." },
+      { name: "Para Summary", weight: "2-3 Qs", details: "Selecting the most accurate summary of a given paragraph from closely worded, deceptive distractor options. Tests comprehension and precision." },
+      { name: "Odd Sentence Out", weight: "1-2 Qs", details: "Identifying the contextually irrelevant sentence from a cluster of 5 sentences. Tests structural coherence and theme identification." },
+      { name: "Para Completion", weight: "0-1 Qs", details: "Selecting the sentence that logically completes a given paragraph. Tests inference, logical closure, and contextual continuity." }
+    ]
+  },
+  {
+    id: "DILR",
+    title: "Data Interpretation & Logical Reasoning",
+    questions: "22 Qs",
+    time: "40 Mins",
+    topics: [
+      { name: "Data Interpretation", weight: "10-12 Qs", details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure." },
+      { name: "Logical Reasoning", weight: "10-12 Qs", details: "Linear & Circular Seating Arrangements, Constraint-based Puzzles, Binary Logic, Scheduling, Matrix Arrangements, Blood Relations, Truth & Lie, Selection with Conditions, Quant-based LR." },
+      { name: "Games & Tournaments", weight: "0-1 Set", details: "Knockout Tournaments, Round Robin formats, Seeding logic, League-based scoring, and Logic-driven games." },
+      { name: "Venn Diagrams & Sets", weight: "0-1 Set", details: "2-Set, 3-Set, 4-Set Venn diagrams, Maxima-Minima intersecting logic in sets." }
+    ]
+  },
+  {
+    id: "QA",
+    title: "Quantitative Aptitude",
+    questions: "22 Qs",
+    time: "40 Mins",
+    topics: [
+      { name: "Arithmetic", weight: "8-10 Qs (~40%)", details: "Percentages, Successive Changes, Profit & Loss, Discounts, Simple & Compound Interest, Installments, Ratio & Proportion, Time Speed & Distance (Relative Speed, Trains, Boats & Streams), Time & Work (Work Efficiency, Pipes & Cisterns), Averages, Weighted Average, Mixtures & Alligations." },
+      { name: "Algebra", weight: "5-6 Qs", details: "Linear & Quadratic Equations (Roots, Nature of Roots), Polynomials (Remainder & Factor Theorem), Inequalities (Linear, Quadratic & Modulus), Logarithms, Functions (Domain, Range, Composition, Inverse, Graphs), Sequences & Series, Maxima & Minima." },
+      { name: "Geometry & Mensuration", weight: "4-5 Qs", details: "Lines & Angles, Triangles (Similarity, Congruence, Pythagoras), Quadrilaterals (Parallelogram, Trapezium, Rhombus), Circles (Tangents, Chords, Arcs), Polygons, Coordinate Geometry (Distance, Section Formula, Locus), 2D/3D Mensuration." },
+      { name: "Number System", weight: "1-2 Qs", details: "LCM/HCF, Divisibility Rules, Remainders (Euler's, Fermat's, Chinese Remainder Theorem), Factorials, Base Systems, Last Digits, Units Digit." },
+      { name: "Modern Math", weight: "1-2 Qs", details: "Progressions (AP, GP, HP, AGP), Permutations & Combinations, Probability (Bayes' Theorem, Conditional Probability), Set Theory." }
+    ]
+  }
+];
+
+const faqs = [
+  {
+    question: "Is the CAT syllabus officially released by IIMs?",
+    answer: "No. IIMs do not release an official syllabus for CAT. The exam pattern and topics are inferred from previous years' papers. The core sections (VARC, DILR, QA) and their fundamental topic areas have remained consistent for over a decade."
+  },
+  {
+    question: "How many questions and what is the marking scheme?",
+    answer: "CAT has 66 questions across 3 sections, totaling 198 marks. Each correct answer awards +3 marks. For MCQs, there is a penalty of -1 mark for incorrect answers. TITA (Type In The Answer) questions carry no negative marking."
+  },
+  {
+    question: "Which section has the highest weightage?",
+    answer: "VARC carries 24 questions (72 marks), while both DILR and QA carry 22 questions (66 marks each). However, all three sections are equally important since IIMs require a minimum sectional percentile alongside the overall percentile for shortlisting."
+  },
+  {
+    question: "What are the highest weightage topics in QA?",
+    answer: "Arithmetic dominates the QA section, consistently accounting for approximately 40% of the questions (8-10 out of 22). Within Arithmetic, Time Speed & Distance, Percentages, and Ratio & Proportion are the most frequently tested sub-topics."
+  },
+  {
+    question: "Has the CAT exam pattern changed recently?",
+    answer: "The current format of 66 questions in 120 minutes (40 minutes per section) with a mix of MCQs and TITA has been stable since CAT 2021. The trend shows an increase in TITA questions, which carry no negative marking and require stronger conceptual clarity."
+  }
+];
+
+// Safe fallback for Astro.site
+const siteUrl = Astro.site || "https://adapthub.in";
+---
+
+<Layout 
+  title={CONTENT.metadata?.catSyllabus?.title || "CAT Syllabus 2026 | Structural Breakdown"}
+  description={CONTENT.metadata?.catSyllabus?.description || "Comprehensive, data-driven mapping of the Common Admission Test. Exact topic divisions and historical weightage logic."}
+  keywords={CONTENT.metadata?.catSyllabus?.keywords || "CAT Syllabus, CAT 2026, Exam Pattern, VARC, DILR, QA"}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": new URL("cat-syllabus/#webpage", siteUrl).href,
+        "url": new URL("cat-syllabus", siteUrl).href,
+        "name": CONTENT.metadata.catSyllabus.title,
+        "description": CONTENT.metadata.catSyllabus.description,
+        "inLanguage": "en",
+        "author": { "@type": "Person", "@id": `${siteUrl}about/#founder` },
+        "dateModified": "2026-02-23",
+        "about": [
+          { "@type": "DefinedTerm", "name": "Quantitative Aptitude (QA)" },
+          { "@type": "DefinedTerm", "name": "Data Interpretation & Logical Reasoning (DILR)" },
+          { "@type": "DefinedTerm", "name": "Verbal Ability & Reading Comprehension (VARC)" }
+        ],
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".speakable-content"]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("cat-syllabus/#faq", siteUrl).href,
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      },
+      {
+        "@type": "Course",
+        "@id": new URL("cat-syllabus/#course", siteUrl).href,
+        "name": "CAT 2026 Exam Preparation — Full Syllabus",
+        "description": "A comprehensive breakdown of the CAT 2026 syllabus covering all three sections: Verbal Ability & Reading Comprehension (VARC), Data Interpretation & Logical Reasoning (DILR), and Quantitative Aptitude (QA), with historical topic weightage and question distribution.",
+        "provider": {
+          "@type": "Organization",
+          "@id": new URL("#organization", siteUrl).href,
+          "name": "AdaptHub"
+        },
+        "url": new URL("cat-syllabus", siteUrl).href,
+        "inLanguage": "en",
+        "educationalLevel": "PostSecondary",
+        "teaches": [
+          "Verbal Ability & Reading Comprehension",
+          "Data Interpretation & Logical Reasoning",
+          "Quantitative Aptitude"
+        ],
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "online",
+          "courseWorkload": "PT120M",
+          "startDate": "2025-01-01",
+          "endDate": "2025-11-30"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "category": "Free"
+        }
+      }
+    ]
+  })}></script>
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    
+    {/* ── Environment & Atmosphere ── */}
+    <BackgroundPulse client:load />
+
+    {/* Cinematic Film Grain */}
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
+      <filter id="syllabus-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#syllabus-grain)" />
+    </svg>
+
+    {/* Ambient Architectural Grid Lines */}
+    <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-30 overflow-hidden" aria-hidden="true">
+      <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden md:block"></div>
+        <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] mt-8 md:mt-16">
+      
+      {/* ── Editorial Hero Header ── */}
+      <header class="mb-20 md:mb-32 page-stagger" style="--i:0">
+        
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+          
+          {/* Narrative Anchor */}
+          <div class="lg:col-span-5 xl:col-span-6">
+            <h1 class="text-[3.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tighter leading-none mb-8">
+              CAT Syllabus <br />
+              <span class="italic text-brand-teal block pb-2 sm:ml-8 mt-2 md:mt-4">Breakdown.</span>
+            </h1>
+            
+            <p class="speakable-content text-zinc-400 font-sans text-lg md:text-xl leading-[1.7] tracking-wide border-l-2 border-brand-teal/30 pl-6">
+              The complete, data-driven CAT syllabus breakdown. Exact topic divisions, historical weightage, and structural analysis for VARC, DILR, and QA.
+            </p>
+          </div>
+
+          {/* Monumental Telemetry HUD */}
+          <div class="lg:col-span-7 xl:col-span-6 border border-white/10 bg-white/[0.01] backdrop-blur-sm p-8 md:p-12 relative overflow-hidden group">
+            {/* Ambient Sweep */}
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-brand-teal/[0.03] to-transparent -translate-x-full group-hover:animate-[sweep_2s_ease-in-out]" aria-hidden="true"></div>
+            
+            <div class="flex items-center gap-2 mb-8 border-b border-white/[0.06] pb-4">
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" aria-hidden="true"></span>
+              <span class="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.2em]">Global Parameters (CAT 2026)</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 md:gap-8 divide-x divide-white/10">
+              
+              <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <span class="font-serif text-4xl sm:text-5xl md:text-6xl text-white tracking-tighter leading-none mb-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">66</span>
+                <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Total Qs</span>
+              </div>
+              
+              <div class="flex flex-col items-center sm:items-start text-center sm:text-left pl-4 md:pl-8">
+                <span class="font-serif text-4xl sm:text-5xl md:text-6xl text-white tracking-tighter leading-none mb-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">120</span>
+                <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Minutes</span>
+              </div>
+
+              <div class="flex flex-col items-center sm:items-start text-center sm:text-left pl-4 md:pl-8">
+                <span class="font-serif text-4xl sm:text-5xl md:text-6xl text-white tracking-tighter leading-none mb-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">198</span>
+                <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Total Marks</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      {/* ── GEO: TL;DR / Key Takeaways Box for AI Overviews ── */}
+      <div class="mb-16 md:mb-24 page-stagger" style="--i:1">
+        <div class="border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
+          {/* Decorative Corner Tabs */}
+          <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
+          <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
+
+          <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">
+            [ Key Takeaways ]
+          </p>
+          
+          <ul class="space-y-3 speakable-content text-zinc-300 font-sans text-base md:text-lg leading-relaxed">
+            <li class="flex items-start gap-3">
+              <span class="text-brand-teal mt-1 select-none">›</span>
+              <span><strong>Structure:</strong> 66 questions across 3 sections in 120 minutes (40 mins per section).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-brand-teal mt-1 select-none">›</span>
+              <span><strong>Sections:</strong> VARC (24 Qs), DILR (22 Qs), QA (22 Qs).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-brand-teal mt-1 select-none">›</span>
+              <span><strong>Marking:</strong> +3 for correct answers, −1 for wrong MCQs, 0 penalty for TITA questions.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-brand-teal mt-1 select-none">›</span>
+              <span><strong>Syllabus Source:</strong> No official IIM syllabus exists; topics are rigorously inferred from past year papers.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* ── Syllabus Matrices (The Interactive Ledger) ── */}
+      <div class="space-y-16 md:space-y-24">
+        {syllabusData.map((section, index) => (
+          <section class="page-stagger relative border border-white/10 bg-white/[0.01]" style={`--i:${2 + index}`}>
+            
+            {/* Sticky Section Control Bar */}
+            <div class="sticky top-[72px] sm:top-20 z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-white/10 py-5 px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              
+              <div class="flex items-center gap-4 md:gap-6">
+                <span class="font-mono text-[10px] sm:text-xs text-brand-teal uppercase tracking-[0.2em] bg-brand-teal/5 border border-brand-teal/20 px-2 py-1 shrink-0">
+                  SEC.0{index + 1}
+                </span>
+                <h2 class="text-xl md:text-2xl font-serif text-white tracking-tight truncate">
+                  <span class="hidden sm:inline-block font-bold mr-2">{section.id} —</span>
+                  {section.title}
+                </h2>
+              </div>
+
+              <div class="flex items-center gap-6 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.1em] shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="w-1 h-1 bg-zinc-600 rounded-full"></span>
+                  {section.questions}
+                </div>
+                <div class="w-px h-4 bg-white/10"></div>
+                <div class="flex items-center gap-2">
+                  <span class="w-1 h-1 bg-zinc-600 rounded-full"></span>
+                  {section.time}
+                </div>
+              </div>
+            </div>
+
+            {/* The Tabular Topic Ledger */}
+            <div class="flex flex-col">
+              {section.topics.map((topic) => (
+                <div class="topic-row group relative flex flex-col md:flex-row border-b border-white/[0.06] last:border-b-0 transition-colors duration-500 hover:bg-white/[0.02]">
+                  
+                  {/* Left Active Hardware Line */}
+                  <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-out pointer-events-none hidden md:block" aria-hidden="true"></div>
+                  
+                  {/* Left Column: Topic Identity & Weightage */}
+                  <div class="md:w-[35%] lg:w-[30%] shrink-0 py-6 md:py-10 px-6 md:pl-10 md:pr-8 border-b md:border-b-0 md:border-r border-white/[0.04] relative z-10 flex flex-col justify-start">
+                    <h3 class="font-serif text-xl sm:text-2xl text-zinc-100 group-hover:text-white leading-snug tracking-tight mb-4 transition-colors duration-300">
+                      {topic.name}
+                    </h3>
+                    
+                    <div class="mt-auto">
+                      <span class="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.2em] block mb-2">Historical Weightage</span>
+                      <div class="inline-flex items-center gap-2 font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.1em] bg-brand-teal/5 border border-brand-teal/20 px-3 py-1.5">
+                        <span class="w-1.5 h-1.5 bg-brand-teal/80 rounded-full" aria-hidden="true"></span>
+                        {topic.weight}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Explanatory Prose */}
+                  <div class="md:w-[65%] lg:w-[70%] py-6 md:py-10 px-6 md:px-10 relative z-10 flex items-center">
+                    <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-base md:text-[1.0625rem] leading-[1.75] tracking-wide transition-colors duration-300 max-w-3xl">
+                      {topic.details}
+                    </p>
+                  </div>
+
+                </div>
+              ))}
+            </div>
+
+          </section>
+        ))}
+      </div>
+
+      {/* ── Diagnostic Queries (Terminal Accordion) ── */}
+      <section class="max-w-4xl mx-auto mt-32 md:mt-40 pt-16 md:pt-24 border-t border-white/10 page-stagger" style="--i:5">
+        
+        <header class="mb-12">
+          <span class="font-mono text-[10px] text-amber-500 uppercase tracking-[0.25em] block mb-4">
+            [ FREQUENTLY ASKED ]
+          </span>
+          <h2 class="text-3xl md:text-4xl font-serif text-white tracking-tight">
+            CAT Syllabus FAQs
+          </h2>
+          <p class="text-zinc-400 font-sans text-sm md:text-base leading-relaxed mt-4 max-w-xl">
+            Common questions about the CAT exam pattern, marking scheme, and topic structure.
+          </p>
+        </header>
+
+        <div class="border-t border-white/10">
+          {faqs.map((faq) => (
+            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+              <summary class="py-6 md:py-8 font-serif text-lg md:text-xl lg:text-2xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 active:scale-[0.99] transition-all duration-200 pr-4">
+                <span class="leading-snug pr-8 tracking-tight">{faq.question}</span>
+                
+                {/* Technical Toggle Nodes */}
+                <span class="font-mono text-sm md:text-base text-zinc-500 group-hover:text-brand-teal shrink-0 relative w-8 h-8 flex items-center justify-center transition-colors">
+                  <span class="absolute inset-0 flex items-center justify-center opacity-100 group-open:opacity-0 transition-opacity duration-300">[+]</span>
+                  <span class="absolute inset-0 flex items-center justify-center opacity-0 group-open:opacity-100 transition-opacity duration-300">[-]</span>
+                </span>
+              </summary>
+              
+              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans text-base md:text-[1.0625rem] animate-in fade-in slide-in-from-top-4 duration-500 ease-out">
+                <div class="border-l border-brand-teal/30 pl-6 md:pl-8 py-1 max-w-[65ch]">
+                  {faq.answer}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Internal Link CTA ── */}
+      <div class="mt-24 md:mt-32 text-center pb-12 page-stagger" style="--i:6">
+        <a 
+          href="/pricing"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-white"
+        >
+          Start Free Calibration
+          <span class="text-brand-teal font-sans">→</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Sweep Animation for Hero HUD ── */
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* ── Native Details/Summary Fixes ── */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* ── Hardware Guardrails & Performance ── */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-row *, .topic-row * { transition: none !important; }
+    .animate-pulse { animation: none; opacity: 0.8; }
+    .group-hover\:animate-\[sweep_2s_ease-in-out\] { animation: none !important; }
+  }
+</style>

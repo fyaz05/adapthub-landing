@@ -1,0 +1,269 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import AnnouncementBar from "../../components/AnnouncementBar";
+import Footer from "../../components/Footer.astro";
+import BackgroundPulse from "../../components/BackgroundPulse";
+import { BLOG_ARTICLES } from "../../constants/blog-data";
+
+export function getStaticPaths() {
+  return BLOG_ARTICLES.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const siteUrl = Astro.site || "https://adapthub.in";
+const articleDateISO = new Date(article.date).toISOString();
+const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
+---
+
+<Layout
+  title={article.title}
+  description={article.excerpt}
+  keywords={["cat preparation", "cat strategy", article.category.toLowerCase(), "adapthub blog"]}
+  datePublished={articleDateISO}
+  dateModified={articleDateISO}
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.excerpt,
+    "datePublished": articleDateISO,
+    "dateModified": articleDateISO,
+    "inLanguage": "en-IN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL,
+    },
+    "image": [
+      new URL("/og-image.avif", siteUrl).href,
+      new URL("/og-image.png", siteUrl).href,
+    ],
+    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AdaptHub",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL("/logo-light.svg", siteUrl).href,
+      },
+    },
+    ...(article.sources && article.sources.length > 0 ? { "citation": article.sources.map((source) => source.url) } : {}),
+    "isAccessibleForFree": true,
+    "url": canonicalURL,
+  })} />
+
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+
+    <BackgroundPulse client:load />
+
+    {/* Film Grain */}
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.03]" aria-hidden="true">
+      <filter id="article-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#article-grain)" />
+    </svg>
+
+    {/* Header radial glow */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-brand-teal/[0.04] blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] mt-12 md:mt-20">
+
+      {/* Back Link */}
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-3 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.25em] hover:text-brand-teal transition-colors duration-300 mb-16 group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transform group-hover:-translate-x-0.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 5 5 12 12 19"></polyline>
+        </svg>
+        Signals &amp; Noise
+      </a>
+
+      {/* 12-Col Layout */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+
+        {/* Article */}
+        <article class="lg:col-span-8 xl:col-span-7">
+
+          {/* Header */}
+          <header class="mb-16 md:mb-20">
+            <div class="flex items-center gap-4 mb-8">
+              <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.25em] bg-brand-teal/5 border border-brand-teal/20 px-2 py-0.5">
+                {article.category}
+              </span>
+              <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.2em]">{article.date}</span>
+              <span class="font-mono text-[9px] text-zinc-700 uppercase tracking-[0.2em] border-l border-zinc-800 pl-4">
+                EST: {article.readTime}
+              </span>
+            </div>
+
+            <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-serif text-white tracking-tighter leading-none mb-8 text-balance">
+              {article.title}
+            </h1>
+
+            <p class="text-zinc-400 font-sans text-lg md:text-xl leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-brand-teal/40 pl-6">
+              {article.excerpt}
+            </p>
+          </header>
+
+          {/* Divider */}
+          <div class="flex items-center gap-4 mb-16">
+            <div class="h-px bg-white/10 flex-1"></div>
+            <span class="font-mono text-[9px] text-zinc-700 uppercase tracking-[0.25em]">[ TRANSMISSION ]</span>
+            <div class="h-px bg-white/10 flex-1"></div>
+          </div>
+
+          {/* Body */}
+          <div class="space-y-16 md:space-y-20">
+            {article.body.map((section) => (
+              <section class="article-section">
+                {section.heading && (
+                  <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight leading-snug mb-8 relative pl-6">
+                    <span class="absolute left-0 top-[0.35em] w-2 h-2 bg-brand-teal/50" aria-hidden="true"></span>
+                    {section.heading}
+                  </h2>
+                )}
+                <div class="space-y-6 md:space-y-8">
+                  {section.paragraphs.map((para) => (
+                    <p
+                      class="text-zinc-300 font-sans text-base md:text-[1.125rem] leading-[1.85] tracking-wide max-w-[65ch]"
+                      set:html={para}
+                    ></p>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+
+          {article.sources && article.sources.length > 0 && (
+            <section class="article-section">
+              <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight leading-snug mb-8 relative pl-6">
+                <span class="absolute left-0 top-[0.35em] w-2 h-2 bg-brand-teal/50" aria-hidden="true"></span>
+                Sources
+              </h2>
+              <ul class="space-y-4 max-w-[65ch]">
+                {article.sources.map((source) => (
+                  <li>
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-zinc-300 hover:text-white underline decoration-zinc-700 hover:decoration-brand-teal underline-offset-4 transition-colors duration-300"
+                    >
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Footer rule */}
+          <div class="mt-20 pt-12 border-t border-white/10 flex items-center justify-between">
+            <a
+              href="/blog"
+              class="inline-flex items-center gap-3 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.25em] hover:text-brand-teal transition-colors duration-300 group"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transform group-hover:-translate-x-0.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 5 5 12 12 19"></polyline>
+              </svg>
+              All Articles
+            </a>
+            <a
+              href="https://app.adapthub.in/"
+              class="inline-flex items-center gap-3 font-mono text-[10px] text-brand-teal uppercase tracking-[0.25em] hover:text-white transition-colors duration-300 group"
+            >
+              Start Calibration
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        {/* Sidebar */}
+        <aside class="lg:col-span-4 xl:col-start-9 xl:col-span-4 mt-0 lg:mt-0">
+          <div class="lg:sticky lg:top-40 space-y-12">
+
+            {/* More Articles */}
+            <div>
+              <div class="mb-6">
+                <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em]">[ More Signals ]</span>
+              </div>
+              <div class="flex flex-col gap-1 border border-white/[0.06] p-[1px] relative">
+                <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+                <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+                {BLOG_ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 4).map((related) => (
+                  <a
+                    href={`/blog/${related.slug}`}
+                    class="group block bg-void px-6 py-6 hover:bg-white/[0.02] transition-colors duration-300 border-b border-white/[0.04] last:border-0 relative overflow-hidden"
+                  >
+                    <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-top pointer-events-none" aria-hidden="true"></div>
+                    <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.2em] block mb-2">{related.category}</span>
+                    <span class="font-sans text-sm text-zinc-300 group-hover:text-white leading-snug tracking-tight transition-colors duration-300">
+                      {related.title}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div class="border border-white/[0.06] bg-white/[0.01] p-8 relative">
+              <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+              <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
+              <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.2em] block mb-4">[ Calibrate ]</span>
+              <p class="font-sans text-sm text-zinc-400 leading-relaxed mb-6">
+                Apply these principles inside the AdaptHub engine. Your cognitive baseline, calibrated in 15 minutes.
+              </p>
+              <a
+                href="https://app.adapthub.in/"
+                class="inline-flex items-center gap-3 font-mono text-[10px] text-white uppercase tracking-[0.2em] hover:text-brand-teal transition-colors duration-300 group"
+              >
+                Start Calibration
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  main :global(strong) {
+    color: white;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(13, 148, 136, 0.35);
+    padding-bottom: 1px;
+  }
+  main :global(em) {
+    color: rgba(161, 161, 170, 0.9);
+    font-style: italic;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .article-section * { transition: none !important; }
+  }
+</style>

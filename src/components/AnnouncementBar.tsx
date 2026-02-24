@@ -53,9 +53,13 @@ const AnnouncementBar = () => {
             </span>
 
             <span className="text-zinc-300 font-sans tracking-tight leading-none truncate">
-              AdaptHub is currently in{" "}
+              AdaptHub is in{" "}
               <span className="text-brand-teal font-serif italic font-medium text-sm md:text-base">
                 Beta
+              </span>{" "}
+              &{" "}
+              <span className="text-brand-teal font-serif italic font-medium text-sm md:text-base">
+                Lifetime Free
               </span>
             </span>
           </div>
@@ -64,7 +68,7 @@ const AnnouncementBar = () => {
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-2 md:right-4 p-3 md:p-2 text-zinc-500 hover:text-white transition-colors touch-manipulation"
+            className="absolute right-2 md:right-4 p-3 md:p-2 text-zinc-400 hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
             aria-label="Dismiss announcement"
           >
             <svg

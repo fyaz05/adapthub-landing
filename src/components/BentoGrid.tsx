@@ -1,67 +1,116 @@
 import {
   AnimatePresence,
   motion,
+  useMotionTemplate,
   useMotionValue,
-  useSpring,
-  useTransform,
 } from "motion/react";
-import { type JSX, useEffect, useState } from "react";
-import { CONTENT } from "../constants/content";
+import React, { type MouseEvent, useState } from "react";
 import { THEME_COLORS } from "../constants/theme";
 import { useIsMobile } from "../hooks/use-mobile";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { resolvedContent } from "../utils/config";
 import SectionSpotlight from "./SectionSpotlight";
+import DistractorAnalysisVisual from "./visuals/DistractorAnalysisVisual";
 
 interface CardData {
   id: string;
   title: string;
   description: string;
-  size: string;
-  bg: string;
-  visual: JSX.Element;
+  gridClass: string;
+  visual: React.ReactNode;
+  href?: string;
 }
 
-// ... (RadialProgress and PerformanceAreaGraph components remain unchanged)
-
 // -----------------------------------------------------------------------------
-// MICRO-COMPONENT: Radial Progress (Performance)
+// MICRO-COMPONENT: Fluid Data Spectrum (Mobile-Fluid CSS)
 // -----------------------------------------------------------------------------
-const RadialProgress = ({ value, label }: { value: number; label: string }) => {
-  const radius = 60;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+const DataSpectrum = () => {
+  const BAR_COUNT = 32;
 
   return (
-    <div className="relative flex flex-col items-center justify-center">
-      <svg
-        className="w-40 h-40 transform -rotate-90"
-        role="img"
-        aria-label={`Progress chart: ${label} at ${value}%`}
+    <div className="absolute inset-0 flex items-end justify-between gap-[1px] md:gap-[2px] opacity-80 px-4 md:px-6 pb-4 md:pb-6 overflow-hidden mask-spectrum pointer-events-none">
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px] md:bg-[size:24px_24px]" />
+
+      {/* CSS-Animated Data Bars */}
+      {[...Array(BAR_COUNT)].map((_, i) => {
+        const normalized = i / (BAR_COUNT - 1);
+        const baseHeight = Math.max(
+          15,
+          Math.sin(normalized * Math.PI) * 50 + normalized * 50,
+        );
+
+        return (
+          <div
+            // biome-ignore lint/suspicious/noArrayIndexKey: Static array for visual bars
+            key={i}
+            className="flex-1 bg-brand-teal/80 relative z-10 data-bar min-w-0"
+            style={{
+              height: `${baseHeight.toFixed(2)}%`,
+              animationDelay: `${(i * 0.05).toFixed(2)}s`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+// -----------------------------------------------------------------------------
+// MICRO-COMPONENT: Precision Targeting Reticle
+// -----------------------------------------------------------------------------
+const RadialProgress = ({ value, label }: { value: number; label: string }) => {
+  const isMobile = useIsMobile();
+  const radius = isMobile ? 44 : 56;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (value / 100) * circumference;
+  const center = isMobile ? 60 : 72;
+  const size = isMobile ? 120 : 144;
+
+  return (
+    <div className="relative flex flex-col items-center justify-center w-full h-full min-h-[140px] md:min-h-[160px]">
+      {/* Structural Crosshairs */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
       >
-        {/* Track */}
+        <div className="w-[1px] h-full max-h-[100px] md:max-h-[140px] bg-white/10" />
+        <div className="absolute w-full max-w-[100px] md:max-w-[140px] h-[1px] bg-white/10" />
+        <div className="absolute w-1 h-1 bg-brand-teal shadow-[0_0_8px_rgba(13,148,136,0.8)]" />
+      </div>
+
+      <svg
+        width={size}
+        height={size}
+        className="transform -rotate-90 relative z-10"
+        role="img"
+        aria-label={`Progress: ${label} at ${value}%`}
+      >
         <circle
-          cx="80"
-          cy="80"
+          cx={center}
+          cy={center}
           r={radius}
-          stroke="rgba(255,255,255,0.2)"
-          strokeWidth="8"
+          stroke="rgba(255,255,255,0.05)"
+          strokeWidth="1.5"
+          strokeDasharray="2 4"
           fill="transparent"
         />
-        {/* Indicator */}
+
         <motion.circle
-          cx="80"
-          cy="80"
+          cx={center}
+          cy={center}
           r={radius}
           stroke="url(#gradient-teal)"
-          strokeWidth="8"
+          strokeWidth="3"
           fill="transparent"
-          strokeLinecap="round"
+          strokeLinecap="square"
           initial={{
             strokeDashoffset: circumference,
             strokeDasharray: circumference,
           }}
           whileInView={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         />
         <defs>
           <linearGradient id="gradient-teal" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -70,534 +119,323 @@ const RadialProgress = ({ value, label }: { value: number; label: string }) => {
           </linearGradient>
         </defs>
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-serif text-white font-bold">
-          {value}%
-        </span>
-        <span className="text-[10px] uppercase tracking-widest text-zinc-500 mt-1">
-          {label}
-        </span>
+
+      {/* Telemetry Readout */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20 m-auto pointer-events-none">
+        <div className="bg-void border border-white/10 w-[64px] h-[64px] md:w-[72px] md:h-[72px] flex flex-col items-center justify-center shadow-2xl">
+          <span className="text-lg md:text-2xl font-serif text-white tracking-tighter leading-none mb-1">
+            {value}
+            <span className="text-brand-teal text-[9px] md:text-[10px] ml-0.5">
+              %
+            </span>
+          </span>
+          <span className="font-mono text-[6px] md:text-[7px] uppercase tracking-[0.2em] text-zinc-400">
+            {label}
+          </span>
+        </div>
       </div>
     </div>
   );
 };
 
 // -----------------------------------------------------------------------------
-// MICRO-COMPONENT: Performance Area Graph (Strategic/Financial Look)
-// -----------------------------------------------------------------------------
-const PerformanceAreaGraph = () => {
-  const isMobile = useIsMobile();
-
-  // Simplified path for mobile to reduce SVG complexity
-  const desktopPath =
-    "M0,200 L0,120 C50,120 80,140 120,90 C160,40 220,110 280,60 C320,30 360,50 400,20 L400,200 Z";
-  const mobilePath =
-    "M0,200 L0,120 L100,140 L200,90 L300,110 L400,20 L400,200 Z";
-
-  const desktopLine =
-    "M0,120 C50,120 80,140 120,90 C160,40 220,110 280,60 C320,30 360,50 400,20";
-  const mobileLine = "M0,120 L100,140 L200,90 L300,110 L400,20";
-
-  return (
-    <div className="absolute inset-x-0 bottom-0 top-1/2 flex items-end justify-center pointer-events-none overflow-hidden rounded-b-[20px]">
-      <svg
-        className="w-full h-full opacity-60"
-        viewBox="0 0 400 200"
-        preserveAspectRatio="none"
-        role="img"
-        aria-label="Performance trend graph"
-      >
-        <defs>
-          <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="0%"
-              stopColor={THEME_COLORS.brand.teal}
-              stopOpacity="0.4"
-            />
-            <stop
-              offset="100%"
-              stopColor={THEME_COLORS.brand.teal}
-              stopOpacity="0"
-            />
-          </linearGradient>
-          <linearGradient id="line-gradient-teal" x1="0" y1="0" x2="1" y2="0">
-            <stop
-              offset="0%"
-              stopColor={THEME_COLORS.brand.teal}
-              stopOpacity="0.5"
-            />
-            <stop
-              offset="50%"
-              stopColor={THEME_COLORS.brand.tealLight}
-              stopOpacity="1"
-            />
-            <stop
-              offset="100%"
-              stopColor={THEME_COLORS.brand.teal}
-              stopOpacity="0.5"
-            />
-          </linearGradient>
-        </defs>
-
-        {/* Filled Area */}
-        <motion.path
-          d={isMobile ? mobilePath : desktopPath}
-          fill="url(#area-gradient)"
-          initial={{ opacity: 0, scaleY: 0 }}
-          whileInView={{ opacity: 1, scaleY: 1 }}
-          style={{ transformOrigin: "bottom" }}
-          transition={{ duration: 1.2, ease: "circOut" }}
-        />
-
-        {/* The Trend Line */}
-        <motion.path
-          d={isMobile ? mobileLine : desktopLine}
-          fill="none"
-          stroke="url(#line-gradient-teal)"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          transition={{ duration: 1.5, ease: "circOut", delay: 0.2 }}
-        />
-      </svg>
-    </div>
-  );
-};
-
-// -----------------------------------------------------------------------------
-// MICRO-COMPONENT: Holographic Card Stack (Vertical Optimized & Scaled Up)
+// MICRO-COMPONENT: Isometric Data Planes
 // -----------------------------------------------------------------------------
 const CardStack = () => {
   const isReduced = useReducedMotion();
 
   return (
-    <div className="relative w-48 h-64 preserve-3d group-hover:scale-105 transition-transform duration-500">
-      {/* Card 3 (Bottom) */}
+    <div className="relative w-36 h-44 md:w-48 md:h-56 perspective-[1000px] md:group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1] mx-auto">
+      {/* Plane 3 (Base) */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 h-40 bg-zinc-800 border border-white/10 rounded-xl shadow-2xl origin-bottom"
-        initial={{ scale: 0.85, y: 30 }}
-        whileHover={isReduced ? {} : { y: 60, rotateX: -15, scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 200 }}
+        className="absolute inset-x-0 bottom-0 h-28 md:h-36 bg-void border border-white/5 shadow-2xl origin-bottom"
+        initial={{ y: 15, rotateX: 30, scale: 0.9 }}
+        whileHover={isReduced ? {} : { y: 25, rotateX: 45, scale: 0.85 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
       />
-      {/* Card 2 (Middle) */}
+      {/* Plane 2 (Mid) */}
       <motion.div
-        className="absolute inset-x-0 bottom-6 h-40 bg-zinc-800 border border-white/10 rounded-xl shadow-2xl origin-bottom"
-        initial={{ scale: 0.92, y: 15 }}
-        whileHover={{ y: 30, rotateX: -8, scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 200, delay: 0.05 }}
-      />
-      {/* Card 1 (Top - Visual) */}
-      <motion.div
-        className="absolute inset-x-0 bottom-12 h-40 bg-zinc-900 border border-white/20 rounded-xl shadow-2xl flex flex-col p-5 overflow-hidden"
-        whileHover={{ y: 0, rotateX: 0, scale: 1 }}
-        transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
+        className="absolute inset-x-0 bottom-4 h-28 md:h-36 bg-white/[0.02] border border-white/10 shadow-2xl origin-bottom flex items-center justify-center"
+        initial={{ y: 5, rotateX: 15, scale: 0.95 }}
+        whileHover={isReduced ? {} : { y: 10, rotateX: 25, scale: 0.9 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 20,
+          delay: 0.05,
+        }}
       >
-        <div className="w-12 h-12 bg-teal-900/30 rounded-full mb-4 flex items-center justify-center border border-brand-teal/20">
-          <div className="w-6 h-6 bg-brand-teal rounded-full" />
+        <div className="w-full h-px bg-white/5 absolute top-1/2" />
+        <div className="h-full w-px bg-white/5 absolute left-1/2" />
+      </motion.div>
+      {/* Plane 1 (Top) */}
+      <motion.div
+        className="absolute inset-x-0 bottom-8 h-28 md:h-36 bg-white/[0.04] border border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.8)] flex flex-col p-3 md:p-5 origin-bottom"
+        whileHover={isReduced ? {} : { y: 0, rotateX: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.1 }}
+      >
+        <div className="flex items-center gap-2 mb-3 md:mb-4 border-b border-white/10 pb-2 md:pb-3">
+          <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-brand-teal animate-pulse" />
+          <span className="font-mono text-[7px] md:text-[8px] text-brand-teal uppercase tracking-widest">
+            Cognitive Lock
+          </span>
         </div>
-        <div className="w-full h-2 bg-white/10 rounded mb-2" />
-        <div className="w-3/4 h-2 bg-white/10 rounded" />
+        <div className="w-full h-[2px] bg-white/10 mb-2" />
+        <div className="w-2/3 h-[2px] bg-white/10 mb-2" />
+        <div className="w-1/2 h-[2px] bg-brand-teal/50" />
       </motion.div>
     </div>
   );
 };
 
 // -----------------------------------------------------------------------------
-// MICRO-COMPONENT: Neural Nodes (High-Fidelity Constellation)
+// COMPONENT: The Monolithic Bento Node
 // -----------------------------------------------------------------------------
-const NeuralNodes = () => {
+const BentoCard = ({ card }: { card: CardData }) => {
   const isMobile = useIsMobile();
   const isReduced = useReducedMotion();
-  const [nodes, setNodes] = useState<
-    { id: number; x: number; y: number; r: number; pulse: boolean }[]
-  >([]);
-  const [connections, setConnections] = useState<
-    { p1: { x: number; y: number }; p2: { x: number; y: number } }[]
-  >([]);
 
-  useEffect(() => {
-    // PERFORMANCE: Skip complex calculation on reduced motion
-    if (isReduced) return;
+  // Internal Flashlight Logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-    const nodeCount = isMobile ? 10 : 40;
-    const newNodes = Array.from({ length: nodeCount }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 800,
-      y: Math.random() * 200,
-      r: Math.random() < 0.2 ? 3 : 1.5,
-      pulse: Math.random() < 0.3,
-    }));
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (isMobile || isReduced) return;
+    const { left, top } = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - left);
+    mouseY.set(e.clientY - top);
+  };
 
-    const newConnections = newNodes.flatMap((node) => {
-      const neighbors = newNodes
-        .filter(
-          (n) =>
-            n.id !== node.id &&
-            Math.abs(n.x - node.x) < 100 &&
-            Math.abs(n.y - node.y) < 60,
-        )
-        .slice(0, 2);
-      return neighbors.map((n) => ({ p1: node, p2: n }));
-    });
+  const backgroundTemplate = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(13,148,136,0.06), transparent 40%)`;
 
-    setNodes(newNodes);
-    setConnections(newConnections);
-  }, [isMobile, isReduced]);
-
-  if (isReduced) {
-    return (
-      <div className="relative w-full h-full overflow-hidden bg-zinc-900/20 flex items-center justify-center">
-        {/* Static fallback for low-end devices */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="text-brand-teal font-mono text-xs opacity-50 tracking-widest">
-          NEURAL_MESH_OFFLINE
-        </div>
-      </div>
-    );
-  }
+  // Wide cards dictate structural layout changes
+  const isWide = card.gridClass.includes("lg:col-span-4");
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-zinc-900/20">
-      {/* Background Grid for Structure */}
+    // biome-ignore lint/a11y/noStaticElementInteractions: purely visual flashlight effect
+    <div
+      className={`group relative flex flex-col min-w-0 overflow-hidden bg-void outline-none ${card.gridClass}`}
+      onMouseMove={handleMouseMove}
+    >
+      {/* ── Internal Radial Glow (Flashlight) ── */}
+      {!isMobile && !isReduced && (
+        <motion.div
+          className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: backgroundTemplate,
+          }}
+        />
+      )}
+
+      {/* ── Hardware Optical Brackets ── */}
       <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      <svg
-        className="w-full h-full"
-        viewBox="0 0 800 200"
-        preserveAspectRatio="xMidYMid slice"
-        role="img"
-        aria-label="Neural data mesh visualization"
+        className="absolute inset-0 z-20 pointer-events-none opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500"
+        aria-hidden="true"
       >
-        {/* Connections Layer (Behind) */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ duration: 2 }}
+        <div className="absolute top-0 left-0 w-2 h-2 md:w-3 md:h-3 border-t border-l border-brand-teal/50" />
+        <div className="absolute top-0 right-0 w-2 h-2 md:w-3 md:h-3 border-t border-r border-brand-teal/50" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 md:w-3 md:h-3 border-b border-l border-brand-teal/50" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 md:w-3 md:h-3 border-b border-r border-brand-teal/50" />
+      </div>
+
+      {/* ── High-Fidelity Noise Texture ── */}
+      <div
+        className="absolute inset-0 opacity-[0.035] mix-blend-screen pointer-events-none z-0"
+        aria-hidden="true"
+      >
+        <svg
+          width="100%"
+          height="100%"
+          preserveAspectRatio="none"
+          aria-hidden="true"
         >
-          {connections.map((conn) => (
-            <line
-              key={`link-${conn.p1.x}-${conn.p1.y}-${conn.p2.x}-${conn.p2.y}`}
-              x1={conn.p1.x}
-              y1={conn.p1.y}
-              x2={conn.p2.x}
-              y2={conn.p2.y}
-              stroke="white"
-              strokeWidth="0.5"
-            />
-          ))}
-        </motion.g>
+          <rect width="100%" height="100%" filter="url(#global-noise-filter)" />
+        </svg>
+      </div>
 
-        {/* Active Data Streams (Moving along lines) */}
-        {connections
-          .filter((_, i) => i % 5 === 0)
-          .map((conn) => (
-            <motion.circle
-              r="1"
-              fill={THEME_COLORS.brand.teal}
-              key={`stream-${conn.p1.x}-${conn.p1.y}-${conn.p2.x}-${conn.p2.y}`}
-            >
-              <animateMotion
-                dur={`${2 + Math.random() * 4}s`}
-                repeatCount="indefinite"
-                path={`M${conn.p1.x},${conn.p1.y} L${conn.p2.x},${conn.p2.y}`}
-              />
-            </motion.circle>
-          ))}
-
-        {/* Nodes Layer */}
-        {nodes.map((node) => (
-          <motion.g key={node.id}>
-            {/* Glow for major nodes */}
-            {node.pulse && (
-              <motion.circle
-                cx={node.x}
-                cy={node.y}
-                r={node.r * 4}
-                fill={THEME_COLORS.brand.teal}
-                animate={{ opacity: [0, 0.2, 0], scale: [1, 1.5, 1] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
+      {/* ── Content Architecture ── */}
+      <div
+        className={`relative z-10 flex flex-col h-full min-w-0 ${isWide ? "lg:flex-row" : ""}`}
+      >
+        {/* Typographic Block */}
+        <div
+          className={`
+          flex flex-col justify-start p-5 sm:p-6 md:p-8 lg:p-10 min-w-0
+          ${isWide ? "lg:w-[35%] xl:w-[30%] lg:border-r border-white/5" : "border-b border-white/5"}
+          bg-gradient-to-br from-white/[0.02] to-transparent
+        `}
+        >
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <span className="font-mono text-[9px] md:text-[10px] text-zinc-400 uppercase tracking-[0.2em] border border-white/10 px-2 py-0.5 lg:group-hover:text-brand-teal lg:group-hover:border-brand-teal/30 transition-colors duration-300 shrink-0">
+              {card.id}
+            </span>
+          </div>
+          {/* Internal Linking: Connect features to relevant pages */}
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white tracking-tight leading-snug mb-3 md:mb-4 text-balance">
+            {card.href ? (
+              <a
+                href={card.href}
+                className="hover:text-brand-teal transition-colors outline-none focus-visible:text-brand-teal whitespace-nowrap"
+                aria-label={`Read more about the completely free ${card.title}`}
+              >
+                {card.title}
+              </a>
+            ) : (
+              card.title
             )}
-
-            {/* The Node Core */}
-            <motion.circle
-              cx={node.x}
-              cy={node.y}
-              r={node.r}
-              fill={
-                node.pulse ? THEME_COLORS.brand.teal : "rgba(255,255,255,0.5)"
-              }
-              animate={{
-                y: [node.y - 2, node.y + 2, node.y - 2],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </motion.g>
-        ))}
-      </svg>
-
-      {/* Overlay Content */}
-      <div className="absolute top-4 left-6 pointer-events-none">
-        <div className="font-mono text-[10px] text-brand-teal uppercase tracking-widest mb-1">
-          Neural_Mesh_V4
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base font-sans text-zinc-400 leading-[1.6] md:leading-[1.7] tracking-wide text-pretty">
+            {card.description}
+          </p>
         </div>
-        <div className="text-white text-xs font-serif italic opacity-60">
-          Distributed Learning Network
+
+        {/* Visual Block */}
+        <div
+          className={`
+          relative flex-1 flex items-center justify-center bg-transparent overflow-hidden min-w-0
+          ${isWide ? "lg:w-[65%] xl:w-[70%] min-h-[250px] sm:min-h-[300px] lg:min-h-full" : "min-h-[220px] md:min-h-[300px]"}
+        `}
+        >
+          {card.visual}
         </div>
       </div>
     </div>
   );
 };
 
-const BentoCard = ({ card }: { card: CardData }) => {
-  const isMobile = useIsMobile();
-  const isReduced = useReducedMotion();
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  // Detect if this is the wide "Command Deck" card
-  const isWide = card.size.includes("col-span-4");
-
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), {
-    stiffness: 400,
-    damping: 30,
-  });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), {
-    stiffness: 400,
-    damping: 30,
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile || isReduced) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-
-    e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  return (
-    <motion.div
-      key={card.id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      whileHover={isMobile ? {} : { y: -4 }} /* Reduced hover lift for weight */
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`group relative rounded-[20px] overflow-hidden ${card.bg} ${card.size} shadow-2xl bg-zinc-900/40 backdrop-blur-md cursor-pointer will-change-transform`}
-      style={{
-        rotateX: isMobile || isReduced ? 0 : rotateX,
-        rotateY: isMobile || isReduced ? 0 : rotateY,
-        transformStyle: "preserve-3d",
-        backfaceVisibility: "hidden",
-      }}
-    >
-      {/* Precision Brackets (Visible on Hover) */}
-      <div className="absolute inset-0 z-overlay pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-brand-teal" />
-        <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-brand-teal" />
-        <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-brand-teal" />
-        <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-brand-teal" />
-      </div>
-
-      {/* 1. Spotlight BORDER (The "Apple" Glow Border) */}
-      {!isMobile && (
-        <div
-          className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{
-            background: `radial-gradient(400px circle at var(--mx) var(--my), rgba(13, 148, 136, 0.4), transparent 40%)`,
-          }}
-        />
-      )}
-
-      {/* 2. Inner Content Mask (Creates the border effect) */}
-      <div className="absolute inset-[1px] rounded-[19px] bg-zinc-950/90 z-0 overflow-hidden">
-        {/* Noise Texture */}
-        {!isMobile && (
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        )}
-
-        {/* REPLACED: Data Flow Shimmer (Horizontal, Subtle, Non-Medical) */}
-        {!isMobile && (
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.03)_0%,transparent_50%)] z-0 pointer-events-none"
-          />
-        )}
-      </div>
-
-      {/* 3. Internal Spotlight (On top of background) */}
-      {!isMobile && (
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-elevate"
-          style={{
-            background: `radial-gradient(circle 300px at var(--mx, 0px) var(--my, 0px), rgba(13, 148, 136, 0.05), transparent 80%)`,
-          }}
-        />
-      )}
-
-      {/* Adaptive Layout: Flex Row for Wide Card, Flex Col for others */}
-      <div
-        className={`h-full flex relative z-sticky ${isWide ? "flex-col md:flex-row items-center" : "flex-col"}`}
-      >
-        {/* Visual Container */}
-        {/* For wide card, visual is on the right and takes flex-1 */}
-        {/* MOBILE: Ensure visual has min-height and good aspect ratio */}
-        <div
-          className={`${isWide ? "order-2 w-full md:w-2/3 h-64 md:h-full mobile-visual-fix" : "flex-1 min-h-[180px] mobile-min-height"} flex items-center justify-center perspective-[1000px]`}
-        >
-          {card.visual}
-        </div>
-
-        {/* Content Container */}
-        {/* For wide card, content is on the left, darker bg */}
-        <div
-          className={`
-            ${isWide ? "order-1 w-full md:w-1/3 h-auto md:h-full border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-center p-6 md:p-8 bg-black/20" : "p-6 md:p-8 pt-4 mt-auto border-t border-white/5 bg-gradient-to-t from-black/40 to-transparent"}
-          `}
-        >
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-2xl text-white font-serif italic tracking-tight">
-              {card.title}
-            </h3>
-            <span className="font-mono text-[9px] text-zinc-500 group-hover:text-brand-teal transition-colors border border-white/5 px-2 py-1 rounded-full uppercase tracking-wider">
-              {card.id}
-            </span>
-          </div>
-          <p className="text-sm text-zinc-400 leading-relaxed max-w-sm font-sans opacity-80 group-hover:opacity-100 transition-opacity">
-            {card.description}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
+// -----------------------------------------------------------------------------
+// MAIN COMPONENT: The Master Matrix
+// -----------------------------------------------------------------------------
 const BentoGrid = () => {
   const [activeTab, setActiveTab] = useState("accuracy");
+  const isReduced = useReducedMotion();
+
+  const gridContent = resolvedContent.bentoGrid;
 
   const cards: CardData[] = [
     {
-      id: CONTENT.bentoGrid.cards[0].id,
-      title: CONTENT.bentoGrid.cards[0].title,
-      description: CONTENT.bentoGrid.cards[0].description,
-      size: "md:col-span-2 md:row-span-2",
-      bg: "bg-zinc-900/50",
+      id: `SYS.${gridContent.cards[0]?.id || "01"}`,
+      title: gridContent.cards[0]?.title || "",
+      description: gridContent.cards[0]?.description || "",
+      gridClass: "md:col-span-2 lg:col-span-2 row-span-2",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Abstract HUD Elements - Renamed to non-clinical */}
-          <div className="absolute top-4 left-6 font-mono text-[9px] text-brand-teal/60">
-            PERF_INDEX_V1
-          </div>
-          <div className="absolute top-4 right-6 flex gap-1">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="w-1 h-3 bg-brand-teal/30 rounded-full" />
-            ))}
+        <div className="relative w-full h-full flex flex-col justify-end p-5 md:p-0">
+          <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[8px] md:text-[9px] text-zinc-400 tracking-[0.2em] uppercase z-20">
+            [ Live Telemetry ]
           </div>
 
-          {/* REPLACED: Strategic Area Graph */}
-          <PerformanceAreaGraph />
+          <DataSpectrum />
 
-          <div className="absolute bottom-4 left-6 font-mono text-xs text-white">
-            {CONTENT.bentoGrid.cards[0].visualCheck?.delta}{" "}
-            <span className="text-brand-teal">
-              {CONTENT.bentoGrid.cards[0].visualCheck?.deltaValue}
+          <div className="relative md:absolute md:bottom-8 md:left-8 z-20 bg-void/80 backdrop-blur-md p-4 border border-white/5 shadow-2xl w-max">
+            <span className="block font-mono text-[8px] md:text-[9px] text-zinc-400 uppercase tracking-widest mb-1">
+              Delta Velocity
+            </span>
+            <span className="font-serif text-2xl md:text-3xl lg:text-4xl text-white flex items-baseline gap-1">
+              +{gridContent.cards[0]?.visualCheck?.deltaValue || "0"}{" "}
+              <span className="text-brand-teal text-sm md:text-lg">Pts</span>
             </span>
           </div>
         </div>
       ),
     },
     {
-      id: CONTENT.bentoGrid.cards[1].id,
-      title: CONTENT.bentoGrid.cards[1].title,
-      description: CONTENT.bentoGrid.cards[1].description,
-      size: "md:col-span-1 md:row-span-2",
-      bg: "bg-zinc-900/50",
+      id: `SYS.${gridContent.cards[1]?.id || "02"}`,
+      title: gridContent.cards[1]?.title || "",
+      description: gridContent.cards[1]?.description || "",
+      gridClass: "md:col-span-1 lg:col-span-1 row-span-2",
       visual: (
-        <div className="h-full w-full flex flex-col p-6 gap-6">
-          <div className="flex gap-2 p-1 bg-white/5 rounded-lg relative">
-            {CONTENT.bentoGrid.cards[1].tabs?.map((tab) => (
-              <button
-                type="button"
-                key={tab}
-                onClick={() => setActiveTab(tab.toLowerCase())}
-                className={`relative flex-1 px-2 py-2 text-[10px] uppercase tracking-widest font-mono rounded-md transition-colors z-10 ${
-                  activeTab === tab.toLowerCase()
-                    ? "text-white"
-                    : "text-zinc-500 hover:text-white"
-                }`}
-              >
-                {activeTab === tab.toLowerCase() && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-brand-violet rounded-md -z-10 shadow-lg"
-                    transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
-                  />
-                )}
-                {tab}
-              </button>
-            ))}
+        <div className="h-full w-full flex flex-col p-5 sm:p-6 pt-0 justify-center">
+          {/* ── Hardware Toggle Matrix ── */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.05] pb-4 mb-6 mt-6 md:mt-0 gap-4">
+            <div
+              role="tablist"
+              aria-label="Analysis metric"
+              className="flex bg-black/40 border border-white/10 p-[1px] w-full sm:w-auto"
+            >
+              {(gridContent.cards[1]?.tabs || ["Accuracy", "Growth"]).map(
+                (tab: string) => {
+                  const isActive = activeTab === tab.toLowerCase();
+                  const label =
+                    tab.toLowerCase() === "accuracy" ? "ACC" : "GRW";
+                  return (
+                    <button
+                      type="button"
+                      role="tab"
+                      key={tab}
+                      id={`tab-${tab.toLowerCase()}`}
+                      aria-selected={isActive}
+                      aria-controls="tab-panel"
+                      onClick={() => setActiveTab(tab.toLowerCase())}
+                      className={`relative flex-1 sm:flex-none px-4 py-2 sm:py-1.5 text-[9px] uppercase tracking-[0.2em] font-mono transition-all active:scale-95 outline-none select-none touch-manipulation focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 ${
+                        isActive
+                          ? "text-brand-teal"
+                          : "text-zinc-400 hover:text-zinc-300"
+                      }`}
+                    >
+                      {isActive && !isReduced && (
+                        <motion.div
+                          layoutId="dialActiveNode"
+                          className="absolute inset-0 border border-brand-teal/40 bg-brand-teal/5"
+                          transition={{
+                            type: "spring",
+                            bounce: 0,
+                            duration: 0.4,
+                          }}
+                        />
+                      )}
+                      {isActive && isReduced && (
+                        <div className="absolute inset-0 border border-brand-teal/40 bg-brand-teal/5" />
+                      )}
+                      <span className="relative z-10">[{label}]</span>
+                    </button>
+                  );
+                },
+              )}
+            </div>
+            {/* Hex Memory Address Readout */}
+            <span className="font-mono text-[8px] text-zinc-400 tracking-widest hidden xl:block shrink-0">
+              0x{activeTab === "accuracy" ? "F4A1" : "E2B9"}
+            </span>
           </div>
 
-          {/* Animated Tab Content */}
-          <div className="flex-1 relative rounded-lg border border-white/5 bg-black/20 overflow-hidden flex items-center justify-center">
-            <AnimatePresence mode="popLayout">
+          {/* ── Primary Dial ── */}
+          <div
+            id="tab-panel"
+            role="tabpanel"
+            aria-labelledby={`tab-${activeTab}`}
+            className="flex-1 w-full relative flex items-center justify-center"
+          >
+            <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                initial={
+                  isReduced
+                    ? { opacity: 0 }
+                    : { opacity: 0, filter: "blur(4px)", scale: 0.95 }
+                }
+                animate={
+                  isReduced
+                    ? { opacity: 1 }
+                    : { opacity: 1, filter: "blur(0px)", scale: 1 }
+                }
+                exit={
+                  isReduced
+                    ? { opacity: 0 }
+                    : { opacity: 0, filter: "blur(4px)", scale: 0.95 }
+                }
                 transition={{ duration: 0.3 }}
-                className="text-center"
+                className="absolute inset-0 flex items-center justify-center"
               >
                 <RadialProgress
                   value={
                     activeTab === "accuracy"
-                      ? (CONTENT.bentoGrid.cards[1].progress?.accuracy.value ??
-                        0)
-                      : (CONTENT.bentoGrid.cards[1].progress?.growth.value ?? 0)
+                      ? (gridContent.cards[1]?.progress?.accuracy?.value ?? 0)
+                      : (gridContent.cards[1]?.progress?.growth?.value ?? 0)
                   }
                   label={
                     activeTab === "accuracy"
-                      ? (CONTENT.bentoGrid.cards[1].progress?.accuracy.label ??
-                        "")
-                      : (CONTENT.bentoGrid.cards[1].progress?.growth.label ??
-                        "")
+                      ? (gridContent.cards[1]?.progress?.accuracy?.label ?? "")
+                      : (gridContent.cards[1]?.progress?.growth?.label ?? "")
                   }
                 />
               </motion.div>
@@ -607,48 +445,170 @@ const BentoGrid = () => {
       ),
     },
     {
-      id: CONTENT.bentoGrid.cards[2].id,
-      title: CONTENT.bentoGrid.cards[2].title,
-      description: CONTENT.bentoGrid.cards[2].description,
-      size: "md:col-span-1 md:row-span-2",
-      bg: "bg-zinc-900/50",
+      id: `SYS.${gridContent.cards[2]?.id || "03"}`,
+      title: gridContent.cards[2]?.title || "",
+      description: gridContent.cards[2]?.description || "",
+      gridClass: "md:col-span-1 lg:col-span-1 row-span-2",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center pb-12">
+        <div className="relative w-full h-full flex items-center justify-center py-8 md:py-0">
           <CardStack />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent pointer-events-none" />
         </div>
       ),
     },
     {
-      id: CONTENT.bentoGrid.cards[3].id,
-      title: CONTENT.bentoGrid.cards[3].title,
-      description: CONTENT.bentoGrid.cards[3].description,
-      size: "md:col-span-4 md:row-span-1",
-      bg: "bg-zinc-900/50",
-      visual: <NeuralNodes /> /* REPLACED: InteractiveBars with NeuralNodes */,
+      id: `SYS.${gridContent.cards[3]?.id || "04"}`,
+      title: gridContent.cards[3]?.title || "",
+      description: gridContent.cards[3]?.description || "",
+      gridClass: "md:col-span-2 lg:col-span-4 row-span-1",
+      visual: (
+        <div className="w-full h-full flex flex-col md:flex-row relative group/console min-w-0">
+          {/* ── Visual Target Area (Top on Mobile, Left on Desktop) ── */}
+          <div className="flex-1 relative flex items-center justify-center p-4 sm:p-6 md:p-8 overflow-hidden min-h-[200px] sm:min-h-[220px] md:min-h-[250px] min-w-0">
+            {/* HUD Targeting Overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none z-20 opacity-30 hidden sm:block"
+              aria-hidden="true"
+            >
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-teal/40" />
+              <div className="absolute left-1/2 top-0 h-full w-[1px] bg-brand-teal/40" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 border border-brand-teal/50 rounded-full" />
+            </div>
+
+            {/* The Actual Component Container */}
+            <div className="relative z-10 w-full max-w-[400px] flex items-center justify-center">
+              <DistractorAnalysisVisual />
+            </div>
+          </div>
+
+          {/* ── Active Threat Console (Bottom on Mobile, Right on Desktop) ── */}
+          <div className="w-full md:w-[240px] xl:w-[320px] border-t md:border-t-0 md:border-l border-white/[0.05] bg-black/40 flex flex-col relative z-20 shrink-0 min-w-0 max-h-[250px] md:max-h-none overflow-y-auto">
+            {/* Console Header */}
+            <div className="sticky top-0 z-30 px-4 py-3 border-b border-white/[0.05] flex items-center justify-between bg-black/80 backdrop-blur-md">
+              <span className="font-mono text-[8px] md:text-[9px] text-zinc-400 uppercase tracking-[0.2em]">
+                Live Analysis Log
+              </span>
+              <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+            </div>
+
+            {/* Console Output Terminal */}
+            <div className="p-4 flex-1 font-mono text-[8px] md:text-[9px] xl:text-[10px] uppercase tracking-wider text-zinc-400 space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
+              {/* Scanline overlay over text */}
+              <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(13,148,136,0.05)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
+
+              <motion.div
+                initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.4 }}
+              >
+                <span className="text-brand-teal font-bold">&gt;</span>{" "}
+                Isolating semantic trap...
+              </motion.div>
+
+              <motion.div
+                initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
+                <span className="text-brand-teal font-bold">&gt;</span> Option C
+                identified.
+              </motion.div>
+
+              <motion.div
+                initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+                className="pl-2 md:pl-3 border-l border-amber-500/50 text-amber-500/80 my-2 py-1"
+              >
+                [WARNING]
+                <br />
+                82% cohort failed.
+                <br />
+                Type: False Causation.
+              </motion.div>
+
+              <motion.div
+                initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.4, delay: 1.2 }}
+                className="text-white pt-1 md:pt-2"
+              >
+                <span className="text-brand-teal font-bold">&gt;</span>{" "}
+                Re-calibrating lock...
+              </motion.div>
+
+              {/* Blinking Cursor */}
+              {!isReduced && (
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="w-1.5 h-2.5 md:w-2 md:h-3 bg-brand-teal inline-block mt-1 md:mt-2 align-middle"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      ),
     },
   ];
 
   return (
-    <section className="py-32 bg-void overflow-hidden relative" id="mastery">
-      <SectionSpotlight color="rgba(13, 148, 136, 0.25)" />
-      <div className="container mx-auto px-6">
-        <div className="mb-20 text-center">
-          <span className="font-mono text-[10px] text-brand-teal uppercase tracking-widest mb-4 block">
-            {CONTENT.bentoGrid.header.eyebrow}
-          </span>
-          <h2 className="text-4xl md:text-6xl text-white max-w-3xl mx-auto font-serif">
-            {CONTENT.bentoGrid.header.title}{" "}
-            <span className="italic text-brand-teal">
-              {CONTENT.bentoGrid.header.highlight}
-            </span>
-          </h2>
+    <section
+      className="py-20 md:py-32 bg-void relative overflow-hidden"
+      id="mastery"
+    >
+      {/* Background Atmosphere */}
+      <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1800px] relative z-10">
+        {/* Header Block */}
+        <div className="mb-12 md:mb-24 flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8">
+          <motion.div
+            className="max-w-3xl"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="flex items-center gap-3 mb-4 md:mb-6">
+              <span
+                className="block w-6 md:w-8 h-px bg-brand-teal/60"
+                aria-hidden="true"
+              />
+              <span className="font-mono text-[9px] md:text-[10px] lg:text-xs text-brand-teal/60 uppercase tracking-[0.25em] select-none">
+                {gridContent.header?.eyebrow || "System Protocol"}
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-serif tracking-tight leading-[1.1] text-balance">
+              {gridContent.header?.title || "Mastery"}{" "}
+              <span className="italic text-brand-teal">
+                {gridContent.header?.highlight || "Engineered."}
+              </span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="hidden lg:flex items-center gap-3 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em] border border-white/10 px-4 py-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <span className="w-1.5 h-1.5 bg-brand-teal rounded-full animate-pulse" />
+            Grid Status: Active
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-auto md:auto-rows-[250px]">
-          {cards.map((card) => (
-            <BentoCard key={card.id} card={card} />
-          ))}
+        {/* ── The 1px Hairline Blueprint Grid Container ── */}
+        <div className="bg-white/[0.08] border border-white/[0.08] p-px shadow-2xl overflow-hidden w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] w-full">
+            {cards.map((card) => (
+              <BentoCard key={card.id} card={card} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
