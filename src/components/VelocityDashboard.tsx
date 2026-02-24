@@ -11,7 +11,7 @@ export default function VelocityDashboard() {
   const linePoints = useMemo(() => {
     return velocity
       .map((v, i) => {
-        const x = (i / 6) * 100;
+        const x = (i / (velocity.length - 1)) * 100;
         const y = 100 - v.value;
         return `${x},${y}`;
       })
@@ -22,7 +22,7 @@ export default function VelocityDashboard() {
     <section className="relative py-24 sm:py-32 overflow-hidden bg-void border-t border-zinc-900/50">
       {/* Background Atmosphere */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-violet/5 rounded-full blur-[150px] pointer-events-none" />
-      <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
+      <SectionSpotlight color="rgba(45, 212, 191, 0.12)" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
         {/* GEO Semantic Content & Header */}
@@ -107,7 +107,7 @@ export default function VelocityDashboard() {
                     <div
                       key={acc.id}
                       className="absolute bottom-0 h-full w-[10vw] max-w-[40px] flex items-end justify-center group -translate-x-1/2 pointer-events-auto"
-                      style={{ left: `${(i / 6) * 100}%` }}
+                      style={{ left: `${(i / (accuracy.length - 1)) * 100}%` }}
                     >
                       <motion.div
                         className="w-full bg-zinc-800/80 hover:bg-zinc-700/80 border-t border-zinc-600/50 rounded-t-sm transition-colors relative"
@@ -175,12 +175,15 @@ export default function VelocityDashboard() {
                       key={v.id}
                       className="absolute w-3 h-3 bg-black border-2 border-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30"
                       style={{
-                        left: `${(i / 6) * 100}%`,
+                        left: `${(i / (velocity.length - 1)) * 100}%`,
                         top: `${100 - v.value}%`,
                       }}
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ delay: 0.5 + Math.max(1.5, (i / 6) * 2) }}
+                      transition={{
+                        delay:
+                          0.5 + Math.max(1.5, (i / (velocity.length - 1)) * 2),
+                      }}
                     />
                   );
                 })}
@@ -191,7 +194,7 @@ export default function VelocityDashboard() {
                     <div
                       key={d.id}
                       className="absolute -bottom-8 text-[10px] uppercase tracking-widest font-mono text-zinc-400 -translate-x-1/2 text-center"
-                      style={{ left: `${(i / 6) * 100}%` }}
+                      style={{ left: `${(i / (days.length - 1)) * 100}%` }}
                     >
                       {d.label}
                     </div>

@@ -340,30 +340,30 @@ html {
     }
 
     .fade-in {
-        animation-name: fadeIn;
+        animation-name: fade-in;
     }
 
     .slide-in-from-bottom-4 {
-        animation-name: slideInBottom4;
+        animation-name: slide-in-bottom-4;
     }
 
     .slide-in-from-bottom-8 {
-        animation-name: slideInBottom8;
+        animation-name: slide-in-bottom-8;
     }
 
     .slide-in-from-bottom-12 {
-        animation-name: slideInBottom12;
+        animation-name: slide-in-bottom-12;
     }
 
     .slide-in-from-bottom-16 {
-        animation-name: slideInBottom16;
+        animation-name: slide-in-bottom-16;
     }
 
     .zoom-in-95 {
-        animation-name: zoomIn95;
+        animation-name: zoom-in-95;
     }
 
-    @keyframes fadeIn {
+    @keyframes fade-in {
         from {
             opacity: 0;
         }
@@ -373,7 +373,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom4 {
+    @keyframes slide-in-bottom-4 {
         from {
             opacity: 0;
             transform: translateY(1rem);
@@ -385,7 +385,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom8 {
+    @keyframes slide-in-bottom-8 {
         from {
             opacity: 0;
             transform: translateY(2rem);
@@ -397,7 +397,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom12 {
+    @keyframes slide-in-bottom-12 {
         from {
             opacity: 0;
             transform: translateY(3rem);
@@ -409,7 +409,7 @@ html {
         }
     }
 
-    @keyframes slideInBottom16 {
+    @keyframes slide-in-bottom-16 {
         from {
             opacity: 0;
             transform: translateY(4rem);
@@ -421,7 +421,7 @@ html {
         }
     }
 
-    @keyframes zoomIn95 {
+    @keyframes zoom-in-95 {
         from {
             opacity: 0;
             transform: scale(0.95);

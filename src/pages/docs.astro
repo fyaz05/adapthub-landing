@@ -6,8 +6,7 @@ import Footer from "../components/Footer.astro";
 import BackgroundPulse from "../components/BackgroundPulse";
 import { resolvedContent as CONTENT } from "../utils/config";
 import { DOC_SECTIONS } from "../constants/docs-data";
-
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.in/";
 ---
 
 <Layout
@@ -20,8 +19,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": `${siteUrl}docs/#webpage`,
-        "url": `${siteUrl}docs`,
+        "@id": new URL("docs/#webpage", siteUrl).href,
+        "url": new URL("docs/", siteUrl).href,
         "name": CONTENT.metadata.docs.title,
         "description": CONTENT.metadata.docs.description
       }

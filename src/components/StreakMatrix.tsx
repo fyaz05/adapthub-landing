@@ -40,6 +40,8 @@ const DayCell = React.memo(
     return (
       <button
         type="button"
+        disabled={dayData.future || !dayData.practiced}
+        tabIndex={dayData.future || !dayData.practiced ? -1 : 0}
         className={`relative block p-0 outline-none w-3 h-3 md:w-4 md:h-4 rounded-[2px] border cursor-default animate-pulse-fade-in opacity-0
           focus-visible:ring-1 focus-visible:ring-brand-teal focus-visible:ring-offset-1 focus-visible:ring-offset-black
           transition-all duration-300 active:scale-95 active:duration-75 ease-[cubic-bezier(0.23,1,0.32,1)]
@@ -163,7 +165,7 @@ export default function StreakMatrix() {
     <section className="relative py-24 bg-black border-t border-zinc-900 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.03)_0%,transparent_100%)] pointer-events-none" />
-      <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
+      <SectionSpotlight color="rgba(45, 212, 191, 0.12)" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-5xl relative z-10">
         <div className="text-center mb-12">

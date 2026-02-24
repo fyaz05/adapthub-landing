@@ -118,10 +118,10 @@ const supportEmail = CONTENT?.links?.support?.replace("mailto:", "") || "support
       "@graph": [
         {
           "@type": "Organization",
-          "@id": `${siteUrl}#organization`,
+          "@id": siteUrl,
           "name": CONTENT.global.brandName,
-          "url": String(Astro.site),
-          "logo": new URL(CONTENT.assets.logoLight, Astro.site).href,
+          "url": siteUrl,
+          "logo": new URL(CONTENT.assets.logoLight, siteUrl).href,
           "description": CONTENT.metadata.defaultDescription,
           "email": supportEmail,
           "foundingDate": "2025",
@@ -140,9 +140,9 @@ const supportEmail = CONTENT?.links?.support?.replace("mailto:", "") || "support
         },
         {
           "@type": "WebSite",
-          "@id": `${siteUrl}#website`,
+          "@id": new URL("#website", siteUrl).href,
           "name": CONTENT.global.brandName,
-          "url": String(Astro.site),
+          "url": siteUrl,
           "description": CONTENT.metadata.defaultDescription,
           "inLanguage": "en",
           "publisher": {
@@ -163,9 +163,9 @@ const supportEmail = CONTENT?.links?.support?.replace("mailto:", "") || "support
           "inLanguage": "en",
           "isPartOf": {
             "@type": "WebSite",
-            "@id": `${siteUrl}#website`,
-            "name": CONTENT.global.brandName,
-            "url": String(Astro.site)
+            "@id": siteUrl,
+            "name": "Home",
+            "url": siteUrl
           },
           "speakable": {
             "@type": "SpeakableSpecification",
@@ -178,11 +178,11 @@ const supportEmail = CONTENT?.links?.support?.replace("mailto:", "") || "support
         },
         {
           "@type": "SoftwareApplication",
-          "@id": `${siteUrl}#software`,
+          "@id": new URL("#software", siteUrl).href,
           "name": CONTENT.global.brandName,
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "Web",
-          "url": String(Astro.site),
+          "url": siteUrl,
           "description": description,
           "screenshot": new URL("/og-image.avif", siteUrl).href,
           "featureList": [

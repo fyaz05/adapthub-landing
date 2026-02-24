@@ -52,7 +52,7 @@ export default function SpotlightButton({
   return (
     <Component
       ref={buttonRef}
-      {...(href ? { href, target, rel } : {})}
+      {...(href ? { href, target, rel } : { type: "button" })}
       onClick={onClick}
       onMouseMove={handleMouseMove}
       // Explicit object syntax guarantees Framer Motion fires the animation

@@ -64,11 +64,11 @@ const faqs = [
 
     {/* Cinematic Film Grain */}
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
-      <filter id="blog-grain">
+      <filter id="cat-exam-grain">
         <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
         <feColorMatrix type="saturate" values="0" />
       </filter>
-      <rect width="100%" height="100%" filter="url(#blog-grain)" />
+      <rect width="100%" height="100%" filter="url(#cat-exam-grain)" />
     </svg>
 
     <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-4xl mt-8">
@@ -111,7 +111,7 @@ const faqs = [
           <h3 class="text-2xl font-serif text-white mb-6">Ready to start preparing for CAT 2026?</h3>
           <a 
             href="/pricing"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] outline-none"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-void"
           >
             Start Free Adaptive Prep
             <span class="text-brand-teal font-sans">→</span>

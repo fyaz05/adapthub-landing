@@ -18,9 +18,10 @@ const siteUrl = Astro.site || "https://adapthub.in";
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    "@id": new URL("contact/#webpage", siteUrl).href,
+    "url": new URL("contact/", siteUrl).href,
     "name": CONTENT.metadata.contact.title,
     "description": CONTENT.metadata.contact.description,
-    "url": `${siteUrl}contact`
   })}></script>
 
   <AnnouncementBar client:load transition:persist />

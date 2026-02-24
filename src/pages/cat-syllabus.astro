@@ -77,7 +77,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
 <Layout 
   title={CONTENT.metadata?.catSyllabus?.title || "CAT Syllabus 2026 | Structural Breakdown"}
   description={CONTENT.metadata?.catSyllabus?.description || "Comprehensive, data-driven mapping of the Common Admission Test. Exact topic divisions and historical weightage logic."}
-  keywords={CONTENT.metadata?.catSyllabus?.keywords || "CAT Syllabus, CAT 2026, Exam Pattern, VARC, DILR, QA"}
+  keywords={Array.isArray(CONTENT.metadata.catSyllabus.keywords) ? CONTENT.metadata.catSyllabus.keywords : []}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -131,9 +131,9 @@ const siteUrl = Astro.site || "https://adapthub.in";
         "hasCourseInstance": {
           "@type": "CourseInstance",
           "courseMode": "online",
-          "courseWorkload": "PT120M",
-          "startDate": "2025-01-01",
-          "endDate": "2025-11-30"
+          "courseWorkload": "PT14H",
+          "startDate": "2026-06-01",
+          "endDate": "2026-11-29"
         },
         "offers": {
           "@type": "Offer",
@@ -344,7 +344,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
 
         <div class="border-t border-white/10">
           {faqs.map((faq) => (
-            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
+            <details class="faq-row group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
               <summary class="py-6 md:py-8 font-serif text-lg md:text-xl lg:text-2xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 active:scale-[0.99] transition-all duration-200 pr-4">
                 <span class="leading-snug pr-8 tracking-tight">{faq.question}</span>
                 

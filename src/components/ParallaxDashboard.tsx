@@ -103,7 +103,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
             className="w-full h-auto opacity-90"
             loading="eager"
             fetchPriority="high"
-            decoding="sync"
+            decoding="async"
           />
           {/* Gloss */}
           {!isReduced && (

@@ -24,9 +24,9 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": `${siteUrl}blog/#webpage`,
-        "url": `${siteUrl}blog`,
-        "name": CONTENT?.metadata?.blog?.title || "Signals & Noise",
+        "@id": new URL("blog/#webpage", siteUrl).href,
+        "url": new URL("blog/", siteUrl).href,
+        "name": CONTENT.metadata.blog.title || "Signals & Noise",
         "description": CONTENT?.metadata?.blog?.description || "Strategic insights for CAT 2026"
       },
       {

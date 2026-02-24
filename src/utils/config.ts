@@ -98,8 +98,9 @@ export const resolvedContent = {
     defaultTitle: BASE_CONTENT?.metadata?.defaultTitle || "AdaptHub",
     defaultDescription:
       BASE_CONTENT?.metadata?.defaultDescription || "Adaptive learning for CAT",
-    defaultKeywords:
-      BASE_CONTENT?.metadata?.defaultKeywords || "cat preparation",
+    defaultKeywords: Array.isArray(BASE_CONTENT?.metadata?.defaultKeywords)
+      ? BASE_CONTENT.metadata.defaultKeywords
+      : ["cat preparation"],
     privacyPolicy: {
       title:
         BASE_CONTENT?.metadata?.privacyPolicy?.title ||

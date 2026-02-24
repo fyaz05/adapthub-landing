@@ -25,6 +25,7 @@ const Navbar = () => {
 
   // Scroll & Announcement Sync
   useEffect(() => {
+    setScrolled(window.scrollY > 40); // Initial check post-hydration
     const handleScroll = () => setScrolled(window.scrollY > 40);
     const handleDismiss = () => setBannerVisible(false);
 
@@ -116,6 +117,8 @@ const Navbar = () => {
                 href={item.href}
                 onMouseEnter={() => setHoveredPath(item.href)}
                 onMouseLeave={() => setHoveredPath(null)}
+                onFocus={() => setHoveredPath(item.href)}
+                onBlur={() => setHoveredPath(null)}
                 className="relative px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-zinc-400 hover:text-white active:scale-95 transition-all duration-300 outline-none rounded-full focus-visible:ring-2 focus-visible:ring-brand-teal z-20"
               >
                 {/* Magnetic Hover Pill */}
