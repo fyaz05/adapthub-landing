@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { CONTENT } from "../constants/content.ts";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
@@ -25,9 +26,9 @@ const faqs = [
 ---
 
 <Layout 
-  title="How to Prepare for CAT Without Coaching | AdaptHub"
-  description="A complete guide to cracking the CAT exam without paid coaching. Discover free study plans, adaptive learning tools, and self-study strategies to score 99+ percentile."
-  keywords={["prepare for cat without coaching", "cat self study", "free cat coaching", "how to crack cat at home", "cat preparation guide"]}
+  title={CONTENT.metadata.catPreparationWithoutCoaching.title}
+  description={CONTENT.metadata.catPreparationWithoutCoaching.description}
+  keywords={CONTENT.metadata.catPreparationWithoutCoaching.keywords}
   ogType="article"
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -40,10 +41,30 @@ const faqs = [
         "name": "How to Prepare for CAT Without Coaching",
         "description": "Complete guide for CAT self-study and cracking the exam without expensive coaching classes.",
         "inLanguage": "en",
+        "datePublished": "2026-02-22",
+        "dateModified": "2026-02-23",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": ["h1", ".speakable-content"]
         }
+      },
+      {
+        "@type": "Article",
+        "@id": new URL("cat-preparation-without-coaching/#article", siteUrl).href,
+        "isPartOf": { "@id": new URL("cat-preparation-without-coaching/#webpage", siteUrl).href },
+        "headline": "How to Prepare for CAT Without Coaching",
+        "description": "A complete guide to cracking the CAT exam without paid coaching. Discover free study plans, adaptive learning tools, and self-study strategies to score 99+ percentile.",
+        "datePublished": "2026-02-22",
+        "dateModified": "2026-02-23",
+        "author": {
+          "@type": "Organization",
+          "@id": new URL("#organization", siteUrl).href
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": new URL("#organization", siteUrl).href
+        },
+        "inLanguage": "en"
       },
       {
         "@type": "FAQPage",

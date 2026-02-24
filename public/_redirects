@@ -1,3 +1,2 @@
 # Handle legacy bot/browser icon requests gracefully
-/favicon.ico                  /favicon.svg          302
 /apple-touch-icon-precomposed.png   /apple-touch-icon.png 302

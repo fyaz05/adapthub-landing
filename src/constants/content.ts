@@ -425,6 +425,56 @@ export const CONTENT = {
         "user agreement",
       ],
     },
+    adapthubVsCompetitors: {
+      title: "AdaptHub vs Traditional CAT Coaching (iQuanta, TIME, IMS, Cracku)",
+      description:
+        "Compare AdaptHub's free, AI-driven adaptive learning engine against traditional paid coaching models like iQuanta, TIME, IMS, Career Launcher, Elitesgrid, and Cracku.",
+      keywords: [
+        "adapthub vs iquanta",
+        "adapthub vs time",
+        "adapthub vs ims",
+        "adapthub vs career launcher",
+        "adapthub vs cracku",
+        "adapthub vs elitesgrid",
+        "adaptive learning vs traditional coaching",
+      ],
+    },
+    adaptiveLearningCat: {
+      title: "What is Adaptive Learning in CAT Prep? | AdaptHub",
+      description:
+        "Adaptive learning in CAT preparation is an AI method that continuously adjusts question difficulty to each student's cognitive gaps. AdaptHub uses a ZPD algorithm to maximise learning velocity — completely free.",
+      keywords: [
+        "adaptive learning cat",
+        "what is adaptive learning",
+        "zpd algorithm cat",
+        "adaptive testing cat exam",
+        "personalised cat coaching",
+        "ai cat preparation",
+      ],
+    },
+    cat2026ExamDate: {
+      title: "CAT 2026 Exam Date, Notification & Syllabus | AdaptHub",
+      description:
+        "Everything you need to know about the CAT 2026 exam date, registration timeline, eligibility, and expected syllabus changes. Start preparing early.",
+      keywords: [
+        "cat 2026 exam date",
+        "cat 2026 notification",
+        "cat 2026 registration",
+        "cat 2026 syllabus",
+      ],
+    },
+    catPreparationWithoutCoaching: {
+      title: "How to Prepare for CAT Without Coaching | AdaptHub",
+      description:
+        "A complete guide to cracking the CAT exam without paid coaching. Discover free study plans, adaptive learning tools, and self-study strategies to score 99+ percentile.",
+      keywords: [
+        "prepare for cat without coaching",
+        "cat self study",
+        "free cat coaching",
+        "how to crack cat at home",
+        "cat preparation guide",
+      ],
+    },
     ogImage: "/og-image.avif",
     ogImageFallback: "/og-image.png",
   },

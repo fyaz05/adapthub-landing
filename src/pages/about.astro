@@ -6,6 +6,25 @@ import Footer from "../components/Footer.astro";
 import BackgroundPulse from "../components/BackgroundPulse";
 import { resolvedContent as CONTENT } from "../utils/config";
 
+const aboutFaqs = [
+  {
+    question: "What is AdaptHub and how does it help with CAT preparation?",
+    answer: "AdaptHub is a free AI-powered CAT exam preparation platform that uses a Zone of Proximal Development (ZPD) algorithm to continuously adapt study plans to each aspirant's cognitive gaps. Unlike static mock tests or video lectures, AdaptHub dynamically adjusts question difficulty after every answer — keeping you in the optimal learning zone at all times."
+  },
+  {
+    question: "Who built AdaptHub?",
+    answer: "AdaptHub was founded by Fyaz Mohammed as a solo-founder project, built to address the personalization failures in CAT preparation."
+  },
+  {
+    question: "Is AdaptHub really free forever?",
+    answer: "Yes. The core adaptive engine — daily personalised study plans, Socratic AI Coach, concept library, and performance analytics — is completely free with no credit card required. Individual aspirant access stays free, always."
+  },
+  {
+    question: "How is AdaptHub different from Byju's, iQuanta, or Cracku?",
+    answer: "Traditional platforms serve the same content to all students at the same pace. AdaptHub's ZPD algorithm creates a unique learning trajectory for each student — identifying exact cognitive gaps across QA, DILR, and VARC topics and adapting question difficulty in real time. No video lectures, no uniform pace, no wasted practice on already-mastered content."
+  }
+];
+
 const principles = [
   {
     title: "Vygotsky's ZPD Applied",
@@ -56,6 +75,15 @@ const siteUrl = Astro.site || "https://adapthub.in";
         "sameAs": ["https://www.linkedin.com/in/fyaz05/"],
         "worksFor": { "@type": "Organization", "@id": new URL("#organization", siteUrl).href },
         "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "EdTech"]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": new URL("about/#faq", siteUrl).href,
+        "mainEntity": aboutFaqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
       }
     ]
   })} />
@@ -98,8 +126,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
           <div class="absolute -top-[30%] -left-[10%] w-[80%] h-[150%] pointer-events-none select-none opacity-60 mix-blend-screen" style="background:radial-gradient(ellipse 50% 50% at 30% 50%, rgba(13,148,136,0.07) 0%, transparent 80%)" aria-hidden="true"></div>
           
           <h1 class="text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-serif text-white tracking-tight leading-none mb-4 relative">
-            The algorithm <br/>
-            <span class="text-brand-teal italic block pb-2 mt-2 md:mt-4">behind the intuition.</span>
+            Adaptive CAT Preparation. <br/>
+            <span class="text-brand-teal italic block pb-2 mt-2 md:mt-4">The algorithm behind it.</span>
           </h1>
         </div>
         
@@ -226,6 +254,29 @@ const siteUrl = Astro.site || "https://adapthub.in";
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    {/* FAQ Section */}
+    <section aria-labelledby="faq-heading" class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-5xl mt-24 mb-20 page-stagger" style="--i:10">
+      <div class="mb-12">
+        <h2 id="faq-heading" class="font-mono text-xs text-brand-teal uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+          <span class="w-2 h-2 bg-brand-teal block" aria-hidden="true"></span>
+          Common Questions
+        </h2>
+        <p class="text-white font-serif text-3xl md:text-4xl tracking-tight">About AdaptHub</p>
+      </div>
+      <div class="max-w-3xl space-y-0">
+        {aboutFaqs.map((faq) => (
+          <details class="group border-t border-white/[0.08] py-6">
+            <summary class="flex items-center justify-between cursor-pointer list-none">
+              <span class="font-sans text-white text-lg leading-snug pr-8">{faq.question}</span>
+              <span class="shrink-0 w-5 h-5 border border-white/20 rounded-full flex items-center justify-center text-zinc-400 group-open:rotate-45 transition-transform duration-300" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 text-zinc-400 font-sans text-base leading-[1.75]">{faq.answer}</p>
+          </details>
+        ))}
+        <div class="border-t border-white/[0.08]"></div>
       </div>
     </section>
   </main>

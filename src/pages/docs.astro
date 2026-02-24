@@ -23,6 +23,18 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
         "url": new URL("docs/", siteUrl).href,
         "name": CONTENT.metadata.docs.title,
         "description": CONTENT.metadata.docs.description
+      },
+      {
+        "@type": "ItemList",
+        "@id": new URL("docs/#itemlist", siteUrl).href,
+        "name": "AdaptHub Documentation Sections",
+        "numberOfItems": DOC_SECTIONS.length,
+        "itemListElement": DOC_SECTIONS.map((s, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "url": new URL(`docs/${s.slug}/`, siteUrl).href,
+          "name": s.title
+        }))
       }
     ]
   })}></script>

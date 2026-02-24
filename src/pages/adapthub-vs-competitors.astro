@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { CONTENT } from "../constants/content.ts";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
@@ -25,9 +26,9 @@ const faqs = [
 ---
 
 <Layout 
-  title="AdaptHub vs Traditional CAT Coaching (iQuanta, TIME, IMS, Cracku)"
-  description="Compare AdaptHub's free, AI-driven adaptive learning engine against traditional paid coaching models like iQuanta, TIME, IMS, Career Launcher, Elitesgrid, and Cracku."
-  keywords={["adapthub vs iquanta", "adapthub vs time", "adapthub vs ims", "adapthub vs career launcher", "adapthub vs cracku", "adapthub vs elitesgrid", "adaptive learning vs traditional coaching"]}
+  title={CONTENT.metadata.adapthubVsCompetitors.title}
+  description={CONTENT.metadata.adapthubVsCompetitors.description}
+  keywords={CONTENT.metadata.adapthubVsCompetitors.keywords}
   ogType="article"
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -40,10 +41,30 @@ const faqs = [
         "name": "AdaptHub vs Traditional CAT Coaching",
         "description": "Comparison between AdaptHub's adaptive learning and traditional coaching models.",
         "inLanguage": "en",
+        "datePublished": "2026-02-17",
+        "dateModified": "2026-02-23",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": ["h1", ".speakable-content"]
         }
+      },
+      {
+        "@type": "Article",
+        "@id": new URL("adapthub-vs-competitors/#article", siteUrl).href,
+        "isPartOf": { "@id": new URL("adapthub-vs-competitors/#webpage", siteUrl).href },
+        "headline": "AdaptHub vs Traditional CAT Coaching (iQuanta, TIME, IMS, Cracku)",
+        "description": "Compare AdaptHub's free, AI-driven adaptive learning engine against traditional paid coaching models like iQuanta, TIME, IMS, Career Launcher, Elitesgrid, and Cracku.",
+        "datePublished": "2026-02-17",
+        "dateModified": "2026-02-23",
+        "author": {
+          "@type": "Organization",
+          "@id": new URL("#organization", siteUrl).href
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": new URL("#organization", siteUrl).href
+        },
+        "inLanguage": "en"
       },
       {
         "@type": "FAQPage",

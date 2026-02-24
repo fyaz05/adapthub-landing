@@ -1,0 +1,259 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import AnnouncementBar from "../../components/AnnouncementBar";
+import Footer from "../../components/Footer.astro";
+import BackgroundPulse from "../../components/BackgroundPulse";
+import { DOC_SECTIONS } from "../../constants/docs-data";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+const pageUrl = new URL("/docs/core-issue-matrix/", siteUrl).href;
+
+const matrixData = [
+  {
+    code: "ERR-ZPD-01",
+    issue: "Calibration Baseline Severity Mismatch",
+    symptom: "All Level 3 questions in diagnostic were failed, resulting in a Level 1 assignment despite prior CAT experience.",
+    diagnosis: "Bayesian prior was skewed by rapid, consecutive incorrect answers in the first 5 questions, causing the algorithm to aggressively down-rank to find the floor.",
+    resolution: "Complete 3 Daily Modules focusing entirely on accuracy rather than speed. The system will detect the statistical anomaly and initiate an accelerated upward recalibration."
+  },
+  {
+    code: "ERR-SRS-02",
+    issue: "Spaced Repetition Queue Overflow",
+    symptom: "Warm-up phase consistently contains 15+ questions, leaving minimal Cognitive load budget for new Core Focus material.",
+    diagnosis: "User is rating all questions at 1-2 star confidence regardless of accuracy, or failing to clear SRS items due to rapid guessing.",
+    resolution: "Engage deliberately with SRS questions. Read the provided Concept Library links before attempting. Rate confidence honestly (4-5 stars for genuine recognition) to clear items from the active queue."
+  },
+  {
+    code: "ERR-VEL-03",
+    issue: "Learning Velocity Stagnation",
+    symptom: "Dashboard displays a 'Comfort Zone' warning. Trend Detection shows 'Stable' but Level progression is locked.",
+    diagnosis: "User is repeatedly practicing mastered Level 1-2 material to generate high session accuracy, avoiding the friction of Level 3+ content.",
+    resolution: "Override the default Daily Module topic selection. Manually force the engine to prioritize topics where your current Level is lowest. Accept that accuracy will drop in the short term."
+  },
+  {
+    code: "ERR-HNT-04",
+    issue: "Mastery Progression Blocked",
+    symptom: "Session accuracy routinely exceeds 80%, but Level unlocks are not triggering.",
+    diagnosis: "High reliance on the AI Coach Hint System. Hint-assisted correct answers are logged as incorrect for Mastery calculations.",
+    resolution: "Attempt at least 50% of the Core Focus questions without requesting Tier 1 hints. If unable to proceed without hints, the current Level accurately reflects your unassisted capability."
+  },
+  {
+    code: "ERR-STR-05",
+    issue: "Quality Streak Reset Anomaly",
+    symptom: "Logged in daily and answered questions, but the streak returned to zero.",
+    diagnosis: "Sessions did not meet the dual criteria for a Quality Streak: either a full 4-phase Daily Module was not completed, or a free-practice session fell below the 15-minute / 70% accuracy threshold.",
+    resolution: "Ensure every session either completes the designated Daily Module or meets the minimum time/accuracy requirements for free practice."
+  }
+];
+
+// Generate exact FAQPage JSON-LD for AIO/SEO dominance
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${pageUrl}#faq`,
+  "url": pageUrl,
+  "mainEntity": matrixData.map((item) => ({
+    "@type": "Question",
+    "name": `How to resolve ${item.code} - ${item.issue}?`,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": `<strong>Symptom:</strong> ${item.symptom} <br/> <strong>Diagnosis:</strong> ${item.diagnosis} <br/> <strong>Resolution:</strong> ${item.resolution}`
+    }
+  }))
+};
+---
+
+<Layout
+  title="Core Issue Matrix | Advanced Diagnostics | AdaptHub"
+  description="Resolve critical errors, stalled learning velocity, and algorithmic blocks with AdaptHub's Core Issue Matrix. Official technical troubleshooting."
+  keywords={["adapthub errors", "adapthub learning velocity", "quality streak reset adapthub", "adapthub spaced repetition queue", "adapthub calibration baseline", "adapthub advanced troubleshooting"]}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(schemaGraph)} />
+  <meta property="og:title" content="Core Issue Matrix | Advanced Diagnostics | AdaptHub" slot="head" />
+  <meta property="og:description" content="Resolve critical errors, stalled learning velocity, and algorithmic blocks with AdaptHub's Core Issue Matrix." slot="head" />
+  <meta property="og:type" content="article" slot="head" />
+  
+  <AnnouncementBar client:load transition:persist />
+  <Navbar client:load transition:persist />
+
+  {/* HUD Element - Brutalist UI detail */}
+  <div class="fixed top-1/2 left-2 sm:left-4 -translate-y-1/2 text-[10px] font-mono tracking-[0.4em] text-red-500/30 mix-blend-screen pointer-events-none z-50 hidden xl:flex flex-col items-center justify-center gap-1.5" aria-hidden="true" style="writing-mode: vertical-rl; text-orientation: upright;">
+    SYS_DIAGNOSTICS_ACTIVE_
+  </div>
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-[#050505] selection:bg-red-500/40 selection:text-white scroll-smooth" tabindex="-1">
+    <BackgroundPulse client:load />
+    
+    {/* Atmosphere: Brutalist grid and sharp bleed glows */}
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_100%_at_50%_0%,#000_10%,transparent_100%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute top-0 right-0 w-full max-w-5xl h-[500px] bg-red-950/[0.15] blur-[120px] rounded-[100%] pointer-events-none transform translate-x-1/3 -translate-y-1/4" aria-hidden="true"></div>
+
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.04] mix-blend-screen" aria-hidden="true">
+      <filter id="ts-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#ts-grain)" />
+      {/* Scanline overlay */}
+      <pattern id="scanlines" patternUnits="userSpaceOnUse" width="4" height="4">
+        <rect width="4" height="1" fill="rgba(255,255,255,0.05)"></rect>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#scanlines)" />
+    </svg>
+
+    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] mt-12 md:mt-20">
+      
+      <a href="/docs/troubleshooting" class="inline-flex items-center gap-3 font-mono text-[10px] text-zinc-500 uppercase tracking-[0.3em] hover:text-red-400 active:scale-95 transition-all duration-300 mb-16 group outline-none focus-visible:ring-2 focus-visible:ring-red-500/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#050505] rounded-none border border-transparent hover:border-red-900/30 px-3 py-2 bg-black/20 backdrop-blur-sm -ml-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transform group-hover:-translate-x-1 transition-transform duration-300 cubic-bezier(0.16,1,0.3,1)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 5 5 12 12 19"></polyline>
+        </svg>
+        Return to standard logging
+      </a>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-x-16 xl:gap-x-20 items-start relative">
+        <div class="hidden lg:block absolute top-0 bottom-0 left-[25%] lg:left-[22%] w-px bg-gradient-to-b from-red-900/0 via-red-900/20 to-red-900/0" aria-hidden="true"></div>
+
+        <aside class="lg:col-span-3 relative">
+          <div class="lg:sticky lg:top-32 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar pr-4">
+            <div class="mb-8 flex items-center justify-between">
+              <span class="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">[ SYSTEM DIRECTORY ]</span>
+              <div class="w-2 h-2 rounded-none bg-zinc-800 animate-pulse"></div>
+            </div>
+            <nav class="flex flex-col gap-1 relative" aria-label="Documentation Navigation">
+              {DOC_SECTIONS.map((s) => (
+                <a href={`/docs/${s.slug}`} class="group flex items-baseline gap-4 py-3 outline-none focus-visible:bg-white/5 active:scale-[0.98] transition-all duration-200 rounded-none px-3 -ml-3 hover:bg-white/[0.02] border-l-2 border-transparent hover:border-white/20">
+                  <span class="font-mono text-[9px] text-zinc-600 group-hover:text-zinc-300 uppercase tracking-[0.25em] shrink-0 transition-colors duration-300">{s.sysRef}</span>
+                  <span class="font-sans text-sm md:text-base text-zinc-400 group-hover:text-white tracking-wide transition-colors duration-300">{s.title}</span>
+                </a>
+              ))}
+              <div class="my-6 w-full h-px bg-white/5 relative" aria-hidden="true">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3 bg-zinc-800"></div>
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-3 bg-zinc-800"></div>
+              </div>
+              <a href="/docs/troubleshooting" class="group flex items-baseline gap-4 py-3 outline-none focus-visible:bg-white/5 active:scale-[0.98] transition-all duration-200 rounded-none px-3 -ml-3 hover:bg-amber-950/20 border-l-2 border-transparent hover:border-amber-500/50">
+                <span class="font-mono text-[9px] text-amber-700 uppercase tracking-[0.25em] shrink-0 transition-colors duration-300">LOG.ERR</span>
+                <span class="font-sans text-sm md:text-base text-zinc-400 group-hover:text-amber-50 tracking-wide transition-colors duration-300">Troubleshooting</span>
+              </a>
+              <a href="/docs/core-issue-matrix" class="group flex items-baseline gap-4 py-3 outline-none focus-visible:bg-red-900/20 active:scale-[0.98] transition-all duration-200 rounded-none px-3 -ml-3 bg-red-950/20 border-l-[3px] border-red-500" aria-current="page">
+                <span class="font-mono text-[9px] text-red-500 uppercase tracking-[0.25em] shrink-0 font-bold">SYS.CRIT</span>
+                <span class="font-sans text-sm md:text-[0.9375rem] text-white tracking-wide font-medium shadow-black drop-shadow-md">Core Issue Matrix</span>
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        <article class="lg:col-span-9 xl:col-span-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out fill-mode-both">
+          <header class="mb-20 md:mb-28 relative">
+            <div class="flex items-center gap-4 mb-6" aria-hidden="true">
+               <div class="h-px bg-red-500/50 w-8"></div>
+               <span class="font-mono text-[10px] text-red-500 uppercase tracking-[0.4em] animate-pulse">CRITICAL OVERRIDE</span>
+            </div>
+            {/* Brutalist dramatic typography */}
+            <h1 class="text-[3rem] sm:text-6xl md:text-[5rem] lg:text-[6rem] font-serif text-white tracking-tighter leading-[0.85] mb-10 -ml-1">
+              Core Issue <br/><span class="text-zinc-500">Matrix_</span>
+            </h1>
+            <p class="text-zinc-400 font-sans text-lg sm:text-xl leading-[1.8] max-w-[50ch] tracking-wide pt-6 border-t border-white/10">
+              Advanced resolution trajectories for systemic anomalies, algorithmic locks, and cognitive load failures within the engine.
+            </p>
+          </header>
+
+          <div class="space-y-24">
+            {matrixData.map((item, index) => (
+              <section 
+                class="relative group pt-2 pb-6 md:pb-10" 
+                style={`animation-delay: ${index * 150}ms`}
+              >
+                {/* Structural bounding box effect */}
+                <div class="absolute -inset-x-6 sm:-inset-x-10 -inset-y-4 border border-transparent group-hover:border-red-900/30 bg-transparent group-hover:bg-red-950/5 transition-all duration-500 ease-out pointer-events-none rounded-sm" aria-hidden="true">
+                  <div class="absolute -left-[1px] -top-[1px] w-2 h-2 border-l border-t border-red-500/0 group-hover:border-red-500/50 transition-colors duration-500"></div>
+                  <div class="absolute -right-[1px] -bottom-[1px] w-2 h-2 border-r border-b border-red-500/0 group-hover:border-red-500/50 transition-colors duration-500"></div>
+                </div>
+                
+                <div class="relative z-10">
+                  <header class="mb-10 lg:mb-12">
+                     <div class="grid grid-cols-1 md:grid-cols-[140px_1fr] items-baseline gap-4 md:gap-8">
+                        <div class="flex items-center gap-3">
+                          <div class="w-[3px] h-[3px] bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]" aria-hidden="true"></div>
+                          <span class="font-mono text-[11px] text-red-400 uppercase tracking-[0.2em]">{item.code}</span>
+                        </div>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-zinc-100 tracking-tight leading-[1.1] group-hover:text-white transition-colors duration-500 relative inline-block">
+                          {item.issue}
+                        </h2>
+                     </div>
+                  </header>
+
+                  {/* Semantic Description List engineered like a terminal array */}
+                  <dl class="grid grid-cols-1 gap-y-12 gap-x-8">
+                    
+                    {/* Symptom Block */}
+                    <div class="grid grid-cols-1 md:grid-cols-[140px_1fr] md:gap-8 items-start relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full md:before:w-[140px] before:h-px before:bg-white/5 pt-5">
+                      <dt class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.25em] mb-3 md:mb-0 md:pt-1">
+                        Symptom_
+                      </dt>
+                      <dd class="text-zinc-300 font-sans leading-[1.9] text-base sm:text-lg max-w-[65ch]">
+                        {item.symptom}
+                      </dd>
+                    </div>
+                    
+                    {/* Diagnosis Block */}
+                    <div class="grid grid-cols-1 md:grid-cols-[140px_1fr] md:gap-8 items-start relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full md:before:w-[140px] before:h-px before:bg-white/5 pt-5">
+                      <dt class="font-mono text-[10px] text-zinc-600 group-hover:text-amber-600/70 transition-colors duration-500 uppercase tracking-[0.25em] mb-3 md:mb-0 md:pt-1">
+                        Diagnosis_
+                      </dt>
+                      <dd class="text-zinc-400 font-sans leading-[1.9] text-base sm:text-lg max-w-[65ch]">
+                        {item.diagnosis}
+                      </dd>
+                    </div>
+                    
+                    {/* Resolution Block - Highly Emphasized */}
+                    <div class="grid grid-cols-1 md:grid-cols-[140px_1fr] md:gap-8 items-start relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full md:before:w-[140px] before:h-[2px] before:bg-gradient-to-r before:from-red-900/50 before:to-transparent pt-6 md:pt-8 bg-red-950/10 -mx-4 sm:-mx-6 px-4 sm:px-6 md:mx-0 md:px-0 md:bg-transparent pb-4 md:pb-0 border-b border-red-900/20 md:border-b-0">
+                      <dt class="font-mono text-[10px] text-red-500 uppercase tracking-[0.25em] mb-3 md:mb-0 md:pt-1">
+                        Resolution_
+                      </dt>
+                      <dd class="text-zinc-100 font-sans leading-[1.9] text-base sm:text-lg max-w-[65ch] font-medium tracking-wide">
+                        {item.resolution}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </section>
+            ))}
+          </div>
+
+          <div class="mt-32 pt-10 border-t-2 border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-8 relative">
+            <div class="absolute top-0 left-0 w-8 h-px bg-white/20"></div>
+            
+            <a href="/docs/troubleshooting" class="group flex items-center gap-4 font-mono text-[10px] text-zinc-500 uppercase tracking-[0.25em] hover:text-white active:scale-95 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white/20 rounded-none cursor-pointer">
+              <span class="w-8 h-px bg-zinc-800 group-hover:bg-zinc-400 transition-colors relative">
+                <span class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out origin-right"></span>
+              </span>
+              Standard Logic FAQs
+            </a>
+            
+            <a href="mailto:support@adapthub.in" class="group flex items-center gap-4 font-mono text-[10px] text-red-500 uppercase tracking-[0.25em] hover:text-red-300 active:scale-95 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-red-500/50 rounded-none px-6 py-4 bg-red-950/20 border border-red-900/30 hover:bg-red-900/20 hover:border-red-500/50 relative overflow-hidden">
+              <span class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+              Escalate to Support_
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; border-left: 1px solid rgba(255,255,255,0.02); }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 0; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(239,68,68,0.5); }
+</style>

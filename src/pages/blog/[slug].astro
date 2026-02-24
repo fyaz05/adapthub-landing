@@ -43,7 +43,11 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
       new URL("/og-image.avif", siteUrl).href,
       new URL("/og-image.png", siteUrl).href,
     ],
-    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "author": {
+      "@type": "Person",
+      "name": "Fyaz Mohammed",
+      "@id": new URL("about/#founder", siteUrl).href
+    },
     "publisher": {
       "@type": "Organization",
       "name": "AdaptHub",
@@ -216,6 +220,31 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
                     <span class="font-sans text-sm text-zinc-300 group-hover:text-white leading-snug tracking-tight transition-colors duration-300">
                       {related.title}
                     </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Internal Resource Links */}
+            <div>
+              <div class="mb-6">
+                <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em]">[ Platform Resources ]</span>
+              </div>
+              <div class="flex flex-col gap-3">
+                {[
+                  { href: "/adaptive-learning-cat/", label: "What is Adaptive Learning?" },
+                  { href: "/adapthub-vs-competitors/", label: "AdaptHub vs Coaching Institutes" },
+                  { href: "/cat-2026-exam-date/", label: "CAT 2026 Exam Date" },
+                  { href: "/cat-preparation-without-coaching/", label: "CAT Without Coaching" },
+                  { href: "/pricing/", label: "Free Forever Pricing" },
+                  { href: "/docs/", label: "Platform Documentation" },
+                ].map((link) => (
+                  <a
+                    href={link.href}
+                    class="font-sans text-sm text-zinc-400 hover:text-brand-teal transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span class="w-1 h-1 bg-zinc-600 group-hover:bg-brand-teal rounded-full shrink-0 transition-colors duration-300" aria-hidden="true"></span>
+                    {link.label}
                   </a>
                 ))}
               </div>
