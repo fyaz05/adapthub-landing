@@ -121,40 +121,43 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
       <div class="flex flex-wrap lg:flex-nowrap items-end justify-between gap-y-10">
 
         {/* High-Fidelity Telemetry // Avant-Garde Overhaul */}
-        <div class="group/telemetry flex flex-col sm:flex-row items-start lg:items-end gap-16 lg:gap-32 w-full lg:w-auto mt-4 lg:mt-0">
+        <dl class="group/telemetry flex flex-col sm:flex-row items-start lg:items-end gap-16 lg:gap-32 w-full lg:w-auto mt-4 lg:mt-0">
           
           {/* Node 1: Volume */}
           <div class="relative flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:translate-x-4 cursor-crosshair">
-            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
+            <dt class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
               <span class="w-1 h-1 bg-brand-teal animate-pulse opacity-70" aria-hidden="true"></span>
-              Volume // '25
-            </span>
-            <span class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start">
-              2.58<span class="font-serif italic text-zinc-400 text-3xl lg:text-4xl ml-2 mt-2">L</span>
-            </span>
+              [01] Volume // '26
+            </dt>
+            <dd class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start m-0">
+              <span aria-hidden="true">2.58<span class="font-serif italic text-zinc-400 text-3xl lg:text-4xl ml-2 mt-2">L</span></span>
+              <span class="sr-only">2.58 Lakh</span>
+            </dd>
           </div>
 
           {/* Node 2: Rarity */}
           <div class="relative flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:translate-x-4 cursor-crosshair">
-            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4">
+            <dt class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4">
               [02] 99.99%ile
-            </span>
-            <span class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start">
-              <span class="font-serif italic text-zinc-400 text-4xl lg:text-[3rem] mr-3 mt-1 lg:mt-3 leading-none">&lt;</span>30
-            </span>
+            </dt>
+            <dd class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start m-0">
+              <span aria-hidden="true"><span class="font-serif italic text-zinc-400 text-4xl lg:text-[3rem] mr-3 mt-1 lg:mt-3 leading-none">&lt;</span>30</span>
+              <span class="sr-only">Fewer than 30</span>
+            </dd>
           </div>
 
           {/* Node 3: Access */}
           <div class="relative flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:translate-x-4 cursor-crosshair">
-            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4">
+            <dt class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em] mb-4">
               [03] Platform Fee
-            </span>
-            <span class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start">
-              <span class="font-serif italic text-zinc-400 text-4xl lg:text-[3rem] mr-2 lg:mr-3 mt-1 lg:mt-2 leading-none">₹</span>0
-            </span>
+            </dt>
+            <dd class="text-[3.5rem] lg:text-[5.5rem] font-light tracking-tighter leading-[0.85] text-white transition-colors duration-500 group-hover/telemetry:text-zinc-800 hover:text-white! flex items-start m-0">
+              <span aria-hidden="true"><span class="font-serif italic text-zinc-400 text-4xl lg:text-[3rem] mr-3 mt-1 lg:mt-3 leading-none">₹</span>0</span>
+              <span class="sr-only">0 rupees platform fee</span>
+            </dd>
           </div>
 
-        </div>
+        </dl>
 
         {/* Downward Intent Vector */}
         <div class="hidden lg:flex flex-col items-center gap-3 select-none pb-1" aria-hidden="true">

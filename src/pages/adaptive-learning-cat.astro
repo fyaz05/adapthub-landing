@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { CONTENT } from "../constants/content.ts";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
@@ -33,9 +32,9 @@ const faqs = [
 ---
 
 <Layout
-  title={CONTENT.metadata.adaptiveLearningCat.title}
-  description={CONTENT.metadata.adaptiveLearningCat.description}
-  keywords={CONTENT.metadata.adaptiveLearningCat.keywords}
+  title="What is Adaptive Learning in CAT Prep? | AdaptHub"
+  description="Adaptive learning in CAT preparation is an AI method that continuously adjusts question difficulty to each student's cognitive gaps. AdaptHub uses a ZPD algorithm to maximise learning velocity — completely free."
+  keywords={["adaptive learning cat", "what is adaptive learning", "zpd algorithm cat", "adaptive testing cat exam", "personalised cat coaching", "ai cat preparation"]}
   ogType="article"
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -54,24 +53,6 @@ const faqs = [
           "@type": "SpeakableSpecification",
           "cssSelector": ["h1", "[data-speakable]", ".speakable-content"]
         }
-      },
-      {
-        "@type": "Article",
-        "@id": new URL("adaptive-learning-cat/#article", siteUrl).href,
-        "isPartOf": { "@id": new URL("adaptive-learning-cat/#webpage", siteUrl).href },
-        "headline": "What is Adaptive Learning in CAT Prep?",
-        "description": "Adaptive learning in CAT preparation is an AI method that continuously adjusts question difficulty to each student's cognitive gaps. AdaptHub uses a ZPD algorithm.",
-        "datePublished": "2026-02-20",
-        "dateModified": "2026-02-23",
-        "author": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "publisher": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "inLanguage": "en"
       },
       {
         "@type": "FAQPage",

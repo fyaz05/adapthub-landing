@@ -106,7 +106,8 @@ import SectionSpotlight from "./SectionSpotlight";
         <nav aria-labelledby="footer-connect-heading">
           <ul class="space-y-0" role="list">
             {CONTENT.footer.connect.links.map((link, i) => {
-              const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
+              const isExternal = link.href.startsWith("http");
+              const isMailto = link.href.startsWith("mailto:");
               return (
                 <li class="footer-fade" style={`--d:${i + 3}`}>
                   <a
@@ -120,6 +121,7 @@ import SectionSpotlight from "./SectionSpotlight";
                     ></span>
                     <span class="text-sm tracking-wide pl-3 group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform duration-300 ease-out flex items-center gap-1.5">
                       {link.label}
+                      {isMailto && <span class="sr-only">Email Support</span>}
                       {isExternal && (
                         <>
                           <span class="sr-only">(opens in new tab)</span>

@@ -319,7 +319,10 @@ const BentoGrid = () => {
       description: gridContent.cards[0]?.description || "",
       gridClass: "md:col-span-2 lg:col-span-2 row-span-2",
       visual: (
-        <div className="relative w-full h-full flex flex-col justify-end p-5 md:p-0">
+        <div
+          className="relative w-full h-full flex flex-col justify-end p-5 md:p-0"
+          aria-hidden="true"
+        >
           <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[8px] md:text-[9px] text-zinc-400 tracking-[0.2em] uppercase z-20">
             [ Live Telemetry ]
           </div>
@@ -450,7 +453,10 @@ const BentoGrid = () => {
       description: gridContent.cards[2]?.description || "",
       gridClass: "md:col-span-1 lg:col-span-1 row-span-2",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center py-8 md:py-0">
+        <div
+          className="relative w-full h-full flex items-center justify-center py-8 md:py-0"
+          aria-hidden="true"
+        >
           <CardStack />
         </div>
       ),
@@ -461,7 +467,10 @@ const BentoGrid = () => {
       description: gridContent.cards[3]?.description || "",
       gridClass: "md:col-span-2 lg:col-span-4 row-span-1",
       visual: (
-        <div className="w-full h-full flex flex-col md:flex-row relative group/console min-w-0">
+        <div
+          className="w-full h-full flex flex-col md:flex-row relative group/console min-w-0"
+          aria-hidden="true"
+        >
           {/* ── Visual Target Area (Top on Mobile, Left on Desktop) ── */}
           <div className="flex-1 relative flex items-center justify-center p-4 sm:p-6 md:p-8 overflow-hidden min-h-[200px] sm:min-h-[220px] md:min-h-[250px] min-w-0">
             {/* HUD Targeting Overlay */}
@@ -556,10 +565,7 @@ const BentoGrid = () => {
   ];
 
   return (
-    <section
-      className="py-20 md:py-32 bg-void relative overflow-hidden"
-      id="mastery"
-    >
+    <section className="py-20 md:py-32 bg-void relative overflow-hidden">
       {/* Background Atmosphere */}
       <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
 

@@ -70,6 +70,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
     <div
       ref={ref}
       className="relative h-[280px] sm:h-[400px] lg:h-[700px] w-full flex items-center justify-center perspective-[2000px]"
+      aria-hidden="true"
     >
       {/* LAYER 1: The Main Dashboard (Heavy, Grounded) */}
       <motion.div

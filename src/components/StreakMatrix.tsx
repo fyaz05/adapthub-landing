@@ -162,7 +162,10 @@ export default function StreakMatrix() {
   }, [hoveredDay.visible]);
 
   return (
-    <section className="relative py-24 bg-black border-t border-zinc-900 overflow-hidden">
+    <section
+      className="relative py-24 bg-black border-t border-zinc-900 overflow-hidden"
+      id="mastery"
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.03)_0%,transparent_100%)] pointer-events-none" />
       <SectionSpotlight color="rgba(45, 212, 191, 0.12)" />

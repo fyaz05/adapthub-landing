@@ -42,18 +42,6 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "datePublished": new Date(a.date).toISOString(),
           "url": `${siteUrl}blog/${a.slug}`
         }))
-      },
-      {
-        "@type": "ItemList",
-        "@id": `${siteUrl}blog/#itemlist`,
-        "name": "AdaptHub Blog Articles",
-        "numberOfItems": articles.length,
-        "itemListElement": articles.map((a, i) => ({
-          "@type": "ListItem",
-          "position": i + 1,
-          "url": new URL(`blog/${a.slug}/`, siteUrl).href,
-          "name": a.title
-        }))
       }
     ]
   })} />

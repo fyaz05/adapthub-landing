@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { CONTENT } from "../constants/content.ts";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
@@ -25,9 +24,9 @@ const faqs = [
 ---
 
 <Layout 
-  title={CONTENT.metadata.cat2026ExamDate.title}
-  description={CONTENT.metadata.cat2026ExamDate.description}
-  keywords={CONTENT.metadata.cat2026ExamDate.keywords}
+  title="CAT 2026 Exam Date, Notification & Syllabus | AdaptHub"
+  description="Everything you need to know about the CAT 2026 exam date, registration timeline, eligibility, and expected syllabus changes. Start preparing early."
+  keywords={["cat 2026 exam date", "cat 2026 notification", "cat 2026 registration", "cat 2026 syllabus"]}
   ogType="article"
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -40,30 +39,10 @@ const faqs = [
         "name": "CAT 2026 Exam Date & Timeline",
         "description": "Expected exam dates, registration timelines, and preparation strategy for CAT 2026.",
         "inLanguage": "en",
-        "datePublished": "2026-02-20",
-        "dateModified": "2026-02-25",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": ["h1", ".speakable-content"]
         }
-      },
-      {
-        "@type": "Article",
-        "@id": new URL("cat-2026-exam-date/#article", siteUrl).href,
-        "isPartOf": { "@id": new URL("cat-2026-exam-date/#webpage", siteUrl).href },
-        "headline": "CAT 2026 Exam Date, Notification & Syllabus",
-        "description": "Everything you need to know about the CAT 2026 exam date, registration timeline, eligibility, and expected syllabus changes.",
-        "datePublished": "2026-02-20",
-        "dateModified": "2026-02-25",
-        "author": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "publisher": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "inLanguage": "en"
       },
       {
         "@type": "FAQPage",

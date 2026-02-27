@@ -1,3 +1,13 @@
+export interface NavSubLink {
+  label: string;
+  href: string;
+  description: string;
+}
+
+export type NavLink =
+  | { label: string; href: string; subLinks?: never }
+  | { label: string; href?: never; subLinks: NavSubLink[] };
+
 export const CONTENT = {
   global: {
     brandName: "AdaptHub",
@@ -6,14 +16,58 @@ export const CONTENT = {
 
   nav: {
     links: [
-      { label: "Philosophy", href: "/#philosophy" },
-      { label: "Methodology", href: "/#methodology" },
-      { label: "Mastery", href: "/#mastery" },
-      { label: "Blog", href: "/blog" },
-      { label: "Docs", href: "/docs" },
+      {
+        label: "Platform",
+        subLinks: [
+          {
+            label: "How it Works",
+            href: "/about",
+            description:
+              "The cognitive science behind our adaptive ZPD engine.",
+          },
+          {
+            label: "Vs Competitors",
+            href: "/adapthub-vs-competitors",
+            description: "See how we compare to traditional coaching.",
+          },
+          {
+            label: "Adaptive Learning",
+            href: "/adaptive-learning-cat",
+            description:
+              "What adaptive learning is and why it outperforms fixed curriculum.",
+          },
+        ] satisfies NavSubLink[],
+      },
+      {
+        label: "Resources",
+        subLinks: [
+          {
+            label: "Syllabus Map",
+            href: "/cat-syllabus",
+            description:
+              "Comprehensive tracking of the official CAT curriculum.",
+          },
+          {
+            label: "Strategy Blog",
+            href: "/blog",
+            description:
+              "Advanced theory, logic breakdowns, and prep protocols.",
+          },
+          {
+            label: "Self-Study Guide",
+            href: "/cat-preparation-without-coaching",
+            description: "The complete zero-cost IIM admission blueprint.",
+          },
+          {
+            label: "Platform Docs",
+            href: "/docs",
+            description: "Technical manuals and logic documentation.",
+          },
+        ] satisfies NavSubLink[],
+      },
       { label: "Pricing", href: "/pricing" },
-      { label: "CAT Syllabus", href: "/cat-syllabus" },
-    ],
+      { label: "Contact", href: "/contact" },
+    ] satisfies NavLink[],
     cta: "Start Calibration",
   },
 
@@ -23,10 +77,10 @@ export const CONTENT = {
       highlight: "Engine",
     },
     description:
-      "Built for the CAT 99th percentile. AdaptHub maps how you think, finds where you break, and builds your path to IIM admission.",
+      "Built for the CAT 2026 99th percentile. AdaptHub maps how you think, finds where you break, and builds your path to IIM admission.",
     cta: {
       primary: "Start Calibration",
-      secondary: "See How It Works",
+      secondary: "About AdaptHub",
     },
   },
 
@@ -126,31 +180,31 @@ export const CONTENT = {
         id: "faq-01",
         question: "How does AdaptHub help me reach the 99th percentile?",
         answer:
-          "AdaptHub targets the 99th percentile by keeping you in the Zone of Proximal Development (ZPD). Our algorithm continuously adjusts question difficulty across QA, DILR, and VARC. This keeps you in the 70–85% target accuracy band — the proven zone for maximum learning velocity.",
+          "AdaptHub keeps you in the Zone of Proximal Development (ZPD). It continuously adjusts question difficulty across QA, DILR, and VARC so you stay in the 70–85% accuracy band for sustained CAT 2026 progress.",
       },
       {
         id: "faq-02",
         question: "Why does the AI Coach penalize hints?",
         answer:
-          "AdaptHub penalizes passive reading. When you hit a wall, the engine refuses to hand you the answer. Instead, it deploys progressive hints — like 'Check the boundary values at x=0' — forcing active recall and rewiring how you respond to trap questions.",
+          "AdaptHub penalizes passive reading. When you hit a wall, the coach does not reveal the full solution immediately; it gives progressive hints that force active reasoning before final explanation.",
       },
       {
         id: "faq-03",
         question: "Who is AdaptHub built for?",
         answer:
-          "AdaptHub is built strictly for elite CAT aspirants targeting the top IIMs. Of the 2.58 lakh candidates who appeared in CAT 2025, fewer than 30 scored 99.99 percentile. AdaptHub is built for that top 1%.",
+          "AdaptHub is built for serious CAT aspirants aiming for top IIMs. It is designed for learners who want a rigorous, adaptive study plan with deep performance feedback.",
       },
       {
         id: "faq-04",
         question: "How does AdaptHub calculate performance?",
         answer:
-          "AdaptHub measures your Learning Velocity — a composite score of your conceptual absorption speed over a 7-day rolling window. The system rejects raw accuracy as a vanity metric, and instead monitors Distractor Errors to predict and prevent exact failure patterns on exam day.",
+          "AdaptHub measures Learning Velocity — a composite view of how quickly you absorb concepts. It complements raw accuracy by tracking Distractor Errors to detect repeat failure patterns early.",
       },
       {
         id: "faq-05",
         question: "What does AdaptHub cost?",
         answer:
-          "AdaptHub is ₹0 forever, with no credit card required. Elite metric analysis, Spaced Repetition Queues, and adaptive routing should be open to every serious aspirant — not locked behind a paywall.",
+          "AdaptHub's core CAT 2026 platform is free forever with no credit card required. It includes performance analytics, spaced repetition queues, and adaptive routing for serious aspirants.",
       },
     ],
   },
@@ -161,7 +215,7 @@ export const CONTENT = {
       titleHighlight: "Socratic",
       titleLine2: "Engine",
       description:
-        "AdaptHub never hands you the answer. It breaks down how you think and forces you to close the logical gap. Passive reading earns a penalty.",
+        "AdaptHub never hands you the answer. It breaks down how you think and forces you to close the logical gap. Hints require active reasoning — passive reading is penalized.",
       linkText: "Explore the Adaptive Syllabus",
       pillText: "Protocol: Active Recall",
     },
@@ -204,7 +258,7 @@ export const CONTENT = {
       name: "AdaptHub",
       quote: '"Learning should adapt to you."',
       description:
-        "Adaptive learning for CAT and MBA entrance exams. AdaptHub builds personalized study plans, AI coaching, and performance analytics for ambitious students.",
+        "Telemetry-driven cognitive preparation for CAT 2026. Predict failure patterns, force active recall, and secure elite percentiles without vanity metrics.",
     },
     directory: {
       title: "Directory",
@@ -239,7 +293,7 @@ export const CONTENT = {
       label: "System Online",
     },
     legal: {
-      copyright: (year: number) => `© ${year} ADAPTHUB`,
+      copyright: (year: number) => `© ${year} AdaptHub`,
       links: [
         {
           label: "Privacy Policy",
@@ -310,9 +364,9 @@ export const CONTENT = {
   },
 
   metadata: {
-    defaultTitle: "Free CAT Prep with AI Coaching | AdaptHub",
+    defaultTitle: "Free CAT 2026 Prep Platform with AI Coaching | AdaptHub",
     defaultDescription:
-      "Prepare for CAT with adaptive study plans, AI coaching, and analytics. Get personalized paths built to improve your percentile. Start for free.",
+      "Prepare for CAT 2026 with adaptive study plans, AI coaching, and analytics. Build stronger reasoning, close weak areas faster, and stay free forever.",
     defaultKeywords: [
       "cat exam preparation",
       "cat preparation",
@@ -322,9 +376,9 @@ export const CONTENT = {
       "adaptive learning for cat",
     ],
     indexPage: {
-      title: "Free CAT Prep with AI Coaching | AdaptHub",
+      title: "Free CAT 2026 Prep Platform with AI Coaching | AdaptHub",
       description:
-        "Prepare for CAT 2026 with adaptive study plans, AI coaching, and performance analytics. Overcome your exact weaknesses. Start free today.",
+        "Prepare for CAT 2026 with adaptive study plans, AI coaching, and performance analytics. Build stronger reasoning, close weak areas faster, and stay free forever.",
       keywords: [
         "cat exam",
         "cat exam preparation",
@@ -423,56 +477,6 @@ export const CONTENT = {
         "terms of service",
         "terms of use",
         "user agreement",
-      ],
-    },
-    adapthubVsCompetitors: {
-      title: "AdaptHub vs Traditional CAT Coaching (iQuanta, TIME, IMS, Cracku)",
-      description:
-        "Compare AdaptHub's free, AI-driven adaptive learning engine against traditional paid coaching models like iQuanta, TIME, IMS, Career Launcher, Elitesgrid, and Cracku.",
-      keywords: [
-        "adapthub vs iquanta",
-        "adapthub vs time",
-        "adapthub vs ims",
-        "adapthub vs career launcher",
-        "adapthub vs cracku",
-        "adapthub vs elitesgrid",
-        "adaptive learning vs traditional coaching",
-      ],
-    },
-    adaptiveLearningCat: {
-      title: "What is Adaptive Learning in CAT Prep? | AdaptHub",
-      description:
-        "Adaptive learning in CAT preparation is an AI method that continuously adjusts question difficulty to each student's cognitive gaps. AdaptHub uses a ZPD algorithm to maximise learning velocity — completely free.",
-      keywords: [
-        "adaptive learning cat",
-        "what is adaptive learning",
-        "zpd algorithm cat",
-        "adaptive testing cat exam",
-        "personalised cat coaching",
-        "ai cat preparation",
-      ],
-    },
-    cat2026ExamDate: {
-      title: "CAT 2026 Exam Date, Notification & Syllabus | AdaptHub",
-      description:
-        "Everything you need to know about the CAT 2026 exam date, registration timeline, eligibility, and expected syllabus changes. Start preparing early.",
-      keywords: [
-        "cat 2026 exam date",
-        "cat 2026 notification",
-        "cat 2026 registration",
-        "cat 2026 syllabus",
-      ],
-    },
-    catPreparationWithoutCoaching: {
-      title: "How to Prepare for CAT Without Coaching | AdaptHub",
-      description:
-        "A complete guide to cracking the CAT exam without paid coaching. Discover free study plans, adaptive learning tools, and self-study strategies to score 99+ percentile.",
-      keywords: [
-        "prepare for cat without coaching",
-        "cat self study",
-        "free cat coaching",
-        "how to crack cat at home",
-        "cat preparation guide",
       ],
     },
     ogImage: "/og-image.avif",

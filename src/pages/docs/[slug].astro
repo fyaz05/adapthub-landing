@@ -14,7 +14,6 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props;
-const siteUrl = Astro.site || "https://adapthub.in";
 ---
 
 <Layout
@@ -22,41 +21,6 @@ const siteUrl = Astro.site || "https://adapthub.in";
   description={section.description}
   keywords={["adapthub documentation", "adapthub guide", section.title.toLowerCase(), "how to use adapthub"]}
 >
-  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "TechArticle",
-        "@id": new URL(`docs/${section.slug}/#article`, siteUrl).href,
-        "url": new URL(`docs/${section.slug}/`, siteUrl).href,
-        "name": `${section.title} | AdaptHub Docs`,
-        "headline": section.title,
-        "description": section.description,
-        "inLanguage": "en",
-        "author": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "publisher": {
-          "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href
-        },
-        "isPartOf": {
-          "@type": "WebSite",
-          "@id": new URL("#website", siteUrl).href
-        }
-      },
-      ...(section.faqs && section.faqs.length > 0 ? [{
-        "@type": "FAQPage",
-        "@id": new URL(`docs/${section.slug}/#faq`, siteUrl).href,
-        "mainEntity": section.faqs.map((faq: { question: string; answer: string }) => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-        }))
-      }] : [])
-    ]
-  })}></script>
   <AnnouncementBar client:load transition:persist />
   <Navbar client:load transition:persist />
 

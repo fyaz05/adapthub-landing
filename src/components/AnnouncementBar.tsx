@@ -52,15 +52,11 @@ const AnnouncementBar = () => {
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-teal" />
             </span>
 
-            <span className="text-zinc-300 font-sans tracking-tight leading-none truncate">
+            <span className="text-zinc-300 font-sans tracking-wide text-xs md:text-sm truncate">
               AdaptHub is in{" "}
-              <span className="text-brand-teal font-serif italic font-medium text-sm md:text-base">
-                Beta
-              </span>{" "}
-              &{" "}
-              <span className="text-brand-teal font-serif italic font-medium text-sm md:text-base">
-                Lifetime Free
-              </span>
+              <span className="text-brand-teal font-medium">Early Access</span>
+              <span className="mx-2 opacity-50">·</span>
+              <span className="text-white font-medium">Free Forever</span>
             </span>
           </div>
 

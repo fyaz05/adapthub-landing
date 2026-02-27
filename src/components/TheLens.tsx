@@ -589,8 +589,7 @@ const TheLens = () => {
   return (
     <section
       ref={containerRef}
-      className={`bg-zinc-950 relative ${isMobile ? "h-[500vh]" : "h-[650vh]"}`}
-      id="methodology"
+      className={`bg-zinc-950 relative ${isMobile ? "h-[200vh]" : "h-[250vh]"}`}
     >
       {/* Visuals - Sticky Container */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden z-10 pointer-events-none">
@@ -662,7 +661,10 @@ const TheLens = () => {
           </div>
 
           {/* RIGHT COLUMN: THE INTERFACE FRAME */}
-          <div className="relative aspect-square md:aspect-[4/3] w-full max-w-sm sm:max-w-xl mx-auto lg:order-2 order-1 h-[35vh] sm:h-[40vh] lg:h-auto mt-8 sm:mt-0">
+          <div
+            className="relative aspect-square md:aspect-[4/3] w-full max-w-sm sm:max-w-xl mx-auto lg:order-2 order-1 h-[35vh] sm:h-[40vh] lg:h-auto mt-8 sm:mt-0"
+            aria-hidden="true"
+          >
             {/* The Glass Frame */}
             <div
               className={`absolute inset-0 rounded-[20px] bg-zinc-900/40 ${!isReduced && "backdrop-blur-xl"} border border-white/10 shadow-2xl overflow-hidden ring-1 ring-white/5`}
