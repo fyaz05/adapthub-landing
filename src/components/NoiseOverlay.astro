@@ -1,14 +1,15 @@
-<svg class="pointer-events-none fixed isolate z-max opacity-[0.03] mix-blend-overlay w-full h-full top-0 left-0 hidden md:block">
-<defs>
-    <filter id="noiseFilter">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.8"
-        numOctaves="3"
-        stitchTiles="stitch"></feTurbulence>
-    </filter>
+---
+// NoiseOverlay — full-viewport fixed SVG fractal noise texture (desktop only).
+// The inline <feTurbulence> filter def has been REMOVED (dedupe).
+// This component now references the shared `#noise-filter` filter declared
+// in Layout.astro. The previously-duplicated
+// turbulence filter cost fractalNoise compute on every paint; referencing
+// the shared filter eliminates that redundant GPU work.
+---
+<svg class="pointer-events-none fixed isolate z-max opacity-[0.03] mix-blend-overlay w-full h-full top-0 left-0 hidden md:block" aria-hidden="true">
+  <defs>
     <pattern id="noisePattern" width="128" height="128" patternUnits="userSpaceOnUse">
-      <rect width="128" height="128" filter="url(#noiseFilter)"></rect>
+      <rect width="128" height="128" filter="url(#noise-filter)"></rect>
     </pattern>
   </defs>
   <rect width="100%" height="100%" fill="url(#noisePattern)"></rect>

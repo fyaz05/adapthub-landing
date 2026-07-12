@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
-import BackgroundPulse from "../components/BackgroundPulse";
 import { resolvedContent as CONTENT } from "../utils/config";
 
 const principles = [
@@ -60,12 +59,12 @@ const siteUrl = Astro.site || "https://adapthub.in";
     ]
   })} />
 
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-48 pb-24 overflow-hidden min-h-screen bg-void selection:bg-brand-teal/30 selection:text-white">
     {/* ── Environment & Atmosphere ── */}
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
     
     {/* Cinematic Film Grain */}
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">

@@ -6,10 +6,46 @@ import { useRef } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 
+/**
+ * SpotlightButton — the canonical button primitive for AdaptHub.
+ *
+  * variant + size system added.
+  *
+  * Existing pages currently pass bespoke `className` strings. Those
+  * usages are NOT migrated here — they keep working because `className` is
+ * still appended last. New call sites should prefer the `variant` + `size`
+ * props for consistency:
+ *
+ *   variant:
+ *     - "primary"   → brand-yellow pill with glow shadow (Hero/pricing CTA style)
+ *     - "secondary" → solid white brutalist (cat-syllabus, cat-2026, vs-competitors)
+ *     - "ghost"     → mono uppercase text link with tick mark (Hero "About" style)
+ *     - "outline"   → bordered, transparent fill (for low-emphasis actions)
+ *
+ *   size:
+ *     - "sm" → px-5 py-2.5 text-xs
+ *     - "md" → px-7 py-3.5 text-sm (default)
+ *     - "lg" → px-8 sm:px-10 py-4 sm:py-5 text-sm md:text-base
+ *
+ * Both props are optional; existing call sites that pass only `className` keep
+ * their exact appearance (backward-compatible).
+ */
+
+export type SpotlightButtonVariant =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "outline";
+export type SpotlightButtonSize = "sm" | "md" | "lg";
+
 interface SpotlightButtonProps {
   href?: string;
   children: React.ReactNode;
   className?: string;
+  /** Visual style. When omitted, no base classes are injected (legacy mode). */
+  variant?: SpotlightButtonVariant;
+  /** Size scale. Only applies when a `variant` is also provided. */
+  size?: SpotlightButtonSize;
   target?: string;
   rel?: string;
   onClick?: (
@@ -17,10 +53,29 @@ interface SpotlightButtonProps {
   ) => void;
 }
 
+const VARIANT_CLASSES: Record<SpotlightButtonVariant, string> = {
+  primary:
+    "bg-accent-yellow text-black font-bold rounded-full shadow-[0_0_32px_rgba(252,211,77,0.2)] hover:shadow-[0_0_56px_rgba(252,211,77,0.35)] transition-all duration-500",
+  secondary:
+    "bg-white text-black font-bold uppercase tracking-wider rounded-none hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]",
+  ghost:
+    "bg-transparent text-zinc-400 font-mono uppercase tracking-[0.15em] hover:text-white transition-colors",
+  outline:
+    "bg-transparent text-white border border-white/30 rounded-full hover:bg-white/5 hover:border-white/50 transition-all",
+};
+
+const SIZE_CLASSES: Record<SpotlightButtonSize, string> = {
+  sm: "px-5 py-2.5 text-xs",
+  md: "px-7 py-3.5 text-sm",
+  lg: "px-8 sm:px-10 py-4 sm:py-5 text-sm md:text-base",
+};
+
 export default function SpotlightButton({
   href,
   children,
   className = "",
+  variant,
+  size = "md",
   target,
   rel,
   onClick,
@@ -49,6 +104,11 @@ export default function SpotlightButton({
   // Dynamically choose tag to ensure semantic HTML routing/actions
   const Component = href ? motion.a : motion.button;
 
+  // Compose base classes only when a variant is provided (backward-compat).
+  const variantClasses = variant
+    ? `${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]}`
+    : "";
+
   return (
     <Component
       ref={buttonRef}
@@ -59,10 +119,10 @@ export default function SpotlightButton({
       whileHover={!isMobile && !isReduced ? { scale: 1.01 } : undefined}
       whileTap={{ scale: 0.96 }}
       transition={{ type: "spring", stiffness: 700, damping: 25, mass: 0.5 }}
-      className={`relative inline-flex items-center justify-center overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-brand-teal touch-manipulation transform-gpu ${className}`}
+      className={`relative inline-flex items-center justify-center overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-brand-teal touch-manipulation transform-gpu ${variantClasses} ${className}`}
     >
       {/* ── 1. Physical Bevel & Press Occlusion ── */}
-      {/* 
+      {/*
         Default: Light catches the top rim.
         Active (Pressed): Top highlight dies, inner shadow simulates physical depth.
       */}

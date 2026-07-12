@@ -19,16 +19,23 @@
 - https://adapthub.in/cat-preparation-without-coaching/
 
 ## Documentation Sections
-- https://adapthub.in/docs/what-is-adapthub/
-- https://adapthub.in/docs/zpd-algorithm/
-- https://adapthub.in/docs/adaptive-engine/
-- https://adapthub.in/docs/ai-coach/
-- https://adapthub.in/docs/analytics-dashboard/
-- https://adapthub.in/docs/cat-syllabus/
+- https://adapthub.in/docs/calibration-sequence/
+- https://adapthub.in/docs/daily-learning-module/
+- https://adapthub.in/docs/mastery-progression/
+- https://adapthub.in/docs/ai-coach-hint-system/
+- https://adapthub.in/docs/telemetry-performance-metrics/
+- https://adapthub.in/docs/spaced-repetition-system/
+- https://adapthub.in/docs/quality-streaks/
 - https://adapthub.in/docs/troubleshooting/
+- https://adapthub.in/docs/core-issue-matrix/
 
 ## Blog Articles
-- https://adapthub.in/blog/
+- https://adapthub.in/blog/zone-of-proximal-development-cat-algebra/
+- https://adapthub.in/blog/decoding-2025-dilr-trap-sets/
+- https://adapthub.in/blog/varc-fact-vs-judgment/
+- https://adapthub.in/blog/metacognition-first-cat-skill/
+- https://adapthub.in/blog/distractor-error-taxonomy/
+- https://adapthub.in/blog/quality-streaks-vs-raw-study-hours/
 
 ## Discovery Endpoints
 - Sitemap: https://adapthub.in/sitemap-index.xml

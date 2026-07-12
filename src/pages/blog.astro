@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
-import BackgroundPulse from "../components/BackgroundPulse";
 import { resolvedContent as CONTENT } from "../utils/config";
 import { BLOG_ARTICLES } from "../constants/blog-data";
 
@@ -46,12 +45,12 @@ const siteUrl = Astro.site || "https://adapthub.in";
     ]
   })} />
 
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-24 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
     
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
     
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
       <filter id="ledger-grain">
@@ -106,7 +105,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
                   <span class="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.2em]">{featuredArticle.date}</span>
                 </div>
 
-                <h2 class="text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-white leading-tight tracking-tight mb-6 group-hover:text-brand-teal transition-colors duration-500 text-balance">
+                <h2 class="text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-white leading-tight tracking-tight mb-6 group-hover:text-brand-teal group-focus-visible:text-brand-teal transition-colors duration-500 text-balance">
                   {featuredArticle.title}
                 </h2>
                 
@@ -119,8 +118,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
                     <span class="block w-4 h-px bg-brand-teal/50" aria-hidden="true"></span>
                     Read Article
                   </span>
-                  <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 transition-all duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 group-focus-visible:border-brand-teal group-focus-visible:bg-brand-teal/10 transition-all duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal group-focus-visible:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <line x1="7" y1="17" x2="17" y2="7"></line>
                       <polyline points="7 7 17 7 17 17"></polyline>
                     </svg>
@@ -179,8 +178,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
                           EST_TIME: {article.readTime}
                         </span>
                       </div>
-                      <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 transition-all duration-500 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <div class="shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 group-focus-visible:border-brand-teal group-focus-visible:bg-brand-teal/10 transition-all duration-500 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-400 group-hover:text-brand-teal group-focus-visible:text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>

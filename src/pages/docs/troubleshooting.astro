@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
-import BackgroundPulse from "../../components/BackgroundPulse";
 import { DOC_SECTIONS, DOC_FAQS } from "../../constants/docs-data";
 
 const siteUrl = Astro.site || "https://adapthub.in";
@@ -14,7 +13,23 @@ const troubleshootingURL = new URL("/docs/troubleshooting/", siteUrl).href;
   title="Troubleshooting | AdaptHub Docs"
   description="Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more."
   keywords={["adapthub troubleshooting", "adapthub faq", "adapthub help", "adapthub support"]}
+  breadcrumb={[
+    { name: "Home", url: siteUrl },
+    { name: "Docs", url: new URL("/docs/", siteUrl).href },
+    { name: "Troubleshooting", url: troubleshootingURL },
+  ]}
 >
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Troubleshooting | AdaptHub Docs",
+    "description": "Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more.",
+    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "publisher": { "@type": "Organization", "name": "AdaptHub", "logo": { "@type": "ImageObject", "url": new URL("/logo-light.svg", siteUrl).href } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": troubleshootingURL },
+    "url": troubleshootingURL,
+    "inLanguage": "en",
+  })} />
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -29,12 +44,12 @@ const troubleshootingURL = new URL("/docs/troubleshooting/", siteUrl).href;
       },
     })),
   })} />
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white scroll-smooth">
 
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-brand-teal/[0.04] blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.03]" aria-hidden="true">

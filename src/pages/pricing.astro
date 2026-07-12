@@ -3,37 +3,17 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
-import BackgroundPulse from "../components/BackgroundPulse";
 import SpotlightButton from "../components/SpotlightButton";
 import { resolvedContent as CONTENT } from "../utils/config";
 
-const faqs = [
-  {
-    question: "Is AdaptHub really free?",
-    answer: "Yes. AdaptHub is Lifetime Free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0."
-  },
-  {
-    question: "Why is it free?",
-    answer: "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep — not to build another EdTech subscription. The goal is impact at scale."
-  },
-  {
-    question: "Will it stay free forever?",
-    answer: "Yes. The core engine — daily personalized study plans, AI Coach, and granular analytics — stays free. AdaptHub may add enterprise tools for coaching institutes later. Individual aspirant access stays free, always."
-  },
-  {
-    question: "Do I need a credit card to start?",
-    answer: "No. You only need an email to create an account and begin your initial diagnostic calibration. No payment details required."
-  }
-];
-
-const features = [
-  { id: "01", name: "Dynamic Daily Study Plans" },
-  { id: "02", name: "Adaptive Difficulty (ZPD)" },
-  { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
-  { id: "04", name: "Granular Performance Analytics" },
-  { id: "05", name: "Socratic AI Mistake Analysis" },
-  { id: "06", name: "Mastery-Based Cognitive Locks" }
-];
+/**
+ * faqs + features arrays moved to
+ * CONTENT.pricing in src/constants/content.ts. Single source of truth
+ * shared between the rendered accordion/feature grid AND the FAQPage
+ * JSON-LD schema below. Previously duplicated as inline arrays here.
+ */
+const faqs = CONTENT.pricing.faqs;
+const features = CONTENT.pricing.features;
 
 const siteUrl = Astro.site || "https://adapthub.in";
 ---
@@ -64,12 +44,12 @@ const siteUrl = Astro.site || "https://adapthub.in";
     ]
   })} />
 
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-24 overflow-hidden min-h-screen bg-void selection:bg-brand-teal/30 selection:text-white">
     {/* ── Environment & Atmosphere ── */}
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
     
     {/* High-Fidelity Noise Texture */}
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.03]" aria-hidden="true">

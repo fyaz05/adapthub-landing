@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
-import BackgroundPulse from "../components/BackgroundPulse";
 import { resolvedContent as CONTENT } from "../utils/config";
 import { DOC_SECTIONS } from "../constants/docs-data";
 const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.in/";
@@ -27,12 +26,12 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
     ]
   })}></script>
 
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
 
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
 
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-brand-teal/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
@@ -75,7 +74,7 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
               style={`--i:${3 + index}`}
             >
               {/* Active line */}
-              <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top pointer-events-none z-20" aria-hidden="true"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal scale-y-0 group-hover:scale-y-100 group-focus-visible:scale-y-100 transition-transform duration-500 origin-top pointer-events-none z-20" aria-hidden="true"></div>
               {/* Glow */}
               <div class="absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(13,148,136,0.06)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" aria-hidden="true"></div>
 
@@ -90,16 +89,16 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
 
                 {/* Text */}
                 <div class="flex-1 md:pl-0">
-                  <h2 class="text-xl md:text-2xl font-serif text-zinc-200 group-hover:text-white leading-snug tracking-tight mb-2 transition-colors duration-300">
+                  <h2 class="text-xl md:text-2xl font-serif text-zinc-200 group-hover:text-white group-focus-visible:text-white leading-snug tracking-tight mb-2 transition-colors duration-300">
                     {section.title}
                   </h2>
-                  <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-sm leading-relaxed transition-colors duration-300 max-w-2xl">
+                  <p class="text-zinc-400 group-hover:text-zinc-300 group-focus-visible:text-zinc-300 font-sans text-sm leading-relaxed transition-colors duration-300 max-w-2xl">
                     {section.description}
                   </p>
                 </div>
 
                 {/* Arrow */}
-                <div class="shrink-0 w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 transition-all duration-500 opacity-0 group-hover:opacity-100 transform translate-x-3 group-hover:translate-x-0">
+                <div class="shrink-0 w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-teal group-hover:bg-brand-teal/10 group-focus-visible:border-brand-teal group-focus-visible:bg-brand-teal/10 transition-all duration-500 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transform translate-x-3 group-hover:translate-x-0 group-focus-visible:translate-x-0">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-brand-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <line x1="7" y1="17" x2="17" y2="7"></line>
                     <polyline points="7 7 17 7 17 17"></polyline>
@@ -115,7 +114,7 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
             class="doc-row group block relative bg-void py-10 md:py-12 pl-4 sm:pl-8 pr-6 overflow-hidden transition-colors duration-500 border-t border-white/[0.04] page-stagger"
             style={`--i:${3 + DOC_SECTIONS.length}`}
           >
-            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-amber-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top pointer-events-none z-20" aria-hidden="true"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-amber-500 scale-y-0 group-hover:scale-y-100 group-focus-visible:scale-y-100 transition-transform duration-500 origin-top pointer-events-none z-20" aria-hidden="true"></div>
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(245,158,11,0.04)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" aria-hidden="true"></div>
 
             <div class="relative z-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
@@ -125,10 +124,10 @@ const siteUrl = Astro.site ? new URL("/", Astro.site).href : "https://adapthub.i
                 </span>
               </div>
               <div class="flex-1">
-                <h2 class="text-xl md:text-2xl font-serif text-zinc-200 group-hover:text-white leading-snug tracking-tight mb-2 transition-colors duration-300">
+                <h2 class="text-xl md:text-2xl font-serif text-zinc-200 group-hover:text-white group-focus-visible:text-white leading-snug tracking-tight mb-2 transition-colors duration-300">
                   Troubleshooting
                 </h2>
-                <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-sm leading-relaxed transition-colors duration-300 max-w-2xl">
+                <p class="text-zinc-400 group-hover:text-zinc-300 group-focus-visible:text-zinc-300 font-sans text-sm leading-relaxed transition-colors duration-300 max-w-2xl">
                   Common questions and diagnostic answers — calibration resets, hint penalties, mobile usage, Concept Library integration, and more.
                 </p>
               </div>

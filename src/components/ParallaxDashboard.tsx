@@ -53,10 +53,19 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
 
   useEffect(() => {
     if (isInView) {
+      // under prefers-reduced-motion (or low-end
+      // device, per use-reduced-motion.ts heuristic), snap to final value
+      // immediately instead of running a 0.5s count-up. The
+      // previous isReduced branch only shortened the duration — still
+      // animated. This guard fully disables the count-up animation.
+      if (isReduced) {
+        setCount(CONTENT.parallaxDashboard.growth.value);
+        return;
+      }
       // Delay start by 500ms to match card pop-in
       const timeout = setTimeout(() => {
         const controls = animate(0, CONTENT.parallaxDashboard.growth.value, {
-          duration: isReduced ? 0.5 : 1.5,
+          duration: 1.5,
           ease: "circOut",
           onUpdate: (value) => setCount(Math.round(value)),
         });
@@ -155,8 +164,8 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
               {CONTENT.parallaxDashboard.growth.label}
             </span>
             <motion.span
-              animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              animate={isReduced ? { opacity: 0.8 } : { scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+              transition={isReduced ? { duration: 0 } : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 rounded-full bg-brand-teal shadow-[0_0_10px_rgba(13,148,136,0.5)]"
             />
           </div>

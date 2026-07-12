@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
-import BackgroundPulse from "../../components/BackgroundPulse";
 import { BLOG_ARTICLES } from "../../constants/blog-data";
 
 export function getStaticPaths() {
@@ -26,6 +25,12 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
   datePublished={articleDateISO}
   dateModified={articleDateISO}
   ogType="article"
+  ogImage={new URL("/og-image.png", siteUrl).href}
+  breadcrumb={[
+    { name: "Home", url: siteUrl },
+    { name: "Blog", url: new URL("/blog/", siteUrl).href },
+    { name: article.title, url: canonicalURL },
+  ]}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -40,7 +45,6 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
       "@id": canonicalURL,
     },
     "image": [
-      new URL("/og-image.avif", siteUrl).href,
       new URL("/og-image.png", siteUrl).href,
     ],
     "author": { "@type": "Organization", "name": "AdaptHub" },
@@ -57,12 +61,12 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
     "url": canonicalURL,
   })} />
 
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
 
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
 
     {/* Film Grain */}
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.03]" aria-hidden="true">

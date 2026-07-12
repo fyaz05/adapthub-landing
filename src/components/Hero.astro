@@ -17,8 +17,8 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
   <div class="hero-frame relative flex-1 flex flex-col justify-between overflow-x-hidden overflow-y-clip border border-white/10 bg-void shadow-[0_0_60px_rgba(0,0,0,0.5)] pt-20 sm:pt-32 lg:pt-40 mt-[65px] sm:mt-0">
 
   {/* ── Environment & Atmosphere ── */}
-  <HeroBackground client:load />
-  <SectionSpotlight client:load color="rgba(13, 148, 136, 0.12)" />
+  <HeroBackground client:idle />
+  <SectionSpotlight client:idle color="rgba(13, 148, 136, 0.12)" />
 
   {/* Cinematic Film Grain */}
   <svg
@@ -83,7 +83,7 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
             {/* Primary Action Button */}
             <div class="relative group">
               <SpotlightButton
-                client:load
+                client:idle
                 href={CONTENT.links.app}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -110,7 +110,7 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
         {/* Right Col: Dashboard Intrusion (Deliberately overlaps headline bounds) */}
         <div class="lg:col-start-6 lg:col-span-7 relative z-10 lg:-mt-24 xl:-mt-32 hero-stagger" style="--i:2">
           <div class="lg:-mr-8 xl:-mr-20 2xl:-mr-32 relative">
-            <ParallaxDashboard client:load heroImage={optimizedHeroImg} />
+            <ParallaxDashboard client:idle heroImage={optimizedHeroImg} />
           </div>
         </div>
       </div>

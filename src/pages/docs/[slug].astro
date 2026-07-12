@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
-import BackgroundPulse from "../../components/BackgroundPulse";
 import { DOC_SECTIONS } from "../../constants/docs-data";
 
 export function getStaticPaths() {
@@ -14,19 +13,58 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props;
+const siteUrl = Astro.site || "https://adapthub.in";
+const canonicalURL = new URL(`/docs/${section.slug}/`, siteUrl).href;
+// Docs are evergreen reference material; use stable launch date as datePublished.
+const docsDatePublished = "2025-09-01T00:00:00.000Z";
 ---
 
 <Layout
   title={`${section.title} | AdaptHub Docs`}
   description={section.description}
   keywords={["adapthub documentation", "adapthub guide", section.title.toLowerCase(), "how to use adapthub"]}
+  datePublished={docsDatePublished}
+  dateModified={docsDatePublished}
+  ogType="article"
+  breadcrumb={[
+    { name: "Home", url: siteUrl },
+    { name: "Docs", url: new URL("/docs/", siteUrl).href },
+    { name: section.title, url: canonicalURL },
+  ]}
 >
-  <AnnouncementBar client:load transition:persist />
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": section.title,
+    "description": section.description,
+    "datePublished": docsDatePublished,
+    "dateModified": docsDatePublished,
+    "inLanguage": "en-IN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL,
+    },
+    "image": new URL("/og-image.png", siteUrl).href,
+    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AdaptHub",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL("/logo-light.svg", siteUrl).href,
+      },
+    },
+    "proficiencyLevel": "Beginner to Expert",
+    "dependencies": "AdaptHub account (free)",
+    "isAccessibleForFree": true,
+    "url": canonicalURL,
+  })} />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
   <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white scroll-smooth">
 
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
 
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-brand-teal/[0.04] blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 

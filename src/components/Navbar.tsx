@@ -184,6 +184,16 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] overflow-hidden group-hover:border-brand-teal/40 group-hover:bg-brand-teal/5 transition-[border-color,background-color] duration-300">
+                {/* React island (.tsx) — Astro's
+                    <Image> from astro:assets is not usable here. The brand
+                    mark is a decorative SVG served from /public/
+                    (CONTENT.assets.logoLight = "/logo-light.svg"). SVGs are
+                    vector and don't benefit from raster optimization, and
+                    importing them via @assets would require moving them out
+                    of /public/. Keeping
+                    <img> with explicit width/height/loading="eager"/
+                    fetchPriority="high" is the correct call for an
+                    above-the-fold nav SVG logo. */}
                 <img
                   src={CONTENT.assets.logoLight}
                   alt={CONTENT.global.logoAlt}

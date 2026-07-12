@@ -8,6 +8,9 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -21,6 +24,12 @@ User-agent: ClaudeBot
 Allow: /
 
 User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 User-agent: Bingbot

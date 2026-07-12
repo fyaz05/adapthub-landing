@@ -479,7 +479,6 @@ export const CONTENT = {
         "user agreement",
       ],
     },
-    ogImage: "/og-image.avif",
     ogImageFallback: "/og-image.png",
   },
 
@@ -492,8 +491,45 @@ export const CONTENT = {
 
   assets: {
     logoLight: "/logo-light.svg",
-    logoDark: "/logo-dark.svg",
     heroImage: "/hero.avif",
     noiseTexture: "/noise.svg",
+  },
+
+  /**
+   * Pricing page content — moved from inline arrays in src/pages/pricing.astro
+   * These power both the FAQ accordion and the
+   * "Everything Included at ₹0" feature grid, plus the FAQPage JSON-LD schema.
+   */
+  pricing: {
+    faqs: [
+      {
+        question: "Is AdaptHub really free?",
+        answer:
+          "Yes. AdaptHub is Lifetime Free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
+      },
+      {
+        question: "Why is it free?",
+        answer:
+          "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep — not to build another EdTech subscription. The goal is impact at scale.",
+      },
+      {
+        question: "Will it stay free forever?",
+        answer:
+          "Yes. The core engine — daily personalized study plans, AI Coach, and granular analytics — stays free. AdaptHub may add enterprise tools for coaching institutes later. Individual aspirant access stays free, always.",
+      },
+      {
+        question: "Do I need a credit card to start?",
+        answer:
+          "No. You only need an email to create an account and begin your initial diagnostic calibration. No payment details required.",
+      },
+    ],
+    features: [
+      { id: "01", name: "Dynamic Daily Study Plans" },
+      { id: "02", name: "Adaptive Difficulty (ZPD)" },
+      { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
+      { id: "04", name: "Granular Performance Analytics" },
+      { id: "05", name: "Socratic AI Mistake Analysis" },
+      { id: "06", name: "Mastery-Based Cognitive Locks" },
+    ],
   },
 };

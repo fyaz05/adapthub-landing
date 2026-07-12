@@ -13,7 +13,6 @@ import VelocityDashboard from "../components/VelocityDashboard";
 import StreakMatrix from "../components/StreakMatrix";
 import TheLens from "../components/TheLens";
 import FAQ from "../components/FAQ";
-import BackgroundPulse from "../components/BackgroundPulse";
 import PhilosophySection from "../components/PhilosophySection.astro";
 import SocraticCoach from "../components/SocraticCoach";
 import Footer from "../components/Footer.astro";
@@ -24,7 +23,6 @@ import { resolvedContent as CONTENT } from "../utils/config";
   title={CONTENT.metadata.indexPage.title}
   description={CONTENT.metadata.indexPage.description}
   keywords={CONTENT.metadata.indexPage.keywords}
-  showLoadingScreen={true}
 >
   <script
     slot="head"
@@ -43,10 +41,10 @@ import { resolvedContent as CONTENT } from "../utils/config";
       })),
     })}
   />
-  <AnnouncementBar client:load transition:persist />
+  <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
   <main id="main-content" class="relative isolate">
-    <BackgroundPulse client:load />
+    <div class="background-pulse" aria-hidden="true"></div>
     <Hero />
     <PhilosophySection />
     <SocraticCoach client:visible />
