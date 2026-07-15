@@ -7,9 +7,10 @@ import path from "node:path";
 export default defineConfig({
   site: "https://adapthub.in",
   output: "static",
-  // trailingSlash "ignore" lets both /path and /path/ resolve; canonical URLs and
-  // internal links already use the trailing-slash form, so canonicals stay consistent.
-  trailingSlash: "ignore",
+  trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   // Enable Astro's built-in prefetch. `viewport` strategy uses IntersectionObserver
   // to prefetch links as they enter the viewport — best balance of bandwidth and speed.
   // `prefetchAll` opts in all internal links (overrides default opt-in behavior).

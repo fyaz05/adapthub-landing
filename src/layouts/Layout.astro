@@ -44,7 +44,8 @@ const {
   articleAuthor,
 } = Astro.props;
 const siteUrl = Astro.site || "https://adapthub.in";
-const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const cleanPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonicalURL = new URL(cleanPath, siteUrl);
 
 // Breadcrumb: prefer explicit prop (supports 3+ levels e.g. Home > Docs > Article).
 // Fall back to URL-derived 2-level breadcrumb (Home + current page) for backward compat

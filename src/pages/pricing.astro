@@ -23,15 +23,15 @@ const siteUrl = Astro.site || "https://adapthub.in";
         "name": "AdaptHub Lifetime Free CAT Prep",
         "description": "Complete access to adaptive study plans, AI-powered coaching, and CAT analytics at ₹0.",
         "brand": { "@type": "Brand", "name": "AdaptHub" },
-        "image": new URL("/og-image.png", siteUrl).href,
+        "image": [new URL("/og-image.png", siteUrl).href],
         "category": "EducationalApplication",
-        "url": new URL("pricing/", siteUrl).href,
+        "url": new URL("pricing", siteUrl).href,
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock",
-          "url": new URL("pricing/", siteUrl).href,
+          "url": new URL("pricing", siteUrl).href,
           "priceValidUntil": "2027-12-31"
         }
       },

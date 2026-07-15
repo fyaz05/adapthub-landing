@@ -21,12 +21,12 @@
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineEnding": "crlf"
+    "lineEnding": "lf"
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "suspicious": {
         "noUnknownAtRules": "off"
       }

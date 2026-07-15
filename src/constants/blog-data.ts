@@ -200,12 +200,12 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     slug: "distractor-error-taxonomy",
-    title: "CAT Distractor Taxonomy: Stop the Same Traps",
+    title: "Negation Trap Meaning & CAT Distractor Guide",
     category: "Error Analysis",
     date: "2026-02-23",
     readTime: "11_MIN",
     excerpt:
-      "CAT distractors exploit predictable shortcuts. Learn a practical system to detect Negation, Root Cause Mismatch, and Calculation Error traps.",
+      "CAT distractors exploit predictable shortcuts. Learn the negation trap meaning, root cause mismatch, and execution errors in CAT mock analysis.",
     sources: [
       {
         label: "IIM CAT Official Website",

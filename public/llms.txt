@@ -6,73 +6,73 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 
 ## Definitions
 
-- [What is adaptive learning for CAT?](https://adapthub.in/adaptive-learning-cat/): Definition of adaptive learning and the ZPD algorithm for CAT prep
+- [What is adaptive learning for CAT?](https://adapthub.in/adaptive-learning-cat): Definition of adaptive learning and the ZPD algorithm for CAT prep
 - [Adaptive learning (Markdown capsule)](https://adapthub.in/md/adaptive-learning-cat.md): Clean text definition for agents
-- [About AdaptHub](https://adapthub.in/about/): Product entity statement, methodology, founder
+- [About AdaptHub](https://adapthub.in/about): Product entity statement, methodology, founder
 - [About (Markdown capsule)](https://adapthub.in/md/about-adapthub.md): Brand one-paragraph facts
 
 ## Free access
 
-- [Home — free CAT 2026 prep platform](https://adapthub.in/): Free adaptive CAT prep positioning and feature overview
-- [Pricing — lifetime free](https://adapthub.in/pricing/): ₹0 access, no credit card, included modules
+- [Home — free CAT 2026 prep platform](https://adapthub.in): Free adaptive CAT prep positioning and feature overview
+- [Pricing — lifetime free](https://adapthub.in/pricing): ₹0 access, no credit card, included modules
 - [Pricing (Markdown capsule)](https://adapthub.in/md/pricing-free.md): Free offer facts
 
 ## Study systems
 
-- [How to analyse CAT mocks](https://adapthub.in/cat-mock-analysis/): Error taxonomy and continuous remediation framework
+- [How to analyse CAT mocks](https://adapthub.in/cat-mock-analysis): Error taxonomy and continuous remediation framework
 - [Mock analysis (Markdown capsule)](https://adapthub.in/md/cat-mock-analysis.md): Short extractable framework
-- [CAT 2026 study plan](https://adapthub.in/cat-study-plan-2026/): Phase-wise free timetable with mock blocks
+- [CAT 2026 study plan](https://adapthub.in/cat-study-plan-2026): Phase-wise free timetable with mock blocks
 - [Study plan (Markdown capsule)](https://adapthub.in/md/cat-study-plan-2026.md): Short phase summary
-- [Prepare for CAT without coaching](https://adapthub.in/cat-preparation-without-coaching/): Self-study blueprint and free resource stack
+- [Prepare for CAT without coaching](https://adapthub.in/cat-preparation-without-coaching): Self-study blueprint and free resource stack
 - [Self-study (Markdown capsule)](https://adapthub.in/md/prepare-without-coaching.md): Free stack without paid batch
-- [How to score 99 percentile in CAT](https://adapthub.in/how-to-score-99-percentile-cat/): Section targets + free adaptive loop
+- [How to score 99 percentile in CAT](https://adapthub.in/how-to-score-99-percentile-cat): Section targets + free adaptive loop
 - [99 percentile (Markdown capsule)](https://adapthub.in/md/how-to-score-99-percentile-cat.md): Free-friendly 99 systems summary
 
 ## Exam logistics
 
-- [CAT syllabus 2026](https://adapthub.in/cat-syllabus/): VARC, DILR, QA topics, pattern, marking
+- [CAT syllabus 2026](https://adapthub.in/cat-syllabus): VARC, DILR, QA topics, pattern, marking
 - [Syllabus (Markdown capsule)](https://adapthub.in/md/cat-syllabus-2026.md): Pattern and section takeaways
-- [CAT 2026 exam date](https://adapthub.in/cat-2026-exam-date/): Expected timeline, registration, eligibility snapshot
+- [CAT 2026 exam date](https://adapthub.in/cat-2026-exam-date): Expected timeline, registration, eligibility snapshot
 - [Exam date (Markdown capsule)](https://adapthub.in/md/cat-2026-exam-date.md): Provisional timeline facts
 
 ## Section strategy
 
-- [CAT VARC strategy 2026](https://adapthub.in/cat-varc-strategy/): RC-first accuracy and VA practice
+- [CAT VARC strategy 2026](https://adapthub.in/cat-varc-strategy): RC-first accuracy and VA practice
 - [VARC (Markdown capsule)](https://adapthub.in/md/cat-varc-strategy.md): Short VARC answer
-- [CAT DILR strategy 2026](https://adapthub.in/cat-dilr-strategy/): Set selection and trap avoidance
+- [CAT DILR strategy 2026](https://adapthub.in/cat-dilr-strategy): Set selection and trap avoidance
 - [DILR (Markdown capsule)](https://adapthub.in/md/cat-dilr-strategy.md): Short set-selection answer
-- [CAT Quant strategy 2026](https://adapthub.in/cat-quant-strategy/): Arithmetic-first weightage and ZPD practice
+- [CAT Quant strategy 2026](https://adapthub.in/cat-quant-strategy): Arithmetic-first weightage and ZPD practice
 - [Quant (Markdown capsule)](https://adapthub.in/md/cat-quant-strategy.md): Short QA priority answer
 
 ## Comparisons
 
-- [AdaptHub vs traditional CAT coaching](https://adapthub.in/adapthub-vs-competitors/): Free adaptive platform vs batch coaching; hybrid mock guidance
+- [AdaptHub vs traditional CAT coaching](https://adapthub.in/adapthub-vs-competitors): Free adaptive platform vs batch coaching; hybrid mock guidance
 - [Comparison (Markdown capsule)](https://adapthub.in/md/adapthub-vs-competitors.md): Fair hybrid positioning
 
 ## Platform documentation
 
-- [Docs hub](https://adapthub.in/docs/): How the product works
-- [Calibration sequence](https://adapthub.in/docs/calibration-sequence/): Adaptive diagnostic
-- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system/): Socratic hints and penalties
-- [Telemetry metrics](https://adapthub.in/docs/telemetry-performance-metrics/): Learning velocity and related metrics
-- [Spaced repetition](https://adapthub.in/docs/spaced-repetition-system/): SRS queue
+- [Docs hub](https://adapthub.in/docs): How the product works
+- [Calibration sequence](https://adapthub.in/docs/calibration-sequence): Adaptive diagnostic
+- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Socratic hints and penalties
+- [Telemetry metrics](https://adapthub.in/docs/telemetry-performance-metrics): Learning velocity and related metrics
+- [Spaced repetition](https://adapthub.in/docs/spaced-repetition-system): SRS queue
 
 ## Method blog (high citation value)
 
-- [Zone of Proximal Development in CAT Algebra](https://adapthub.in/blog/zone-of-proximal-development-cat-algebra/): 70–85% accuracy band with sources
-- [CAT distractor error taxonomy](https://adapthub.in/blog/distractor-error-taxonomy/): Trap types and remediation
-- [Metacognition for CAT](https://adapthub.in/blog/metacognition-first-cat-skill/): Error fingerprinting
-- [Quality streaks vs study hours](https://adapthub.in/blog/quality-streaks-vs-raw-study-hours/): Session quality metric
+- [Zone of Proximal Development in CAT Algebra](https://adapthub.in/blog/zone-of-proximal-development-cat-algebra): 70–85% accuracy band with sources
+- [CAT distractor error taxonomy](https://adapthub.in/blog/distractor-error-taxonomy): Trap types and remediation
+- [Metacognition for CAT](https://adapthub.in/blog/metacognition-first-cat-skill): Error fingerprinting
+- [Quality streaks vs study hours](https://adapthub.in/blog/quality-streaks-vs-raw-study-hours): Session quality metric
 
 ## Discovery
 
 - [Sitemap](https://adapthub.in/sitemap-index.xml): Full URL index
 - [Robots](https://adapthub.in/robots.txt): Crawl policy (AI bots allowed)
-- [Contact](https://adapthub.in/contact/): support@adapthub.in
+- [Contact](https://adapthub.in/contact): support@adapthub.in
 
 ## Optional
 
-- [Blog index](https://adapthub.in/blog/): Strategy articles
-- [Privacy Policy](https://adapthub.in/privacy-policy/): Data practices
-- [Terms of Service](https://adapthub.in/terms-of-service/): Usage terms
+- [Blog index](https://adapthub.in/blog): Strategy articles
+- [Privacy Policy](https://adapthub.in/privacy-policy): Data practices
+- [Terms of Service](https://adapthub.in/terms-of-service): Usage terms
 - [Contact support](mailto:support@adapthub.in): Human support

@@ -34,7 +34,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
       {
         "@type": "AboutPage",
         "@id": new URL("about/#aboutpage", siteUrl).href,
-        "url": new URL("about/", siteUrl).href,
+        "url": new URL("about", siteUrl).href,
         "name": CONTENT?.metadata?.about?.title || "About AdaptHub",
         "description": CONTENT?.metadata?.about?.description || "AI-powered adaptive learning for CAT",
         "isPartOf": { "@id": `${siteUrl}#website` },
@@ -45,7 +45,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
         "@id": new URL("about/#founder", siteUrl).href,
         "name": "Fyaz Mohammed",
         "jobTitle": "Founder",
-        "url": new URL("about/", siteUrl).href,
+        "url": new URL("about", siteUrl).href,
         "sameAs": ["https://www.linkedin.com/in/fyaz05/"],
         "worksFor": { "@id": `${siteUrl}#organization` },
         "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "EdTech", "Zone of Proximal Development"]

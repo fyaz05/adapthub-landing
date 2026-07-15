@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" aria-hidden="true">
     <filter id="noise" x="0" y="0">
       <!-- Kept your original frequency for that fine texture -->
       <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>

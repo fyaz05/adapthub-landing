@@ -45,7 +45,7 @@ const faqs = [
   dateModified="2026-07-13T00:00:00.000Z"
   breadcrumb={[
     { name: "Home", url: String(siteUrl) },
-    { name: "99 Percentile Strategy", url: new URL("/how-to-score-99-percentile-cat/", siteUrl).href },
+    { name: "99 Percentile Strategy", url: new URL("/how-to-score-99-percentile-cat", siteUrl).href },
   ]}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -77,7 +77,7 @@ const faqs = [
       Exact cutoffs move yearly. Use these as planning heuristics, then calibrate with your mock series:
     </p>
     <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
-      <li><strong class="text-zinc-200">VARC:</strong> Accuracy-first RC blocks; see <a href="/cat-varc-strategy" class="text-brand-teal hover:underline underline-offset-4">VARC strategy</a>.</li>
+      <li><strong class="text-zinc-200">VARC:</strong> Accuracy-first RC blocks with fact-vs-judgment drills (read our <a href="/blog/varc-fact-vs-judgment" class="text-brand-teal hover:underline decoration-brand-teal/30">VARC fact vs judgment</a> analysis); see <a href="/cat-varc-strategy" class="text-brand-teal hover:underline underline-offset-4">VARC strategy</a>.</li>
       <li><strong class="text-zinc-200">DILR:</strong> Two clean sets over three messy ones; see <a href="/cat-dilr-strategy" class="text-brand-teal hover:underline underline-offset-4">DILR strategy</a>.</li>
       <li><strong class="text-zinc-200">QA:</strong> Arithmetic + Algebra sitters first; see <a href="/cat-quant-strategy" class="text-brand-teal hover:underline underline-offset-4">Quant strategy</a>.</li>
     </ul>
@@ -100,7 +100,7 @@ const faqs = [
       <li>Mock spam without analysis</li>
       <li>Studying only comfortable topics</li>
       <li>Ignoring sectional cutoffs for a shiny overall score</li>
-      <li>Chasing hour counts instead of quality sessions</li>
+      <li>Chasing hour counts instead of quality sessions (learn how AdaptHub measures consistency through the <a href="/docs/quality-streaks" class="text-brand-teal hover:underline decoration-brand-teal/30">Quality Streaks system documentation</a>)</li>
     </ul>
 
     <CtaBlock text="Start Free Calibration" />

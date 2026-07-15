@@ -24,13 +24,13 @@ const siteUrl = Astro.site || "https://adapthub.in";
       {
         "@type": "CollectionPage",
         "@id": new URL("blog/#collection", siteUrl).href,
-        "url": new URL("blog/", siteUrl).href,
+        "url": new URL("blog", siteUrl).href,
         "name": CONTENT.metadata.blog.title,
         "description": CONTENT?.metadata?.blog?.description || "Strategic insights for CAT 2026"
       },
       {
         "@type": "Blog",
-        "@id": `${siteUrl}blog/#blog`,
+        "@id": new URL("blog/#blog", siteUrl).href,
         "name": `AdaptHub ${CONTENT.metadata.blog.title}`,
         "description": "Strategic insights for CAT 2026",
         "publisher": { "@type": "Organization", "name": "AdaptHub" },
@@ -39,7 +39,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "headline": a.title,
           "description": a.excerpt,
           "datePublished": new Date(a.date).toISOString(),
-          "url": `${siteUrl}blog/${a.slug}`
+          "url": new URL(`blog/${a.slug}`, siteUrl).href
         }))
       }
     ]

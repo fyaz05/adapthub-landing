@@ -6,7 +6,7 @@ import Footer from "../../components/Footer.astro";
 import { DOC_SECTIONS, DOC_FAQS } from "../../constants/docs-data";
 
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
-const troubleshootingURL = new URL("/docs/troubleshooting/", siteUrl).href;
+const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
 ---
 
 <Layout
@@ -15,7 +15,7 @@ const troubleshootingURL = new URL("/docs/troubleshooting/", siteUrl).href;
   keywords={["adapthub troubleshooting", "adapthub faq", "adapthub help", "adapthub support"]}
   breadcrumb={[
     { name: "Home", url: siteUrl },
-    { name: "Docs", url: new URL("/docs/", siteUrl).href },
+    { name: "Docs", url: new URL("/docs", siteUrl).href },
     { name: "Troubleshooting", url: troubleshootingURL },
   ]}
 >

@@ -39,7 +39,7 @@ const faqs = [
   dateModified="2026-02-23T00:00:00.000Z"
   breadcrumb={[
     { name: "Home", url: String(siteUrl) },
-    { name: "Adaptive Learning", url: new URL("/adaptive-learning-cat/", siteUrl).href },
+    { name: "Adaptive Learning", url: new URL("/adaptive-learning-cat", siteUrl).href },
   ]}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -100,7 +100,7 @@ const faqs = [
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The three adaptive loops</h2>
     <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
       <li><strong class="text-zinc-200">Micro (per question):</strong> Difficulty adjusts within the session based on last 3 responses.</li>
-      <li><strong class="text-zinc-200">Meso (per topic):</strong> Topic mastery level updates after each session; next session pulls from the topic's current ZPD.</li><li><strong class="text-zinc-200">Macro (per week):</strong> Mastery vector across all topics feeds the weekly study plan priority order.</li></ul>
+      <li><strong class="text-zinc-200">Meso (per topic):</strong> Topic mastery level updates after each session; next session pulls from the topic's current ZPD. Learn how the <a href="/docs/daily-learning-module" class="text-brand-teal hover:underline decoration-brand-teal/30">Daily Learning Module</a> structures this sequence.</li><li><strong class="text-zinc-200">Macro (per week):</strong> Mastery vector across all topics feeds the weekly study plan priority order.</li></ul>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How it differs from "AI coaching" add-ons</h2>
     <p class="text-zinc-400 leading-[1.8] mb-10">

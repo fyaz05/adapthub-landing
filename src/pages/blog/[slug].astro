@@ -15,7 +15,7 @@ export function getStaticPaths() {
 const { article } = Astro.props;
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
 const articleDateISO = new Date(article.date).toISOString();
-const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
+const canonicalURL = new URL(`/blog/${article.slug}`, siteUrl).href;
 // Keep SERP titles roughly ≤60 chars while preserving brand when space allows.
 const brand = " | AdaptHub";
 const MAX_TITLE = 60;
@@ -56,7 +56,7 @@ const pillarHub = hubBySlug[article.slug];
   ogImage={new URL("/og-image.png", siteUrl).href}
   breadcrumb={[
     { name: "Home", url: siteUrl },
-    { name: "Blog", url: new URL("/blog/", siteUrl).href },
+    { name: "Blog", url: new URL("/blog", siteUrl).href },
     { name: article.title, url: canonicalURL },
   ]}
 >
@@ -230,7 +230,7 @@ const pillarHub = hubBySlug[article.slug];
               All Articles
             </a>
             <a
-              href="https://app.adapthub.in/"
+              href="https://app.adapthub.in"
               class="inline-flex items-center gap-3 font-mono text-[10px] text-brand-teal uppercase tracking-[0.25em] hover:text-white transition-colors duration-300 group"
             >
               Start Calibration
@@ -278,7 +278,7 @@ const pillarHub = hubBySlug[article.slug];
                 Apply these principles inside the AdaptHub engine. Your cognitive baseline, calibrated in 15 minutes.
               </p>
               <a
-                href="https://app.adapthub.in/"
+                href="https://app.adapthub.in"
                 class="inline-flex items-center gap-3 font-mono text-[10px] text-white uppercase tracking-[0.2em] hover:text-brand-teal transition-colors duration-300 group"
               >
                 Start Calibration

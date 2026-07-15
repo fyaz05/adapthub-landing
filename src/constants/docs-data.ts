@@ -11,9 +11,9 @@ export const DOC_SECTIONS: DocSection[] = [
   {
     slug: "calibration-sequence",
     sysRef: "01.00",
-    title: "Calibration Sequence",
+    title: "Calibration Sequence & Diagnostics",
     description:
-      "How the Adaptive Diagnostic works, how the ZPD algorithm maps your cognitive baseline, and what the output means for your learning path.",
+      "Understand the calibration sequence vs daily practice, how the adaptive diagnostic works, and how the ZPD algorithm maps your cognitive baseline.",
     body: [
       {
         paragraphs: [

@@ -116,7 +116,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "@id": `${siteUrl}#organization`,
           "name": "AdaptHub"
         },
-        "url": new URL("cat-syllabus/", siteUrl).href,
+        "url": new URL("cat-syllabus", siteUrl).href,
         "inLanguage": "en-IN",
         "isAccessibleForFree": true,
         "educationalLevel": "PostSecondary",
@@ -133,7 +133,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "endDate": "2026-11-29",
           "location": {
             "@type": "VirtualLocation",
-            "url": new URL("cat-syllabus/", siteUrl).href
+            "url": new URL("cat-syllabus", siteUrl).href
           }
         },
         "offers": {
@@ -142,7 +142,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock",
           "category": "Free",
-          "url": new URL("pricing/", siteUrl).href
+          "url": new URL("pricing", siteUrl).href
         }
       }
     ]

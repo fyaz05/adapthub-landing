@@ -18,7 +18,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "@id": new URL("contact/#contact", siteUrl).href,
-    "url": new URL("contact/", siteUrl).href,
+    "url": new URL("contact", siteUrl).href,
     "name": CONTENT.metadata.contact.title,
     "description": CONTENT.metadata.contact.description,
   })}></script>

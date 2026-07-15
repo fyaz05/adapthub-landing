@@ -51,7 +51,7 @@ const faqs = [
   dateModified="2026-07-13T00:00:00.000Z"
   breadcrumb={[
     { name: "Home", url: String(siteUrl) },
-    { name: "CAT Mock Analysis", url: new URL("/cat-mock-analysis/", siteUrl).href },
+    { name: "CAT Mock Analysis", url: new URL("/cat-mock-analysis", siteUrl).href },
   ]}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -96,9 +96,9 @@ const faqs = [
       Every wrong/skipped answer gets exactly one tag. No "multiple issues" — pick the primary failure:
     </p>
     <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
-      <li><strong class="text-zinc-200">Concept Gap</strong> — Didn't know the rule/property/formula. Fix: targeted concept study + 5 adaptive drills.</li>
+      <li><strong class="text-zinc-200">Concept Gap</strong> — Didn't know the rule/property/formula. Fix: targeted concept study + 5 adaptive drills mapped to your <a href="/docs/mastery-progression" class="text-brand-teal hover:underline decoration-brand-teal/30">mastery-based progression</a> tier.</li>
       <li><strong class="text-zinc-200">Calculation Error</strong> — Arithmetic slip, sign error, unit mismatch. Fix: verification ritual per topic (sign check, unit check, boundary check).</li>
-      <li><strong class="text-zinc-200">Trap / Misread</strong> — Negation trap, root-cause mismatch, distractor matched. Fix: mandatory re-read check for that question type.</li><li><strong class="text-zinc-200">Time Sink</strong> — Correct but >3 min. Fix: heuristics / faster method / skip rule.</li><li><strong class="text-zinc-200">Avoidable Skip</strong> — Solved correctly untimed. Fix: selection heuristic / mental stamina.</li></ul>
+      <li><strong class="text-zinc-200">Trap / Misread</strong> — Negation trap, root-cause mismatch, distractor matched (read our full <a href="/blog/distractor-error-taxonomy" class="text-brand-teal hover:underline decoration-brand-teal/30">distractor error taxonomy</a> analysis). Fix: mandatory re-read check for that question type.</li><li><strong class="text-zinc-200">Time Sink</strong> — Correct but >3 min. Fix: heuristics / faster method / skip rule.</li><li><strong class="text-zinc-200">Avoidable Skip</strong> — Solved correctly untimed. Fix: selection heuristic / mental stamina.</li></ul>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The analysis session (same day, 90–120 min)</h2>
     <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">

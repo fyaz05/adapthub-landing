@@ -6,7 +6,7 @@ import Footer from "../../components/Footer.astro";
 import { DOC_SECTIONS } from "../../constants/docs-data";
 
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
-const pageUrl = new URL("/docs/core-issue-matrix/", siteUrl).href;
+const pageUrl = new URL("/docs/core-issue-matrix", siteUrl).href;
 
 const matrixData = [
   {
@@ -69,7 +69,7 @@ const schemaGraph = {
   keywords={["adapthub errors", "adapthub learning velocity", "quality streak reset adapthub", "adapthub spaced repetition queue", "adapthub calibration baseline", "adapthub advanced troubleshooting"]}
   breadcrumb={[
     { name: "Home", url: siteUrl },
-    { name: "Docs", url: new URL("/docs/", siteUrl).href },
+    { name: "Docs", url: new URL("/docs", siteUrl).href },
     { name: "Core Issue Matrix", url: pageUrl },
   ]}
 >

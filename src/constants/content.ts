@@ -546,7 +546,7 @@ export const CONTENT = {
   },
 
   links: {
-    app: "https://app.adapthub.in/",
+    app: "https://app.adapthub.in",
     privacy: "/privacy-policy",
     terms: "/terms-of-service",
     support: "mailto:support@adapthub.in",
