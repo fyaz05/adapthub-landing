@@ -6,6 +6,8 @@
   "license": "PolyForm-Noncommercial-1.0.0",
   "scripts": {
     "dev": "astro dev",
+    "partytown": "bunx partytown copylib public/~partytown",
+    "prebuild": "bunx partytown copylib public/~partytown",
     "build": "astro build",
     "preview": "astro preview",
     "lint": "biome check",
@@ -16,10 +18,10 @@
   "dependencies": {
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.3",
-    "@builder.io/partytown": "^0.10.3",
     "@fontsource/geist-mono": "^5.2.8",
     "@fontsource/geist-sans": "^5.2.5",
     "@fontsource/lora": "^5.2.8",
+    "@qwik.dev/partytown": "^0.14.0",
     "@radix-ui/react-dialog": "^1.1.19",
     "@radix-ui/react-visually-hidden": "^1.2.7",
     "@tailwindcss/vite": "^4.3.2",

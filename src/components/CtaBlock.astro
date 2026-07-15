@@ -1,0 +1,28 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  variant?: 'default' | 'yellow';
+}
+
+const { text, href = '/pricing', variant = 'default' } = Astro.props;
+
+const baseClasses = 'inline-flex items-center gap-3 px-8 py-4 font-bold uppercase tracking-wider text-sm transition-all';
+const variants = {
+  default: 'bg-white text-black hover:bg-zinc-200',
+  yellow: 'bg-accent-yellow text-black hover:bg-yellow-400 active:scale-95 shadow-[0_0_32px_rgba(252,211,77,0.2)] hover:shadow-[0_0_56px_rgba(252,211,77,0.35)]',
+};
+---
+
+<div class="mt-16 text-center border-t border-white/10 pt-16">
+  <a 
+    href={href}
+    class={`group ${baseClasses} ${variants[variant]} justify-center touch-manipulation whitespace-nowrap`}
+  >
+    {text}
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </svg>
+  </a>
+</div>

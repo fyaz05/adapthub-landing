@@ -1,0 +1,135 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "How should I analyse a CAT mock test?",
+    answer:
+      "Spend at least as long analysing as attempting. Check section scores and time, classify every wrong answer (concept gap, calculation, trap/misread), review skipped questions you could have solved, and flag correct-but-slow items over ~3 minutes. Log patterns across mocks so the next study block targets real failure modes.",
+  },
+  {
+    question: "How many full-length CAT mocks do I need for 99 percentile?",
+    answer:
+      "Most serious 99%ile attempts involve roughly 20–35 full-length mocks, but volume without analysis plateaus scores. Quality of post-mock review and adaptive practice between mocks matter more than raw mock count.",
+  },
+  {
+    question: "When should I start taking CAT mocks?",
+    answer:
+      "Take an early diagnostic mock before the syllabus feels 'complete' to set a baseline. Use topic and sectional tests while building concepts, then increase full mocks weekly from roughly the mid-prep phase through the final two months.",
+  },
+  {
+    question: "What error types should I track in mock analysis?",
+    answer:
+      "At minimum: conceptual gaps, calculation/execution errors, and trap/distractor misreads. Add time-mismanagement and poor set selection for DILR. AdaptHub's distractor tagging automates part of this taxonomy during adaptive practice.",
+  },
+  {
+    question: "Is mock analysis more important than taking another mock?",
+    answer:
+      "Yes for most aspirants. An unanalysed mock only measures current level; analysis converts mistakes into a study plan. Toppers commonly spend 1–2× attempt time on review.",
+  },
+];
+---
+<CatLayout
+  title="How to Analyse CAT Mocks (Framework) | AdaptHub"
+  description="Learn how to analyse CAT mock tests: error types, time audits, attempt selection, and a repeatable framework that turns mocks into percentile growth — free."
+  keywords={[
+    "how to analyse cat mocks",
+    "cat mock analysis",
+    "how to analyse cat mock test",
+    "mock test strategy cat",
+    "cat mock error analysis",
+    "how many mocks for 99 percentile",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT Mock Analysis", url: new URL("/cat-mock-analysis/", siteUrl).href },
+  ]}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to analyse a CAT mock test",
+        "description": "Step-by-step mock analysis for CAT aspirants targeting higher percentiles.",
+        "totalTime": "PT120M",
+        "step": [
+          { "@type": "HowToStep", "name": "Capture section scores and time", "text": "Record VARC, DILR, and QA accuracy, attempts, and time spent per section." },
+          { "@type": "HowToStep", "name": "Classify every wrong answer", "text": "Tag each miss: concept gap, calculation error, trap/misread, time sink, skipped-but-solvable." },
+          { "@type": "HowToStep", "name": "Review skipped questions", "text": "Re-attempt unanswered questions untimed. If you solve them, they were avoidable skips — not knowledge gaps." },
+          { "@type": "HowToStep", "name": "Audit time per question", "text": "Flag correct answers taking >3 minutes. Slow correct = hidden concept weakness." },
+          { "@type": "HowToStep", "name": "Log and remediate", "text": "Enter tags into your log (or AdaptHub — tags auto-flow into next drill queue). Next study block = top 3 failure tags only." },
+        ],
+      },
+    ],
+  })} />
+  <Callout label="Mock Analysis Framework">
+    <p><strong>Rule 1:</strong> Analysis time ≥ attempt time. Every wrong answer gets a tag: concept / calculation / trap / time / skip.</p>
+    <p><strong>Rule 2:</strong> Re-attempt skipped questions untimed. If solved → avoidable skip. If not → concept gap.</p>
+    <p><strong>Rule 3:</strong> Log patterns, not just scores. Next study block = top 3 failure tags only.</p></Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">How to Analyse CAT Mocks: Error Taxonomy, Time Audits & the Adaptive Loop</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      Most aspirants treat mocks as score-checkers. Top 1% treat them as diagnostic instruments. This framework turns every mock into a remediation roadmap — free on AdaptHub.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The 5-tag error taxonomy</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Every wrong/skipped answer gets exactly one tag. No "multiple issues" — pick the primary failure:
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">Concept Gap</strong> — Didn't know the rule/property/formula. Fix: targeted concept study + 5 adaptive drills.</li>
+      <li><strong class="text-zinc-200">Calculation Error</strong> — Arithmetic slip, sign error, unit mismatch. Fix: verification ritual per topic (sign check, unit check, boundary check).</li>
+      <li><strong class="text-zinc-200">Trap / Misread</strong> — Negation trap, root-cause mismatch, distractor matched. Fix: mandatory re-read check for that question type.</li><li><strong class="text-zinc-200">Time Sink</strong> — Correct but >3 min. Fix: heuristics / faster method / skip rule.</li><li><strong class="text-zinc-200">Avoidable Skip</strong> — Solved correctly untimed. Fix: selection heuristic / mental stamina.</li></ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The analysis session (same day, 90–120 min)</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Log section scores, accuracy, attempts, time spent per section.</li><li>Re-attempt every wrong/skipped question untimed. Assign one tag.</li>
+      <li>Re-solve all time-sink correct answers; find faster path.</li><li>Re-read all RC passages you missed; mark inference vs detail vs tone errors.</li>
+      <li>Enter tags into your log (or AdaptHub — tags auto-flow into next drill queue).</li>
+    </ol>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Weekly pattern review (every Sunday)</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Top 3 tags by frequency → next week's drill focus.</li><li>Section attempt-order stability check (VARC first? DILR first?).</li>
+      <li>Sectional accuracy trends — is QA accuracy climbing, DILR stable?</li>
+      <li>Time-budget adherence: did you hit 40/40/40 or borrow from one section?</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Where AdaptHub changes the loop</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Manual logs work until they don't. AdaptHub's adaptive engine keeps practice inside your Zone of Proximal Development, tags distractor-style mistakes, and prioritises what to drill next — so the "action layer" of mock analysis is continuous, not a weekend spreadsheet. Learn the method on <a href="/adaptive-learning-cat" class="text-brand-teal hover:underline underline-offset-4">adaptive learning for CAT</a>, or start free on the <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">lifetime free pricing page</a>.
+    </p>
+
+    <CtaBlock text="Start Free Calibration" />
+
+    <FaqSection faqs={faqs} title="CAT Mock Analysis FAQs" />
+
+    <RelatedGuides
+      links={[
+        { label: "CAT 2026 study plan", href: "/cat-study-plan-2026" },
+        { label: "Self-study without coaching", href: "/cat-preparation-without-coaching" },
+        { label: "CAT syllabus 2026", href: "/cat-syllabus" },
+        { label: "Distractor taxonomy", href: "/blog/distractor-error-taxonomy" },
+      ]}
+    />
+  </article>
+</CatLayout>

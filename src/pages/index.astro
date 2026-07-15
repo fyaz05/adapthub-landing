@@ -53,6 +53,155 @@ import { resolvedContent as CONTENT } from "../utils/config";
     <VelocityDashboard client:visible />
     <StreakMatrix client:visible />
     <FAQ client:visible />
+
+    {/* SEO topical depth + internal link cluster (visually quiet, crawlable) */}
+    <section
+      class="relative z-10 border-t border-white/[0.06] bg-white/[0.01]"
+      aria-labelledby="seo-resources-heading"
+    >
+      <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1800px]">
+        <div class="max-w-3xl mb-10">
+          <p class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.2em] mb-4">
+            [ CAT 2026 Resource Map ]
+          </p>
+          <h2
+            id="seo-resources-heading"
+            class="font-serif text-2xl md:text-3xl text-white tracking-tight mb-4"
+          >
+            Free adaptive CAT preparation resources
+          </h2>
+          <p class="text-zinc-400 font-sans text-base md:text-lg leading-relaxed" data-speakable>
+            AdaptHub is a free AI-powered adaptive learning platform for CAT 2026 preparation in India.
+            It uses ZPD difficulty calibration, Socratic AI coaching, and performance analytics.
+            The core product is lifetime free with no credit card required.
+          </p>
+        </div>
+        <nav aria-label="CAT preparation resource links">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <li>
+              <a
+                href="/cat-syllabus"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Syllabus</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT syllabus 2026 breakdown</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">VARC, DILR &amp; QA topic weightage and exam pattern.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-2026-exam-date"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Timeline</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT 2026 exam date &amp; strategy</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Expected notification, registration, and prep phases.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-preparation-without-coaching"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Self-study</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">Prepare for CAT without coaching</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Free study plan, books, and adaptive practice cadence.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/adaptive-learning-cat"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Method</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">What is adaptive learning in CAT?</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">ZPD algorithm, difficulty calibration, and learning velocity.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/adapthub-vs-competitors"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Compare</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">AdaptHub vs traditional CAT coaching</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">How free adaptive prep compares to IMS, TIME, iQuanta &amp; more.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-study-plan-2026"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Plan</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT 2026 study plan</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">6-month and flexible free timetables with mock blocks.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-mock-analysis"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Mocks</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">How to analyse CAT mocks</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Error taxonomy, time audits, and action loops.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-varc-strategy"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">VARC</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT VARC strategy 2026</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">RC-first accuracy, VA practice, reading plan.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-dilr-strategy"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">DILR</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT DILR set selection</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Two clean sets over three traps.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/cat-quant-strategy"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">QA</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT Quant strategy</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Arithmetic-first weightage and ZPD practice.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/how-to-score-99-percentile-cat"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">99%ile</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">How to score 99 percentile</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Section targets + free adaptive loop.</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/pricing"
+                class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
+              >
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Access</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">Lifetime free CAT preparation</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Full engine at ₹0 — no credit card, no paywalls.</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>

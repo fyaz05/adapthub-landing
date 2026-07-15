@@ -1,0 +1,135 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "What is the most important DILR skill for CAT?",
+    answer:
+      "Set selection. In 40 minutes you rarely solve every set. High scorers spend the first few minutes scanning all sets, picking two (sometimes three) workable ones, and abandoning traps early.",
+  },
+  {
+    question: "How should I practise DILR daily?",
+    answer:
+      "Solve 1–2 quality sets daily with full constraint parsing, then review why rejected sets were traps. Add mixed sectional sets weekly under time. Track selection mistakes separately from pure logic errors.",
+  },
+  {
+    question: "How many DILR sets should I attempt in the exam?",
+    answer:
+      "Often two clean sets with high accuracy beat three messy ones. Targets vary by paper difficulty; use mocks to find your personal “two solid sets + optional partial” rule.",
+  },
+  {
+    question: "Why do I freeze on hard DILR sets?",
+    answer:
+      "Usually missing a binding constraint or forcing a familiar template onto a hybrid set. Train a two-minute entry parse: variables, constraints, what is asked, then decide continue or leave.",
+  },
+];
+---
+<CatLayout
+  title="CAT DILR Strategy 2026: Set Selection | AdaptHub"
+  description="CAT DILR strategy for 2026: set selection, daily set practice, time rules, and trap avoidance. Free adaptive prep to fix logic gaps faster."
+  keywords={[
+    "cat dilr strategy",
+    "cat dilr sets",
+    "how to improve dilr for cat",
+    "cat dilr set selection",
+    "dilr trap sets cat",
+    "cat lrdi strategy 2026",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT DILR Strategy", url: new URL("/cat-dilr-strategy/", siteUrl).href },
+  ]}
+  head={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })}
+>
+  <Callout label="DILR Strategy">
+    <p><strong>Core skill:</strong> Pick solvable sets fast; abandon traps without ego.</p>
+    <p><strong>Practice:</strong> Daily sets + weekly timed sectionals + selection error log.</p>
+    <p><strong>Exam goal:</strong> Two high-accuracy sets often beat three partial disasters.</p>
+  </Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">CAT DILR Strategy 2026: Selection Over Heroics</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      Data Interpretation & Logical Reasoning is set-based and time-boxed to 40 minutes. Percentile is less about “solving everything” and more about which sets you open. Pair this guide with <a href="/blog/decoding-2025-dilr-trap-sets" class="text-brand-teal hover:underline underline-offset-4">trap-set post-mortems</a> and structured <a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">mock analysis</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The two-minute entry protocol</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>List variables and what must be found.</li>
+      <li>Mark binding constraints (especially asymmetric ones).</li>
+      <li>Estimate if a clean table/graph forms in under ~8–10 minutes.</li>
+      <li>Continue or park — do not negotiate with a dead set for 20 minutes.</li>
+    </ol>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">What to practise (by type)</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>DI charts & caselets with missing values</li>
+      <li>Linear/circular arrangements and grouping with conditions</li>
+      <li>Games & tournaments, scheduling, matrix logic</li>
+      <li>Venn/set hybrids and multi-set papers</li>
+    </ul>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Topic inventory lives on the <a href="/cat-syllabus" class="text-brand-teal hover:underline underline-offset-4">CAT syllabus breakdown</a>. Priority is pattern recognition under time, not encyclopedic coverage without selection skill.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Worked selection example (40-minute mindset)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Imagine four sets on screen: (A) clean bar+table DI, (B) 8-variable seating with nested conditions, (C) games & tournaments with missing scores, (D) short but language-heavy caselet.
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-6 leading-[1.75]">
+      <li><strong class="text-zinc-200">0:00–2:00</strong> — Scan all four. Note data density and constraint hostility.</li>
+      <li><strong class="text-zinc-200">Pick A + D first</strong> if tables form quickly; park B if nesting depth is unclear in 30 seconds.</li>
+      <li><strong class="text-zinc-200">0:02–22:00</strong> — Finish first set fully before opening the second.</li>
+      <li><strong class="text-zinc-200">If stuck 3+ minutes with no progress</strong> — abandon; partial points on a third set beat sunk-cost heroics.</li>
+    </ul>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Log every mock as: <em>selected well / selected poorly / abandoned late</em>. Selection skill compounds faster than raw set speed. Trap-set patterns are unpacked in <a href="/blog/decoding-2025-dilr-trap-sets" class="text-brand-teal hover:underline underline-offset-4">this DILR post-mortem</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Weekly DILR cadence</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">Daily:</strong> 1–2 sets with full write-up of constraints</li>
+      <li><strong class="text-zinc-200">3× week:</strong> Mixed “scan 4 sets, pick 2” drills in 40 minutes</li>
+      <li><strong class="text-zinc-200">Weekly:</strong> Sectional or full mock DILR slice + selection log</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How AdaptHub helps DILR</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Adaptive routing keeps you in productive difficulty and flags recurring logic breaks instead of only right/wrong. Use free calibration on <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">AdaptHub lifetime free</a> inside your <a href="/cat-study-plan-2026" class="text-brand-teal hover:underline underline-offset-4">study plan</a>.
+    </p>
+
+    <CtaBlock text="Train DILR Adaptively — Free" />
+  </article>
+
+  <FaqSection faqs={faqs} title="DILR FAQs" />
+
+  <RelatedGuides
+    links={[
+      { label: "VARC strategy", href: "/cat-varc-strategy" },
+      { label: "Quant strategy", href: "/cat-quant-strategy" },
+      { label: "99 percentile plan", href: "/how-to-score-99-percentile-cat" },
+      { label: "Trap sets post-mortem", href: "/blog/decoding-2025-dilr-trap-sets" },
+    ]}
+  />
+</CatLayout>

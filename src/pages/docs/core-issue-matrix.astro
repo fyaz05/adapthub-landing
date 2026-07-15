@@ -5,7 +5,7 @@ import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
 import { DOC_SECTIONS } from "../../constants/docs-data";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
 const pageUrl = new URL("/docs/core-issue-matrix/", siteUrl).href;
 
 const matrixData = [

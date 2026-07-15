@@ -4,7 +4,8 @@ import SectionSpotlight from "./SectionSpotlight";
 ---
 
 <section 
-  class="relative w-full py-32 md:py-48 lg:py-56 bg-void text-zinc-100 overflow-hidden" 
+  class="relative w-full py-32 md:py-48 lg:py-56 bg-void text-zinc-100 overflow-hidden"
+  aria-labelledby="philosophy-heading"
 >
   {/* ── Environment & Atmosphere ── */}
   <SectionSpotlight client:visible color="rgba(45, 212, 191, 0.12)" size={600} />
@@ -42,7 +43,7 @@ import SectionSpotlight from "./SectionSpotlight";
     {/* ── Monumental Editorial Typography ── */}
     <div class="max-w-6xl mx-auto text-center relative z-20 mb-32 md:mb-48">
       
-      <h2 class="font-serif text-[2.75rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-none tracking-tighter text-white text-balance flex flex-col items-center">
+      <h2 id="philosophy-heading" class="font-serif text-[2.75rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-none tracking-tighter text-white text-balance flex flex-col items-center">
         
         {/* Line 1 & 2 */}
         <span class="block text-zinc-400 page-stagger" style="--i:1">

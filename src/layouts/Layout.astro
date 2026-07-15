@@ -7,7 +7,7 @@ import "@fontsource/lora/700.css";
 import "@fontsource/lora/400-italic.css";
 import { ClientRouter } from "astro:transitions";
 import { resolvedContent as CONTENT } from "../utils/config";
-import { partytownSnippet } from "@builder.io/partytown/integration";
+import { partytownSnippet } from "@qwik.dev/partytown/integration";
 
 import NoiseOverlay from "../components/NoiseOverlay.astro";
 
@@ -19,6 +19,10 @@ interface Props {
   datePublished?: string;
   dateModified?: string;
   ogType?: "website" | "article";
+  /** article:section for ogType=article pages (e.g. blog category). Falls back to "CAT Preparation". */
+  articleSection?: string;
+  /** article:author for ogType=article pages. Falls back to the brand name. */
+  articleAuthor?: string;
   /** Per-page OG image URL (absolute). Defaults to global og-image.png. */
   ogImage?: string;
   /** Optional explicit breadcrumb trail. Each entry is { name, url }.
@@ -36,6 +40,8 @@ const {
   ogType = "website",
   ogImage,
   breadcrumb,
+  articleSection,
+  articleAuthor,
 } = Astro.props;
 const siteUrl = Astro.site || "https://adapthub.in";
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
@@ -79,12 +85,37 @@ const partytownConfig = {
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="bg-void relative" style="color-scheme: dark">
+<html lang="en-IN" class="bg-void relative" style="color-scheme: dark">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    {/*
+      ANALYTICS / SEARCH CONSOLE PLACEHOLDERS
+      ───────────────────────────────────────
+      GA4 is live via Partytown below (id G-W4K3Z0TPD8).
+      To swap IDs or add GTM:
+        1. Replace G-W4K3Z0TPD8 with your Measurement ID, or
+        2. Uncomment the GTM block and set GTM-XXXXXXX.
+      Google Search Console verification:
+        Uncomment the meta tag below and paste your token from
+        Search Console → Settings → Ownership verification → HTML tag.
+    */}
+    {/* <meta name="google-site-verification" content="PASTE_GSC_VERIFICATION_TOKEN" /> */}
+    {/*
+    <!-- Google Tag Manager (optional — prefer GA4-only unless you need GTM) -->
+    <script type="text/partytown">
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXXXXXX');
+    </script>
+    */}
 
     {/* Partytown — runs third-party scripts (GA4) in a web worker to keep the
         main thread free. This is the single biggest INP win for this site:
@@ -92,12 +123,12 @@ const partytownConfig = {
     <script is:inline set:html={partytownSnippet(partytownConfig)} />
 
     {/* GA4 gtag.js — runs through Partytown (type="text/partytown") */}
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-W4K3Z0TPD8"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-W4K3Z0TPD8"></script>
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-W4K3Z0TPD8');
+      gtag('config', 'G-W4K3Z0TPD8', { anonymize_ip: true });
     </script>
 
     <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
@@ -106,11 +137,20 @@ const partytownConfig = {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#050505" />
-    
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+    <link rel="author" type="text/plain" href="/humans.txt" />
+
     {/* Canonical URL — skip on noindex pages (e.g. 404) to avoid confusing crawlers */}
     {!noindex && <link rel="canonical" href={canonicalURL} />}
+    <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
     <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
+    <meta name="googlebot" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
 
     {/* Primary Meta Tags */}
     <title>{title}</title>
@@ -118,6 +158,11 @@ const partytownConfig = {
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords.join(", ")} />
     <meta name="author" content={CONTENT.global.brandName} />
+    <meta name="application-name" content={CONTENT.global.brandName} />
+    <meta name="apple-mobile-web-app-title" content={CONTENT.global.brandName} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
     {/* Open Graph / Facebook — SINGLE PNG og:image for crawler compatibility.
         AVIF OG images do not render on Twitter/Slack/LinkedIn/WhatsApp/Discord. */}
@@ -128,12 +173,15 @@ const partytownConfig = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:alt" content={description} />
+    <meta property="og:image:alt" content={`${CONTENT.global.brandName} — ${description}`} />
     {ogType === "article" && datePublished && <meta property="article:published_time" content={datePublished} />}
     {ogType === "article" && dateModified && <meta property="article:modified_time" content={dateModified} />}
+    {ogType === "article" && <meta property="article:author" content={articleAuthor ?? CONTENT.global.brandName} />}
+    {ogType === "article" && <meta property="article:section" content={articleSection ?? "CAT Preparation"} />}
 
     {/* Twitter — PNG for broadest compatibility */}
     <meta name="twitter:card" content="summary_large_image" />
@@ -141,18 +189,28 @@ const partytownConfig = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
-    <meta name="twitter:image:alt" content={description} />
+    <meta name="twitter:image:alt" content={`${CONTENT.global.brandName} — ${description}`} />
+    {/* <meta name="twitter:site" content="@adapthublabs" /> */}
+    {/* <meta name="twitter:creator" content="@adapthublabs" /> */}
 
-    {/* Structured Data — Single @graph for all entities */}
+    {/* Structured Data — Single @graph for sitewide entities.
+        Page-specific schemas (FAQPage, BlogPosting, Product, Course)
+        are injected via the head slot on individual pages. */}
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Organization",
-          "@id": siteUrl,
+          "@id": `${siteUrl}#organization`,
           "name": CONTENT.global.brandName,
           "url": siteUrl,
-          "logo": new URL(CONTENT.assets.logoLight, siteUrl).href,
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL(CONTENT.assets.logoLight, siteUrl).href,
+            "width": 512,
+            "height": 512
+          },
+          "image": new URL("/og-image.png", siteUrl).href,
           "description": CONTENT.metadata.defaultDescription,
           "email": supportEmail,
           "foundingDate": "2025",
@@ -162,9 +220,22 @@ const partytownConfig = {
             "jobTitle": "Founder",
             "sameAs": ["https://www.linkedin.com/in/fyaz05/"]
           },
-          "numberOfEmployees": "1-10",
-          "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "Educational technology"],
-          "areaServed": "IN",
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 10
+          },
+          "knowsAbout": [
+            "CAT exam preparation",
+            "Adaptive learning systems",
+            "Educational technology",
+            "MBA entrance exams",
+            "Zone of Proximal Development"
+          ],
+          "areaServed": {
+            "@type": "Country",
+            "name": "India"
+          },
           "sameAs": [
             "https://www.instagram.com/adapthublabs/",
             "https://www.linkedin.com/company/adapthub-labs/"
@@ -172,15 +243,13 @@ const partytownConfig = {
         },
         {
           "@type": "WebSite",
-          "@id": new URL("#website", siteUrl).href,
+          "@id": `${siteUrl}#website`,
           "name": CONTENT.global.brandName,
           "url": siteUrl,
           "description": CONTENT.metadata.defaultDescription,
-          "inLanguage": "en",
+          "inLanguage": "en-IN",
           "publisher": {
-            "@type": "Organization",
-            "@id": `${siteUrl}#organization`,
-            "name": CONTENT.global.brandName
+            "@id": `${siteUrl}#organization`
           }
         },
         {
@@ -192,31 +261,51 @@ const partytownConfig = {
           "keywords": keywords.join(", "),
           ...(datePublished ? { "datePublished": datePublished } : {}),
           ...(dateModified ? { "dateModified": dateModified } : {}),
-          "inLanguage": "en",
+          "inLanguage": "en-IN",
           "isPartOf": {
-            "@type": "WebSite",
-            "@id": siteUrl,
-            "name": "Home",
-            "url": siteUrl
+            "@id": `${siteUrl}#website`
+          },
+          "about": {
+            "@id": `${siteUrl}#software`
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": ogImageURL
           },
           "speakable": {
             "@type": "SpeakableSpecification",
             "cssSelector": ["h1", "[data-speakable]", "h2"]
+          },
+          "breadcrumb": {
+            "@id": `${canonicalURL.href}#breadcrumb`
           }
         },
         {
           "@type": "BreadcrumbList",
+          "@id": `${canonicalURL.href}#breadcrumb`,
           "itemListElement": breadcrumbItems
         },
         {
           "@type": "SoftwareApplication",
-          "@id": new URL("#software", siteUrl).href,
+          "@id": `${siteUrl}#software`,
           "name": CONTENT.global.brandName,
           "applicationCategory": "EducationalApplication",
+          "applicationSubCategory": "CAT Exam Preparation",
           "operatingSystem": "Web",
+          "browserRequirements": "Requires JavaScript. Modern browser recommended.",
           "url": siteUrl,
-          "description": description,
+          "description": CONTENT.metadata.defaultDescription,
           "screenshot": new URL("/og-image.png", siteUrl).href,
+          "image": new URL("/og-image.png", siteUrl).href,
+          "inLanguage": "en-IN",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "category": "Free"
+          },
           "featureList": [
             "Adaptive Diagnostic Calibration (ZPD Algorithm)",
             "Socratic AI Coaching with Hint Penalties",
@@ -224,13 +313,12 @@ const partytownConfig = {
             "Spaced Repetition Queue (SRS) for memory decay prevention",
             "Mastery-Based Cognitive Locks (5-level progression)",
             "Quality Streaks (>70% accuracy, 15-min minimum sessions)",
-            "Distractor Error Tagging (Trap identification & Calculation Errors)"
+            "Distractor Error Tagging (Trap identification & Calculation Errors)",
+            "Dynamic Daily Study Plans for CAT 2026",
+            "QA, DILR & VARC concept coverage"
           ],
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "INR",
-            "availability": "https://schema.org/InStock"
+          "publisher": {
+            "@id": `${siteUrl}#organization`
           }
         }
       ]

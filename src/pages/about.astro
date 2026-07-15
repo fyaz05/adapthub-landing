@@ -32,29 +32,23 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
-        "@id": new URL("about/#webpage", siteUrl).href,
-        "url": new URL("about", siteUrl).href,
+        "@type": "AboutPage",
+        "@id": new URL("about/#aboutpage", siteUrl).href,
+        "url": new URL("about/", siteUrl).href,
         "name": CONTENT?.metadata?.about?.title || "About AdaptHub",
-        "description": CONTENT?.metadata?.about?.description || "AI-powered adaptive learning for CAT"
-      },
-      {
-        "@type": "Organization",
-        "@id": `${siteUrl}#organization`,
-        "name": "AdaptHub",
-        "url": siteUrl,
-        "logo": new URL(CONTENT?.assets?.logoLight || "/logo-light.svg", siteUrl).href,
-        "description": "An AI-powered adaptive learning engine built specifically for CAT exam preparation."
+        "description": CONTENT?.metadata?.about?.description || "AI-powered adaptive learning for CAT",
+        "isPartOf": { "@id": `${siteUrl}#website` },
+        "about": { "@id": `${siteUrl}#organization` }
       },
       {
         "@type": "Person",
         "@id": new URL("about/#founder", siteUrl).href,
         "name": "Fyaz Mohammed",
         "jobTitle": "Founder",
-        "url": new URL("about", siteUrl).href,
+        "url": new URL("about/", siteUrl).href,
         "sameAs": ["https://www.linkedin.com/in/fyaz05/"],
-        "worksFor": { "@type": "Organization", "@id": new URL("#organization", siteUrl).href },
-        "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "EdTech"]
+        "worksFor": { "@id": `${siteUrl}#organization` },
+        "knowsAbout": ["CAT exam preparation", "Adaptive learning systems", "EdTech", "Zone of Proximal Development"]
       }
     ]
   })} />
@@ -97,8 +91,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
           <div class="absolute -top-[30%] -left-[10%] w-[80%] h-[150%] pointer-events-none select-none opacity-60 mix-blend-screen" style="background:radial-gradient(ellipse 50% 50% at 30% 50%, rgba(13,148,136,0.07) 0%, transparent 80%)" aria-hidden="true"></div>
           
           <h1 class="text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-serif text-white tracking-tight leading-none mb-4 relative">
-            The algorithm <br/>
-            <span class="text-brand-teal italic block pb-2 mt-2 md:mt-4">behind the intuition.</span>
+            Adaptive CAT prep <br/>
+            <span class="text-brand-teal italic block pb-2 mt-2 md:mt-4">algorithm, explained.</span>
           </h1>
         </div>
         
@@ -226,6 +220,16 @@ const siteUrl = Astro.site || "https://adapthub.in";
         </div>
       </div>
     </section>
+
+    <nav aria-label="Related AdaptHub guides" class="container mx-auto px-4 sm:px-6 max-w-5xl pb-16">
+      <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.2em] mb-4">Continue</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-zinc-400">
+        <li><a href="/adaptive-learning-cat" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Adaptive learning for CAT (ZPD)</a></li>
+        <li><a href="/how-to-score-99-percentile-cat" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">99 percentile blueprint</a></li>
+        <li><a href="/pricing" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Lifetime free access</a></li>
+        <li><a href="/docs" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Platform docs</a></li>
+      </ul>
+    </nav>
   </main>
   
   <Footer />

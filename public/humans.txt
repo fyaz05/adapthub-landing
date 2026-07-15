@@ -1,0 +1,15 @@
+/* TEAM */
+Founder: Fyaz Mohammed
+Site: https://adapthub.in
+Contact: support@adapthub.in
+Location: India
+
+/* SITE */
+Standards: HTML5, CSS3, Schema.org JSON-LD
+Components: Astro 5, React 19, Tailwind CSS 4
+Software: Bun, Cloudflare Pages
+Doctype: HTML5
+Language: English (en-IN)
+
+/* THANKS */
+CAT aspirants who demand better than batch coaching.

@@ -56,12 +56,12 @@ import SectionSpotlight from "./SectionSpotlight";
           <div class="flex items-center gap-2.5 mb-5 footer-fade" style="--d:0">
             <img
               src={CONTENT.assets.logoLight}
-              alt=""
+              alt={CONTENT.global.logoAlt}
               width="40"
               height="40"
               class="w-10 h-10 md:w-18 md:h-18 opacity-90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
               loading="lazy"
-              role="presentation"
+              decoding="async"
             />
             <span class="font-serif text-xl sm:text-2xl text-paper font-medium tracking-tight">
               {CONTENT.footer.brand.name}
@@ -95,6 +95,7 @@ import SectionSpotlight from "./SectionSpotlight";
               <li class="footer-fade" style={`--d:${i + 3}`}>
                 <a
                   href={link.href}
+                  rel="noopener noreferrer"
                   class="group relative flex items-center py-3 text-zinc-400 hover:text-paper focus-visible:text-paper transition-colors duration-300 min-h-[44px] touch-manipulation rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                 >
                   <span
@@ -229,12 +230,9 @@ import SectionSpotlight from "./SectionSpotlight";
           {CONTENT.footer.legal.links.map(link => (
             <a
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
               class="hover:text-brand-teal focus-visible:text-brand-teal active:scale-95 transition-all duration-300 underline decoration-white/10 hover:decoration-brand-teal/40 underline-offset-4 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
               {link.label}
-              <span class="sr-only">(opens in new tab)</span>
             </a>
           ))}
         </nav>

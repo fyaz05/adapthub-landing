@@ -1,0 +1,152 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import DataTable from "../components/DataTable.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "Which CAT Quant topics have the highest weightage?",
+    answer:
+      "Recent trends put Arithmetic first (often ~35–50% of QA), then Algebra (~25–35%), with Geometry, Number System, and Modern Math filling the rest. Prioritise Arithmetic + Algebra before low-frequency topics.",
+  },
+  {
+    question: "How should non-engineers prepare for CAT QA?",
+    answer:
+      "Start with Arithmetic foundations under adaptive difficulty, then Algebra. Use timed mixed sets only after concept accuracy is stable. Avoid jumping to LOD-3 geometry early — it burns confidence without score return.",
+  },
+  {
+    question: "How many QA questions should I attempt for a high percentile?",
+    answer:
+      "It depends on paper difficulty and accuracy. High scorers often secure easy/medium Arithmetic and Algebra first, then selectively touch Geometry/Modern Math. Track your personal attempt-accuracy frontier in mocks.",
+  },
+  {
+    question: "What is the Zone of Proximal Development in Quant practice?",
+    answer:
+      "Practise in the band where you are challenged but not collapsing — roughly 70–85% accuracy. Too easy wastes time; too hard creates panic. AdaptHub's ZPD routing targets that band topic by topic.",
+  },
+];
+---
+<CatLayout
+  title="CAT Quant Strategy 2026: Arithmetic & Algebra | AdaptHub"
+  description="CAT Quant strategy for 2026: Arithmetic-first weightage, Algebra next, attempt selection, and ZPD practice. Free adaptive QA prep on AdaptHub."
+  keywords={[
+    "cat quant strategy",
+    "cat arithmetic weightage",
+    "cat algebra strategy",
+    "how to improve quant for cat",
+    "cat qa for non engineers",
+    "cat quantitative aptitude strategy 2026",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT Quant Strategy", url: new URL("/cat-quant-strategy/", siteUrl).href },
+  ]}
+  head={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })}
+>
+  <Callout label="QA Strategy">
+    <p><strong>Priority:</strong> Arithmetic → Algebra → Geometry → Number/Modern Math.</p>
+    <p><strong>Exam rule:</strong> Secure easy/medium first; protect accuracy under −1 MCQ penalty.</p>
+    <p><strong>Practice rule:</strong> Stay in the 70–85% growth band (ZPD), not ego LOD-5 marathons.</p></Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">CAT Quant Strategy 2026: Arithmetic First</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      Quantitative Aptitude rewards topic prioritisation and attempt selection inside 40 minutes. This strategy aligns with recent weightage trends and adaptive practice so non-engineers and engineers both climb without wasting months on low-yield topics. See full topic lists on the <a href="/cat-syllabus" class="text-brand-teal hover:underline underline-offset-4">CAT syllabus 2026 map</a> and <a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">mock analysis framework</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">What Quant actually tests</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">Arithmetic (~35–50%):</strong> Percentages, Profit & Loss, TSD, Time & Work, SI/CI, Ratios, Averages, Mixtures.</li><li><strong class="text-zinc-200">Algebra (~25–35%):</strong> Equations, Inequalities, Functions, Logs, Indices, Surds, Sequences, Maxima/Minima.</li>
+      <li><strong class="text-zinc-200">Geometry & Mensuration:</strong> Triangles, Circles, Quadrilaterals, Coordinate Geometry, 2D/3D Mensuration.</li>
+      <li><strong class="text-zinc-200">Number System & Modern Math:</strong> Divisibility, Remainders, Factorials, PnC, Probability, Set Theory.</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Strategy: Arithmetic First, Always</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Arithmetic is the engine. Master Percentages, Ratios, TSD, Time & Work, P&L, SI/CI, Mixtures under adaptive difficulty before anything else. Non-engineers especially should exhaust Arithmetic + Algebra (easy/medium) before touching LOD-3 Geometry.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Algebra as the second engine</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Equations, Inequalities, Modulus, Logs, Functions, Sequences. Treat them as one continuum: integer solutions, sum/product of roots, graphing, composition. Adaptive drills keep you in the 70–85% accuracy growth band (ZPD).
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Geometry & Modern Math: Selective, Not Exhaustive</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Triangles (centres, similarity), Circles (tangents, cyclic quads), Coordinate basics, 2D/3D Mensuration. PnC/Probability: Stars & Bars, distributions, conditional/Bayes, geometric probability. Do these after Arithmetic+Algebra accuracy is rock-solid in sectionals.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Attempt selection inside 40 minutes</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Minute 0–2: Scan all 22. Flag 6–8 easy/medium Arithmetic + Algebra.</li>
+      <li>Minute 2–20: Solve flagged set. Protect accuracy — −1 MCQ penalty is brutal.</li>
+      <li>Minute 20–30: Dip into Geometry/Modern Math only if >80% confidence.</li><li>Minute 30–40: Review flagged, finish partials, no blind guessing.</li>
+    </ol>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Adaptive Quant practice loop</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Static PDFs don't know your algebraic vs arithmetic gaps. AdaptHub keeps you in the ZPD band topic-by-topic and tags every miss (concept / calc / trap). Pair this strategy with the <a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">mock analysis framework</a> and the <a href="/cat-study-plan-2026" class="text-brand-teal hover:underline underline-offset-4">CAT 2026 study plan</a>. Start free on <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">lifetime free pricing</a>.
+    </p>
+
+    <CtaBlock text="Practise QA Adaptively — Free" />
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Weightage-guided study order</h2>
+    <DataTable
+      headers={[
+        { label: "Bucket", scope: "col" },
+        { label: "Typical share", scope: "col" },
+        { label: "Focus", scope: "col", class: "text-brand-teal" },
+      ]}
+      rows={[
+        { cells: [{ content: "Arithmetic" }, { content: "~35–50%" }, { content: "%·Ratio·TSD·Work·P&L·Mixtures·Averages" }] },
+        { cells: [{ content: "Algebra" }, { content: "~25–35%" }, { content: "Equations·Inequalities·Functions·Logs·Series" }] },
+        { cells: [{ content: "Geometry" }, { content: "~10–15%" }, { content: "Triangles·Circles·Mensuration·Coordinate" }] },
+        { cells: [{ content: "Number + Modern" }, { content: "~5–15% combined" }, { content: "Remainders·P&C·Probability·Sets" }] },
+      ]}
+    />
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Non-engineer path (first 8–10 weeks)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Specialist quant programs (e.g. Rodha-style non-eng tracks) succeed because they refuse to start at CAT-hard. Mirror that discipline without paying for a full batch:
+    </p>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-8 leading-[1.75]">
+      <li><strong class="text-zinc-200">Weeks 1–4:</strong> Percentages, ratios, averages, P&L, TSD, Time & Work — untimed until accuracy is stable.</li><li><strong class="text-zinc-200">Weeks 5–7:</strong> Linear/quadratic equations, inequalities, basic functions — still accuracy-first.</li><li><strong class="text-zinc-200">Weeks 8–10:</strong> Mixed timed sets only in topics you already clear untimed; add geometry basics last.</li><li><strong class="text-zinc-200">Throughout:</strong> Adaptive drills in the 70–85% band so you never fake progress on LOD-1 spam or panic on LOD-5.</li>
+    </ol>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Concept videos from free YouTube faculties are fine inputs. The missing piece is usually calibrated practice volume — that is AdaptHub's job on the free plan.
+    </p>
+
+    <CtaBlock text="Practise QA Adaptively — Free" />
+
+    <FaqSection faqs={faqs} title="Quant FAQs" />
+
+    <RelatedGuides
+      links={[
+        { label: "VARC strategy", href: "/cat-varc-strategy" },
+        { label: "DILR strategy", href: "/cat-dilr-strategy" },
+        { label: "99 percentile plan", href: "/how-to-score-99-percentile-cat" },
+        { label: "Mock analysis", href: "/cat-mock-analysis" },
+      ]}
+    />
+  </article>
+</CatLayout>

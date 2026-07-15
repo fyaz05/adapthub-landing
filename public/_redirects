@@ -1,3 +1,46 @@
+# Cloudflare Pages Redirects
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
 # Handle legacy bot/browser icon requests gracefully
 /favicon.ico                  /favicon.svg          302
 /apple-touch-icon-precomposed.png   /apple-touch-icon.png 302
+
+# Force trailing-slash consistency is handled by Astro trailingSlash config;
+# these catch common legacy / mistyped SEO URLs without soft-404s.
+/syllabus                     /cat-syllabus         301
+/syllabus/                    /cat-syllabus/        301
+/cat-syllabus-2026            /cat-syllabus         301
+/cat-syllabus-2026/           /cat-syllabus/        301
+/exam-date                    /cat-2026-exam-date   301
+/exam-date/                   /cat-2026-exam-date/  301
+/self-study                   /cat-preparation-without-coaching 301
+/self-study/                  /cat-preparation-without-coaching/ 301
+/vs                           /adapthub-vs-competitors 301
+/vs/                          /adapthub-vs-competitors/ 301
+/compare                      /adapthub-vs-competitors 301
+/compare/                     /adapthub-vs-competitors/ 301
+/adaptive-learning            /adaptive-learning-cat 301
+/adaptive-learning/           /adaptive-learning-cat/ 301
+/mock-analysis                /cat-mock-analysis    301
+/mock-analysis/               /cat-mock-analysis/   301
+/study-plan                   /cat-study-plan-2026  301
+/study-plan/                  /cat-study-plan-2026/ 301
+/cat-study-plan               /cat-study-plan-2026  301
+/cat-study-plan/              /cat-study-plan-2026/ 301
+/varc                         /cat-varc-strategy    301
+/varc/                        /cat-varc-strategy/   301
+/varc-strategy                /cat-varc-strategy    301
+/varc-strategy/               /cat-varc-strategy/   301
+/dilr                         /cat-dilr-strategy    301
+/dilr/                        /cat-dilr-strategy/   301
+/dilr-strategy                /cat-dilr-strategy    301
+/dilr-strategy/               /cat-dilr-strategy/   301
+/quant                        /cat-quant-strategy   301
+/quant/                       /cat-quant-strategy/  301
+/qa-strategy                  /cat-quant-strategy   301
+/qa-strategy/                 /cat-quant-strategy/  301
+/99-percentile                /how-to-score-99-percentile-cat 301
+/99-percentile/               /how-to-score-99-percentile-cat/ 301
+/home                         /                     301
+/home/                        /                     301
+/index.html                   /                     301

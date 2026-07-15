@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props;
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
 const canonicalURL = new URL(`/docs/${section.slug}/`, siteUrl).href;
 // Docs are evergreen reference material; use stable launch date as datePublished.
 const docsDatePublished = "2025-09-01T00:00:00.000Z";

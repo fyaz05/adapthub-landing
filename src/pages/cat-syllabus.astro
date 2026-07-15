@@ -3,7 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
 import { resolvedContent as CONTENT } from "../utils/config";
+
+// Rank model (70/20/10 study-priority heuristic, not official IIM weightage):
+// 1 = Core (the "70% block"), 2 = Secondary (the "20% block"), 3 = Niche (the "10% block").
+const RANK_LABEL = { 1: "Core", 2: "Secondary", 3: "Niche" };
+const RANK_CLASS = {
+  1: "bg-rose-500/10 border-rose-500/30 text-rose-300",
+  2: "bg-amber-500/10 border-amber-500/30 text-amber-300",
+  3: "bg-sky-500/10 border-sky-500/30 text-sky-300",
+};
 
 const syllabusData = [
   {
@@ -11,12 +24,13 @@ const syllabusData = [
     title: "Verbal Ability & Reading Comprehension",
     questions: "24 Qs",
     time: "40 Mins",
+    note: "Grammar is not tested in CAT. Focus entirely on comprehension, logical flow, and paragraph structure.",
     topics: [
-      { name: "Reading Comprehension", weight: "16 Qs (4 Passages)", details: "Dense passages from Philosophy, Sociology, History, Science, Economics, and Modern Technology. Question types: Central Idea, Inference, Tone, Author's Purpose, Fact vs Judgment." },
-      { name: "Para Jumbles", weight: "2-3 Qs", details: "Rearranging 4-5 sentences into a logically coherent paragraph. Primarily TITA format. Requires identification of transitional words, connectors, and logical flow." },
-      { name: "Para Summary", weight: "2-3 Qs", details: "Selecting the most accurate summary of a given paragraph from closely worded, deceptive distractor options. Tests comprehension and precision." },
-      { name: "Odd Sentence Out", weight: "1-2 Qs", details: "Identifying the contextually irrelevant sentence from a cluster of 5 sentences. Tests structural coherence and theme identification." },
-      { name: "Para Completion", weight: "0-1 Qs", details: "Selecting the sentence that logically completes a given paragraph. Tests inference, logical closure, and contextual continuity." }
+      { name: "Reading Comprehension", weight: "16 Qs (4 Passages)", rank: 1, details: "Dense passages from Philosophy, Sociology, History, Science, Economics, and Modern Technology. Question types: Central Idea, Inference, Tone, Author's Purpose, Fact vs Judgment.", strategy: "Around 70% of VARC. Build a daily reading habit (Aeon, Guardian, philosophy, sociology) and analyse author intent, not just content." },
+      { name: "Para Jumbles", weight: "2-3 Qs", rank: 1, details: "Rearranging 4-5 sentences into a logically coherent paragraph. Primarily TITA format. Requires identification of transitional words, connectors, and logical flow.", strategy: "Usually TITA (no negative marking). Lock mandatory pairs (pronouns, full-name→acronym) before scanning options." },
+      { name: "Para Summary", weight: "2-3 Qs", rank: 1, details: "Selecting the most accurate summary of a given paragraph from closely worded, deceptive distractor options. Tests comprehension and precision.", strategy: "Pick the core argument; reject options fixated on examples or using extreme language." },
+      { name: "Odd Sentence Out", weight: "1-2 Qs", rank: 1, details: "Identifying the contextually irrelevant sentence from a cluster of 5 sentences. Tests structural coherence and theme identification.", strategy: "Usually TITA. Find the unifying theme; the outlier breaks the logical flow." },
+      { name: "Para Completion", weight: "0-1 Qs", rank: 2, details: "Selecting the sentence that logically completes a given paragraph. Tests inference, logical closure, and contextual continuity.", strategy: "Often TITA. The missing line must conclude the argument without introducing new, unlinked ideas." }
     ]
   },
   {
@@ -24,11 +38,12 @@ const syllabusData = [
     title: "Data Interpretation & Logical Reasoning",
     questions: "22 Qs",
     time: "40 Mins",
+    note: "Pure chart DI is rare. Modern CAT tests Hybrid Sets that mix logic with arithmetic and data.",
     topics: [
-      { name: "Data Interpretation", weight: "10-12 Qs", details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure." },
-      { name: "Logical Reasoning", weight: "10-12 Qs", details: "Linear & Circular Seating Arrangements, Constraint-based Puzzles, Binary Logic, Scheduling, Matrix Arrangements, Blood Relations, Truth & Lie, Selection with Conditions, Quant-based LR." },
-      { name: "Games & Tournaments", weight: "0-1 Set", details: "Knockout Tournaments, Round Robin formats, Seeding logic, League-based scoring, and Logic-driven games." },
-      { name: "Venn Diagrams & Sets", weight: "0-1 Set", details: "2-Set, 3-Set, 4-Set Venn diagrams, Maxima-Minima intersecting logic in sets." }
+      { name: "Data Interpretation", weight: "10-12 Qs", rank: 2, details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure.", strategy: "Never standalone now — learn calculation shortcuts (growth rates, pie-degree→%) to deploy inside Hybrid sets." },
+      { name: "Logical Reasoning", weight: "10-12 Qs", rank: 2, details: "Linear & Circular Seating Arrangements, Constraint-based Puzzles, Binary Logic, Scheduling, Matrix Arrangements, Blood Relations, Truth & Lie, Selection with Conditions, Quant-based LR.", strategy: "Practise full constraint parsing; hybrid sets dominate the modern paper." },
+      { name: "Games & Tournaments", weight: "0-1 Set", rank: 1, details: "Knockout Tournaments, Round Robin formats, Seeding logic, League-based scoring, and Logic-driven games.", strategy: "High ROI. Master win/loss/draw point logic and bracket structures." },
+      { name: "Venn Diagrams & Sets", weight: "0-1 Set", rank: 1, details: "2-Set, 3-Set, 4-Set Venn diagrams, Maxima-Minima intersecting logic in sets.", strategy: "Master the algebraic equations for 3-4 variable intersections and at-least/at-most constraints." }
     ]
   },
   {
@@ -36,12 +51,13 @@ const syllabusData = [
     title: "Quantitative Aptitude",
     questions: "22 Qs",
     time: "40 Mins",
+    note: "Sorted by the 70/20/10 rule. Arithmetic and core Algebra dominate the exam.",
     topics: [
-      { name: "Arithmetic", weight: "8-10 Qs (~40%)", details: "Percentages, Successive Changes, Profit & Loss, Discounts, Simple & Compound Interest, Installments, Ratio & Proportion, Time Speed & Distance (Relative Speed, Trains, Boats & Streams), Time & Work (Work Efficiency, Pipes & Cisterns), Averages, Weighted Average, Mixtures & Alligations." },
-      { name: "Algebra", weight: "5-6 Qs", details: "Linear & Quadratic Equations (Roots, Nature of Roots), Polynomials (Remainder & Factor Theorem), Inequalities (Linear, Quadratic & Modulus), Logarithms, Functions (Domain, Range, Composition, Inverse, Graphs), Sequences & Series, Maxima & Minima." },
-      { name: "Geometry & Mensuration", weight: "4-5 Qs", details: "Lines & Angles, Triangles (Similarity, Congruence, Pythagoras), Quadrilaterals (Parallelogram, Trapezium, Rhombus), Circles (Tangents, Chords, Arcs), Polygons, Coordinate Geometry (Distance, Section Formula, Locus), 2D/3D Mensuration." },
-      { name: "Number System", weight: "1-2 Qs", details: "LCM/HCF, Divisibility Rules, Remainders (Euler's, Fermat's, Chinese Remainder Theorem), Factorials, Base Systems, Last Digits, Units Digit." },
-      { name: "Modern Math", weight: "1-2 Qs", details: "Progressions (AP, GP, HP, AGP), Permutations & Combinations, Probability (Bayes' Theorem, Conditional Probability), Set Theory." }
+      { name: "Arithmetic", weight: "8-10 Qs (~40%)", rank: 1, details: "Percentages, Successive Changes, Profit & Loss, Discounts, Simple & Compound Interest, Installments, Ratio & Proportion, Time Speed & Distance, Time & Work, Averages, Weighted Average, Mixtures & Alligations.", strategy: "Foundation first: Percentages, Ratio, TSD, Time & Work, P&L under adaptive difficulty before anything else." },
+      { name: "Algebra", weight: "5-6 Qs", rank: 1, details: "Linear & Quadratic Equations, Polynomials, Inequalities, Logarithms, Functions, Sequences & Series, Maxima & Minima.", strategy: "Treat Equations, Inequalities, Functions and Logs as one continuum; focus on integer/root behaviour." },
+      { name: "Geometry & Mensuration", weight: "4-5 Qs", rank: 2, details: "Lines & Angles, Triangles, Quadrilaterals, Circles, Polygons, Coordinate Geometry, 2D/3D Mensuration.", strategy: "Formula fluency plus visualization — triangles and circles carry the most tested sub-topics." },
+      { name: "Number System", weight: "1-2 Qs", rank: 2, details: "LCM/HCF, Divisibility Rules, Remainders, Factorials, Base Systems, Last Digits, Units Digit.", strategy: "Properties, divisibility, cyclicity — quick wins once the concepts click." },
+      { name: "Modern Math", weight: "1-2 Qs", rank: 1, details: "Progressions, Permutations & Combinations, Probability, Set Theory.", strategy: "PnC and Probability are Rank 1 priorities; link the Venn work heavily to DILR." }
     ]
   }
 ];
@@ -76,30 +92,11 @@ const siteUrl = Astro.site || "https://adapthub.in";
 <Layout 
   title={CONTENT.metadata?.catSyllabus?.title || "CAT Syllabus 2026 | Structural Breakdown"}
   description={CONTENT.metadata?.catSyllabus?.description || "Comprehensive, data-driven mapping of the Common Admission Test. Exact topic divisions and historical weightage logic."}
-  keywords={Array.isArray(CONTENT.metadata.catSyllabus.keywords) ? CONTENT.metadata.catSyllabus.keywords : []}
+  keywords={Array.isArray(CONTENT.metadata.catSyllabus?.keywords) ? CONTENT.metadata.catSyllabus.keywords : []}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": new URL("cat-syllabus/#webpage", siteUrl).href,
-        "url": new URL("cat-syllabus", siteUrl).href,
-        "name": CONTENT.metadata.catSyllabus.title,
-        "description": CONTENT.metadata.catSyllabus.description,
-        "inLanguage": "en",
-        "author": { "@type": "Person", "@id": `${siteUrl}about/#founder` },
-        "dateModified": "2026-02-23",
-        "about": [
-          { "@type": "DefinedTerm", "name": "Quantitative Aptitude (QA)" },
-          { "@type": "DefinedTerm", "name": "Data Interpretation & Logical Reasoning (DILR)" },
-          { "@type": "DefinedTerm", "name": "Verbal Ability & Reading Comprehension (VARC)" }
-        ],
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["h1", ".speakable-content"]
-        }
-      },
       {
         "@type": "FAQPage",
         "@id": new URL("cat-syllabus/#faq", siteUrl).href,
@@ -116,11 +113,12 @@ const siteUrl = Astro.site || "https://adapthub.in";
         "description": "A comprehensive breakdown of the CAT 2026 syllabus covering all three sections: Verbal Ability & Reading Comprehension (VARC), Data Interpretation & Logical Reasoning (DILR), and Quantitative Aptitude (QA), with historical topic weightage and question distribution.",
         "provider": {
           "@type": "Organization",
-          "@id": new URL("#organization", siteUrl).href,
+          "@id": `${siteUrl}#organization`,
           "name": "AdaptHub"
         },
-        "url": new URL("cat-syllabus", siteUrl).href,
-        "inLanguage": "en",
+        "url": new URL("cat-syllabus/", siteUrl).href,
+        "inLanguage": "en-IN",
+        "isAccessibleForFree": true,
         "educationalLevel": "PostSecondary",
         "teaches": [
           "Verbal Ability & Reading Comprehension",
@@ -132,14 +130,19 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "courseMode": "online",
           "courseWorkload": "PT14H",
           "startDate": "2026-06-01",
-          "endDate": "2026-11-29"
+          "endDate": "2026-11-29",
+          "location": {
+            "@type": "VirtualLocation",
+            "url": new URL("cat-syllabus/", siteUrl).href
+          }
         },
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock",
-          "category": "Free"
+          "category": "Free",
+          "url": new URL("pricing/", siteUrl).href
         }
       }
     ]
@@ -183,8 +186,8 @@ const siteUrl = Astro.site || "https://adapthub.in";
           {/* Narrative Anchor */}
           <div class="lg:col-span-5 xl:col-span-6">
             <h1 class="text-[3.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tighter leading-none mb-8">
-              CAT Syllabus <br />
-              <span class="italic text-brand-teal block pb-2 sm:ml-8 mt-2 md:mt-4">Breakdown.</span>
+              CAT Syllabus 2026 <br />
+              <span class="italic text-brand-teal block pb-2 sm:ml-8 mt-2 md:mt-4">Full Breakdown.</span>
             </h1>
             
             <p class="speakable-content text-zinc-400 font-sans text-lg md:text-xl leading-[1.7] tracking-wide border-l-2 border-brand-teal/30 pl-6">
@@ -225,17 +228,25 @@ const siteUrl = Astro.site || "https://adapthub.in";
         </div>
       </header>
 
-      {/* ── GEO: TL;DR / Key Takeaways Box for AI Overviews ── */}
-      <div class="mb-16 md:mb-24 page-stagger" style="--i:1">
-        <div class="border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
-          {/* Decorative Corner Tabs */}
-          <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
-          <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
-
-          <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">
-            [ Key Takeaways ]
+      {/* ── Priority Rank Legend (70/20/10 study-priority model) ── */}
+      <section class="mb-16 md:mb-24 page-stagger" style="--i:1">
+        <div class="border border-white/10 bg-white/[0.01] p-6 sm:p-8">
+          <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">[ How to use this tracker ]</p>
+          <p class="text-zinc-300 font-sans text-sm md:text-base leading-relaxed mb-5">
+            Topics are grouped by a <strong>70/20/10 study-priority model</strong> — a planning heuristic, not official IIM weightage.
+            Master the <strong>Core</strong> block first, then <strong>Secondary</strong>, then <strong>Niche</strong>.
           </p>
-          
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded">Rank 1 · Core · 70% block</span>
+            <span class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] bg-amber-500/10 border border-amber-500/30 text-amber-300 px-3 py-1.5 rounded">Rank 2 · Secondary · 20% block</span>
+            <span class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] bg-sky-500/10 border border-sky-500/30 text-sky-300 px-3 py-1.5 rounded">Rank 3 · Niche · 10% block</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GEO: TL;DR / Key Takeaways Box for AI Overviews ── */}
+      <div class="mb-16 md:mb-24 page-stagger" style="--i:2">
+        <Callout label="Key Takeaways" cornerTabs>
           <ul class="space-y-3 speakable-content text-zinc-300 font-sans text-base md:text-lg leading-relaxed">
             <li class="flex items-start gap-3">
               <span class="text-brand-teal mt-1 select-none">›</span>
@@ -249,18 +260,22 @@ const siteUrl = Astro.site || "https://adapthub.in";
               <span class="text-brand-teal mt-1 select-none">›</span>
               <span><strong>Marking:</strong> +3 for correct answers, −1 for wrong MCQs, 0 penalty for TITA questions.</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="text-brand-teal mt-1 select-none">›</span>
-              <span><strong>Syllabus Source:</strong> No official IIM syllabus exists; topics are rigorously inferred from past year papers.</span>
-            </li>
+               <li class="flex items-start gap-3">
+               <span class="text-brand-teal mt-1 select-none">›</span>
+               <span><strong>Syllabus Source:</strong> No official IIM syllabus exists; topics are rigorously inferred from past year papers. Verify the official notification and exact pattern at <a href="https://iimcat.ac.in" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline underline-offset-4">iimcat.ac.in</a> when released.</span>
+             </li>
+             <li class="flex items-start gap-3">
+               <span class="text-brand-teal mt-1 select-none">›</span>
+               <span><strong>Provisional:</strong> Question counts and weightages above reflect recent CAT cycles and may shift slightly year to year.</span>
+             </li>
           </ul>
-        </div>
+        </Callout>
       </div>
 
       {/* ── Syllabus Matrices (The Interactive Ledger) ── */}
       <div class="space-y-16 md:space-y-24">
         {syllabusData.map((section, index) => (
-          <section class="page-stagger relative border border-white/10 bg-white/[0.01]" style={`--i:${2 + index}`}>
+           <section class="page-stagger relative border border-white/10 bg-white/[0.01]" style={`--i:${3 + index}`}>
             
             {/* Sticky Section Control Bar */}
             <div class="sticky top-[72px] sm:top-20 z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-white/10 py-5 px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -288,6 +303,10 @@ const siteUrl = Astro.site || "https://adapthub.in";
               </div>
             </div>
 
+            {section.note && (
+              <p class="px-6 md:px-10 py-4 text-zinc-400 text-sm border-b border-white/[0.06]">{section.note}</p>
+            )}
+
             {/* The Tabular Topic Ledger */}
             <div class="flex flex-col">
               {section.topics.map((topic) => (
@@ -308,14 +327,22 @@ const siteUrl = Astro.site || "https://adapthub.in";
                         <span class="w-1.5 h-1.5 bg-brand-teal/80 rounded-full" aria-hidden="true"></span>
                         {topic.weight}
                       </div>
+                      <div class="mt-3">
+                        <span class={`font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-1 rounded border ${RANK_CLASS[topic.rank as 1 | 2 | 3]}`}>{RANK_LABEL[topic.rank as 1 | 2 | 3]} · Rank {topic.rank}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Right Column: Explanatory Prose */}
+                  {/* Right Column: Explanatory Prose + Strategy */}
                   <div class="md:w-[65%] lg:w-[70%] py-6 md:py-10 px-6 md:px-10 relative z-10 flex items-center">
-                    <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-base md:text-[1.0625rem] leading-[1.75] tracking-wide transition-colors duration-300 max-w-3xl">
-                      {topic.details}
-                    </p>
+                    <div class="max-w-3xl">
+                      <p class="text-zinc-400 group-hover:text-zinc-300 font-sans text-base md:text-[1.0625rem] leading-[1.75] tracking-wide transition-colors duration-300">
+                        {topic.details}
+                      </p>
+                      <p class="mt-3 text-sm text-zinc-300/90 leading-relaxed border-l-2 border-brand-teal/30 pl-4">
+                        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-teal mr-2">Strategy</span>{topic.strategy}
+                      </p>
+                    </div>
                   </div>
 
                 </div>
@@ -326,53 +353,26 @@ const siteUrl = Astro.site || "https://adapthub.in";
         ))}
       </div>
 
-      {/* ── Diagnostic Queries (Terminal Accordion) ── */}
-      <section class="max-w-4xl mx-auto mt-32 md:mt-40 pt-16 md:pt-24 border-t border-white/10 page-stagger" style="--i:5">
-        
-        <header class="mb-12">
-          <span class="font-mono text-[10px] text-amber-500 uppercase tracking-[0.25em] block mb-4">
-            [ FREQUENTLY ASKED ]
-          </span>
-          <h2 class="text-3xl md:text-4xl font-serif text-white tracking-tight">
-            CAT Syllabus FAQs
-          </h2>
-          <p class="text-zinc-400 font-sans text-sm md:text-base leading-relaxed mt-4 max-w-xl">
-            Common questions about the CAT exam pattern, marking scheme, and topic structure.
-          </p>
-        </header>
+      <FaqSection faqs={faqs} title="CAT Syllabus FAQs" />
 
-        <div class="border-t border-white/10">
-          {faqs.map((faq) => (
-            <details class="faq-row group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
-              <summary class="py-6 md:py-8 font-serif text-lg md:text-xl lg:text-2xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 active:scale-[0.99] transition-all duration-200 pr-4">
-                <span class="leading-snug pr-8 tracking-tight">{faq.question}</span>
-                
-                {/* Technical Toggle Nodes */}
-                <span class="font-mono text-sm md:text-base text-zinc-500 group-hover:text-brand-teal shrink-0 relative w-8 h-8 flex items-center justify-center transition-colors">
-                  <span class="absolute inset-0 flex items-center justify-center opacity-100 group-open:opacity-0 transition-opacity duration-300">[+]</span>
-                  <span class="absolute inset-0 flex items-center justify-center opacity-0 group-open:opacity-100 transition-opacity duration-300">[-]</span>
-                </span>
-              </summary>
-              
-              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans text-base md:text-[1.0625rem] animate-in fade-in slide-in-from-top-4 duration-500 ease-out">
-                <div class="border-l border-brand-teal/30 pl-6 md:pl-8 py-1 max-w-[65ch]">
-                  {faq.answer}
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Internal Link CTA ── */}
-      <div class="mt-24 md:mt-32 text-center pb-12 page-stagger" style="--i:6">
-        <a 
-          href="/pricing"
-          class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-white"
-        >
-          Start Free Calibration
-          <span class="text-brand-teal font-sans">→</span>
-        </a>
+      {/* ── Related guides + CTA ── */}
+      <div class="mt-24 md:mt-32 pb-12 page-stagger" style="--i:6">
+        <RelatedGuides
+          variant="centered"
+          links={[
+            { label: "CAT 2026 exam date", href: "/cat-2026-exam-date" },
+            { label: "CAT 2026 study plan", href: "/cat-study-plan-2026" },
+            { label: "How to analyse CAT mocks", href: "/cat-mock-analysis" },
+            { label: "VARC strategy", href: "/cat-varc-strategy" },
+            { label: "DILR strategy", href: "/cat-dilr-strategy" },
+            { label: "Quant strategy", href: "/cat-quant-strategy" },
+            { label: "99 percentile plan", href: "/how-to-score-99-percentile-cat" },
+            { label: "CAT self-study guide", href: "/cat-preparation-without-coaching" },
+            { label: "Adaptive learning for CAT", href: "/adaptive-learning-cat" },
+            { label: "CAT strategy blog", href: "/blog" },
+          ]}
+        />
+        <CtaBlock text="Start Free CAT Calibration" />
       </div>
 
     </div>

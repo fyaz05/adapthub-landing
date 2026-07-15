@@ -1,0 +1,120 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "How many marks for 99 percentile in CAT?",
+    answer:
+      "It varies by year and slot. Rough historical bands often sit near the high-80s to ~100+ raw marks for ~99 percentile, but treat this as directional only. Track your mock percentiles and sectional cutoffs rather than chasing a fixed raw score.",
+  },
+  {
+    question: "How many questions should I attempt for 99 percentile?",
+    answer:
+      "High accuracy on a selective attempt set beats low-accuracy volume. Many strong scripts target high-confidence attempts section-wise (for example solid RC blocks, two clean DILR sets, Arithmetic/Algebra sitters in QA) rather than finishing the paper.",
+  },
+  {
+    question: "Can I score 99 percentile with free resources only?",
+    answer:
+      "Yes — if you combine disciplined books/PYQs, free mocks, ruthless mock analysis, and personalised practice. Coaching is optional; unstructured free content without analysis is not enough.",
+  },
+  {
+    question: "How long does 99 percentile prep take?",
+    answer:
+      "Often 6–10 months for first-timers; shorter if baseline is strong. Consistency of quality sessions and mock analysis matters more than calendar length alone.",
+  },
+];
+---
+<CatLayout
+  title="How to Score 99 Percentile in CAT 2026 | AdaptHub"
+  description="How to score 99 percentile in CAT: section targets, attempt strategy, mock analysis, and free adaptive practice. A realistic plan without vanity study hours."
+  keywords={[
+    "how to score 99 percentile in cat",
+    "cat 99 percentile strategy",
+    "99 percentile cat preparation",
+    "cat 99 percentile marks",
+    "how to get 99 percentile in cat free",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "99 Percentile Strategy", url: new URL("/how-to-score-99-percentile-cat/", siteUrl).href },
+  ]}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })} />
+  <Callout label="99%ile Blueprint">
+    <p><strong>1.</strong> High-accuracy selection in every section — not maximum attempts.</p>
+    <p><strong>2.</strong> 20+ full mocks only if each is fully analysed.</p>
+    <p><strong>3.</strong> Adaptive remediation between mocks on logged failure modes.</p></Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">How to Score 99 Percentile in CAT (Without Vanity Hours)</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      99 percentile is a selection-and-accuracy problem under sectional timers. This page connects section strategies, mock analysis, and free adaptive practice into one path — usable with or without paid coaching.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Section targets (directional)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Exact cutoffs move yearly. Use these as planning heuristics, then calibrate with your mock series:
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">VARC:</strong> Accuracy-first RC blocks; see <a href="/cat-varc-strategy" class="text-brand-teal hover:underline underline-offset-4">VARC strategy</a>.</li>
+      <li><strong class="text-zinc-200">DILR:</strong> Two clean sets over three messy ones; see <a href="/cat-dilr-strategy" class="text-brand-teal hover:underline underline-offset-4">DILR strategy</a>.</li>
+      <li><strong class="text-zinc-200">QA:</strong> Arithmetic + Algebra sitters first; see <a href="/cat-quant-strategy" class="text-brand-teal hover:underline underline-offset-4">Quant strategy</a>.</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The four systems 99%ilers run</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-4 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">Syllabus prioritisation</strong> — high-weight topics first (<a href="/cat-syllabus" class="text-brand-teal hover:underline underline-offset-4">syllabus map</a>).</li>
+      <li><strong class="text-zinc-200">Calendar discipline</strong> — phase-wise plan (<a href="/cat-study-plan-2026" class="text-brand-teal hover:underline underline-offset-4">CAT 2026 study plan</a>).</li>
+      <li><strong class="text-zinc-200">Mock analysis loop</strong> — error taxonomy every paper (<a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">analysis framework</a>).</li>
+      <li><strong class="text-zinc-200">Adaptive practice</strong> — stay in the growth difficulty band (<a href="/adaptive-learning-cat" class="text-brand-teal hover:underline underline-offset-4">adaptive learning</a>).</li>
+    </ol>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Free path vs paid coaching</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Paid batches help some people with accountability. They are not required for 99 if you can self-manage. Free PYQs, selective free mocks, books, and an adaptive engine cover the skill loop. Compare models on <a href="/adapthub-vs-competitors" class="text-brand-teal hover:underline underline-offset-4">AdaptHub vs traditional coaching</a> and the <a href="/cat-preparation-without-coaching" class="text-brand-teal hover:underline underline-offset-4">without coaching guide</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">What not to do</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Mock spam without analysis</li>
+      <li>Studying only comfortable topics</li>
+      <li>Ignoring sectional cutoffs for a shiny overall score</li>
+      <li>Chasing hour counts instead of quality sessions</li>
+    </ul>
+
+    <CtaBlock text="Start Free Calibration" />
+
+    <FaqSection faqs={faqs} title="99 Percentile FAQs" />
+
+    <RelatedGuides
+      links={[
+        { label: "VARC", href: "/cat-varc-strategy" },
+        { label: "DILR", href: "/cat-dilr-strategy" },
+        { label: "Quant", href: "/cat-quant-strategy" },
+        { label: "Study plan", href: "/cat-study-plan-2026" },
+        { label: "Mock analysis", href: "/cat-mock-analysis" },
+      ]}
+    />
+  </article>
+</CatLayout>

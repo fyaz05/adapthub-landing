@@ -26,6 +26,7 @@ const Navbar = () => {
 
   const navRef = useRef<HTMLElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const prefersReduced = useReducedMotion();
 
@@ -56,6 +57,52 @@ const Navbar = () => {
   useEffect(() => {
     mobileMenuOpen ? scrollLock.lock() : scrollLock.unlock();
     return () => scrollLock.unlock();
+  }, [mobileMenuOpen]);
+
+  /* ── Mobile Dialog Focus Management ── */
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const getFocusables = () =>
+      Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => !el.hasAttribute("inert") && el.offsetParent !== null);
+
+    // Move focus into the dialog on open
+    const focusables = getFocusables();
+    (focusables[0] ?? dialog).focus();
+
+    // Trap Tab within the dialog
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const items = getFocusables();
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      // Restore focus to the toggle button on close
+      (hamburgerRef.current ?? previouslyFocused)?.focus();
+    };
   }, [mobileMenuOpen]);
 
   /* ── Global Key & Click-Outside ── */
@@ -172,9 +219,6 @@ const Navbar = () => {
               ${scrolled || mobileMenuOpen ? "py-2 px-3 md:px-4" : "py-2.5 px-4 md:px-5"}
               transition-[padding] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]
             `}
-            aria-hidden={mobileMenuOpen || undefined}
-            // @ts-expect-error inert is valid in modern browsers
-            inert={mobileMenuOpen ? "" : undefined}
           >
             {/* ── Brand Lockup ── */}
             <a
@@ -210,9 +254,10 @@ const Navbar = () => {
             </a>
 
             {/* ── Desktop Links with Sliding Pill ── */}
-            {/* biome-ignore lint/a11y/noStaticElementInteractions: container delegates to interactive children; onMouseLeave/onBlur are delegation, not interaction */}
             <div
               className="hidden lg:flex items-center gap-0.5 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              aria-hidden={mobileMenuOpen || undefined}
+              inert={mobileMenuOpen}
               onMouseLeave={() => {
                 setHoveredLink(null);
                 scheduleClose();
@@ -321,101 +366,110 @@ const Navbar = () => {
                               opacity: 0,
                               y: 12,
                               scale: 0.96,
-                              filter: "blur(4px)",
                             }}
                             animate={{
                               opacity: 1,
                               y: 0,
                               scale: 1,
-                              filter: "blur(0px)",
                             }}
                             exit={{
                               opacity: 0,
                               y: 8,
                               scale: 0.98,
-                              filter: "blur(2px)",
                             }}
-                            transition={DROP_SPRING}
+                            transition={{
+                              ...DROP_SPRING,
+                            }}
                             className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50 origin-top"
                             onMouseEnter={() => showDropdown(item.label)}
                             onMouseLeave={scheduleClose}
                           >
-                            <div className="relative w-[360px] max-w-[92vw] bg-zinc-950/95 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
-                              {/* Panel Grain */}
-                              <svg
-                                className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none opacity-[0.03]"
-                                aria-hidden="true"
-                              >
-                                <filter id="dd-grain">
-                                  <feTurbulence
-                                    type="fractalNoise"
-                                    baseFrequency="0.9"
-                                    numOctaves="3"
-                                    stitchTiles="stitch"
-                                  />
-                                </filter>
-                                <rect
-                                  width="100%"
-                                  height="100%"
-                                  filter="url(#dd-grain)"
-                                />
-                              </svg>
+                            {(() => {
+                              const isLarge = (item.subLinks?.length ?? 0) > 5;
+                              const grainId = `dd-grain-${item.label.replace(/\s+/g, "-").toLowerCase()}`;
+                              return (
+                                <div
+                                  className={`relative ${isLarge ? "w-[680px]" : "w-[360px]"} max-w-[92vw] bg-zinc-950/95 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden`}
+                                >
+                                  {/* Panel Grain */}
+                                  <svg
+                                    className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none opacity-[0.03]"
+                                    aria-hidden="true"
+                                  >
+                                    <filter id={grainId}>
+                                      <feTurbulence
+                                        type="fractalNoise"
+                                        baseFrequency="0.9"
+                                        numOctaves="3"
+                                        stitchTiles="stitch"
+                                      />
+                                    </filter>
+                                    <rect
+                                      width="100%"
+                                      height="100%"
+                                      filter={`url(#${grainId})`}
+                                    />
+                                  </svg>
 
-                              {/* Section Header */}
-                              <div className="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
-                                <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.25em]">
-                                  Index {"//"} {item.label}
-                                </span>
-                              </div>
+                                  {/* Section Header */}
+                                  <div className="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+                                    <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.25em]">
+                                      Index {"//"} {item.label}
+                                    </span>
+                                  </div>
 
-                              {/* Sub-links */}
-                              <div className="p-2 flex flex-col">
-                                {(item.subLinks as NavSubLink[]).map(
-                                  (sub, idx) => (
-                                    <motion.a
-                                      key={sub.label}
-                                      href={sub.href}
-                                      initial={{ opacity: 0, x: -8 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{
-                                        delay: idx * 0.05 + 0.05,
-                                        duration: 0.4,
-                                        ease: EASE_EXPO,
-                                      }}
-                                      className="group/sub relative flex items-start gap-4 p-3 rounded-xl outline-none hover:bg-white/[0.04] focus-visible:bg-white/[0.04] focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-inset transition-[background-color] duration-200"
-                                    >
-                                      <span className="font-mono text-[10px] text-zinc-600 mt-1 group-hover/sub:text-brand-teal/70 group-focus-visible/sub:text-brand-teal/70 transition-colors duration-200 shrink-0 tabular-nums">
-                                        {String(idx + 1).padStart(2, "0")}
-                                      </span>
-                                      <div className="flex flex-col gap-1 min-w-0 flex-1">
-                                        <span className="text-[15px] font-serif tracking-tight text-zinc-300 group-hover/sub:text-white group-focus-visible/sub:text-white transition-colors duration-200 leading-snug">
-                                          {sub.label}
-                                        </span>
-                                        <span className="text-[11px] text-zinc-500 group-hover/sub:text-zinc-400 group-focus-visible/sub:text-zinc-400 leading-relaxed transition-colors duration-200">
-                                          {sub.description}
-                                        </span>
-                                      </div>
-                                      <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="14"
-                                        height="14"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        className="mt-1.5 shrink-0 text-zinc-700 opacity-0 -translate-x-2 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 group-focus-visible/sub:opacity-100 group-focus-visible/sub:translate-x-0 group-hover/sub:text-brand-teal group-focus-visible/sub:text-brand-teal transition-[opacity,transform,color] duration-300 ease-out"
-                                        aria-hidden="true"
-                                      >
-                                        <path d="M5 12h14" />
-                                        <path d="m12 5 7 7-7 7" />
-                                      </svg>
-                                    </motion.a>
-                                  ),
-                                )}
-                              </div>
-                            </div>
+                                  {/* Sub-links */}
+                                  <div
+                                    className={`p-2 max-h-[70vh] overflow-y-auto ${isLarge ? "grid grid-cols-1 md:grid-cols-2 gap-x-2" : "flex flex-col"}`}
+                                  >
+                                    {(item.subLinks as NavSubLink[]).map(
+                                      (sub, idx) => (
+                                        <motion.a
+                                          key={sub.label}
+                                          href={sub.href}
+                                          initial={{ opacity: 0, x: -8 }}
+                                          animate={{ opacity: 1, x: 0 }}
+                                          transition={{
+                                            delay: idx * 0.03 + 0.05,
+                                            duration: 0.4,
+                                            ease: EASE_EXPO,
+                                          }}
+                                          className="group/sub relative flex items-start gap-4 p-3 rounded-xl outline-none hover:bg-white/[0.04] focus-visible:bg-white/[0.04] focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-inset transition-[background-color] duration-200"
+                                        >
+                                          <span className="font-mono text-[10px] text-zinc-600 mt-1 group-hover/sub:text-brand-teal/70 group-focus-visible/sub:text-brand-teal/70 transition-colors duration-200 shrink-0 tabular-nums">
+                                            {String(idx + 1).padStart(2, "0")}
+                                          </span>
+                                          <div className="flex flex-col gap-1 min-w-0 flex-1">
+                                            <span className="text-[15px] font-serif tracking-tight text-zinc-300 group-hover/sub:text-white group-focus-visible/sub:text-white transition-colors duration-200 leading-snug">
+                                              {sub.label}
+                                            </span>
+                                            <span className="text-[11px] text-zinc-500 group-hover/sub:text-zinc-400 group-focus-visible/sub:text-zinc-400 leading-relaxed transition-colors duration-200">
+                                              {sub.description}
+                                            </span>
+                                          </div>
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="mt-1.5 shrink-0 text-zinc-700 opacity-0 -translate-x-2 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 group-focus-visible/sub:opacity-100 group-focus-visible/sub:translate-x-0 group-hover/sub:text-brand-teal group-focus-visible/sub:text-brand-teal transition-[opacity,transform,color] duration-300 ease-out"
+                                            aria-hidden="true"
+                                          >
+                                            <path d="M5 12h14" />
+                                            <path d="m12 5 7 7-7 7" />
+                                          </svg>
+                                        </motion.a>
+                                      ),
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })()}
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -428,7 +482,11 @@ const Navbar = () => {
             {/* ── Right Action Cluster ── */}
             <div className="flex items-center gap-2.5 z-20 shrink-0">
               {/* Desktop CTA */}
-              <div className="hidden lg:block">
+              <div
+                className="hidden lg:block"
+                aria-hidden={mobileMenuOpen || undefined}
+                inert={mobileMenuOpen}
+              >
                 <SpotlightButton
                   href={CONTENT.links.app}
                   target="_blank"
@@ -485,6 +543,8 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <motion.div
             id="mobile-menu"
+            ref={dialogRef}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"

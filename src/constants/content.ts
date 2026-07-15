@@ -59,6 +59,38 @@ export const CONTENT = {
             description: "The complete zero-cost IIM admission blueprint.",
           },
           {
+            label: "CAT 2026 Study Plan",
+            href: "/cat-study-plan-2026",
+            description:
+              "Phase-wise free timetable with mock and adaptive blocks.",
+          },
+          {
+            label: "Mock Analysis Framework",
+            href: "/cat-mock-analysis",
+            description:
+              "Turn every mock into percentile growth with error taxonomy.",
+          },
+          {
+            label: "VARC Strategy",
+            href: "/cat-varc-strategy",
+            description: "RC-first accuracy plan for CAT Verbal.",
+          },
+          {
+            label: "DILR Strategy",
+            href: "/cat-dilr-strategy",
+            description: "Set selection and trap avoidance for LRDI.",
+          },
+          {
+            label: "Quant Strategy",
+            href: "/cat-quant-strategy",
+            description: "Arithmetic-first QA plan with ZPD practice.",
+          },
+          {
+            label: "99 Percentile Blueprint",
+            href: "/how-to-score-99-percentile-cat",
+            description: "Section targets, mocks, and free adaptive loop.",
+          },
+          {
             label: "Platform Docs",
             href: "/docs",
             description: "Technical manuals and logic documentation.",
@@ -73,14 +105,13 @@ export const CONTENT = {
 
   hero: {
     title: {
-      line1: "The Cognitive",
+      line1: "Adaptive CAT Prep",
       highlight: "Engine",
     },
     description:
-      "Built for the CAT 2026 99th percentile. AdaptHub maps how you think, finds where you break, and builds your path to IIM admission.",
+      "Free AI-powered adaptive learning for CAT 2026. AdaptHub maps how you think across QA, DILR & VARC, closes weak areas faster, and builds your path to the 99th percentile — and IIM admission.",
     cta: {
-      primary: "Start Calibration",
-      secondary: "About AdaptHub",
+      primary: "Start Free Calibration",
     },
   },
 
@@ -95,7 +126,7 @@ export const CONTENT = {
         id: "01",
         title: "Dynamic Daily Plans",
         description:
-          "Daily study plans recalibrated in real time based on accuracy, speed, and concept gaps.",
+          "Personalized CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
         visualCheck: {
           deltaValue: "+14.2%",
         },
@@ -104,7 +135,7 @@ export const CONTENT = {
         id: "02",
         title: "Performance Analytics",
         description:
-          "Granular performance insights across accuracy, velocity, and topic mastery.",
+          "Granular CAT mock-style analytics across accuracy, learning velocity, and topic mastery — not vanity scores.",
         tabs: ["Accuracy", "Growth"],
         progress: {
           accuracy: { label: "Accuracy", value: 94 },
@@ -115,13 +146,13 @@ export const CONTENT = {
         id: "03",
         title: "Cognitive Locks",
         description:
-          "The engine locks Level 5 questions until you prove mastery. You need 75%+ accuracy at Level 4 to earn access. Every unlock must be earned.",
+          "The engine locks Level 5 CAT questions until you prove mastery. You need 75%+ accuracy at Level 4 to earn access. Every unlock must be earned.",
       },
       {
         id: "04",
-        title: "AI Coach",
+        title: "Socratic AI Coach",
         description:
-          "Context-aware explanations that target your specific error patterns and unlock breakthroughs.",
+          "Context-aware AI coaching that targets your specific CAT error patterns and forces active recall before revealing solutions.",
       },
     ],
   },
@@ -178,33 +209,39 @@ export const CONTENT = {
     items: [
       {
         id: "faq-01",
-        question: "How does AdaptHub help me reach the 99th percentile?",
+        question: "How does AdaptHub help me reach the 99th percentile in CAT?",
         answer:
-          "AdaptHub keeps you in the Zone of Proximal Development (ZPD). It continuously adjusts question difficulty across QA, DILR, and VARC so you stay in the 70–85% accuracy band for sustained CAT 2026 progress.",
+          "AdaptHub keeps you in the Zone of Proximal Development (ZPD). It continuously adjusts question difficulty across QA, DILR, and VARC so you stay in the 70–85% accuracy band for sustained CAT 2026 progress — the zone where learning velocity peaks.",
       },
       {
         id: "faq-02",
-        question: "Why does the AI Coach penalize hints?",
+        question: "Why does the AI Coach penalize hints during CAT practice?",
         answer:
-          "AdaptHub penalizes passive reading. When you hit a wall, the coach does not reveal the full solution immediately; it gives progressive hints that force active reasoning before final explanation.",
+          "AdaptHub penalizes passive reading. When you hit a wall, the Socratic AI coach does not reveal the full solution immediately; it gives progressive hints that force active reasoning before final explanation — the same skill CAT rewards under time pressure.",
       },
       {
         id: "faq-03",
         question: "Who is AdaptHub built for?",
         answer:
-          "AdaptHub is built for serious CAT aspirants aiming for top IIMs. It is designed for learners who want a rigorous, adaptive study plan with deep performance feedback.",
+          "AdaptHub is built for serious CAT aspirants aiming for top IIMs, including self-study students who want free online CAT coaching with a rigorous adaptive study plan and deep performance feedback.",
       },
       {
         id: "faq-04",
-        question: "How does AdaptHub calculate performance?",
+        question: "How does AdaptHub calculate CAT performance?",
         answer:
-          "AdaptHub measures Learning Velocity — a composite view of how quickly you absorb concepts. It complements raw accuracy by tracking Distractor Errors to detect repeat failure patterns early.",
+          "AdaptHub measures Learning Velocity — a composite view of how quickly you absorb concepts. It complements raw accuracy by tracking Distractor Errors to detect repeat failure patterns early across VARC, DILR, and QA.",
       },
       {
         id: "faq-05",
-        question: "What does AdaptHub cost?",
+        question: "Is AdaptHub free for CAT 2026 preparation?",
         answer:
-          "AdaptHub's core CAT 2026 platform is free forever with no credit card required. It includes performance analytics, spaced repetition queues, and adaptive routing for serious aspirants.",
+          "Yes. AdaptHub's core CAT 2026 platform is free forever with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and Socratic AI coaching for serious aspirants.",
+      },
+      {
+        id: "faq-06",
+        question: "Can I prepare for CAT without paid coaching using AdaptHub?",
+        answer:
+          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalized adaptive practice, diagnostics, and AI coaching — so you can prepare for CAT at home without expensive institute fees.",
       },
     ],
   },
@@ -270,6 +307,15 @@ export const CONTENT = {
         {
           label: "Self-Study Guide",
           href: "/cat-preparation-without-coaching",
+        },
+        { label: "CAT 2026 Study Plan", href: "/cat-study-plan-2026" },
+        { label: "Mock Analysis Framework", href: "/cat-mock-analysis" },
+        { label: "VARC Strategy", href: "/cat-varc-strategy" },
+        { label: "DILR Strategy", href: "/cat-dilr-strategy" },
+        { label: "Quant Strategy", href: "/cat-quant-strategy" },
+        {
+          label: "99 Percentile Blueprint",
+          href: "/how-to-score-99-percentile-cat",
         },
         { label: "AdaptHub vs Competitors", href: "/adapthub-vs-competitors" },
         { label: "What is Adaptive Learning?", href: "/adaptive-learning-cat" },
@@ -364,32 +410,41 @@ export const CONTENT = {
   },
 
   metadata: {
-    defaultTitle: "Free CAT 2026 Prep Platform with AI Coaching | AdaptHub",
+    // Titles targeted ~50–60 chars; descriptions ~140–155 chars (SERP-safe).
+    defaultTitle: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
-      "Prepare for CAT 2026 with adaptive study plans, AI coaching, and analytics. Build stronger reasoning, close weak areas faster, and stay free forever.",
+      "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster — no credit card.",
     defaultKeywords: [
       "cat exam preparation",
       "cat preparation",
-      "cat mock test analytics",
-      "mba entrance exam preparation",
-      "ai cat coaching",
+      "cat 2026 preparation",
+      "free cat coaching",
+      "cat preparation online",
       "adaptive learning for cat",
+      "ai cat coaching",
+      "mba entrance exam preparation",
+      "cat mock test analytics",
+      "cat self study",
     ],
     indexPage: {
-      title: "Free CAT 2026 Prep Platform with AI Coaching | AdaptHub",
+      title: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
       description:
-        "Prepare for CAT 2026 with adaptive study plans, AI coaching, and performance analytics. Build stronger reasoning, close weak areas faster, and stay free forever.",
+        "Free CAT 2026 prep with adaptive study plans, Socratic AI coaching, and analytics for QA, DILR & VARC. Built for 99th percentile — lifetime free.",
       keywords: [
-        "cat exam",
         "cat exam preparation",
+        "cat 2026 preparation",
+        "free cat coaching",
         "cat preparation online",
-        "cat coaching platform",
+        "adaptive learning cat",
+        "ai cat coaching",
+        "cat prep platform",
+        "mba entrance exam",
       ],
     },
     catSyllabus: {
-      title: "CAT Syllabus 2026: Full Breakdown | AdaptHub",
+      title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
       description:
-        "Get the detailed CAT syllabus mapping for 2026. Data-driven topic weightage analysis for Quantitative Aptitude, DILR, and VARC sections. Learn more.",
+        "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 66 questions, 120 minutes, marking scheme, and high-yield topics.",
       keywords: [
         "cat syllabus",
         "cat syllabus 2026",
@@ -397,35 +452,41 @@ export const CONTENT = {
         "cat qa syllabus",
         "cat dilr syllabus",
         "cat varc syllabus",
+        "cat exam pattern 2026",
+        "cat marking scheme",
       ],
     },
     pricing: {
-      title: "AdaptHub is Lifetime Free — No Credit Card",
+      title: "Free CAT Preparation Online — Lifetime Free | AdaptHub",
       description:
-        "AdaptHub is Lifetime Free — no credit card needed. Get full access to adaptive study plans, AI coaching, and CAT analytics at ₹0. Sign up now.",
+        "AdaptHub is lifetime free CAT preparation — no credit card. Adaptive study plans, AI coaching, and analytics at ₹0 for every aspirant.",
       keywords: [
         "free cat preparation",
         "free cat coaching",
+        "free cat preparation online",
         "adapthub pricing",
         "affordable cat prep",
         "cat mocks free",
+        "lifetime free cat platform",
       ],
     },
     about: {
-      title: "How AdaptHub's ZPD Algorithm Works | About",
+      title: "How AdaptHub's ZPD Adaptive Algorithm Works | About",
       description:
-        "Learn how AdaptHub uses the Zone of Proximal Development (ZPD) algorithm to help CAT aspirants reach the 99th percentile. See how our AI works.",
+        "How AdaptHub uses Zone of Proximal Development (ZPD) adaptive learning to help CAT aspirants hit the 99th percentile with AI coaching.",
       keywords: [
         "adapthub about",
-        "adapthub founder",
-        "about adapthub",
+        "zpd algorithm cat",
         "adaptive learning platform",
+        "ai cat coaching methodology",
+        "about adapthub",
+        "zone of proximal development cat",
       ],
     },
     contact: {
-      title: "Contact AdaptHub | Platform Support",
+      title: "Contact AdaptHub | Free CAT Prep Support",
       description:
-        "Reach AdaptHub for platform help, feedback, or business queries. Every message gets a personal response.",
+        "Contact AdaptHub for platform help, feedback, or partnerships on free adaptive CAT prep. Every message gets a personal response.",
       keywords: [
         "adapthub contact",
         "adapthub support",
@@ -434,21 +495,23 @@ export const CONTENT = {
       ],
     },
     blog: {
-      title: "CAT Prep Blog | Strategy & Insights | AdaptHub",
+      title: "CAT Prep Blog 2026 | Strategy & Section Insights",
       description:
-        "CAT 2026 strategy breakdowns, logic analysis, and cognitive techniques to accelerate your percentile growth. Start reading for free.",
+        "CAT 2026 strategy, VARC/DILR/QA breakdowns, and cognitive techniques to grow percentile. Free AdaptHub strategy blog.",
       keywords: [
         "cat preparation blog",
         "cat strategy 2026",
         "mba entrance tips",
         "how to crack cat",
         "cat 99 percentile strategy",
+        "varc strategy cat",
+        "dilr tips cat",
       ],
     },
     docs: {
-      title: "AdaptHub Docs | How to Use the Platform",
+      title: "AdaptHub Docs | Adaptive CAT Prep Platform Guide",
       description:
-        "Step-by-step guides for using AdaptHub. Learn how adaptive difficulty, AI coaching, and performance analytics work. Start free today.",
+        "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start free CAT prep today.",
       keywords: [
         "adapthub documentation",
         "adapthub guide",
@@ -458,9 +521,9 @@ export const CONTENT = {
       ],
     },
     privacyPolicy: {
-      title: "Privacy Policy | AdaptHub",
+      title: "Privacy Policy | AdaptHub CAT Prep Platform",
       description:
-        "Privacy Policy for AdaptHub. Learn how we collect, use, and protect your data securely.",
+        "How AdaptHub collects, uses, and protects data on our free adaptive CAT preparation platform.",
       keywords: [
         "adapthub privacy policy",
         "privacy policy",
@@ -469,9 +532,9 @@ export const CONTENT = {
       ],
     },
     termsOfService: {
-      title: "Terms of Service | AdaptHub",
+      title: "Terms of Service | AdaptHub CAT Prep Platform",
       description:
-        "Terms of Service for AdaptHub. Please read these terms carefully before using our adaptive learning platform.",
+        "Terms of Service for AdaptHub free adaptive learning platform for CAT exam preparation.",
       keywords: [
         "adapthub terms of service",
         "terms of service",

@@ -1,148 +1,126 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar";
-import AnnouncementBar from "../components/AnnouncementBar";
-import Footer from "../components/Footer.astro";
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import DataTable from "../components/DataTable.astro";
 
 const siteUrl = Astro.site || "https://adapthub.in";
 
 const faqs = [
   {
     question: "When is the CAT 2026 exam date?",
-    answer: "The CAT 2026 exam is expected to be held on Sunday, November 29, 2026. Historically, the exam is conducted on the last Sunday of November."
+    answer: "The CAT 2026 exam is expected to be held on Sunday, November 29, 2026. Historically, the exam is conducted on the last Sunday of November. Confirm on iimcat.ac.in when the official notification is out.",
   },
   {
     question: "When will the CAT 2026 notification be released?",
-    answer: "The official CAT 2026 notification will likely be released in the last week of July 2026, followed by the start of the registration process in early August."
+    answer: "The official CAT 2026 notification will likely be released in the last week of July 2026, followed by the start of the registration process in early August.",
   },
   {
     question: "How many months are required to prepare for CAT 2026?",
-    answer: "A dedicated preparation window of 3 to 8 months is ideal for CAT 2026. This allows sufficient time for concept building, adaptive practice, and intensive mock test analysis."
-  }
+    answer: "A dedicated preparation window of 3 to 8 months is ideal for CAT 2026. This allows sufficient time for concept building, adaptive practice, and intensive mock test analysis.",
+  },
+  {
+    question: "What is the CAT 2026 eligibility criteria?",
+    answer: "Historically, candidates need a bachelor's degree with at least 50% marks (45% for SC/ST/PwD) or equivalent; final-year students can apply. There is typically no age limit and no attempt cap. Always verify the official notification for the year you register.",
+  },
+  {
+    question: "Where do I register for CAT 2026?",
+    answer: "Registration is online on the official CAT website (iimcat.ac.in) when the window opens—usually after the July notification. Keep photo, signature, and category certificates ready before applying.",
+  },
 ];
 ---
-
-<Layout 
+<CatLayout
   title="CAT 2026 Exam Date, Notification & Syllabus | AdaptHub"
-  description="Everything you need to know about the CAT 2026 exam date, registration timeline, eligibility, and expected syllabus changes. Start preparing early."
-  keywords={["cat 2026 exam date", "cat 2026 notification", "cat 2026 registration", "cat 2026 syllabus"]}
+  description="CAT 2026 expected exam date, notification, registration timeline, eligibility, and syllabus snapshot. Plan your prep early."
+  keywords={["cat 2026 exam date", "cat 2026 notification", "cat 2026 registration", "cat 2026 syllabus", "cat exam date 2026"]}
   ogType="article"
+  datePublished="2025-11-01T00:00:00.000Z"
+  dateModified="2026-07-01T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT 2026 Exam Date", url: new URL("/cat-2026-exam-date/", siteUrl).href },
+  ]}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
-        "@id": new URL("cat-2026-exam-date/#webpage", siteUrl).href,
-        "url": new URL("cat-2026-exam-date", siteUrl).href,
-        "name": "CAT 2026 Exam Date & Timeline",
-        "description": "Expected exam dates, registration timelines, and preparation strategy for CAT 2026.",
-        "inLanguage": "en",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["h1", ".speakable-content"]
-        }
-      },
-      {
         "@type": "FAQPage",
-        "@id": new URL("cat-2026-exam-date/#faq", siteUrl).href,
-        "mainEntity": faqs.map(faq => ({
+        "mainEntity": faqs.map((faq) => ({
           "@type": "Question",
           "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-        }))
-      }
-    ]
-  })}></script>
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })} />
+  <Callout label="CAT 2026 Snapshot">
+    <p><strong>Expected exam:</strong> Sunday, 29 November 2026 (provisional — verify on <a href="https://iimcat.ac.in" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline underline-offset-4">iimcat.ac.in</a>).</p>
+    <p><strong>Notification:</strong> Likely last week of July 2026.</p>
+    <p><strong>Sections:</strong> VARC (24 Q), DILR (22 Q), QA (22 Q) — 66 total, 120 min, +3/−1 MCQ, 0 penalty TITA.</p><p><strong>Provisional:</strong> Question counts and weightages above reflect recent CAT cycles and may shift slightly year to year.</p></Callout>
 
-  <AnnouncementBar client:idle transition:persist />
-  <Navbar client:load transition:persist />
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">CAT 2026 Exam Date, Notification & Syllabus Snapshot</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      The CAT 2026 exam is <strong>expected on Sunday, 29 November 2026</strong> (provisional — always confirm on <a href="https://iimcat.ac.in" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline underline-offset-4">iimcat.ac.in</a>). This page gives you the expected timeline, eligibility, marking scheme, and a high-level syllabus so you can start planning now.
+    </p>
 
-  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
-    <div class="background-pulse" aria-hidden="true"></div>
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Key dates at a glance (provisional)</h2>
+    <DataTable
+      headers={[
+        { label: "Milestone", scope: "col" },
+        { label: "Expected window", scope: "col" },
+        { label: "Action", scope: "col", class: "text-brand-teal" },
+      ]}
+      rows={[
+        { cells: [{ content: "Official notification" }, { content: "Last week of July 2026" }, { content: "Bookmark iimcat.ac.in" }] },
+        { cells: [{ content: "Registration opens" }, { content: "Early August 2026" }, { content: "Register within 3 days" }] },
+        { cells: [{ content: "Admit card release" }, { content: "Late October 2026" }, { content: "Download + verify centre" }] },
+        { cells: [{ content: "CAT 2026 exam" }, { content: "<strong>Sunday, 29 Nov 2026</strong>" }, { content: "Exam day protocol ready" }] },
+        { cells: [{ content: "Result declaration" }, { content: "Early January 2027" }, { content: "Check percentile + apply" }] },
+      ]}
+    />
 
-    {/* Cinematic Film Grain */}
-    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.035]" aria-hidden="true">
-      <filter id="cat-exam-grain">
-        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <rect width="100%" height="100%" filter="url(#cat-exam-grain)" />
-    </svg>
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Eligibility (based on recent cycles — verify on notification)</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Bachelor's degree with ≥50% marks (45% for SC/ST/PwD) or equivalent.</li><li>Final-year students eligible (provisional).</li>
+      <li>No age limit, no attempt cap.</li>
+      <li>Work experience not required.</li>
+    </ul>
 
-    <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-4xl mt-8">
-      
-      {/* ── GEO: Expected Dates Highlight Box ── */}
-      <div class="mb-12 border border-brand-teal/30 bg-brand-teal/[0.03] p-6 sm:p-8 relative">
-        <div class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-teal" aria-hidden="true"></div>
-        <div class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-teal" aria-hidden="true"></div>
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">CAT 2026 exam pattern & marking</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong>Sections:</strong> VARC (24 Q, 40 min), DILR (22 Q, 40 min), QA (22 Q, 40 min).</li>
+      <li><strong>Total:</strong> 66 questions, 198 marks, 120 minutes (40 min/section, no switching).</li>
+      <li><strong>Marking:</strong> +3 correct, −1 MCQ wrong, 0 penalty TITA.</li><li><strong>TITA share:</strong> Increasing trend; ~25–30% of questions are non-MCQ.</li>
+    </ul>
 
-        <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">
-          [ Expected Timeline: CAT 2026 ]
-        </p>
-        
-        <div class="space-y-4 speakable-content text-zinc-300 font-sans text-lg md:text-xl leading-relaxed">
-          <p><strong>Exam Date:</strong> Sunday, November 29, 2026 (Expected)</p>
-          <p><strong>Official Notification:</strong> Last week of July 2026</p>
-          <p><strong>Registration Opens:</strong> First week of August 2026</p>
-          <p><strong>Admit Card Release:</strong> Last week of October 2026</p>
-        </div>
-      </div>
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">High-level syllabus map</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Full breakdown with weightage on the <a href="/cat-syllabus" class="text-brand-teal hover:underline underline-offset-4">CAT syllabus page</a>. Quick reference:
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong>VARC (24 Q):</strong> RC (~16 Q), Para Jumbles, Summary, Odd-one-out, Para Completion.</li><li><strong>DILR (22 Q):</strong> Hybrid DI+LR sets, Games & Tournaments, Venn/Set Theory, Seating, Team Selection.</li><li><strong>QA (22 Q):</strong> Arithmetic ~35–50%, Algebra, Geometry/Mensuration, Number System, Modern Math (PnC/Prob).</li>
+    </ul>
 
-      <article class="prose prose-invert prose-brand max-w-none">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8">CAT 2026 Exam Date, Notification & Strategy</h1>
-        
-        <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
-          The Common Admission Test (CAT) is India's most competitive management entrance exam. If you are targeting the top IIMs for the 2027-29 academic batch, your preparation for CAT 2026 should begin with a clear understanding of the timelines and structural expectations.
-        </p>
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How to start today</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Bookmark <a href="https://iimcat.ac.in" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline underline-offset-4">iimcat.ac.in</a> for the official notification.</li>
+      <li>Take a diagnostic mock to set your baseline (free on AdaptHub).</li><li>Pick a study plan: <a href="/cat-study-plan-2026" class="text-brand-teal hover:underline underline-offset-4">6-month standard</a> or <a href="/cat-preparation-without-coaching" class="text-brand-teal hover:underline underline-offset-4">compressed self-study</a>.</li><li>Start free adaptive calibration on <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">AdaptHub</a> — it builds your daily focus from day 1.</li></ol>
 
-        <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Will the CAT 2026 Syllabus Change?</h2>
-        <p class="text-zinc-400 leading-[1.8] mb-6">
-          Historically, the IIMs do not drastically change the syllabus. The core sections remain:
-        </p>
-        <ul class="list-disc pl-6 text-zinc-400 mb-12 space-y-2">
-          <li><strong>VARC:</strong> Verbal Ability & Reading Comprehension (24 Questions)</li>
-          <li><strong>DILR:</strong> Data Interpretation & Logical Reasoning (22 Questions)</li>
-          <li><strong>QA:</strong> Quantitative Aptitude (22 Questions)</li>
-        </ul>
+    <CtaBlock text="Start Free Adaptive Prep" />
 
-        <div class="mt-16 text-center border-t border-white/10 pt-16">
-          <h3 class="text-2xl font-serif text-white mb-6">Ready to start preparing for CAT 2026?</h3>
-          <a 
-            href="/pricing"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-zinc-200 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-          >
-            Start Free Adaptive Prep
-            <span class="text-brand-teal font-sans">→</span>
-          </a>
-        </div>
-      </article>
+    <FaqSection faqs={faqs} title="Frequently Asked Questions" />
 
-      {/* FAQs */}
-      <section class="mt-24 pt-16 border-t border-white/10">
-        <h2 class="text-3xl font-serif text-white tracking-tight mb-8">Frequently Asked Questions</h2>
-        <div class="border-t border-white/10">
-          {faqs.map((faq) => (
-            <details class="group bg-transparent border-b border-white/10 hover:bg-white/[0.01] transition-colors cursor-pointer outline-none overflow-hidden">
-              <summary class="py-6 font-serif text-lg md:text-xl text-zinc-300 group-hover:text-white list-none flex justify-between items-start outline-none active:scale-[0.99] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50">
-                <span class="pr-8">{faq.question}</span>
-                <span class="font-mono text-zinc-500 group-hover:text-brand-teal text-xl transition-colors">
-                  <span class="group-open:hidden">+</span>
-                  <span class="hidden group-open:inline">-</span>
-                </span>
-              </summary>
-              <div class="pb-8 text-zinc-400 leading-[1.8] font-sans">
-                <div class="border-l border-brand-teal/30 pl-6 max-w-[65ch]">
-                  {faq.answer}
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
-
-    </div>
-  </main>
-  
-  <Footer />
-</Layout>
+    <RelatedGuides
+      links={[
+        { label: "CAT syllabus 2026", href: "/cat-syllabus" },
+        { label: "CAT 2026 study plan", href: "/cat-study-plan-2026" },
+        { label: "How to analyse mocks", href: "/cat-mock-analysis" },
+        { label: "Self-study without coaching", href: "/cat-preparation-without-coaching" },
+      ]}
+    />
+  </article>
+</CatLayout>

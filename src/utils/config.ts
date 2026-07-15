@@ -11,100 +11,113 @@ export const resolvedContent = {
     indexPage: {
       title:
         BASE_CONTENT?.metadata?.indexPage?.title ||
-        "Adaptive Learning for CAT | AdaptHub",
+        "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.indexPage?.description ||
-        "AI-powered adaptive learning for CAT preparation",
+        "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC.",
       keywords: BASE_CONTENT?.metadata?.indexPage?.keywords || [
-        "cat preparation",
-        "cat 2026",
-        "mba",
-        "adaptive learning",
+        "cat exam preparation",
+        "cat 2026 preparation",
+        "free cat coaching",
+        "adaptive learning cat",
       ],
     },
     pricing: {
-      title: BASE_CONTENT?.metadata?.pricing?.title || "Pricing | AdaptHub",
+      title:
+        BASE_CONTENT?.metadata?.pricing?.title ||
+        "Free CAT Preparation Online — Lifetime Free | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.pricing?.description ||
-        "Lifetime Free adaptive learning for CAT",
+        "Lifetime free adaptive learning for CAT — no credit card required.",
       keywords: BASE_CONTENT?.metadata?.pricing?.keywords || [
-        "cat preparation",
-        "cat exam",
-        "free cat prep",
+        "free cat preparation",
+        "free cat coaching",
+        "free cat preparation online",
       ],
     },
     about: {
       title:
-        BASE_CONTENT?.metadata?.about?.title || "About the System | AdaptHub",
+        BASE_CONTENT?.metadata?.about?.title ||
+        "How AdaptHub's ZPD Adaptive Algorithm Works | About",
       description:
         BASE_CONTENT?.metadata?.about?.description ||
-        "The intelligence engine methodology.",
+        "How AdaptHub uses ZPD adaptive learning for CAT 99th percentile prep.",
       keywords: BASE_CONTENT?.metadata?.about?.keywords || [
-        "about",
-        "mission",
-        "features",
+        "zpd algorithm cat",
+        "adaptive learning platform",
+        "about adapthub",
       ],
     },
     catSyllabus: {
       title:
         BASE_CONTENT?.metadata?.catSyllabus?.title ||
-        "CAT Structure | AdaptHub",
+        "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.catSyllabus?.description ||
-        "Mathematical mapping of the CAT exam.",
+        "Data-driven CAT syllabus mapping for VARC, DILR, and QA.",
       keywords: BASE_CONTENT?.metadata?.catSyllabus?.keywords || [
-        "syllabus",
-        "cat structure",
-        "exam pattern",
+        "cat syllabus 2026",
+        "cat exam pattern",
+        "cat qa syllabus",
       ],
     },
     docs: {
       title:
         BASE_CONTENT?.metadata?.docs?.title ||
-        "System Documentation | AdaptHub",
+        "AdaptHub Docs | Adaptive CAT Prep Platform Guide",
       description:
         BASE_CONTENT?.metadata?.docs?.description ||
-        "Technical instructions and operational guides.",
+        "Guides for adaptive difficulty, AI coaching, and analytics.",
       keywords: BASE_CONTENT?.metadata?.docs?.keywords || [
-        "docs",
-        "guide",
-        "manual",
+        "adapthub documentation",
+        "how to use adapthub",
+        "adapthub guide",
       ],
     },
     contact: {
       title:
         BASE_CONTENT?.metadata?.contact?.title ||
-        "Contact AdaptHub | Platform Support",
+        "Contact AdaptHub | Free CAT Prep Support",
       description:
         BASE_CONTENT?.metadata?.contact?.description ||
-        "Reach out to AdaptHub for platform support and feedback.",
+        "Reach AdaptHub for platform support and feedback.",
       keywords: BASE_CONTENT?.metadata?.contact?.keywords || [
-        "contact",
-        "support",
-        "engineering",
+        "adapthub contact",
+        "adapthub support",
+        "contact adapthub",
       ],
     },
     blog: {
-      title: BASE_CONTENT?.metadata?.blog?.title || "Network Logs | AdaptHub",
+      title:
+        BASE_CONTENT?.metadata?.blog?.title ||
+        "CAT Prep Blog 2026 | Strategy & Section Insights",
       description:
         BASE_CONTENT?.metadata?.blog?.description ||
-        "Strategic dispatches and systemic updates.",
+        "CAT 2026 strategy breakdowns and cognitive techniques.",
       keywords: BASE_CONTENT?.metadata?.blog?.keywords || [
-        "blog",
-        "updates",
-        "strategy",
+        "cat preparation blog",
+        "cat strategy 2026",
+        "how to crack cat",
       ],
     },
-    defaultTitle: BASE_CONTENT?.metadata?.defaultTitle || "AdaptHub",
+    defaultTitle:
+      BASE_CONTENT?.metadata?.defaultTitle ||
+      "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
-      BASE_CONTENT?.metadata?.defaultDescription || "Adaptive learning for CAT",
+      BASE_CONTENT?.metadata?.defaultDescription ||
+      "Free adaptive learning for CAT 2026 with AI coaching and analytics.",
     defaultKeywords: Array.isArray(BASE_CONTENT?.metadata?.defaultKeywords)
-      ? BASE_CONTENT.metadata.defaultKeywords
-      : ["cat preparation"],
+      ? BASE_CONTENT?.metadata?.defaultKeywords
+      : [
+          "cat exam preparation",
+          "cat 2026 preparation",
+          "free cat coaching",
+          "adaptive learning for cat",
+        ],
     privacyPolicy: {
       title:
         BASE_CONTENT?.metadata?.privacyPolicy?.title ||
-        "Privacy Policy | AdaptHub",
+        "Privacy Policy | AdaptHub CAT Prep Platform",
       description:
         BASE_CONTENT?.metadata?.privacyPolicy?.description ||
         "Privacy Policy for AdaptHub",
@@ -116,7 +129,7 @@ export const resolvedContent = {
     termsOfService: {
       title:
         BASE_CONTENT?.metadata?.termsOfService?.title ||
-        "Terms of Service | AdaptHub",
+        "Terms of Service | AdaptHub CAT Prep Platform",
       description:
         BASE_CONTENT?.metadata?.termsOfService?.description ||
         "Terms of Service for AdaptHub",
@@ -125,9 +138,7 @@ export const resolvedContent = {
         "service",
       ],
     },
-    ogImage: BASE_CONTENT?.metadata?.ogImage || "/og-default.png",
-    ogImageFallback:
-      BASE_CONTENT?.metadata?.ogImageFallback || "/og-default.png",
+    ogImageFallback: BASE_CONTENT?.metadata?.ogImageFallback || "/og-image.png",
   },
   bentoGrid: BASE_CONTENT?.bentoGrid || {
     header: {

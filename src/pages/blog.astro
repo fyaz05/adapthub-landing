@@ -23,15 +23,15 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": new URL("blog/#webpage", siteUrl).href,
+        "@id": new URL("blog/#collection", siteUrl).href,
         "url": new URL("blog/", siteUrl).href,
-        "name": CONTENT.metadata.blog.title || "Signals & Noise",
+        "name": CONTENT.metadata.blog.title,
         "description": CONTENT?.metadata?.blog?.description || "Strategic insights for CAT 2026"
       },
       {
         "@type": "Blog",
         "@id": `${siteUrl}blog/#blog`,
-        "name": "AdaptHub Signals & Noise",
+        "name": `AdaptHub ${CONTENT.metadata.blog.title}`,
         "description": "Strategic insights for CAT 2026",
         "publisher": { "@type": "Organization", "name": "AdaptHub" },
         "blogPost": articles.map(a => ({
@@ -78,13 +78,13 @@ const siteUrl = Astro.site || "https://adapthub.in";
             
             <header>
               <h1 class="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-serif text-white tracking-tighter leading-none mb-8 relative page-stagger" style="--i:1">
-                Signals <br />
+                CAT Prep <br />
                 <span class="italic text-brand-teal block pb-2 ml-4 md:ml-8 mt-2 md:mt-4">
-                  <span class="font-sans text-brand-teal/70 font-light">&amp;</span> Noise.
+                  Blog.
                 </span>
               </h1>
               <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-md tracking-wide page-stagger pl-1" style="--i:2">
-                CAT 2026 strategy breakdowns, section-level logic analysis, and cognitive techniques to accelerate your percentile growth.
+                CAT 2026 strategy breakdowns, VARC / DILR / QA logic analysis, and cognitive techniques to accelerate your percentile growth.
               </p>
             </header>
 

@@ -1,0 +1,149 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import DataTable from "../components/DataTable.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "How should I start CAT VARC preparation for 2026?",
+    answer:
+      "Build a daily reading habit (editorials and long-form essays), practise 2–3 RC passages most days, and review every wrong answer for inference vs detail mistakes. Add VA types (para jumbles, summary, odd sentence out) several times a week under light timing.",
+  },
+  {
+    question: "Are para jumbles still in CAT VARC?",
+    answer:
+      "Yes — prepare para jumbles along with para summary, odd sentence out, and related VA formats. TITA VA items typically carry no negative marking, so educated attempts can be valuable after RC is stable.",
+  },
+  {
+    question: "How many RC passages should I practise daily?",
+    answer:
+      "Most strong plans use 2–3 timed or semi-timed RCs daily plus a few VA questions. Consistency across genres (philosophy, economics, science, culture) matters more than occasional binge days.",
+  },
+  {
+    question: "How do I improve VARC accuracy?",
+    answer:
+      "Prioritise author intent over outside knowledge, eliminate extreme options, and log error types after every mock. Accuracy-first attempt strategies usually beat high-volume guessing under −1 MCQ penalty.",
+  },
+];
+---
+<CatLayout
+  title="CAT VARC Strategy 2026: RC & VA Plan | AdaptHub"
+  description="CAT VARC strategy for 2026: RC-first accuracy, para jumbles & summary practice, reading sources, and mock analysis — free adaptive prep with AdaptHub."
+  keywords={[
+    "cat varc strategy",
+    "cat rc tips",
+    "cat para jumbles strategy",
+    "how to improve varc for cat",
+    "cat varc preparation 2026",
+    "fact vs judgment cat",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT VARC Strategy", url: new URL("/cat-varc-strategy/", siteUrl).href },
+  ]}
+  head={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": new URL("cat-varc-strategy/#faq", siteUrl).href,
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })}
+>
+  <Callout label="VARC Strategy" cornerTabs>
+    <p><strong>Weight:</strong> RC usually dominates VARC (~16 of ~24 questions). Accuracy beats blind attempts.</p>
+    <p><strong>Daily core:</strong> Reading + 2–3 RCs + VA mix; weekly sectional with full analysis.</p>
+    <p><strong>Mindset:</strong> Track author stance (fact vs judgment), not outside knowledge.</p>
+  </Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">CAT VARC Strategy 2026: RC Accuracy First</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      Verbal Ability & Reading Comprehension is the opening 40-minute section. High percentiles come from passage selection, inference discipline, and VA reliability — not vocabulary cramming alone. Use this plan with the full <a href="/cat-syllabus" class="text-brand-teal hover:underline underline-offset-4">CAT syllabus 2026 map</a> and <a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">mock analysis framework</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">What VARC actually tests</h2>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li><strong class="text-zinc-200">Reading Comprehension:</strong> Main idea, inference, tone, detail, application — often dense humanities/science/econ prose.</li>
+      <li><strong class="text-zinc-200">Verbal Ability:</strong> Para jumbles, para summary, odd sentence out, related coherence tasks (formats can shift year to year).</li>
+      <li><strong class="text-zinc-200">TITA VA:</strong> Often no negative marking — attempt after securing high-confidence RC.</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">RC strategy that scales</h2>
+    <ol class="list-decimal pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Skim structure first: thesis, contrast signals, conclusion.</li>
+      <li>Answer from passage evidence; eliminate extremes and out-of-scope options.</li>
+      <li>Practise genre diversity (philosophy, economy, science, culture) so exam day is not a shock.</li>
+      <li>After mocks, tag misses: inference error, tone miss, detail miss, time sink passage.</li>
+    </ol>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      For author-stance drills, read <a href="/blog/varc-fact-vs-judgment" class="text-brand-teal hover:underline underline-offset-4">Fact vs Judgment in CAT VARC</a>.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Reading sources that match CAT RC tone</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Coaching roadmaps converge on the same idea: train on dense non-fiction, not only exam PDFs. A practical weekly mix:
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-8 leading-[1.75]">
+      <li><strong class="text-zinc-200">Abstract / philosophy:</strong> long-form essays (Aeon-style) for inference stamina</li>
+      <li><strong class="text-zinc-200">Economy / policy:</strong> Economist / quality Indian editorials for argument structure</li>
+      <li><strong class="text-zinc-200">Science / tech:</strong> explainers that force tracking of claims vs evidence</li>
+      <li><strong class="text-zinc-200">Culture / history:</strong> narrative-argument hybrids that punish skimming</li>
+    </ul>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      After reading, write one sentence: <em>author's stance in plain English</em>. That single habit transfers to RC options. Pair with adaptive VA/RC drills so difficulty does not stall at "easy newspaper."
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">VA practice loop</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Daily micro-set: 1–2 jumbles, 1–2 summaries, 1 odd-one-out. Log mandatory pairs and connector words that fooled you. Do not let VA steal RC time on exam day until your RC accuracy is stable in sectionals.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Weekly VARC template</h2>
+    <DataTable
+      headers={[
+        { label: "Block", scope: "col" },
+        { label: "Work", scope: "col" },
+        { label: "Output", scope: "col", class: "text-brand-teal" },
+      ]}
+      rows={[
+        { cells: [{ content: "Daily reading" }, { content: "30–45 min dense non-fiction" }, { content: "Faster structure mapping" }] },
+        { cells: [{ content: "RC practice" }, { content: "2–3 passages most days" }, { content: "Error log by question type" }] },
+        { cells: [{ content: "VA set" }, { content: "Mixed jumbles/summary/odd-one" }, { content: "Connector pattern notes" }] },
+        { cells: [{ content: "Weekly sectional" }, { content: "40-minute VARC mock slice" }, { content: "Attempt order + accuracy plan" }] },
+      ]}
+    />
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Adaptive practice for VARC</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Static RC PDFs do not know which inference trap you repeat. AdaptHub keeps difficulty in your growth band and surfaces distractor patterns so remediation is targeted. Pair this page with the <a href="/cat-study-plan-2026" class="text-brand-teal hover:underline underline-offset-4">CAT 2026 study plan</a> and start free on <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">lifetime free pricing</a>.
+    </p>
+
+    <CtaBlock text="Practise VARC Adaptively — Free" />
+  </article>
+
+  <FaqSection faqs={faqs} title="VARC FAQs" />
+
+  <RelatedGuides
+    links={[
+      { label: "DILR strategy", href: "/cat-dilr-strategy" },
+      { label: "Quant strategy", href: "/cat-quant-strategy" },
+      { label: "99 percentile plan", href: "/how-to-score-99-percentile-cat" },
+      { label: "Fact vs judgment", href: "/blog/varc-fact-vs-judgment" },
+    ]}
+  />
+</CatLayout>

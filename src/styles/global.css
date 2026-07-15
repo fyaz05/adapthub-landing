@@ -608,10 +608,6 @@ html {
             animation: none;
         }
 
-        .hero-scanline {
-            display: none;
-        }
-
         .hero-scroll-arrow {
             animation: none;
             opacity: 0.6;

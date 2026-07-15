@@ -1,6 +1,8 @@
-# AdaptHub | High-Performance Adaptive Learning
+# AdaptHub Landing
 
-AdaptHub is an advanced learning engine engineered for the mastery of competitive examinations. It leverages predictive Zone of Proximal Development (ZPD) insights and metacognitive feedback loops to deliver a precision-tuned learning experience.
+High-performance marketing site for AdaptHub — free AI adaptive learning for CAT.
+
+**Live:** [adapthub.in](https://adapthub.in) · **App:** [app.adapthub.in](https://app.adapthub.in)
 
 ## Core Methodology
 

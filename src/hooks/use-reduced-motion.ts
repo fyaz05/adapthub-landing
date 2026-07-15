@@ -1,9 +1,6 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
 let mql: MediaQueryList | null = null;
-const subscribers = new Set<() => void>();
-let globalListenerAdded = false;
-let notifyAllRef: (() => void) | null = null;
 
 function checkPerformance(): boolean {
   if (typeof window === "undefined") return false;
@@ -23,59 +20,31 @@ function checkPerformance(): boolean {
   return prefersReduced || lowMemory || lowCPU;
 }
 
-function subscribe(callback: () => void) {
-  if (typeof window === "undefined") return () => {};
-
-  subscribers.add(callback);
-
-  if (!mql) {
-    mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-  }
-
-  if (!globalListenerAdded) {
-    notifyAllRef = () => {
-      Array.from(subscribers).forEach((cb) => {
-        cb();
-      });
-    };
-    mql.addEventListener("change", notifyAllRef);
-    globalListenerAdded = true;
-  }
-
-  return () => {
-    subscribers.delete(callback);
-    if (subscribers.size === 0 && mql && notifyAllRef) {
-      mql.removeEventListener("change", notifyAllRef);
-      globalListenerAdded = false;
-      notifyAllRef = null;
-    }
-  };
-}
-
-function getSnapshot() {
-  if (typeof window === "undefined") return false;
-  return checkPerformance();
-}
-
-function getServerSnapshot() {
-  return false;
-}
-
 /**
  * Hook to detect if the user prefers reduced motion or is on a low-end device.
- * Uses useSyncExternalStore with a singleton subscriber to avoid massive listener duplication.
+ *
+ * The initial state is computed synchronously on the client's first render via a
+ * lazy initializer, so reduced-motion / low-end users never see a motion flash.
+ * The returned value is SSR-safe: on the server (no `window`) it is `false`.
  */
 export function useReducedMotion(): boolean {
-  const isReduced = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
-  const [isMounted, setIsMounted] = useState(false);
+  const [isReduced, setIsReduced] = useState<boolean>(() => checkPerformance());
 
   useEffect(() => {
-    setIsMounted(true);
+    if (typeof window === "undefined") return;
+
+    if (!mql) {
+      mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    }
+
+    const update = () => setIsReduced(checkPerformance());
+    update();
+
+    mql.addEventListener("change", update);
+    return () => {
+      mql?.removeEventListener("change", update);
+    };
   }, []);
 
-  return isMounted ? isReduced : false;
+  return isReduced;
 }

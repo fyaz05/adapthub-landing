@@ -1,0 +1,54 @@
+---
+interface Props {
+  headers: { label: string; scope?: 'col' | 'row'; class?: string }[];
+  rows: { cells: { content: string; class?: string; scope?: 'row' | 'col' }[] }[];
+  caption?: string;
+}
+
+const { headers, rows, caption } = Astro.props;
+---
+
+<div class="overflow-x-auto my-8 border border-white/10">
+  <table class="w-full text-left text-sm text-zinc-400">
+    {caption && (
+      <caption class="sr-only">{caption}</caption>
+    )}
+    <thead class="text-xs font-mono uppercase bg-white/[0.02] border-b border-white/10 text-zinc-300">
+      <tr>
+        {headers.map((header, i) => (
+          <th 
+            scope={header.scope || 'col'} 
+            class={`px-6 py-4 ${header.class || ''}`}
+            style={i === 0 ? undefined : { borderLeft: '1px solid rgba(255,255,255,0.1)' }}
+          >
+            {header.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-white/5">
+      {rows.map((row, rowIndex) => (
+        <tr class={`hover:bg-white/[0.01] transition-colors ${rowIndex % 2 === 1 ? 'bg-white/[0.01]' : ''}`}>
+          {row.cells.map((cell, cellIndex) => (
+            cell.scope ? (
+              <th
+                scope={cell.scope}
+                class={`px-6 py-4 ${cell.class || ''}`}
+                style={cellIndex === 0 ? undefined : { borderLeft: '1px solid rgba(255,255,255,0.1)' }}
+              >
+                <Fragment set:html={cell.content} />
+              </th>
+            ) : (
+              <td
+                class={`px-6 py-4 ${cell.class || ''}`}
+                style={cellIndex === 0 ? undefined : { borderLeft: '1px solid rgba(255,255,255,0.1)' }}
+              >
+                <Fragment set:html={cell.content} />
+              </td>
+            )
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

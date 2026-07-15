@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { CONTENT } from "../constants/content";
 import { useIsMobile } from "../hooks/use-mobile";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
@@ -14,7 +14,7 @@ import { useReducedMotion } from "../hooks/use-reduced-motion";
 const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
   const isMobile = useIsMobile();
   const isReduced = useReducedMotion();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   // 1. Physics-based Mouse Parallax
@@ -29,15 +29,15 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
   const dashboardRotateX = useTransform(springY, [0, 1], [4, -4]);
   const dashboardRotateY = useTransform(springX, [0, 1], [-8, 8]);
 
-  // Satellite floating card moves MORE (Parallax depth)
-  const satelliteX = useTransform(springX, [0, 1], [-20, 20]);
-  const satelliteY = useTransform(springY, [0, 1], [-10, 10]);
-  const satelliteRotateX = useTransform(springY, [0, 1], [5, -5]);
-  const satelliteRotateY = useTransform(springX, [0, 1], [-5, 5]);
+  // Satellite floating card moves slightly differently (Parallax depth)
+  const satelliteX = useTransform(springX, [0, 1], [-12, 12]);
+  const satelliteY = useTransform(springY, [0, 1], [-20, 20]);
+  const satelliteRotateX = useTransform(springY, [0, 1], [6, -6]);
+  const satelliteRotateY = useTransform(springX, [0, 1], [-10, 10]);
 
   // Handle Mouse Move
   useEffect(() => {
-    if (isMobile || isReduced) return;
+    if (!isInView || isMobile || isReduced) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
@@ -46,58 +46,58 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY, isMobile, isReduced]);
+  }, [isInView, mouseX, mouseY, isMobile, isReduced]);
 
-  // 2. Data Sequencing (Count Up)
-  const [count, setCount] = useState(0);
+  // 2. Data Sequencing (Count Up) — driven by a MotionValue to avoid
+  // per-frame React re-renders and to allow clean animation cancellation.
+  const countMV = useMotionValue(0);
+  const countText = useTransform(
+    countMV,
+    (v) => `+${Math.round(v)}${CONTENT.parallaxDashboard.growth.suffix}`,
+  );
 
   useEffect(() => {
-    if (isInView) {
-      // under prefers-reduced-motion (or low-end
-      // device, per use-reduced-motion.ts heuristic), snap to final value
-      // immediately instead of running a 0.5s count-up. The
-      // previous isReduced branch only shortened the duration — still
-      // animated. This guard fully disables the count-up animation.
-      if (isReduced) {
-        setCount(CONTENT.parallaxDashboard.growth.value);
-        return;
-      }
-      // Delay start by 500ms to match card pop-in
-      const timeout = setTimeout(() => {
-        const controls = animate(0, CONTENT.parallaxDashboard.growth.value, {
-          duration: 1.5,
-          ease: "circOut",
-          onUpdate: (value) => setCount(Math.round(value)),
-        });
-        return () => controls.stop();
-      }, 500);
-      return () => clearTimeout(timeout);
+    if (!isInView) return;
+    if (isReduced) {
+      countMV.set(CONTENT.parallaxDashboard.growth.value);
+      return;
     }
-  }, [isInView, isReduced]);
+    let controls: ReturnType<typeof animate>;
+    const timeout = setTimeout(() => {
+      controls = animate(countMV, CONTENT.parallaxDashboard.growth.value, {
+        duration: 1.5,
+        ease: "circOut",
+      });
+    }, 500);
+    return () => {
+      clearTimeout(timeout);
+      controls?.stop();
+    };
+  }, [isInView, isReduced, countMV]);
 
   return (
     <div
       ref={ref}
-      className="relative h-[280px] sm:h-[400px] lg:h-[700px] w-full flex items-center justify-center perspective-[2000px]"
+      className="relative w-full max-w-[1000px] mx-auto flex items-center justify-center perspective-[2000px] py-4 sm:py-6 lg:py-8"
       aria-hidden="true"
     >
-      {/* LAYER 1: The Main Dashboard (Heavy, Grounded) */}
+      {/* LAYER 1: The Main Dashboard (Heavy, Grounded, Centered) */}
       <motion.div
         style={{
           rotateX: isMobile || isReduced ? 0 : dashboardRotateX,
           rotateY: isMobile || isReduced ? 0 : dashboardRotateY,
         }}
-        initial={{ opacity: 0, y: 40, rotateX: 10 }}
+        initial={{ opacity: 0, y: 40, rotateX: 6 }}
         animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-full origin-center-right z-elevate will-change-transform"
+        className="w-full origin-center z-elevate will-change-transform"
       >
-        <div className="relative rounded-xl bg-zinc-900 shadow-2xl overflow-hidden ring-1 ring-white/10">
+        <div className="relative rounded-xl bg-zinc-900 shadow-[0_24px_60px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
           {/* Photon Edge (Enhanced) */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-80 shadow-[0_0_15px_rgba(255,255,255,0.5)] z-20"></div>
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-80 z-20"></div>
 
           {/* Window Chrome */}
-          <div className="h-8 sm:h-10 border-b border-white/5 flex items-center px-4 sm:px-5 justify-between bg-zinc-900/50 relative z-10">
+          <div className="h-8 sm:h-10 border-b border-white/5 flex items-center px-4 sm:px-5 justify-between bg-zinc-900/40 relative z-10">
             <div className="flex gap-1.5 sm:gap-2">
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF5F57] shadow-inner" />
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FEBC2E] shadow-inner" />
@@ -110,7 +110,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
             alt={CONTENT.parallaxDashboard.alt}
             width={1200}
             height={800}
-            className="w-full h-auto opacity-90"
+            className="w-full h-auto opacity-95 block"
             loading="eager"
             fetchPriority="high"
             decoding="async"
@@ -122,7 +122,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
         </div>
       </motion.div>
 
-      {/* LAYER 2: The Satellite Card (Floating, Active) */}
+      {/* LAYER 2: The Satellite Card (Floating, Active, Glassmorphism Overhaul) */}
       <motion.div
         style={{
           x: isMobile || isReduced ? 0 : satelliteX,
@@ -130,74 +130,81 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
           rotateX: isMobile || isReduced ? 0 : satelliteRotateX,
           rotateY: isMobile || isReduced ? 0 : satelliteRotateY,
         }}
-        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-        animate={
-          isInView ? { opacity: 1, scale: isMobile ? 0.8 : 1, y: 0 } : {}
-        }
+        initial={{ opacity: 0, scale: 0.8, y: 30 }}
+        animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
         transition={{
           type: "spring",
-          stiffness: 150,
-          damping: 20,
-          delay: 0.3,
+          stiffness: 100,
+          damping: 15,
+          delay: 0.4,
         }}
-        className="absolute left-2 sm:left-4 lg:left-0 top-[60%] sm:top-[60%] z-sticky max-w-[160px] sm:max-w-xs will-change-transform"
+        className="absolute left-2 xs:left-0 sm:-left-10 md:-left-8 bottom-[10%] sm:bottom-[15%] z-sticky w-[170px] sm:w-[240px] md:w-[260px] will-change-transform pointer-events-auto"
       >
-        <div
-          className={`relative bg-zinc-900/80 rounded-lg p-3 sm:p-4 lg:p-6 shadow-[0_30px_60px_rgba(0,0,0,0.6)] w-full border border-white/10 ${!isMobile && "backdrop-blur-xl"} overflow-hidden`}
+        {/* Inner floating animation wrapper */}
+        <motion.div
+          animate={
+            !isReduced
+              ? {
+                  y: [0, -8, 0],
+                }
+              : {}
+          }
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="relative bg-zinc-950/85 backdrop-blur-xl rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_24px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(20,184,166,0.05)] border border-white/10 overflow-hidden group hover:border-brand-teal/30 transition-colors duration-300"
         >
-          {/* Shimmer Effect */}
+          {/* Shimmer overlay */}
           {!isReduced && (
-            <motion.div
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-                ease: "linear",
-                delay: 2,
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 pointer-events-none"
-            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-out pointer-events-none" />
           )}
 
-          <div className="flex items-center justify-between mb-1 sm:mb-2 lg:mb-4">
-            <span className="text-[8px] sm:text-[10px] lg:text-xs font-bold text-zinc-400 uppercase tracking-widest">
+          {/* Top Header Row */}
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <span className="text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-[0.15em] text-zinc-400 uppercase">
               {CONTENT.parallaxDashboard.growth.label}
             </span>
-            <motion.span
-              animate={isReduced ? { opacity: 0.8 } : { scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
-              transition={isReduced ? { duration: 0 } : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 rounded-full bg-brand-teal shadow-[0_0_10px_rgba(13,148,136,0.5)]"
-            />
+            {/* Breathing Active Dot Indicator */}
+            <div className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-teal"></span>
+            </div>
           </div>
 
-          <div className="flex items-end gap-1.5 sm:gap-2 mb-1 sm:mb-2">
-            <span className="text-xl sm:text-2xl lg:text-4xl font-mono font-bold text-white">
-              +{count}
-              {CONTENT.parallaxDashboard.growth.suffix}
+          {/* Main Stats Value */}
+          <div className="flex items-baseline gap-2 mb-2 sm:mb-3">
+            <span className="text-2xl sm:text-3xl lg:text-[2.75rem] font-sans font-extrabold text-white tracking-tight">
+              <motion.span>{countText}</motion.span>
             </span>
-            <span className="text-[8px] sm:text-[10px] lg:text-xs text-zinc-400 mb-0.5 sm:mb-1">
+            <span className="text-[10px] sm:text-xs text-zinc-400 font-medium">
               {CONTENT.parallaxDashboard.growth.comparison}
             </span>
           </div>
 
-          {/* Micro Chart Bars */}
-          <div className="flex items-end gap-0.5 sm:gap-1 h-5 sm:h-6 lg:h-8 mt-1 sm:mt-2">
-            {[30, 45, 35, 60, 50, 75, 65].map((h, i) => (
+          {/* Micro-Chart with Animation & Glows */}
+          <div className="flex items-end gap-1.5 sm:gap-2 h-7 sm:h-9 lg:h-11 mt-2 sm:mt-3">
+            {[25, 45, 35, 60, 50, 75, 90].map((val, i) => (
               <motion.div
                 // biome-ignore lint/suspicious/noArrayIndexKey: Static chart bars
                 key={i}
                 initial={{ height: 0 }}
-                animate={isInView ? { height: `${h}%` } : {}}
+                animate={isInView ? { height: `${val}%` } : {}}
                 transition={{
                   duration: 0.8,
-                  delay: 0.5 + i * 0.05,
+                  delay: 0.6 + i * 0.05,
                   ease: "backOut",
                 }}
-                className={`flex-1 rounded-sm transition-colors ${i === 6 ? "bg-brand-teal" : "bg-white/10 hover:bg-white/20"}`}
+                className={`flex-1 rounded-sm sm:rounded ${
+                  i === 6
+                    ? "bg-gradient-to-t from-brand-teal to-teal-400 shadow-[0_0_15px_rgba(20,184,166,0.6)]"
+                    : "bg-white/5 hover:bg-white/15"
+                }`}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

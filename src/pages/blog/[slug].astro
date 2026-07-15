@@ -13,18 +13,46 @@ export function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
 const articleDateISO = new Date(article.date).toISOString();
 const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
+// Keep SERP titles roughly ≤60 chars while preserving brand when space allows.
+const brand = " | AdaptHub";
+const MAX_TITLE = 60;
+const brandedTitle = `${article.title}${brand}`;
+const pageTitle =
+  brandedTitle.length <= MAX_TITLE
+    ? brandedTitle
+    : `${article.title.slice(0, MAX_TITLE - brand.length - 1)}…${brand}`;
+
+const hubBySlug: Record<string, { href: string; label: string }> = {
+  "varc-fact-vs-judgment": { href: "/cat-varc-strategy", label: "CAT VARC Strategy 2026" },
+  "decoding-2025-dilr-trap-sets": { href: "/cat-dilr-strategy", label: "CAT DILR Strategy 2026" },
+  "zone-of-proximal-development-cat-algebra": { href: "/cat-quant-strategy", label: "CAT Quant Strategy 2026" },
+  "metacognition-first-cat-skill": { href: "/how-to-score-99-percentile-cat", label: "99 Percentile CAT Blueprint" },
+  "distractor-error-taxonomy": { href: "/cat-mock-analysis", label: "How to Analyse CAT Mocks" },
+  "quality-streaks-vs-raw-study-hours": { href: "/cat-study-plan-2026", label: "CAT 2026 Study Plan" },
+};
+const pillarHub = hubBySlug[article.slug];
 ---
 
 <Layout
-  title={article.title}
+  title={pageTitle}
   description={article.excerpt}
-  keywords={["cat preparation", "cat strategy", article.category.toLowerCase(), "adapthub blog"]}
+  keywords={[
+    "cat preparation",
+    "cat strategy 2026",
+    "cat exam preparation",
+    article.category.toLowerCase(),
+    "how to crack cat",
+    "adapthub blog",
+    ...article.slug.split("-").filter((w) => w.length > 3).slice(0, 4),
+  ]}
   datePublished={articleDateISO}
   dateModified={articleDateISO}
   ogType="article"
+  articleSection={article.category}
+  articleAuthor="AdaptHub"
   ogImage={new URL("/og-image.png", siteUrl).href}
   breadcrumb={[
     { name: "Home", url: siteUrl },
@@ -91,7 +119,7 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 5 5 12 12 19"></polyline>
         </svg>
-        Signals &amp; Noise
+         CAT Prep Blog
       </a>
 
       {/* 12-Col Layout */}
@@ -171,6 +199,22 @@ const canonicalURL = new URL(`/blog/${article.slug}/`, siteUrl).href;
                 ))}
               </ul>
             </section>
+          )}
+
+          {pillarHub && (
+            <div class="mt-16 p-6 border border-brand-teal/20 bg-brand-teal/[0.03]">
+              <p class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.2em] mb-3">[ Strategy Hub ]</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4">
+                Continue with the full pillar guide this article supports.
+              </p>
+              <a
+                href={pillarHub.href}
+                class="inline-flex items-center gap-2 font-serif text-lg text-white hover:text-brand-teal transition-colors"
+              >
+                {pillarHub.label}
+                <span class="text-brand-teal" aria-hidden="true">→</span>
+              </a>
+            </div>
           )}
 
           {/* Footer rule */}

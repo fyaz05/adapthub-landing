@@ -200,7 +200,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     slug: "distractor-error-taxonomy",
-    title: "CAT Distractor Taxonomy: Stop Repeating the Same Traps",
+    title: "CAT Distractor Taxonomy: Stop the Same Traps",
     category: "Error Analysis",
     date: "2026-02-23",
     readTime: "11_MIN",
@@ -255,7 +255,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     slug: "quality-streaks-vs-raw-study-hours",
-    title: "Quality Streaks vs Study Hours: What Predicts CAT Percentile",
+    title: "Quality Streaks vs Study Hours for CAT Percentile",
     category: "Performance Science",
     date: "2026-02-23",
     readTime: "07_MIN",

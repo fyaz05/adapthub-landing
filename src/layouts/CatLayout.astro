@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string[];
+  noindex?: boolean;
+  datePublished?: string;
+  dateModified?: string;
+  ogType?: "website" | "article";
+  ogImage?: string;
+  breadcrumb?: { name: string; url: string }[];
+  head?: string;
+  /** Max-width utility for the content wrapper. Defaults to `max-w-4xl`
+   *  (article reading width). Wide/landing pages (e.g. pricing,
+   *  cat-syllabus) should pass `max-w-[1800px]`. */
+  maxWidth?: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  noindex = false,
+  datePublished,
+  dateModified,
+  ogType = "website",
+  ogImage,
+  breadcrumb,
+  head,
+  maxWidth = "max-w-4xl",
+} = Astro.props;
+
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+  noindex={noindex}
+  datePublished={datePublished}
+  dateModified={dateModified}
+  ogType={ogType}
+  ogImage={ogImage}
+  breadcrumb={breadcrumb}
+>
+  <slot name="head" />
+  {head && <script type="application/ld+json" is:inline slot="head" set:html={head} />}
+  <AnnouncementBar client:idle transition:persist />
+  <Navbar client:load transition:persist />
+
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+    <div class="background-pulse" aria-hidden="true">
+      <slot name="grain" />
+    </div>
+    <div class={`mx-auto w-full px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 ${maxWidth} mt-8`}>
+      <slot />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .background-pulse { animation: none !important; }
+    ::slotted([slot="grain"]) { opacity: 0 !important; }
+  }
+</style>

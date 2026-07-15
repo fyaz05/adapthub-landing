@@ -9,10 +9,10 @@ import { useReducedMotion } from "../hooks/use-reduced-motion";
 /**
  * SpotlightButton — the canonical button primitive for AdaptHub.
  *
-  * variant + size system added.
-  *
-  * Existing pages currently pass bespoke `className` strings. Those
-  * usages are NOT migrated here — they keep working because `className` is
+ * variant + size system added.
+ *
+ * Existing pages currently pass bespoke `className` strings. Those
+ * usages are NOT migrated here — they keep working because `className` is
  * still appended last. New call sites should prefer the `variant` + `size`
  * props for consistency:
  *

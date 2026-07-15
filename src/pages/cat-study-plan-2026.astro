@@ -1,0 +1,129 @@
+---
+import CatLayout from "../layouts/CatLayout.astro";
+import FaqSection from "../components/FaqSection.astro";
+import Callout from "../components/Callout.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const siteUrl = Astro.site || "https://adapthub.in";
+
+const faqs = [
+  {
+    question: "What is a good CAT 2026 study plan length?",
+    answer:
+      "Most first-time aspirants do well with 6–10 months. A compressed 3-month plan can work for strong baselines or repeaters if mock analysis is strict. Working professionals often succeed with a 6-month plan of 2–3 focused hours on weekdays plus longer weekend blocks.",
+  },
+  {
+    question: "When should I start full-length mocks in my study plan?",
+    answer:
+      "Take one diagnostic mock early. Build concepts with topic and sectional practice, then move toward roughly one full mock per week in mid prep and two per week closer to the exam — always with same-day or next-day analysis.",
+  },
+  {
+    question: "Can I follow a CAT study plan without coaching?",
+    answer:
+      "Yes. Pair a phase-wise plan with standard books, free PYQs, and an adaptive practice engine so difficulty stays personalised. See our guide on preparing for CAT without coaching for the full free stack.",
+  },
+  {
+    question: "How many hours per day for CAT 2026?",
+    answer:
+      "Quality beats raw hours. Many successful plans use 3–5 focused hours daily for students and 2–3 for working professionals, with weekly mock/analysis blocks. Track quality sessions (high focus, logged errors) rather than seat time alone.",
+  },
+];
+---
+<CatLayout
+  title="CAT 2026 Study Plan (6-Month & Flexible) | AdaptHub"
+  description="CAT 2026 study plan with foundation, adaptive practice, and mock phases. Free self-study timetable for students and working professionals — no coaching required."
+  keywords={[
+    "cat 2026 study plan",
+    "cat 6 month study plan",
+    "cat 3 month study plan",
+    "cat preparation timetable",
+    "how to start cat preparation",
+    "cat study plan for working professionals",
+  ]}
+  ogType="article"
+  datePublished="2026-07-13T00:00:00.000Z"
+  dateModified="2026-07-13T00:00:00.000Z"
+  breadcrumb={[
+    { name: "Home", url: String(siteUrl) },
+    { name: "CAT 2026 Study Plan", url: new URL("/cat-study-plan-2026/", siteUrl).href },
+  ]}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      },
+    ],
+  })} />
+  <Callout label="Study Plan Overview">
+    <p><strong>Core idea:</strong> Phase-wise, adaptive, mock-driven — not a static calendar.</p>
+    <p><strong>Phase 1 (Months 1–3):</strong> Foundation + baseline diagnostic.</p>
+    <p><strong>Phase 2 (Months 4–6):</strong> Adaptive intensification + weekly mocks.</p>
+    <p><strong>Phase 3 (Months 7–exam):</strong> Mock frequency + strategy lock-in.</p>
+  </Callout>
+
+  <article>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">CAT 2026 Study Plan: Phase-Wise, Adaptive & Free</h1>
+    <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
+      A static timetable assumes everyone learns at the same speed. An adaptive engine knows mastery is non-linear. This plan is built for the 70/20/10 priority rule — Arithmetic & Algebra first, then Geometry/Number System, then niche topics — with adaptive practice keeping you in the growth band.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Phase 1 — Foundation (Months 1–3)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Goal: Coverage + baseline. No section left untouched.
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Diagnostic full mock in week 1; log section strengths without ego.</li>
+      <li>QA: Arithmetic first (Percentages, Ratio, TSD, Time & Work, P&L), then Algebra basics.</li><li>VARC: Daily RC habit (editorials / long-form); VA types twice weekly.</li><li>DILR: Basic graphs, arrangements, simple sets — focus on reading constraints fully.</li><li>2 sectional tests per section each week; light adaptive drills on misses.</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Phase 2 — Adaptive Intensification (Months 4–6)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Goal: Accuracy in the growth band. Adaptive practice replaces blind volume.
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>One full mock most weeks + deep analysis (see <a href="/cat-mock-analysis" class="text-brand-teal hover:underline underline-offset-4">mock analysis framework</a>).</li>
+      <li>QA: Geometry + Number System + Modern Math; revisit Arithmetic under time.</li><li>DILR: Hybrid sets, games & tournaments, multi-set selection practice.</li><li>VARC: Inference-heavy RCs; strict fact vs judgment discipline.</li><li>Spaced retest of tagged errors at 3 / 7 / 14 days (AdaptHub SRS queue handles this).</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Phase 3 — Mock & Refinement (Months 7–exam)</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Goal: Exam temperament + sectional cutoffs. No new heavy topics.
+    </p>
+    <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
+      <li>Two full mocks per week when energy allows; never skip analysis.</li>
+      <li>Sectional strategy lock-in: attempt order, skip rules, time checkpoints.</li>
+      <li>Only high-ROI revision — weak topics from the error log, not the whole syllabus.</li><li>Sleep, light review, and confidence calibration in the final week — no new heavy topics.</li>
+    </ul>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Working professionals: Compressed 6-month variant</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-6">
+      Collapse Phase 1 into 3–4 weeks of high-intensity Arithmetic + RC + basic DILR, then alternate mock weeks with pure remediation. Only use this path if diagnostics show a workable baseline; otherwise extend foundation. Adaptive platforms help because they refuse to waste your scarce hours on already-mastered Level 2 items.
+    </p>
+
+    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How AdaptHub makes the plan adaptive</h2>
+    <p class="text-zinc-400 leading-[1.8] mb-10">
+      Instead of a static calendar, AdaptHub rebuilds daily focus from your accuracy and error tags. Lifetime free, no credit card. See the <a href="/adaptive-learning-cat" class="text-brand-teal hover:underline underline-offset-4">adaptive learning for CAT</a> explainer, or start free on the <a href="/pricing" class="text-brand-teal hover:underline underline-offset-4">lifetime free pricing page</a>.
+    </p>
+
+    <CtaBlock text="Start Free Study Plan Engine" />
+
+    <FaqSection faqs={faqs} title="Study Plan FAQs" />
+
+    <RelatedGuides
+      links={[
+        { label: "CAT 2026 exam date", href: "/cat-2026-exam-date" },
+        { label: "Syllabus breakdown", href: "/cat-syllabus" },
+        { label: "How to analyse mocks", href: "/cat-mock-analysis" },
+        { label: "Without coaching", href: "/cat-preparation-without-coaching" },
+      ]}
+    />
+  </article>
+</CatLayout>
