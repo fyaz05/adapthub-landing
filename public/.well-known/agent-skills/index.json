@@ -1,0 +1,39 @@
+{
+  "skills": [
+    {
+      "name": "Agent Skills Discovery Index",
+      "type": "discovery",
+      "description": "Publish a skills discovery index at /.well-known/agent-skills/index.json.",
+      "url": "https://adapthub.in/.well-known/agent-skills/agent-skills-discovery/SKILL.md",
+      "sha256": "3a39c25c451a74f25434eaffe1490f497524d9912a36f64030b7704d576ed62e"
+    },
+    {
+      "name": "Content Signals",
+      "type": "policy",
+      "description": "Declare AI content-usage preferences (ai-train, search, ai-input) in robots.txt.",
+      "url": "https://adapthub.in/.well-known/agent-skills/content-signals/SKILL.md",
+      "sha256": "8bf90c5e830fee0d4f3f76e59479cd4501d1fd84fa5cd4919fdad77ce5266ed4"
+    },
+    {
+      "name": "Link Headers (RFC 8288)",
+      "type": "discovery",
+      "description": "Add Link response headers advertising agent-discovery resources (service-doc, describedby, auth-md).",
+      "url": "https://adapthub.in/.well-known/agent-skills/link-headers-rfc8288/SKILL.md",
+      "sha256": "1797fafd5003ac4e835ec662839f52247b58754c452c9b276a339633280e48d7"
+    },
+    {
+      "name": "Markdown for Agents",
+      "type": "content-negotiation",
+      "description": "Return a Markdown version of HTML responses when agents send Accept: text/markdown.",
+      "url": "https://adapthub.in/.well-known/agent-skills/markdown-for-agents/SKILL.md",
+      "sha256": "e2a6ef308cb5888d4eb948a30e0e8bb6f6ed22b35d59c630fc8af0a5ca1ae18b"
+    },
+    {
+      "name": "WebMCP",
+      "type": "browser-integration",
+      "description": "Expose site tools to browser AI agents via document.modelContext.registerTool().",
+      "url": "https://adapthub.in/.well-known/agent-skills/webmcp/SKILL.md",
+      "sha256": "e90cab6b760120d8ec5c225c48c2a31e40f2394b0624030001057dd02e84f9fd"
+    }
+  ]
+}

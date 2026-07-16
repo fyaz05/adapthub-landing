@@ -11,6 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "lint": "biome check",
+    "gen:skills": "bun run scripts/gen-skills.ts",
     "format": "biome format --write",
     "type-check": "astro check",
     "pages:deploy": "bun run build && bunx wrangler pages deploy dist --project-name adapthub --branch main"

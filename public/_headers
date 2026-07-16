@@ -1,60 +1,111 @@
 # Cloudflare Pages Headers
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
 
-# Astro assets have cache-busting hashes, safe to cache forever
+# Hashed Astro assets — cache forever
 /_astro/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 # Static brand assets — long cache, revalidate
 /favicon.ico
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /favicon.svg
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /favicon-*.png
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /apple-touch-icon.png
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /og-image.png
+  ! Cache-Control
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 /logo-*.svg
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /web-app-manifest-*.png
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /android-chrome-*.png
+  ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /site.webmanifest
+  ! Cache-Control
   Cache-Control: public, max-age=86400
   Content-Type: application/manifest+json
 
 # Sitemap & robots — short cache so crawlers pick up updates quickly
 /sitemap-index.xml
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 /sitemap-0.xml
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 /robots.txt
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 /llms.txt
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Content-Type: text/plain; charset=utf-8
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Origin: *
 /md/*
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Content-Type: text/markdown; charset=utf-8
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Origin: *
 /humans.txt
+  ! Cache-Control
   Cache-Control: public, max-age=86400
 /.well-known/security.txt
+  ! Cache-Control
   Cache-Control: public, max-age=86400
   Content-Type: text/plain; charset=utf-8
+/security.txt
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Origin: *
+
+# Agent-discovery well-known resources
+/.well-known/*
+  ! Cache-Control
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Origin: *
+/.well-known/agent-skills/index.json
+  Content-Type: application/json; charset=utf-8
+# Deeper glob to avoid matching index.json (Cloudflare deduplicates Content-Type)
+/.well-known/agent-skills/*/*
+  Content-Type: text/markdown; charset=utf-8
+/auth.md
+  ! Cache-Control
+  Cache-Control: public, max-age=3600
+  Content-Type: text/markdown; charset=utf-8
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Origin: *
 
 # Partytown service worker + sandbox assets
 /~partytown/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
-# All routes — security headers + HTML revalidation cache rule.
-# Cloudflare Pages merges headers across matching rules, so Cache-Control
-# below composes with any other rule that matches the same path.
+# Fallback: security headers + no-cache for HTML (specific rules override via ! Cache-Control)
 /*
   Cache-Control: public, max-age=0, must-revalidate
   X-Frame-Options: DENY
+  # Agent discovery Link headers (RFC 8288)
+  Link: </docs>; rel="service-doc", </auth.md>; rel="auth-md", </llms.txt>; rel="describedby"
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
@@ -63,7 +114,7 @@
   Cross-Origin-Resource-Policy: same-site
   X-DNS-Prefetch-Control: on
   X-Permitted-Cross-Domain-Policies: none
-  # CSP: allow self + GA/GTM (Partytown) + Tally contact form + fonts self-hosted.
-  # 'unsafe-inline' required for Astro inline critical styles and Partytown bootstrap.
-  # Partytown uses a service worker + blob workers for GA4 off-main-thread.
+  # AI content-usage signal (draft-romm-aipref-contentsignals, mirrors robots.txt)
+  Content-Signal: ai-train=yes, search=yes, ai-input=yes
+  # CSP: self, GA/GTM (Partytown), Tally, self-hosted fonts
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://www.google-analytics.com https://tally.so; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://tally.so; frame-src 'self' https://tally.so blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://tally.so; frame-ancestors 'none'; upgrade-insecure-requests

@@ -41,6 +41,136 @@ import { resolvedContent as CONTENT } from "../utils/config";
       })),
     })}
   />
+  <!-- WebMCP tools for AI agents -->
+  <script is:inline>
+    (() => {
+      try {
+        const modelContext = document.modelContext;
+        if (!modelContext || typeof modelContext.registerTool !== "function") {
+          return;
+        }
+
+        const siteBase = window.location.origin;
+
+        const fetchText = async (url) => {
+          const res = await fetch(url, { headers: { Accept: "text/markdown" } });
+          if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+          return await res.text();
+        };
+
+        const tools = [
+          {
+            name: "search",
+            description: "Search AdaptHub for CAT preparation resources, docs, and articles",
+            inputSchema: {
+              type: "object",
+              properties: {
+                query: { type: "string", description: "Search query for CAT prep content" }
+              },
+              required: ["query"]
+            },
+            execute: async ({ query }) => {
+              const res = await fetch(`${siteBase}/llms.txt`);
+              if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+              const text = await res.text();
+              const lines = text
+                .split("\n")
+                .filter((l) => l.toLowerCase().includes(String(query).toLowerCase()));
+              return { query, matches: lines.length ? lines : text.split("\n").slice(0, 40) };
+            }
+          },
+          {
+            name: "get_page_content",
+            description: "Get the markdown content of any AdaptHub page by its path",
+            inputSchema: {
+              type: "object",
+              properties: {
+                path: { type: "string", description: "URL path (e.g., /cat-syllabus, /pricing)" }
+              },
+              required: ["path"]
+            },
+            execute: async ({ path }) => {
+              const clean = String(path).replace(/^\/+|\/+$/g, "");
+              return { content: await fetchText(`${siteBase}/${encodeURIComponent(clean)}`) };
+            }
+          },
+          {
+            name: "get_docs_section",
+            description: "Get platform documentation for a specific topic",
+            inputSchema: {
+              type: "object",
+              properties: {
+                topic: {
+                  type: "string",
+                  enum: [
+                    "calibration-sequence",
+                    "ai-coach-hint-system",
+                    "telemetry-performance-metrics",
+                    "spaced-repetition-system",
+                    "core-issue-matrix"
+                  ],
+                  description: "Documentation topic slug"
+                }
+              },
+              required: ["topic"]
+            },
+            execute: async ({ topic }) => {
+              return { content: await fetchText(`${siteBase}/docs/${encodeURIComponent(topic)}`) };
+            }
+          },
+          {
+            name: "get_blog_article",
+            description: "Get a blog article about CAT preparation strategies",
+            inputSchema: {
+              type: "object",
+              properties: {
+                slug: { type: "string", description: "Blog article slug" }
+              },
+              required: ["slug"]
+            },
+            execute: async ({ slug }) => {
+              return { content: await fetchText(`${siteBase}/blog/${encodeURIComponent(slug)}`) };
+            }
+          },
+          {
+            name: "get_study_resources",
+            description: "Get available study resources for CAT 2026 preparation",
+            inputSchema: {
+              type: "object",
+              properties: {
+                section: {
+                  type: "string",
+                  enum: ["syllabus", "study-plan", "strategy", "mocks", "all"],
+                  description: "Resource category"
+                }
+              },
+              required: ["section"]
+            },
+            execute: async ({ section }) => {
+              const res = await fetch(`${siteBase}/llms.txt`);
+              if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+              const text = await res.text();
+              const block = section === "all"
+                ? text
+                : text
+                    .split("\n")
+                    .filter((l) => l.toLowerCase().includes(String(section).toLowerCase()))
+                    .join("\n");
+              return { section, resources: block };
+            }
+          }
+        ];
+
+        for (const tool of tools) {
+          Promise.resolve(modelContext.registerTool(tool)).catch((err) => {
+            console.debug("WebMCP tool registration failed:", tool.name, err);
+          });
+        }
+      } catch (e) {
+        console.debug("WebMCP not available:", e);
+      }
+    })();
+  </script>
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
   <main id="main-content" class="relative isolate">

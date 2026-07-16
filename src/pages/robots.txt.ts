@@ -75,7 +75,10 @@ Allow: /
 
 # Discovery
 Sitemap: ${sitemapURL.href}
-# Agent content map (not a standard robots directive; listed for operators)
+# AI content-usage signal (draft-romm-aipref-contentsignals)
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+# Agent content map (non-standard, listed for operators)
 # llms.txt: https://adapthub.in/llms.txt
 `.trim();
 

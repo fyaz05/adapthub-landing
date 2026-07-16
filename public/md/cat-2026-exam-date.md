@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-CAT 2026 is widely expected around late November 2026 (historically the last Sunday of November—often cited as 29 November 2026 in planning guides). Official notification and registration typically open mid-year on iimcat.ac.in. Treat all dates as provisional until the conducting IIM publishes them.
+CAT 2026 is widely expected around late November 2026 (some planning guides cite 29 November 2026, though the conducting IIM has not always used the final Sunday). Official notification and registration typically open mid-year on iimcat.ac.in. Treat all dates as provisional until the conducting IIM publishes them.
 
 ## Planning anchors (provisional)
 
