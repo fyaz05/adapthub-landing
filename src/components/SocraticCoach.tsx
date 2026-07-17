@@ -3,18 +3,13 @@ import { useState } from "react";
 import { CONTENT } from "../constants/content";
 import SectionSpotlight from "./SectionSpotlight";
 
-export interface SocraticCoachProps {
-  onHintRequested?: () => void;
-}
-
-export default function SocraticCoach({ onHintRequested }: SocraticCoachProps) {
+export default function SocraticCoach() {
   const [hintLevel, setHintLevel] = useState(0);
   const data = CONTENT.socraticCoach;
 
   const handleReveal = () => {
     if (hintLevel < 1) {
       setHintLevel(1);
-      onHintRequested?.();
     }
   };
 

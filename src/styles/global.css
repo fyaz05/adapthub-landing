@@ -11,7 +11,6 @@
     --color-brand-teal: #2dd4bf;
     /* Elevating from teal-600 to teal-400 for AAA contrast */
     --color-paper: #faf3e9;
-    --color-paper-light: #fdfbf7;
     --color-void: #050505;
     --color-charcoal: #122121;
 
@@ -107,9 +106,6 @@
     }
 
     /* Reduce grain overhead on mobile */
-    .grain-surface {
-        opacity: 0.02;
-    }
 }
 
 /* 
@@ -125,14 +121,6 @@
     scroll-behavior: auto !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-}
-
-.is-reduced .grain-surface {
-    display: none !important;
-}
-
-.is-reduced .glow-mesh {
-    display: none !important;
 }
 
 ::view-transition-group(root) {
@@ -186,30 +174,9 @@
 }
 
 /* Base Grain Surface - Always present but subtle */
-.grain-surface {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay;
-    transition: opacity 0.5s var(--transition-timing-surgical);
-}
-
-@media (max-width: 768px) {
-    .grain-surface {
-        display: none;
-    }
-}
-
-/* Displacement Filter for "Digital Distortion" on Void Backgrounds */
-.displacement-filter {
-    filter: url('#turbulence-noise');
-}
+/* NOTE: .grain-surface and .displacement-filter were removed in cleanup —
+   they had zero usages in any .astro/.tsx file. If you need a grain overlay,
+   use the <NoiseOverlay /> Astro component instead. */
 
 /* Intensify grain during transitions */
 ::view-transition-image-pair(root) {
@@ -294,15 +261,6 @@ html {
 
 @layer utilities {
 
-    /* BentoGrid Mobile Fixes */
-    .mobile-visual-fix {
-        @apply min-h-[250px] md:min-h-0;
-    }
-
-    .mobile-min-height {
-        @apply min-h-[200px] md:min-h-0;
-    }
-
     .custom-scrollbar {
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
@@ -328,10 +286,6 @@ html {
 }
 
 @layer components {
-    .glow-mesh {
-        @apply absolute blur-[160px] opacity-40;
-    }
-
     /* Orchestration Utilities */
     .animate-in {
         animation-fill-mode: both;
@@ -349,18 +303,6 @@ html {
 
     .slide-in-from-bottom-8 {
         animation-name: slide-in-bottom-8;
-    }
-
-    .slide-in-from-bottom-12 {
-        animation-name: slide-in-bottom-12;
-    }
-
-    .slide-in-from-bottom-16 {
-        animation-name: slide-in-bottom-16;
-    }
-
-    .zoom-in-95 {
-        animation-name: zoom-in-95;
     }
 
     @keyframes fade-in {
@@ -397,42 +339,6 @@ html {
         }
     }
 
-    @keyframes slide-in-bottom-12 {
-        from {
-            opacity: 0;
-            transform: translateY(3rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slide-in-bottom-16 {
-        from {
-            opacity: 0;
-            transform: translateY(4rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes zoom-in-95 {
-        from {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
     @keyframes scale-down-exit {
         to {
             transform: scale(0.96) translateY(-2vh);
@@ -458,27 +364,6 @@ html {
         }
     }
 
-    .delay-200 {
-        animation-delay: 200ms;
-    }
-
-    .delay-300 {
-        animation-delay: 300ms;
-    }
-
-    .delay-400 {
-        animation-delay: 400ms;
-    }
-
-    .delay-500 {
-        animation-delay: 500ms;
-    }
-
-    .delay-700 {
-        animation-delay: 700ms;
-    }
-
-    /* ── Page Reveal Choreography (Shared across all content pages) ── */
     .page-stagger {
         opacity: 0;
         transform: translateY(24px) translateZ(0);
@@ -665,33 +550,6 @@ html {
     --space-16: 4rem;
     --space-24: 6rem;
     --space-32: 8rem;
-}
-
-/* ── 1b. Shared Section Padding Utility ── */
-/* Apply to <section> tags for consistent vertical rhythm site-wide. */
-.section-padding {
-    padding-block: var(--space-16);
-}
-
-@media (min-width: 768px) {
-    .section-padding {
-        padding-block: var(--space-24);
-    }
-}
-
-/* ── 1c. Shared Page H1 Utility ── */
-/* Calibrated against existing h1 sizes across pages (Hero uses clamp(2rem, 7.5vw, 8.5rem);
-   pricing uses text-[2.75rem]→text-7xl; 404 uses text-4xl→text-[4.5rem]).
-   This utility is intended for non-Hero content pages (pricing, about, contact, docs, blog)
-   to converge on a single typographic scale. */
-.page-h1 {
-    font-size: clamp(2.75rem, 7vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    font-weight: 700;
-    text-wrap: balance;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── 1d. Focus-Visible Styles (WCAG 2.2 AA) ── */

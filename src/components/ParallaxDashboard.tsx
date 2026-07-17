@@ -11,7 +11,7 @@ import { CONTENT } from "../constants/content";
 import { useIsMobile } from "../hooks/use-mobile";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 
-const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
+const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
   const isMobile = useIsMobile();
   const isReduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -106,7 +106,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage?: string }) => {
           </div>
 
           <img
-            src={heroImage || CONTENT.assets.heroImage}
+            src={heroImage}
             alt={CONTENT.parallaxDashboard.alt}
             width={1200}
             height={800}

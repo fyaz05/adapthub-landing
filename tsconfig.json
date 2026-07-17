@@ -12,10 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["astro/client"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "types": ["astro/client"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "**/*.mts"],
   "exclude": ["node_modules", "dist"]

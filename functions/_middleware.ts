@@ -29,14 +29,15 @@ export async function onRequest(context: {
 
     if (MD_CAPSULE_MAP[path]) {
       const mdResponse = await context.env.ASSETS.fetch(
-        new Request(new URL(MD_CAPSULE_MAP[path], url), request)
+        new Request(new URL(MD_CAPSULE_MAP[path], url), request),
       );
       if (mdResponse.status === 200) {
         const mdText = await mdResponse.text();
         return new Response(mdText, {
           headers: {
             "Content-Type": "text/markdown; charset=utf-8",
-            "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+            "Cache-Control":
+              "public, max-age=3600, stale-while-revalidate=86400",
             "X-Markdown-Tokens": String(mdText.split(/\s+/).length),
           },
         });

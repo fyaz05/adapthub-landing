@@ -24,13 +24,7 @@ function unlock(): void {
   }
 }
 
-function forceUnlock(): void {
-  lockCount = 0;
-  document.body.style.overflow = previousOverflow;
-}
-
 export const scrollLock = {
   lock,
   unlock,
-  forceUnlock,
 };

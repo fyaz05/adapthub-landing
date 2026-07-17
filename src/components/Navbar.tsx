@@ -172,7 +172,6 @@ const Navbar = () => {
       >
         <motion.nav
           ref={navRef}
-          data-lenis-prevent
           aria-label="Main navigation"
           className={`
             relative pointer-events-auto w-full max-w-[1100px] rounded-full

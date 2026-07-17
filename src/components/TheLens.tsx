@@ -46,7 +46,6 @@ const DataDot = ({
 }) => {
   const start = 0.05 + i * 0.012;
   const end = start + 0.05;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const dotScale = useTransform(progress, [start, end], [0, 1]);
   return (
     <motion.circle

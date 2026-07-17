@@ -182,12 +182,6 @@ export const CONTENT = {
       },
     ],
     visuals: {
-      zpd: {
-        boredom: "BOREDOM",
-        anxiety: "ANXIETY",
-        flow: "FLOW STATE",
-        target: "TARGET ZONE",
-      },
       diagnostics: {
         memory: "MEMORY",
         logic: "LOGIC",
@@ -547,14 +541,11 @@ export const CONTENT = {
 
   links: {
     app: "https://app.adapthub.in",
-    privacy: "/privacy-policy",
-    terms: "/terms-of-service",
     support: "mailto:support@adapthub.in",
   },
 
   assets: {
     logoLight: "/logo-light.svg",
-    heroImage: "/hero.avif",
     noiseTexture: "/noise.svg",
   },
 

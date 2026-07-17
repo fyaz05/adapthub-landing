@@ -14,7 +14,7 @@ High-performance marketing site for AdaptHub — free AI adaptive learning for C
 
 ## Tech Stack
 
-- **Framework**: [Astro 5](https://astro.build/) + React 19
+- **Framework**: [Astro 7](https://astro.build/) + React 19
 - **Runtime**: [Bun](https://bun.sh/)
 - **Styling**: Tailwind CSS 4
 - **Linting/Formatting**: [Biome](https://biomejs.dev/)

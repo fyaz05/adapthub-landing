@@ -1,4 +1,4 @@
-export interface StreakDay {
+interface StreakDay {
   practiced: boolean;
   future?: boolean;
   intensityClass?: string;

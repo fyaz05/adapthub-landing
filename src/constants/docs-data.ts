@@ -1,4 +1,4 @@
-export interface DocSection {
+interface DocSection {
   slug: string;
   sysRef: string;
   title: string;

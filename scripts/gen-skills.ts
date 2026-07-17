@@ -1,11 +1,17 @@
-import { mkdirSync, writeFileSync, existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 const site = "https://adapthub.in";
 const base = resolve(process.cwd(), "public/.well-known/agent-skills");
 
-type Skill = { slug: string; type: string; name: string; description: string; body: string };
+type Skill = {
+  slug: string;
+  type: string;
+  name: string;
+  description: string;
+  body: string;
+};
 
 // Only skills that reflect capabilities AdaptHub actually implements today:
 // content/LLM discovery (llms.txt, markdown negotiation, Link headers, WebMCP)
@@ -64,7 +70,8 @@ description: Declare AI content-usage preferences via robots.txt Content-Signal 
     slug: "agent-skills-discovery",
     type: "discovery",
     name: "Agent Skills Discovery Index",
-    description: "Publish a skills discovery index at /.well-known/agent-skills/index.json.",
+    description:
+      "Publish a skills discovery index at /.well-known/agent-skills/index.json.",
     body: `name: Agent Skills Discovery Index
 description: Advertise available agent skills.
 
@@ -78,7 +85,8 @@ description: Advertise available agent skills.
     slug: "webmcp",
     type: "browser-integration",
     name: "WebMCP",
-    description: "Expose site tools to browser AI agents via document.modelContext.registerTool().",
+    description:
+      "Expose site tools to browser AI agents via document.modelContext.registerTool().",
     body: `name: WebMCP
 description: Expose in-page tools to AI agents via the browser.
 
@@ -118,10 +126,12 @@ index.skills.sort((a, b) => a.name.localeCompare(b.name));
 writeFileSync(
   resolve(base, "index.json"),
   JSON.stringify(index, null, 2),
-  "utf8"
+  "utf8",
 );
 
-console.log(`Regenerated index.json (${skills.length} skills; SKILL.md files left untouched if present)`);
+console.log(
+  `Regenerated index.json (${skills.length} skills; SKILL.md files left untouched if present)`,
+);
 for (const sk of index.skills) {
   console.log(`${sk.name} -> ${sk.sha256}`);
 }
