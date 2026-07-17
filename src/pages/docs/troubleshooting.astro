@@ -4,8 +4,9 @@ import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
 import { DOC_SECTIONS, DOC_FAQS } from "../../constants/docs-data";
+import { buildPublisher } from "../../utils/schema";
 
-const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
 const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
 ---
 
@@ -13,6 +14,9 @@ const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
   title="Troubleshooting | AdaptHub Docs"
   description="Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more."
   keywords={["adapthub troubleshooting", "adapthub faq", "adapthub help", "adapthub support"]}
+  ogType="article"
+  datePublished="2025-09-01T00:00:00.000Z"
+  dateModified="2026-07-01T00:00:00.000Z"
   breadcrumb={[
     { name: "Home", url: siteUrl },
     { name: "Docs", url: new URL("/docs", siteUrl).href },
@@ -24,11 +28,14 @@ const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
     "@type": "TechArticle",
     "headline": "Troubleshooting | AdaptHub Docs",
     "description": "Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more.",
+    "datePublished": "2025-09-01T00:00:00.000Z",
+    "dateModified": "2026-07-01T00:00:00.000Z",
+    "image": [new URL("/og-image.png", siteUrl).href],
     "author": { "@type": "Organization", "name": "AdaptHub" },
-    "publisher": { "@type": "Organization", "name": "AdaptHub", "logo": { "@type": "ImageObject", "url": new URL("/logo-light.svg", siteUrl).href } },
+    "publisher": buildPublisher(siteUrl),
     "mainEntityOfPage": { "@type": "WebPage", "@id": troubleshootingURL },
     "url": troubleshootingURL,
-    "inLanguage": "en",
+    "inLanguage": "en-IN",
   })} />
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",

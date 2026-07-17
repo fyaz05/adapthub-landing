@@ -3,11 +3,13 @@ import CatLayout from "../layouts/CatLayout.astro";
 import FaqSection from "../components/FaqSection.astro";
 import SpotlightButton from "../components/SpotlightButton";
 import { resolvedContent as CONTENT } from "../utils/config";
+import { buildOffer } from "../utils/schema";
 
 const faqs = CONTENT.pricing.faqs;
 const features = CONTENT.pricing.features;
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
+const pricingURL = new URL("pricing", siteUrl).href;
 ---
 <CatLayout
   title={CONTENT.metadata.pricing.title}
@@ -19,25 +21,22 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "Product",
-        "@id": new URL("pricing/#product", siteUrl).href,
+        "@id": `${siteUrl}pricing#product`,
         "name": "AdaptHub Lifetime Free CAT Prep",
         "description": "Complete access to adaptive study plans, AI-powered coaching, and CAT analytics at ₹0.",
         "brand": { "@type": "Brand", "name": "AdaptHub" },
         "image": [new URL("/og-image.png", siteUrl).href],
         "category": "EducationalApplication",
-        "url": new URL("pricing", siteUrl).href,
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "INR",
-          "availability": "https://schema.org/InStock",
-          "url": new URL("pricing", siteUrl).href,
-          "priceValidUntil": "2027-12-31"
-        }
+        "url": pricingURL,
+        "offers": buildOffer({
+          url: pricingURL,
+          siteUrl: String(siteUrl),
+          priceValidUntil: "2027-12-31",
+        })
       },
       {
         "@type": "FAQPage",
-        "@id": new URL("pricing/#faq", siteUrl).href,
+        "@id": `${siteUrl}pricing#faq`,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
         }))

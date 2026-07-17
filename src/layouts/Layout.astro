@@ -7,6 +7,7 @@ import "@fontsource/lora/700.css";
 import "@fontsource/lora/400-italic.css";
 import { ClientRouter } from "astro:transitions";
 import { resolvedContent as CONTENT } from "../utils/config";
+import { buildOffer } from "../utils/schema";
 import { partytownSnippet } from "@qwik.dev/partytown/integration";
 
 import NoiseOverlay from "../components/NoiseOverlay.astro";
@@ -43,9 +44,8 @@ const {
   articleSection,
   articleAuthor,
 } = Astro.props;
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 const rawPath = Astro.url.pathname;
-// Strip .html from build paths so URLs resolve cleanly (e.g. /pricing)
 const normalizedPath = rawPath === '/index.html' ? '/' : rawPath.replace(/\.html$/, '');
 const cleanPath = normalizedPath.replace(/\/$/, '') || '/';
 const canonicalURL = new URL(cleanPath, siteUrl);
@@ -152,8 +152,8 @@ const partytownConfig = {
     <meta name="geo.placename" content="India" />
     <link rel="author" type="text/plain" href="/humans.txt" />
 
-    {/* Canonical URL — skip on noindex pages (e.g. 404) to avoid confusing crawlers */}
-    {!noindex && <link rel="canonical" href={canonicalURL} />}
+    {/* Canonical on noindex pages too — keeps graph linking clean and avoids hreflang warnings. */}
+    <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
     <link rel="alternate" hreflang="x-default" href={canonicalURL} />
     <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
@@ -210,12 +210,12 @@ const partytownConfig = {
           "@type": "Organization",
           "@id": `${siteUrl}#organization`,
           "name": CONTENT.global.brandName,
-          "url": siteUrl,
+          "url": String(siteUrl),
           "logo": {
             "@type": "ImageObject",
-            "url": new URL(CONTENT.assets.logoLight, siteUrl).href,
-            "width": 512,
-            "height": 512
+            "url": new URL("/apple-touch-icon.png", siteUrl).href,
+            "width": 180,
+            "height": 180
           },
           "image": new URL("/og-image.png", siteUrl).href,
           "description": CONTENT.metadata.defaultDescription,
@@ -259,7 +259,7 @@ const partytownConfig = {
           "@type": "WebSite",
           "@id": `${siteUrl}#website`,
           "name": CONTENT.global.brandName,
-          "url": siteUrl,
+          "url": String(siteUrl),
           "description": CONTENT.metadata.defaultDescription,
           "inLanguage": "en-IN",
           "publisher": {
@@ -307,19 +307,16 @@ const partytownConfig = {
           "applicationSubCategory": "CAT Exam Preparation",
           "operatingSystem": "Web",
           "browserRequirements": "Requires JavaScript. Modern browser recommended.",
-          "url": siteUrl,
+          "url": String(siteUrl),
           "description": CONTENT.metadata.defaultDescription,
           "screenshot": new URL("/og-image.png", siteUrl).href,
           "image": new URL("/og-image.png", siteUrl).href,
           "inLanguage": "en-IN",
           "isAccessibleForFree": true,
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "INR",
-            "availability": "https://schema.org/InStock",
-            "category": "Free"
-          },
+          "offers": buildOffer({
+            url: String(siteUrl),
+            siteUrl: String(siteUrl),
+          }),
           "featureList": [
             "Adaptive Diagnostic Calibration (ZPD Algorithm)",
             "Socratic AI Coaching with Hint Penalties",

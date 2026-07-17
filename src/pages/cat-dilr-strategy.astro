@@ -5,7 +5,7 @@ import Callout from "../components/Callout.astro";
 import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -48,20 +48,17 @@ const faqs = [
     { name: "Home", url: String(siteUrl) },
     { name: "CAT DILR Strategy", url: new URL("/cat-dilr-strategy", siteUrl).href },
   ]}
-  head={JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "FAQPage",
-        "mainEntity": faqs.map((faq) => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
-        })),
-      },
-    ],
-  })}
 >
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}cat-dilr-strategy#faq`,
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
   <Callout label="DILR Strategy">
     <p><strong>Core skill:</strong> Pick solvable sets fast; abandon traps without ego.</p>
     <p><strong>Practice:</strong> Daily sets + weekly timed sectionals + selection error log.</p>

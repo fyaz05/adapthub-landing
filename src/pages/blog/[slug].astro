@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
 import { BLOG_ARTICLES } from "../../constants/blog-data";
+import { buildPublisher } from "../../utils/schema";
 
 export function getStaticPaths() {
   return BLOG_ARTICLES.map((article) => ({
@@ -13,7 +14,7 @@ export function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
 const articleDateISO = new Date(article.date).toISOString();
 const canonicalURL = new URL(`/blog/${article.slug}`, siteUrl).href;
 // Keep SERP titles roughly ≤60 chars while preserving brand when space allows.
@@ -76,14 +77,7 @@ const pillarHub = hubBySlug[article.slug];
       new URL("/og-image.png", siteUrl).href,
     ],
     "author": { "@type": "Organization", "name": "AdaptHub" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "AdaptHub",
-      "logo": {
-        "@type": "ImageObject",
-        "url": new URL("/logo-light.svg", siteUrl).href,
-      },
-    },
+    "publisher": buildPublisher(siteUrl),
     ...(article.sources && article.sources.length > 0 ? { "citation": article.sources.map((source) => source.url) } : {}),
     "isAccessibleForFree": true,
     "url": canonicalURL,

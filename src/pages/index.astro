@@ -17,6 +17,8 @@ import PhilosophySection from "../components/PhilosophySection.astro";
 import SocraticCoach from "../components/SocraticCoach";
 import Footer from "../components/Footer.astro";
 import { resolvedContent as CONTENT } from "../utils/config";
+
+const siteUrl = Astro.site || "https://adapthub.in/";
 ---
 
 <Layout
@@ -31,6 +33,7 @@ import { resolvedContent as CONTENT } from "../utils/config";
     set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      "@id": `${siteUrl}#faq`,
       "mainEntity": CONTENT.faq.items.map((item: FAQItem) => ({
         "@type": "Question",
         "name": item.question,

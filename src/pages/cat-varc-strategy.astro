@@ -6,7 +6,7 @@ import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import DataTable from "../components/DataTable.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -49,21 +49,17 @@ const faqs = [
     { name: "Home", url: String(siteUrl) },
     { name: "CAT VARC Strategy", url: new URL("/cat-varc-strategy", siteUrl).href },
   ]}
-  head={JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "FAQPage",
-        "@id": new URL("cat-varc-strategy/#faq", siteUrl).href,
-        "mainEntity": faqs.map((faq) => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
-        })),
-      },
-    ],
-  })}
 >
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}cat-varc-strategy#faq`,
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
   <Callout label="VARC Strategy" cornerTabs>
     <p><strong>Weight:</strong> RC usually dominates VARC (~16 of ~24 questions). Accuracy beats blind attempts.</p>
     <p><strong>Daily core:</strong> Reading + 2–3 RCs + VA mix; weekly sectional with full analysis.</p>

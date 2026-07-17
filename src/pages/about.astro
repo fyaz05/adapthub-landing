@@ -20,7 +20,7 @@ const principles = [
   }
 ];
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 ---
 
 <Layout 
@@ -33,7 +33,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "AboutPage",
-        "@id": new URL("about/#aboutpage", siteUrl).href,
+        "@id": `${siteUrl}about#aboutpage`,
         "url": new URL("about", siteUrl).href,
         "name": CONTENT?.metadata?.about?.title || "About AdaptHub",
         "description": CONTENT?.metadata?.about?.description || "AI-powered adaptive learning for CAT",
@@ -42,7 +42,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
       },
       {
         "@type": "Person",
-        "@id": new URL("about/#founder", siteUrl).href,
+        "@id": `${siteUrl}about#founder`,
         "name": "Fyaz Mohammed",
         "jobTitle": "Founder",
         "url": new URL("about", siteUrl).href,

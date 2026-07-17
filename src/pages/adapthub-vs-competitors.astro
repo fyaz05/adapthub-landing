@@ -5,7 +5,7 @@ import Callout from "../components/Callout.astro";
 import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -47,7 +47,7 @@ const faqs = [
     "@graph": [
       {
         "@type": "FAQPage",
-        "@id": new URL("adapthub-vs-competitors/#faq", siteUrl).href,
+        "@id": `${siteUrl}adapthub-vs-competitors#faq`,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.question,

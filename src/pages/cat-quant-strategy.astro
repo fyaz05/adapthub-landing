@@ -6,7 +6,7 @@ import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import DataTable from "../components/DataTable.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -49,20 +49,17 @@ const faqs = [
     { name: "Home", url: String(siteUrl) },
     { name: "CAT Quant Strategy", url: new URL("/cat-quant-strategy", siteUrl).href },
   ]}
-  head={JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "FAQPage",
-        "mainEntity": faqs.map((faq) => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
-        })),
-      },
-    ],
-  })}
 >
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${siteUrl}cat-quant-strategy#faq`,
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
   <Callout label="QA Strategy">
     <p><strong>Priority:</strong> Arithmetic → Algebra → Geometry → Number/Modern Math.</p>
     <p><strong>Exam rule:</strong> Secure easy/medium first; protect accuracy under −1 MCQ penalty.</p>

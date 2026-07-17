@@ -8,6 +8,7 @@ import Callout from "../components/Callout.astro";
 import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { resolvedContent as CONTENT } from "../utils/config";
+import { buildOffer } from "../utils/schema";
 
 // Rank model (70/20/10 study-priority heuristic, not official IIM weightage):
 // 1 = Core (the "70% block"), 2 = Secondary (the "20% block"), 3 = Niche (the "10% block").
@@ -86,7 +87,8 @@ const faqs = [
 ];
 
 // Safe fallback for Astro.site
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
+const pricingURL = new URL("pricing", siteUrl).href;
 ---
 
 <Layout 
@@ -99,7 +101,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "FAQPage",
-        "@id": new URL("cat-syllabus/#faq", siteUrl).href,
+        "@id": `${siteUrl}cat-syllabus#faq`,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.question,
@@ -108,7 +110,7 @@ const siteUrl = Astro.site || "https://adapthub.in";
       },
       {
         "@type": "Course",
-        "@id": new URL("cat-syllabus/#course", siteUrl).href,
+        "@id": `${siteUrl}cat-syllabus#course`,
         "name": "CAT 2026 Exam Preparation — Full Syllabus",
         "description": "A comprehensive breakdown of the CAT 2026 syllabus covering all three sections: Verbal Ability & Reading Comprehension (VARC), Data Interpretation & Logical Reasoning (DILR), and Quantitative Aptitude (QA), with historical topic weightage and question distribution.",
         "provider": {
@@ -131,18 +133,15 @@ const siteUrl = Astro.site || "https://adapthub.in";
           "courseWorkload": "PT14H",
           "startDate": "2026-06-01",
           "endDate": "2026-11-29",
+          "inLanguage": "en-IN",
           "location": {
             "@type": "VirtualLocation",
             "url": new URL("cat-syllabus", siteUrl).href
-          }
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "INR",
-          "availability": "https://schema.org/InStock",
-          "category": "Free",
-          "url": new URL("pricing", siteUrl).href
+          },
+          "offers": buildOffer({
+            url: pricingURL,
+            siteUrl: String(siteUrl),
+          })
         }
       }
     ]

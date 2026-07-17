@@ -4,8 +4,9 @@ import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
 import { DOC_SECTIONS } from "../../constants/docs-data";
+import { buildPublisher } from "../../utils/schema";
 
-const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in";
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
 const pageUrl = new URL("/docs/core-issue-matrix", siteUrl).href;
 
 const matrixData = [
@@ -57,7 +58,7 @@ const schemaGraph = {
     "name": `How to resolve ${item.code} - ${item.issue}?`,
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": `<strong>Symptom:</strong> ${item.symptom} <br/> <strong>Diagnosis:</strong> ${item.diagnosis} <br/> <strong>Resolution:</strong> ${item.resolution}`
+      "text": `Symptom: ${item.symptom}\nDiagnosis: ${item.diagnosis}\nResolution: ${item.resolution}`
     }
   }))
 };
@@ -67,6 +68,9 @@ const schemaGraph = {
   title="Core Issue Matrix | Advanced Diagnostics | AdaptHub"
   description="Resolve critical errors, stalled learning velocity, and algorithmic blocks with AdaptHub's Core Issue Matrix. Official technical troubleshooting."
   keywords={["adapthub errors", "adapthub learning velocity", "quality streak reset adapthub", "adapthub spaced repetition queue", "adapthub calibration baseline", "adapthub advanced troubleshooting"]}
+  ogType="article"
+  datePublished="2025-09-01T00:00:00.000Z"
+  dateModified="2026-07-01T00:00:00.000Z"
   breadcrumb={[
     { name: "Home", url: siteUrl },
     { name: "Docs", url: new URL("/docs", siteUrl).href },
@@ -78,16 +82,16 @@ const schemaGraph = {
     "@type": "TechArticle",
     "headline": "Core Issue Matrix | Advanced Diagnostics | AdaptHub",
     "description": "Resolve critical errors, stalled learning velocity, and algorithmic blocks with AdaptHub's Core Issue Matrix.",
+    "datePublished": "2025-09-01T00:00:00.000Z",
+    "dateModified": "2026-07-01T00:00:00.000Z",
+    "image": [new URL("/og-image.png", siteUrl).href],
     "author": { "@type": "Organization", "name": "AdaptHub" },
-    "publisher": { "@type": "Organization", "name": "AdaptHub", "logo": { "@type": "ImageObject", "url": new URL("/logo-light.svg", siteUrl).href } },
+    "publisher": buildPublisher(siteUrl),
     "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
     "url": pageUrl,
-    "inLanguage": "en",
+    "inLanguage": "en-IN",
   })} />
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(schemaGraph)} />
-  <meta property="og:title" content="Core Issue Matrix | Advanced Diagnostics | AdaptHub" slot="head" />
-  <meta property="og:description" content="Resolve critical errors, stalled learning velocity, and algorithmic blocks with AdaptHub's Core Issue Matrix." slot="head" />
-  <meta property="og:type" content="article" slot="head" />
   
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
@@ -167,7 +171,7 @@ const schemaGraph = {
             </div>
             {/* Brutalist dramatic typography */}
             <h1 class="text-[3rem] sm:text-6xl md:text-[5rem] lg:text-[6rem] font-serif text-white tracking-tighter leading-[0.85] mb-10 -ml-1">
-              Core Issue <br/><span class="text-zinc-500">Matrix_</span>
+              Core Issue <br/><span class="text-zinc-500">Matrix</span>
             </h1>
             <p class="text-zinc-400 font-sans text-lg sm:text-xl leading-[1.8] max-w-[50ch] tracking-wide pt-6 border-t border-white/10">
               Advanced resolution trajectories for systemic anomalies, algorithmic locks, and cognitive load failures within the engine.

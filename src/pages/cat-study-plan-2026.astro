@@ -5,7 +5,7 @@ import Callout from "../components/Callout.astro";
 import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -32,7 +32,7 @@ const faqs = [
 ---
 <CatLayout
   title="CAT 2026 Study Plan (6-Month & Flexible) | AdaptHub"
-  description="CAT 2026 study plan with foundation, adaptive practice, and mock phases. Free self-study timetable for students and working professionals — no coaching required."
+  description="CAT 2026 study plan: foundation, adaptive practice, and mock phases. Free self-study timetable for students and working professionals."
   keywords={[
     "cat 2026 study plan",
     "cat 6 month study plan",
@@ -54,10 +54,11 @@ const faqs = [
     "@graph": [
       {
         "@type": "FAQPage",
+        "@id": `${siteUrl}cat-study-plan-2026#faq`,
         "mainEntity": faqs.map((faq) => ({
           "@type": "Question",
           "name": faq.question,
-          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer.replace(/<[^>]*>/g, "") },
         })),
       },
     ],

@@ -20,14 +20,16 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Exclude noindex / non-content routes from the sitemap.
-      filter: (page) =>
-        !page.includes("/404") &&
-        !page.includes("/~partytown"),
+      // Exact-path matching (not substring) so /contact-us or /blog/404-case-study aren't accidentally excluded.
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return path !== "/404"
+          && path !== "/contact"
+          && !path.startsWith("/~partytown");
+      },
       changefreq: "weekly",
       priority: 0.7,
-      lastmod: new Date(),
-      // Boost homepage + high-intent SEO pages in sitemap priority hints.
+      // `lastmod` intentionally omitted — `new Date()` would falsely mark every page modified on each build.
       serialize(item) {
         const url = item.url;
         if (url === "https://adapthub.in/" || url === "https://adapthub.in") {

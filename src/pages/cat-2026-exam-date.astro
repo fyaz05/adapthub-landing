@@ -6,7 +6,7 @@ import CtaBlock from "../components/CtaBlock.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import DataTable from "../components/DataTable.astro";
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 
 const faqs = [
   {
@@ -48,6 +48,7 @@ const faqs = [
     "@graph": [
       {
         "@type": "FAQPage",
+        "@id": `${siteUrl}cat-2026-exam-date#faq`,
         "mainEntity": faqs.map((faq) => ({
           "@type": "Question",
           "name": faq.question,

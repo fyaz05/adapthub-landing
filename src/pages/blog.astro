@@ -10,7 +10,7 @@ const articles = BLOG_ARTICLES;
 const featuredArticle = articles[0];
 const feedArticles = articles.slice(1);
 
-const siteUrl = Astro.site || "https://adapthub.in";
+const siteUrl = Astro.site || "https://adapthub.in/";
 ---
 
 <Layout 
@@ -23,23 +23,26 @@ const siteUrl = Astro.site || "https://adapthub.in";
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": new URL("blog/#collection", siteUrl).href,
+        "@id": `${siteUrl}blog#collection`,
         "url": new URL("blog", siteUrl).href,
         "name": CONTENT.metadata.blog.title,
         "description": CONTENT?.metadata?.blog?.description || "Strategic insights for CAT 2026"
       },
       {
         "@type": "Blog",
-        "@id": new URL("blog/#blog", siteUrl).href,
+        "@id": `${siteUrl}blog#blog`,
         "name": `AdaptHub ${CONTENT.metadata.blog.title}`,
         "description": "Strategic insights for CAT 2026",
-        "publisher": { "@type": "Organization", "name": "AdaptHub" },
+        "publisher": { "@id": `${siteUrl}#organization` },
         "blogPost": articles.map(a => ({
           "@type": "BlogPosting",
           "headline": a.title,
           "description": a.excerpt,
           "datePublished": new Date(a.date).toISOString(),
-          "url": new URL(`blog/${a.slug}`, siteUrl).href
+          "url": new URL(`blog/${a.slug}`, siteUrl).href,
+          "image": [new URL("/og-image.png", siteUrl).href],
+          "author": { "@type": "Organization", "name": "AdaptHub" },
+          "publisher": { "@id": `${siteUrl}#organization` },
         }))
       }
     ]
@@ -83,8 +86,14 @@ const siteUrl = Astro.site || "https://adapthub.in";
                   Blog.
                 </span>
               </h1>
-              <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-md tracking-wide page-stagger pl-1" style="--i:2">
+              <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-md tracking-wide page-stagger pl-1 mb-5" style="--i:2">
                 CAT 2026 strategy breakdowns, VARC / DILR / QA logic analysis, and cognitive techniques to accelerate your percentile growth.
+              </p>
+              <p class="text-zinc-500 font-sans text-base leading-[1.75] max-w-md tracking-wide page-stagger pl-1 mb-4" style="--i:2">
+                Every entry is grounded in the same adaptive engine that powers AdaptHub's daily study plans — ZPD-based difficulty targeting, mastery locks, and spaced repetition. We do not publish generic motivational content. Each article either dissects a specific CAT pattern (set logic, distractor taxonomy, RC inference traps) or translates a verified cognitive science principle (metacognition, the spacing effect, the zone of proximal development) into a concrete prep action.
+              </p>
+              <p class="text-zinc-500 font-sans text-base leading-[1.75] max-w-md tracking-wide page-stagger pl-1" style="--i:2">
+                Use the chronological ledger on the right to scan recent signals, or start with the Primary Intercept below — the piece that anchors the current editorial arc.
               </p>
             </header>
 

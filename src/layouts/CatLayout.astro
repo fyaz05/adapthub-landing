@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Footer from "../components/Footer.astro";
+import { buildPublisher } from "../utils/schema";
 
 interface Props {
   title: string;
@@ -35,6 +36,43 @@ const {
   maxWidth = "max-w-4xl",
 } = Astro.props;
 
+// TechArticle (subtype of Article) auto-emitted when ogType="article" + datePublished.
+// IMPORTANT: pages emitting their own TechArticle/BlogPosting via `head` should
+// use Layout directly — CatLayout would produce a duplicate Article schema.
+const siteUrl = Astro.site || "https://adapthub.in/";
+// String(siteUrl) preserves the trailing slash, matching Layout.astro's @id form.
+const siteUrlStr = String(siteUrl);
+// Mirror Layout.astro's path normalization (strip .html + trailing slash) so TechArticle @id matches Layout's WebPage @id.
+const rawPath = Astro.url.pathname;
+const normalizedPath = rawPath === "/index.html" ? "/" : rawPath.replace(/\.html$/, "");
+const cleanPath = normalizedPath.replace(/\/$/, "") || "/";
+const articleURL = new URL(cleanPath, siteUrl).href;
+// Gate on `!head` so pages passing their own Article via `head` don't get a duplicate.
+const articleSchema =
+  ogType === "article" && datePublished && !head
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": `${articleURL}#techarticle`,
+        "headline": title,
+        "description": description,
+        "datePublished": datePublished,
+        "dateModified": dateModified || datePublished,
+        "inLanguage": "en-IN",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": articleURL,
+        },
+        "image": [
+          ogImage || new URL("/og-image.png", siteUrl).href,
+        ],
+        "author": { "@type": "Organization", "name": "AdaptHub" },
+        "publisher": buildPublisher(siteUrlStr),
+        "isAccessibleForFree": true,
+        "url": articleURL,
+      })
+    : null;
+
 ---
 
 <Layout
@@ -49,6 +87,7 @@ const {
   breadcrumb={breadcrumb}
 >
   <slot name="head" />
+  {articleSchema && <script type="application/ld+json" is:inline slot="head" set:html={articleSchema} />}
   {head && <script type="application/ld+json" is:inline slot="head" set:html={head} />}
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
