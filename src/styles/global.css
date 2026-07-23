@@ -2,7 +2,7 @@
 
 @theme {
     /* TYPOGRAPHY TOKENS */
-    --font-serif: "Lora", serif;
+    --font-serif: "Lora Variable", "Lora", serif;
     --font-sans: "Geist Sans", sans-serif;
     --font-mono: "Geist Mono", monospace;
 
