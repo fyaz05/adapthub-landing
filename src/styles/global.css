@@ -175,8 +175,10 @@
     pointer-events: none;
     z-index: 1;
     /* Elevated to show through opaque sections */
-    opacity: 0.15;
-    /* Increased opacity for baseline visibility */
+    opacity: 0.1;
+    /* Calibrated for #050505 void — 0.1 is lighter than app's 0.12 for
+       #0b0c0f raised obsidian, because the deeper void bg requires less
+       grid contrast to achieve the same perceived intensity (P1: Contextual Depth) */
     background-size: 40px 40px;
     background-image:
         linear-gradient(to right, rgba(13, 148, 136, 0.1) 1px, transparent 1px),
