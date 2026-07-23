@@ -10,5 +10,10 @@ export const THEME_COLORS = {
     pink: "#ec4899", // 500
     red: "#ef4444", // 500
     violetLight: "#7c3aed", // 600
+    gold: "#fcd34d", // Unified gold CTA accent (matches app's --color-accent-gold)
+  },
+  motion: {
+    easeCinematic: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    easePrecise: [0.4, 0, 0.2, 1] as [number, number, number, number],
   },
 } as const;

@@ -19,6 +19,25 @@
     --color-accent-red: #ef4444;
     --color-accent-violet-light: #7c3aed;
 
+    /* === Landing ↔ App Sync: Semantic aliases + primitives ===========
+       Additive only — no existing tokens modified. These match the
+       token vocabulary established in the app's theme.css so both
+       surfaces share the same semantic layer. */
+    --brand-teal-rgb: 45 212 191; /* RGB triple for rgba() usage */
+    --color-accent-gold: #fcd34d; /* Unified gold CTA accent (alias of accent-yellow) */
+    --color-focus-ring: var(--color-brand-teal); /* Teal focus — unified across dark contexts */
+    --color-ambient-glow: rgb(var(--brand-teal-rgb) / 0.14); /* Ambient spatial glow */
+    --color-cta-accent: var(--color-accent-gold); /* Gold CTA surface */
+
+    /* === Landing ↔ App Sync: Motion tokens ========================
+       Cinematic Easing — no ad-hoc cubic-bezier anywhere.
+       These match the app's motion tokens for cross-surface coherence. */
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1); /* Strong ease-out — arrive with authority */
+    --ease-precise: cubic-bezier(0.4, 0, 0.2, 1); /* Measured ease — change without drama */
+    --duration-fast: 0.3s;
+    --duration-normal: 0.6s;
+    --duration-slow: 0.8s;
+
     /* SHAPE TOKENS */
     --radius-pill: 9999px;
     --radius-card: 20px;
@@ -558,7 +577,7 @@ html {
    Pages and components that set their own focus-visible:outline-* will override
    this baseline — that is intentional for visually-rich components. */
 :focus-visible {
-    outline: 2px solid var(--color-brand-teal);
+    outline: 2px solid var(--color-focus-ring);
     outline-offset: 2px;
     border-radius: 4px;
 }
