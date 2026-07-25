@@ -10,9 +10,9 @@
 export function buildPublisherLogo(siteUrl?: string) {
   return {
     "@type": "ImageObject",
-    "url": absoluteURL("/apple-touch-icon.png", siteUrl),
-    "width": 180,
-    "height": 180,
+    url: absoluteURL("/apple-touch-icon.png", siteUrl),
+    width: 180,
+    height: 180,
   };
 }
 
@@ -20,8 +20,8 @@ export function buildPublisherLogo(siteUrl?: string) {
 export function buildPublisher(siteUrl?: string) {
   return {
     "@type": "Organization",
-    "name": "AdaptHub",
-    "logo": buildPublisherLogo(siteUrl),
+    name: "AdaptHub",
+    logo: buildPublisherLogo(siteUrl),
   };
 }
 
@@ -38,10 +38,9 @@ export function absoluteURL(path: string, siteUrl?: string): string {
 export function buildMerchantReturnPolicy(siteUrl?: string) {
   return {
     "@type": "MerchantReturnPolicy",
-    "applicableCountry": "IN",
-    "returnPolicyCategory":
-      "https://schema.org/MerchantReturnNotPermitted",
-    "url": absoluteURL("/terms-of-service", siteUrl),
+    applicableCountry: "IN",
+    returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+    url: absoluteURL("/terms-of-service", siteUrl),
   };
 }
 
@@ -49,28 +48,28 @@ export function buildMerchantReturnPolicy(siteUrl?: string) {
 export function buildShippingDetails() {
   return {
     "@type": "OfferShippingDetails",
-    "shippingRate": {
+    shippingRate: {
       "@type": "MonetaryAmount",
-      "value": "0",
-      "currency": "INR",
+      value: "0",
+      currency: "INR",
     },
-    "shippingDestination": {
+    shippingDestination: {
       "@type": "DefinedRegion",
-      "addressCountry": "IN",
+      addressCountry: "IN",
     },
-    "deliveryTime": {
+    deliveryTime: {
       "@type": "ShippingDeliveryTime",
-      "handlingTime": {
+      handlingTime: {
         "@type": "QuantitativeValue",
-        "minValue": 1,
-        "maxValue": 1,
-        "unitCode": "DAY",
+        minValue: 1,
+        maxValue: 1,
+        unitCode: "DAY",
       },
-      "transitTime": {
+      transitTime: {
         "@type": "QuantitativeValue",
-        "minValue": 1,
-        "maxValue": 1,
-        "unitCode": "DAY",
+        minValue: 1,
+        maxValue: 1,
+        unitCode: "DAY",
       },
     },
   };
@@ -90,13 +89,13 @@ export function buildOffer(opts: {
   const { url, siteUrl, priceValidUntil = "2030-12-31" } = opts;
   return {
     "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition",
-    "url": url,
-    "priceValidUntil": priceValidUntil,
-    "hasMerchantReturnPolicy": buildMerchantReturnPolicy(siteUrl),
-    "shippingDetails": buildShippingDetails(),
+    price: "0",
+    priceCurrency: "INR",
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+    url: url,
+    priceValidUntil: priceValidUntil,
+    hasMerchantReturnPolicy: buildMerchantReturnPolicy(siteUrl),
+    shippingDetails: buildShippingDetails(),
   };
 }

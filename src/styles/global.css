@@ -27,7 +27,23 @@
     --color-accent-gold: #fcd34d; /* Unified gold CTA accent (alias of accent-yellow) */
     --color-focus-ring: var(--color-brand-teal); /* Teal focus — unified across dark contexts */
     --color-ambient-glow: rgb(var(--brand-teal-rgb) / 0.14); /* Ambient spatial glow */
-    --color-cta-accent: var(--color-accent-gold); /* Gold CTA surface */
+    /* Shared action/reward/analysis vocabulary. Teal is action; gold is earned
+       reward; amber remains reserved for warnings. */
+    --color-action-accent: var(--color-brand-teal);
+    --action-accent-rgb: 45 212 191;
+    --color-action-bg: rgb(var(--action-accent-rgb) / 0.12);
+    --color-action-border: rgb(var(--action-accent-rgb) / 0.28);
+    --color-action-glow: rgb(var(--action-accent-rgb) / 0.18);
+    --color-analysis-accent: #60a5fa;
+    --color-analysis-bg: rgb(96 165 250 / 0.1);
+    --color-analysis-border: rgb(96 165 250 / 0.22);
+    --color-reward-300: #fcd34d;
+    --color-reward-400: #fbbf24;
+    --color-reward-500: #f59e0b;
+    --color-saved-accent: var(--color-accent-pink);
+    --color-saved-bg: rgb(236 72 153 / 0.1);
+    --color-saved-border: rgb(236 72 153 / 0.24);
+    --color-cta-accent: var(--color-action-accent);
 
     /* === Landing ↔ App Sync: Motion tokens ========================
        Cinematic Easing — no ad-hoc cubic-bezier anywhere.
