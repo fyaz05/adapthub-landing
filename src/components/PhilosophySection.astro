@@ -59,7 +59,7 @@ import SectionSpotlight from "./SectionSpotlight";
           
           <span class="relative group/highlight pb-1 md:pb-2 inline-flex items-center cursor-default">
             {/* Hover Background Selection */}
-            <span class="absolute inset-0 bg-brand-teal/10 border border-brand-teal/30 scale-x-0 group-hover/highlight:scale-x-100 transition-transform duration-700 origin-left ease-[0.16,1,0.3,1]" aria-hidden="true"></span>
+            <span class="absolute inset-0 bg-brand-teal/10 border border-brand-teal/30 scale-x-0 group-hover/highlight:scale-x-100 transition-transform duration-700 origin-left ease-cinematic" aria-hidden="true"></span>
             
             <span class="relative italic text-brand-teal font-normal pr-1 select-none whitespace-nowrap">
               {CONTENT.philosophy.headline.highlight}
@@ -89,7 +89,7 @@ import SectionSpotlight from "./SectionSpotlight";
         <div class="group relative flex flex-col page-stagger" style={`--i:${5 + index}`}>
           
           {/* Active Hover Line indicator */}
-          <div class="absolute -top-16 md:-top-24 left-0 w-[2px] h-12 bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-[0.16,1,0.3,1] pointer-events-none" aria-hidden="true"></div>
+          <div class="absolute -top-16 md:-top-24 left-0 w-[2px] h-12 bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-cinematic pointer-events-none" aria-hidden="true"></div>
 
           <div class="flex items-center gap-3 mb-6 lg:mb-8">
             <span class="font-mono text-[9px] md:text-[10px] lg:text-xs text-brand-teal bg-brand-teal/5 border border-brand-teal/20 px-2 py-0.5 uppercase tracking-[0.2em] transition-colors duration-300">
@@ -119,7 +119,7 @@ import SectionSpotlight from "./SectionSpotlight";
   .page-stagger {
     opacity: 0;
     transform: translateY(24px) translateZ(0);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.9s var(--ease-cinematic), transform 0.9s var(--ease-cinematic);
     transition-delay: calc(var(--i, 0) * 120ms);
     will-change: transform, opacity;
   }
@@ -131,7 +131,7 @@ import SectionSpotlight from "./SectionSpotlight";
   }
   
   .page-stagger {
-    animation: autoReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: autoReveal 0.9s var(--ease-cinematic) forwards;
     animation-delay: calc(var(--i, 0) * 120ms);
     /* In a real Astro setup, you'd trigger this via an observer class like .is-visible. 
        Using keyframes directly here ensures the code functions immediately upon drop-in. */

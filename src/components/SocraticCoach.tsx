@@ -17,7 +17,7 @@ export default function SocraticCoach() {
     <section className="relative py-24 sm:py-32 overflow-hidden bg-void border-t border-zinc-900/50">
       {/* Background Atmosphere */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-teal/5 rounded-full blur-[150px] pointer-events-none" />
-      <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
+      <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.12)" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
         {/* GEO Semantic Content & Header */}

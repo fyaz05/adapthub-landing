@@ -76,7 +76,7 @@ const RadialProgress = ({ value, label }: { value: number; label: string }) => {
       >
         <div className="w-[1px] h-full max-h-[100px] md:max-h-[140px] bg-white/10" />
         <div className="absolute w-full max-w-[100px] md:max-w-[140px] h-[1px] bg-white/10" />
-        <div className="absolute w-1 h-1 bg-brand-teal shadow-[0_0_8px_rgba(13,148,136,0.8)]" />
+        <div className="absolute w-1 h-1 bg-brand-teal shadow-[0_0_8px_rgb(var(--brand-teal-rgb)/0.8)]" />
       </div>
 
       <svg
@@ -110,7 +110,11 @@ const RadialProgress = ({ value, label }: { value: number; label: string }) => {
           }}
           whileInView={{ strokeDashoffset: offset }}
           viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          transition={{
+            duration: 1.5,
+            ease: THEME_COLORS.motion.easeCinematic,
+            delay: 0.2,
+          }}
         />
         <defs>
           <linearGradient id="gradient-teal" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -145,7 +149,7 @@ const CardStack = () => {
   const isReduced = useReducedMotion();
 
   return (
-    <div className="relative w-36 h-44 md:w-48 md:h-56 perspective-[1000px] md:group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1] mx-auto">
+    <div className="relative w-36 h-44 md:w-48 md:h-56 perspective-[1000px] md:group-hover:scale-105 transition-transform duration-700 ease-cinematic mx-auto">
       {/* Plane 3 (Base) */}
       <motion.div
         className="absolute inset-x-0 bottom-0 h-28 md:h-36 bg-void border border-white/5 shadow-2xl origin-bottom"
@@ -206,7 +210,7 @@ const BentoCard = ({ card }: { card: CardData }) => {
     mouseY.set(e.clientY - top);
   };
 
-  const backgroundTemplate = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(13,148,136,0.06), transparent 40%)`;
+  const backgroundTemplate = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgb(var(--brand-teal-rgb) / 0.06), transparent 40%)`;
 
   // Wide cards dictate structural layout changes
   const isWide = card.gridClass.includes("lg:col-span-4");
@@ -249,7 +253,7 @@ const BentoCard = ({ card }: { card: CardData }) => {
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          <rect width="100%" height="100%" filter="url(#global-noise-filter)" />
+          <rect width="100%" height="100%" filter="url(#noise-filter)" />
         </svg>
       </div>
 
@@ -502,7 +506,7 @@ const BentoGrid = () => {
             {/* Console Output Terminal */}
             <div className="p-4 flex-1 font-mono text-[8px] md:text-[9px] xl:text-[10px] uppercase tracking-wider text-zinc-400 space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
               {/* Scanline overlay over text */}
-              <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(13,148,136,0.05)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
+              <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgb(var(--brand-teal-rgb)/0.05)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
 
               <motion.div
                 initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -5 }}
@@ -567,7 +571,7 @@ const BentoGrid = () => {
   return (
     <section className="py-20 md:py-32 bg-void relative overflow-hidden">
       {/* Background Atmosphere */}
-      <SectionSpotlight color="rgba(13, 148, 136, 0.12)" />
+      <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.12)" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1800px] relative z-10">
         {/* Header Block */}
@@ -577,7 +581,10 @@ const BentoGrid = () => {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.8,
+              ease: THEME_COLORS.motion.easeCinematic,
+            }}
           >
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <span

@@ -8,6 +8,12 @@ interface Props {
 const { text, href = '/pricing', variant = 'default' } = Astro.props;
 
 const baseClasses = 'inline-flex items-center gap-3 px-8 py-4 font-bold uppercase tracking-wider text-sm transition-all';
+// DELIBERATE CROSS-SURFACE DIFFERENCE — do not "sync" `yellow` to teal.
+// Gold is landing's conversion accent: it reads because every ambient surface
+// here (grid, spotlights, card flashlight) is cool teal, so warm-vs-cool
+// separation makes the CTA pop. The app has no teal-CTA counterpart to match —
+// its default button is neutral charcoal/cream (btn-primary) and teal is
+// reserved there for in-app next-action affordances, not marketing CTAs.
 const variants = {
   default: 'bg-white text-black hover:bg-zinc-200',
   yellow: 'bg-accent-yellow text-black hover:bg-yellow-400 active:scale-95 shadow-[0_0_32px_rgba(252,211,77,0.2)] hover:shadow-[0_0_56px_rgba(252,211,77,0.35)]',

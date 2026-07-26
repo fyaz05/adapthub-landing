@@ -1,4 +1,9 @@
 ---
+// Homepage-only font load (not Layout.astro) — the script face is used by the
+// hero headline alone. Previously 'Dancing Script' was named in the style below
+// but never loaded, so the highlight word fell back to generic `cursive`
+// (Comic Sans on Windows).
+import "@fontsource-variable/dancing-script/wght.css";
 import HeroBackground from "./HeroBackground";
 import SectionSpotlight from "./SectionSpotlight";
 import ParallaxDashboard from "./ParallaxDashboard";
@@ -15,7 +20,7 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
 >
   {/* ── Environment & Atmosphere ── */}
   <HeroBackground client:idle />
-  <SectionSpotlight client:idle color="rgba(13, 148, 136, 0.14)" size={600} />
+  <SectionSpotlight client:idle color="rgb(var(--brand-teal-rgb) / 0.14)" size={600} />
 
   {/* Cinematic Film Grain */}
   <svg
@@ -37,12 +42,12 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
       {/* Deep Radial Halo behind typography */}
       <div
         class="absolute -top-[50%] left-1/2 -translate-x-1/2 w-[80%] h-[200%] pointer-events-none select-none opacity-40 mix-blend-screen"
-        style="background:radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 60%)"
+        style="background:radial-gradient(circle, rgb(var(--brand-teal-rgb) / 0.15) 0%, transparent 60%)"
         aria-hidden="true"
       />
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white tracking-tight leading-[1.1]">
         {CONTENT.hero.title.line1}
-        <span class="block text-[#10b981] font-semibold mt-3" style="font-family: 'Dancing Script', cursive; font-size: 1.25em; line-height: 1; letter-spacing: normal;">
+        <span class="block text-success-500 font-semibold mt-3" style="font-family: 'Dancing Script Variable', 'Dancing Script', cursive; font-size: 1.25em; line-height: 1; letter-spacing: normal;">
           {CONTENT.hero.title.highlight}
         </span>
       </h1>

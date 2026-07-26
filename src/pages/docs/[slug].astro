@@ -209,7 +209,7 @@ const docsDatePublished = "2025-09-01T00:00:00.000Z";
   main :global(strong) {
     color: white;
     font-weight: 500;
-    border-bottom: 1px solid rgba(13, 148, 136, 0.35);
+    border-bottom: 1px solid rgb(var(--brand-teal-rgb) / 0.35);
     padding-bottom: 1px;
   }
   main :global(em) {
@@ -223,7 +223,7 @@ const docsDatePublished = "2025-09-01T00:00:00.000Z";
   .custom-scrollbar::-webkit-scrollbar { width: 4px; }
   .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
   .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(13,148,136,0.5); }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgb(var(--brand-teal-rgb) / 0.5); }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

@@ -592,7 +592,7 @@ const TheLens = () => {
     >
       {/* Visuals - Sticky Container */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden z-10 pointer-events-none">
-        <SectionSpotlight color="rgba(13, 148, 136, 0.15)" />
+        <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.15)" />
         {/* Animated Scroll Indicator - Moved here to be visible on all screens */}
         <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-none">
           <AnimatePresence mode="wait">

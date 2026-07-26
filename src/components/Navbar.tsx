@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { NavLink, NavSubLink } from "../constants/content";
 import { CONTENT } from "../constants/content";
+import { THEME_COLORS } from "../constants/theme";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { scrollLock } from "../utils/scroll-lock";
 import SpotlightButton from "./SpotlightButton";
@@ -9,7 +10,7 @@ import SpotlightButton from "./SpotlightButton";
 /* ── Motion Tokens ── */
 const PILL_SPRING = { type: "spring" as const, stiffness: 400, damping: 30 };
 const DROP_SPRING = { type: "spring" as const, stiffness: 450, damping: 35 };
-const EASE_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const EASE_EXPO = THEME_COLORS.motion.easeCinematic;
 
 /* ── Hamburger geometry ──
  *  3 lines at 1.5px height, gap-[4px] between:
@@ -180,7 +181,7 @@ const Navbar = () => {
                 ? "bg-zinc-950/80 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.06)]"
                 : "bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_24px_-6px_rgba(0,0,0,0.3)]"
             }
-            transition-[background-color,border-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]
+            transition-[background-color,border-color,box-shadow] duration-[600ms] ease-cinematic
           `}
         >
           {/* Surface Grain */}
@@ -206,7 +207,7 @@ const Navbar = () => {
             }`}
             style={{
               background:
-                "radial-gradient(ellipse at 50% -20%, rgba(13,148,136,0.08) 0%, transparent 60%)",
+                "radial-gradient(ellipse at 50% -20%, rgb(var(--brand-teal-rgb) / 0.08) 0%, transparent 60%)",
             }}
             aria-hidden="true"
           />
@@ -216,7 +217,7 @@ const Navbar = () => {
             className={`
               relative flex items-center justify-between w-full
               ${scrolled || mobileMenuOpen ? "py-2 px-3 md:px-4" : "py-2.5 px-4 md:px-5"}
-              transition-[padding] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]
+              transition-[padding] duration-[600ms] ease-cinematic
             `}
           >
             {/* ── Brand Lockup ── */}
@@ -571,8 +572,8 @@ const Navbar = () => {
               className="absolute inset-0 pointer-events-none"
               aria-hidden="true"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,148,136,0.1),transparent_50%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(13,148,136,0.05),transparent_60%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgb(var(--brand-teal-rgb)/0.1),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgb(var(--brand-teal-rgb)/0.05),transparent_60%)]" />
               <svg
                 className="absolute inset-0 w-full h-full opacity-[0.03] mix-blend-screen"
                 aria-hidden="true"
