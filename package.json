@@ -6,16 +6,17 @@
   "license": "PolyForm-Noncommercial-1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "partytown": "bunx partytown copylib public/~partytown",
-    "prebuild": "bun run check:color-contract && bunx partytown copylib public/~partytown",
+    "partytown": "node node_modules/@qwik.dev/partytown/bin/partytown.cjs copylib public/~partytown",
+    "prebuild": "bun run test:color-contract && bun run check:color-contract && bun run partytown",
     "build": "astro build",
     "preview": "astro preview",
     "lint": "biome check",
     "gen:skills": "bun run scripts/gen-skills.ts",
     "format": "biome format --write",
     "type-check": "astro check",
-    "pages:deploy": "bun run build && bunx wrangler pages deploy dist --project-name adapthub --branch main",
-    "check:color-contract": "bun run scripts/check-color-contract.ts"
+    "pages:deploy": "bun run build && node node_modules/wrangler/bin/wrangler.js pages deploy dist --project-name adapthub --branch main",
+    "check:color-contract": "bun run scripts/check-color-contract.ts",
+    "test:color-contract": "bun test scripts/check-color-contract.test.ts"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.1",
