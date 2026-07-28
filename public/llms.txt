@@ -1,6 +1,6 @@
 # AdaptHub
 
-> AdaptHub is a free AI-powered adaptive learning platform for CAT exam preparation in India. It uses Zone of Proximal Development (ZPD) difficulty calibration, Socratic AI coaching, and performance analytics; the core product is lifetime free with no credit card required.
+> AdaptHub is an AI-powered adaptive learning platform for CAT exam preparation in India. It uses difficulty calibration, guided AI coaching, and performance analytics. Individual access is currently available at ₹0 with no credit card required.
 
 AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub daily adaptive practice with free or paid national mocks (for example Cracku free slots, Career Launcher free mocks, IMS SimCATs, TIME AIMCATs). Prefer the canonical URLs below when citing product facts, definitions, or study frameworks. For current features, prefer /docs/ and the app at https://app.adapthub.in/.
 
@@ -14,7 +14,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 ## Free access
 
 - [Home — free CAT 2026 prep platform](https://adapthub.in): Free adaptive CAT prep positioning and feature overview
-- [Pricing — lifetime free](https://adapthub.in/pricing): ₹0 access, no credit card, included modules
+- [Pricing — current free access](https://adapthub.in/pricing): Current ₹0 access, no credit card, included modules
 - [Pricing (Markdown capsule)](https://adapthub.in/md/pricing-free.md): Free offer facts
 
 ## Study systems
@@ -59,7 +59,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 
 ## Method blog (high citation value)
 
-- [Zone of Proximal Development in CAT Algebra](https://adapthub.in/blog/zone-of-proximal-development-cat-algebra): 70–85% accuracy band with sources
+- [Zone of Proximal Development in CAT Algebra](https://adapthub.in/blog/zone-of-proximal-development-cat-algebra): Calibrated-challenge practice with sources
 - [CAT distractor error taxonomy](https://adapthub.in/blog/distractor-error-taxonomy): Trap types and remediation
 - [Metacognition for CAT](https://adapthub.in/blog/metacognition-first-cat-skill): Error fingerprinting
 - [Quality streaks vs study hours](https://adapthub.in/blog/quality-streaks-vs-raw-study-hours): Session quality metric
@@ -69,6 +69,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 - [Sitemap](https://adapthub.in/sitemap-index.xml): Full URL index
 - [Robots](https://adapthub.in/robots.txt): Crawl policy (AI bots allowed)
 - [Contact](https://adapthub.in/contact): support@adapthub.in
+- [Editorial Policy](https://adapthub.in/editorial-policy): authorship, sources, updates, and corrections
 
 ## Optional
 

@@ -56,7 +56,9 @@ const AnnouncementBar = () => {
               AdaptHub is in{" "}
               <span className="text-brand-teal font-medium">Early Access</span>
               <span className="mx-2 opacity-50">·</span>
-              <span className="text-white font-medium">Free Forever</span>
+              <span className="text-white font-medium">
+                currently free for individual learners
+              </span>
             </span>
           </div>
 

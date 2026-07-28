@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
+import Footer from "../components/Footer.astro";
+import { EDITORIAL_AUTHOR, buildEditorialAuthor } from "../constants/editorial";
+
+const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
+const pageUrl = new URL("/editorial-policy", siteUrl).href;
+---
+
+<Layout
+  title="Editorial Policy and Corrections | AdaptHub"
+  description="How AdaptHub Editorial verifies product documentation, CAT guidance, sources, updates, and corrections."
+  breadcrumb={[
+    { name: "Home", url: siteUrl },
+    { name: "Editorial Policy", url: pageUrl },
+  ]}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "AdaptHub Editorial Policy",
+    mainEntity: buildEditorialAuthor(siteUrl),
+  })} />
+
+  <AnnouncementBar client:idle transition:persist />
+  <Navbar client:load transition:persist />
+  <main id="main-content" class="relative isolate min-h-[100svh] bg-void px-4 pb-32 pt-36 text-zinc-300 sm:px-6 md:px-12 lg:px-24">
+    <article class="mx-auto max-w-4xl">
+      <p class="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-brand-teal">Editorial standards</p>
+      <h1 class="mb-8 font-serif text-5xl tracking-tight text-white md:text-7xl">How we publish and correct content</h1>
+      <p class="mb-14 max-w-3xl text-lg leading-relaxed text-zinc-300">
+        {EDITORIAL_AUTHOR.name} is the team accountable for AdaptHub's product documentation, CAT preparation guides, source review, and corrections. AdaptHub remains the publisher.
+      </p>
+
+      <div class="space-y-12 text-base leading-8 md:text-lg">
+        <section>
+          <h2 class="mb-4 font-serif text-3xl text-white">Evidence hierarchy</h2>
+          <p>We prefer official notifications, original research, primary exam material, and verified product specifications. Secondary sources are used for context, not as substitutes for direct evidence when a primary source exists.</p>
+        </section>
+        <section>
+          <h2 class="mb-4 font-serif text-3xl text-white">Product documentation</h2>
+          <p>Product behavior is described as verified only after checking the current application or an approved specification. Planned, illustrative, or approximate behavior is labelled as such and is not presented as a live guarantee.</p>
+        </section>
+        <section>
+          <h2 class="mb-4 font-serif text-3xl text-white">CAT facts and guidance</h2>
+          <p>Exam dates, patterns, question counts, score bands, and historical weightages can change. We cite official CAT information where available, mark future details as provisional, and distinguish historical observations from editorial recommendations.</p>
+        </section>
+        <section>
+          <h2 class="mb-4 font-serif text-3xl text-white">Claims and examples</h2>
+          <p>We distinguish external research, verified product rules, internal methodology, editorial heuristics, and illustrative interface values. Unsupported precision is removed or qualified rather than presented as fact.</p>
+        </section>
+        <section>
+          <h2 class="mb-4 font-serif text-3xl text-white">Updates and corrections</h2>
+          <p>Substantive updates receive an updated date. Publication dates are not changed merely to suggest freshness. To report a factual error, outdated product detail, or unclear attribution, use the <a href="/contact" class="text-brand-teal underline underline-offset-4">contact page</a> or email <a href="mailto:support@adapthub.in" class="text-brand-teal underline underline-offset-4">support@adapthub.in</a>.</p>
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

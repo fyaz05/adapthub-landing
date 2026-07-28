@@ -3,20 +3,33 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
+import EditorialByline from "../../components/EditorialByline.astro";
+import ArticleHeroImage from "../../components/ArticleHeroImage.astro";
 import { DOC_SECTIONS, DOC_FAQS } from "../../constants/docs-data";
+import {
+  absoluteArticleImages,
+  buildEditorialAuthor,
+  getArticleEditorial,
+} from "../../constants/editorial";
 import { buildPublisher } from "../../utils/schema";
 
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
 const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
+const editorial = getArticleEditorial("docs", "troubleshooting", "Troubleshooting");
 ---
 
 <Layout
   title="Troubleshooting | AdaptHub Docs"
   description="Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more."
-  keywords={["adapthub troubleshooting", "adapthub faq", "adapthub help", "adapthub support"]}
   ogType="article"
-  datePublished="2025-09-01T00:00:00.000Z"
-  dateModified="2026-07-01T00:00:00.000Z"
+  datePublished={editorial.datePublished}
+  dateModified={editorial.dateModified}
+  articleAuthor="AdaptHub Editorial"
+  ogImage={new URL(editorial.images.sixteenByNine.url, siteUrl).href}
+  ogImageAlt={editorial.images.sixteenByNine.alt}
+  ogImageWidth={editorial.images.sixteenByNine.width}
+  ogImageHeight={editorial.images.sixteenByNine.height}
+  ogImageType={editorial.images.sixteenByNine.mimeType}
   breadcrumb={[
     { name: "Home", url: siteUrl },
     { name: "Docs", url: new URL("/docs", siteUrl).href },
@@ -28,10 +41,10 @@ const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
     "@type": "TechArticle",
     "headline": "Troubleshooting | AdaptHub Docs",
     "description": "Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more.",
-    "datePublished": "2025-09-01T00:00:00.000Z",
-    "dateModified": "2026-07-01T00:00:00.000Z",
-    "image": [new URL("/og-image.png", siteUrl).href],
-    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "datePublished": editorial.datePublished,
+    "dateModified": editorial.dateModified,
+    "image": absoluteArticleImages(editorial.images, siteUrl),
+    "author": buildEditorialAuthor(siteUrl),
     "publisher": buildPublisher(siteUrl),
     "mainEntityOfPage": { "@type": "WebPage", "@id": troubleshootingURL },
     "url": troubleshootingURL,
@@ -110,10 +123,13 @@ const troubleshootingURL = new URL("/docs/troubleshooting", siteUrl).href;
             <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-serif text-white tracking-tighter leading-none mb-6">
               Troubleshooting
             </h1>
-            <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-amber-500/40 pl-6">
+            <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-amber-500/40 pl-6 mb-7">
               Common questions and operational answers for the AdaptHub engine.
             </p>
+            <EditorialByline datePublished={editorial.datePublished} dateModified={editorial.dateModified} reviewState={editorial.reviewState} />
           </header>
+
+          <ArticleHeroImage images={editorial.images} eager class="mb-14" />
 
           <div class="flex items-center gap-4 mb-14">
             <div class="h-px bg-white/10 flex-1"></div>

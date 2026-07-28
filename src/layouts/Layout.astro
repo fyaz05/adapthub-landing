@@ -13,7 +13,6 @@ import NoiseOverlay from "../components/NoiseOverlay.astro";
 interface Props {
   title: string;
   description?: string;
-  keywords?: string[];
   noindex?: boolean;
   datePublished?: string;
   dateModified?: string;
@@ -24,6 +23,10 @@ interface Props {
   articleAuthor?: string;
   /** Per-page OG image URL (absolute). Defaults to global og-image.png. */
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageType?: string;
   /** Optional explicit breadcrumb trail. Each entry is { name, url }.
    *  If omitted, falls back to URL-derived Home + current-page breadcrumb. */
   breadcrumb?: { name: string; url: string }[];
@@ -32,12 +35,15 @@ interface Props {
 const {
   title = CONTENT.metadata.defaultTitle,
   description = CONTENT.metadata.defaultDescription,
-  keywords = CONTENT.metadata.defaultKeywords,
   noindex = false,
   datePublished,
   dateModified = datePublished,
   ogType = "website",
   ogImage,
+  ogImageAlt,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogImageType = "image/png",
   breadcrumb,
   articleSection,
   articleAuthor,
@@ -152,16 +158,13 @@ const partytownConfig = {
 
     {/* Canonical on noindex pages too — keeps graph linking clean and avoids hreflang warnings. */}
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
-    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
-    <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
+    <meta name="robots" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
     <meta name="googlebot" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
 
     {/* Primary Meta Tags */}
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords.join(", ")} />
     <meta name="author" content={CONTENT.global.brandName} />
     <meta name="application-name" content={CONTENT.global.brandName} />
     <meta name="apple-mobile-web-app-title" content={CONTENT.global.brandName} />
@@ -179,10 +182,10 @@ const partytownConfig = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:secure_url" content={ogImageURL} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:alt" content={`${CONTENT.global.brandName} — ${description}`} />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta property="og:image:alt" content={ogImageAlt || `${CONTENT.global.brandName} — ${description}`} />
     {ogType === "article" && datePublished && <meta property="article:published_time" content={datePublished} />}
     {ogType === "article" && dateModified && <meta property="article:modified_time" content={dateModified} />}
     {ogType === "article" && <meta property="article:author" content={articleAuthor ?? CONTENT.global.brandName} />}
@@ -194,7 +197,7 @@ const partytownConfig = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
-    <meta name="twitter:image:alt" content={`${CONTENT.global.brandName} — ${description}`} />
+    <meta name="twitter:image:alt" content={ogImageAlt || `${CONTENT.global.brandName} — ${description}`} />
     {/* <meta name="twitter:site" content="@adapthublabs" /> */}
     {/* <meta name="twitter:creator" content="@adapthublabs" /> */}
 
@@ -270,23 +273,15 @@ const partytownConfig = {
           "name": title,
           "url": canonicalURL.href,
           "description": description,
-          "keywords": keywords.join(", "),
           ...(datePublished ? { "datePublished": datePublished } : {}),
           ...(dateModified ? { "dateModified": dateModified } : {}),
           "inLanguage": "en-IN",
           "isPartOf": {
             "@id": `${siteUrl}#website`
           },
-          "about": {
-            "@id": `${siteUrl}#software`
-          },
           "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": ogImageURL
-          },
-          "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": ["h1", "[data-speakable]", "h2"]
           },
           "breadcrumb": {
             "@id": `${canonicalURL.href}#breadcrumb`
@@ -311,10 +306,7 @@ const partytownConfig = {
           "image": new URL("/og-image.png", siteUrl).href,
           "inLanguage": "en-IN",
           "isAccessibleForFree": true,
-          "offers": buildOffer({
-            url: String(siteUrl),
-            siteUrl: String(siteUrl),
-          }),
+          "offers": buildOffer({ url: String(siteUrl) }),
           "featureList": [
             "Adaptive Diagnostic Calibration (ZPD Algorithm)",
             "Socratic AI Coaching with Hint Penalties",

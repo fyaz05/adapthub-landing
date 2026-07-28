@@ -3,7 +3,14 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
+import EditorialByline from "../../components/EditorialByline.astro";
+import ArticleHeroImage from "../../components/ArticleHeroImage.astro";
 import { DOC_SECTIONS } from "../../constants/docs-data";
+import {
+  absoluteArticleImages,
+  buildEditorialAuthor,
+  getArticleEditorial,
+} from "../../constants/editorial";
 import { buildPublisher } from "../../utils/schema";
 
 export function getStaticPaths() {
@@ -16,17 +23,22 @@ export function getStaticPaths() {
 const { section } = Astro.props;
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
 const canonicalURL = new URL(`/docs/${section.slug}`, siteUrl).href;
-// Docs are evergreen reference material; use stable launch date as datePublished.
-const docsDatePublished = "2025-09-01T00:00:00.000Z";
+const editorial =
+  section.editorial ?? getArticleEditorial("docs", section.slug, section.title);
 ---
 
 <Layout
   title={`${section.title} | AdaptHub Docs`}
   description={section.description}
-  keywords={["adapthub documentation", "adapthub guide", section.title.toLowerCase(), "how to use adapthub"]}
-  datePublished={docsDatePublished}
-  dateModified={docsDatePublished}
+  datePublished={editorial.datePublished}
+  dateModified={editorial.dateModified}
   ogType="article"
+  articleAuthor="AdaptHub Editorial"
+  ogImage={new URL(editorial.images.sixteenByNine.url, siteUrl).href}
+  ogImageAlt={editorial.images.sixteenByNine.alt}
+  ogImageWidth={editorial.images.sixteenByNine.width}
+  ogImageHeight={editorial.images.sixteenByNine.height}
+  ogImageType={editorial.images.sixteenByNine.mimeType}
   breadcrumb={[
     { name: "Home", url: siteUrl },
     { name: "Docs", url: new URL("/docs", siteUrl).href },
@@ -38,15 +50,15 @@ const docsDatePublished = "2025-09-01T00:00:00.000Z";
     "@type": "TechArticle",
     "headline": section.title,
     "description": section.description,
-    "datePublished": docsDatePublished,
-    "dateModified": docsDatePublished,
+    "datePublished": editorial.datePublished,
+    "dateModified": editorial.dateModified,
     "inLanguage": "en-IN",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": canonicalURL,
     },
-    "image": new URL("/og-image.png", siteUrl).href,
-    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "image": absoluteArticleImages(editorial.images, siteUrl),
+    "author": buildEditorialAuthor(siteUrl),
     "publisher": buildPublisher(siteUrl),
     "proficiencyLevel": "Beginner to Expert",
     "dependencies": "AdaptHub account (free)",
@@ -136,10 +148,17 @@ const docsDatePublished = "2025-09-01T00:00:00.000Z";
             <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-serif text-white tracking-tighter leading-none mb-6">
               {section.title}
             </h1>
-            <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-brand-teal/40 pl-6">
+            <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-brand-teal/40 pl-6 mb-7">
               {section.description}
             </p>
+            <EditorialByline
+              datePublished={editorial.datePublished}
+              dateModified={editorial.dateModified}
+              reviewState={editorial.reviewState}
+            />
           </header>
+
+          <ArticleHeroImage images={editorial.images} eager class="mb-14" />
 
           {/* Divider */}
           <div class="flex items-center gap-4 mb-14">

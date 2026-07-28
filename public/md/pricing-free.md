@@ -1,11 +1,11 @@
-# AdaptHub pricing — lifetime free
+# AdaptHub pricing — currently available at ₹0
 
 **URL:** https://adapthub.in/pricing/  
 **Updated:** 2026-07-13
 
 ## Direct answer
 
-AdaptHub’s core CAT preparation platform is **lifetime free**. No credit card is required to start. There is no paid tier required for adaptive study plans, Socratic AI coaching, or core performance analytics for individual aspirants.
+AdaptHub’s core CAT preparation platform is **currently available at ₹0**. No credit card is required to start. There is no paid tier required for adaptive study plans, Socratic AI coaching, or core performance analytics for individual aspirants.
 
 ## What “free” means
 

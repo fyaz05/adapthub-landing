@@ -3,7 +3,15 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import AnnouncementBar from "../../components/AnnouncementBar";
 import Footer from "../../components/Footer.astro";
+import EditorialByline from "../../components/EditorialByline.astro";
+import ArticleHeroImage from "../../components/ArticleHeroImage.astro";
+import ArticleSources from "../../components/ArticleSources.astro";
 import { BLOG_ARTICLES } from "../../constants/blog-data";
+import {
+  absoluteArticleImages,
+  buildEditorialAuthor,
+  getArticleEditorial,
+} from "../../constants/editorial";
 import { buildPublisher } from "../../utils/schema";
 
 export function getStaticPaths() {
@@ -15,16 +23,10 @@ export function getStaticPaths() {
 
 const { article } = Astro.props;
 const siteUrl = Astro.site ? String(Astro.site) : "https://adapthub.in/";
-const articleDateISO = new Date(article.date).toISOString();
+const editorial =
+  article.editorial ?? getArticleEditorial("blog", article.slug, article.title, article.date);
 const canonicalURL = new URL(`/blog/${article.slug}`, siteUrl).href;
-// Keep SERP titles roughly ≤60 chars while preserving brand when space allows.
-const brand = " | AdaptHub";
-const MAX_TITLE = 60;
-const brandedTitle = `${article.title}${brand}`;
-const pageTitle =
-  brandedTitle.length <= MAX_TITLE
-    ? brandedTitle
-    : `${article.title.slice(0, MAX_TITLE - brand.length - 1)}…${brand}`;
+const pageTitle = article.seoTitle ?? `${article.title} | AdaptHub`;
 
 const hubBySlug: Record<string, { href: string; label: string }> = {
   "varc-fact-vs-judgment": { href: "/cat-varc-strategy", label: "CAT VARC Strategy 2026" },
@@ -40,21 +42,16 @@ const pillarHub = hubBySlug[article.slug];
 <Layout
   title={pageTitle}
   description={article.excerpt}
-  keywords={[
-    "cat preparation",
-    "cat strategy 2026",
-    "cat exam preparation",
-    article.category.toLowerCase(),
-    "how to crack cat",
-    "adapthub blog",
-    ...article.slug.split("-").filter((w) => w.length > 3).slice(0, 4),
-  ]}
-  datePublished={articleDateISO}
-  dateModified={articleDateISO}
+  datePublished={editorial.datePublished}
+  dateModified={editorial.dateModified}
   ogType="article"
   articleSection={article.category}
-  articleAuthor="AdaptHub"
-  ogImage={new URL("/og-image.png", siteUrl).href}
+  articleAuthor="AdaptHub Editorial"
+  ogImage={new URL(editorial.images.sixteenByNine.url, siteUrl).href}
+  ogImageAlt={editorial.images.sixteenByNine.alt}
+  ogImageWidth={editorial.images.sixteenByNine.width}
+  ogImageHeight={editorial.images.sixteenByNine.height}
+  ogImageType={editorial.images.sixteenByNine.mimeType}
   breadcrumb={[
     { name: "Home", url: siteUrl },
     { name: "Blog", url: new URL("/blog", siteUrl).href },
@@ -66,17 +63,15 @@ const pillarHub = hubBySlug[article.slug];
     "@type": "BlogPosting",
     "headline": article.title,
     "description": article.excerpt,
-    "datePublished": articleDateISO,
-    "dateModified": articleDateISO,
+    "datePublished": editorial.datePublished,
+    "dateModified": editorial.dateModified,
     "inLanguage": "en-IN",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": canonicalURL,
     },
-    "image": [
-      new URL("/og-image.png", siteUrl).href,
-    ],
-    "author": { "@type": "Organization", "name": "AdaptHub" },
+    "image": absoluteArticleImages(editorial.images, siteUrl),
+    "author": buildEditorialAuthor(siteUrl),
     "publisher": buildPublisher(siteUrl),
     ...(article.sources && article.sources.length > 0 ? { "citation": article.sources.map((source) => source.url) } : {}),
     "isAccessibleForFree": true,
@@ -128,7 +123,7 @@ const pillarHub = hubBySlug[article.slug];
               <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.25em] bg-brand-teal/5 border border-brand-teal/20 px-2 py-0.5">
                 {article.category}
               </span>
-              <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.2em]">{article.date}</span>
+              <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.2em]">{editorial.datePublished.slice(0, 10)}</span>
               <span class="font-mono text-[9px] text-zinc-700 uppercase tracking-[0.2em] border-l border-zinc-800 pl-4">
                 EST: {article.readTime}
               </span>
@@ -138,10 +133,17 @@ const pillarHub = hubBySlug[article.slug];
               {article.title}
             </h1>
 
-            <p class="text-zinc-400 font-sans text-lg md:text-xl leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-brand-teal/40 pl-6">
+            <p class="text-zinc-400 font-sans text-lg md:text-xl leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-brand-teal/40 pl-6 mb-7">
               {article.excerpt}
             </p>
+            <EditorialByline
+              datePublished={editorial.datePublished}
+              dateModified={editorial.dateModified}
+              reviewState={editorial.reviewState}
+            />
           </header>
+
+          <ArticleHeroImage images={editorial.images} eager class="mb-16" />
 
           {/* Divider */}
           <div class="flex items-center gap-4 mb-16">
@@ -172,28 +174,10 @@ const pillarHub = hubBySlug[article.slug];
             ))}
           </div>
 
-          {article.sources && article.sources.length > 0 && (
-            <section class="article-section">
-              <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight leading-snug mb-8 relative pl-6">
-                <span class="absolute left-0 top-[0.35em] w-2 h-2 bg-brand-teal/50" aria-hidden="true"></span>
-                Sources
-              </h2>
-              <ul class="space-y-4 max-w-[65ch]">
-                {article.sources.map((source) => (
-                  <li>
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-zinc-300 hover:text-white underline decoration-zinc-700 hover:decoration-brand-teal underline-offset-4 transition-colors duration-300"
-                    >
-                      {source.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          <ArticleSources
+            sources={article.sources}
+            methodology="This article distinguishes external evidence from AdaptHub's editorial recommendations and illustrative product examples."
+          />
 
           {pillarHub && (
             <div class="mt-16 p-6 border border-brand-teal/20 bg-brand-teal/[0.03]">

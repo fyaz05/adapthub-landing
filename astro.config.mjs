@@ -20,48 +20,9 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Exact-path matching (not substring) so /contact-us or /blog/404-case-study aren't accidentally excluded.
       filter: (page) => {
         const path = new URL(page).pathname;
-        return path !== "/404"
-          && path !== "/contact"
-          && !path.startsWith("/~partytown");
-      },
-      changefreq: "weekly",
-      priority: 0.7,
-      // `lastmod` intentionally omitted — `new Date()` would falsely mark every page modified on each build.
-      serialize(item) {
-        const url = item.url;
-        if (url === "https://adapthub.in/" || url === "https://adapthub.in") {
-          item.priority = 1.0;
-          item.changefreq = "weekly";
-        } else if (
-          url.includes("/cat-syllabus") ||
-          url.includes("/cat-2026-exam-date") ||
-          url.includes("/adaptive-learning-cat") ||
-          url.includes("/cat-preparation-without-coaching") ||
-          url.includes("/adapthub-vs-competitors") ||
-          url.includes("/cat-mock-analysis") ||
-          url.includes("/cat-study-plan-2026") ||
-          url.includes("/cat-varc-strategy") ||
-          url.includes("/cat-dilr-strategy") ||
-          url.includes("/cat-quant-strategy") ||
-          url.includes("/how-to-score-99-percentile-cat") ||
-          url.includes("/pricing")
-        ) {
-          item.priority = 0.9;
-          item.changefreq = "weekly";
-        } else if (url.includes("/blog")) {
-          item.priority = 0.8;
-          item.changefreq = "monthly";
-        } else if (url.includes("/about") || url.includes("/docs")) {
-          item.priority = 0.7;
-          item.changefreq = "monthly";
-        } else if (url.includes("/privacy") || url.includes("/terms")) {
-          item.priority = 0.3;
-          item.changefreq = "yearly";
-        }
-        return item;
+        return path !== "/404" && !path.startsWith("/~partytown");
       },
     }),
   ],

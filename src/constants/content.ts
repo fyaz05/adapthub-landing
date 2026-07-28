@@ -229,7 +229,7 @@ export const CONTENT = {
         id: "faq-05",
         question: "Is AdaptHub free for CAT 2026 preparation?",
         answer:
-          "Yes. AdaptHub's core CAT 2026 platform is free forever with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and Socratic AI coaching for serious aspirants.",
+          "Yes. AdaptHub's core CAT 2026 platform is currently free for individual learners with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and Socratic AI coaching for serious aspirants.",
       },
       {
         id: "faq-06",
@@ -316,6 +316,7 @@ export const CONTENT = {
         { label: "Blog", href: "/blog" },
         { label: "Docs", href: "/docs" },
         { label: "Contact", href: "/contact" },
+        { label: "Editorial Policy", href: "/editorial-policy" },
       ],
     },
     connect: {
@@ -408,133 +409,50 @@ export const CONTENT = {
     defaultTitle: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
       "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster — no credit card.",
-    defaultKeywords: [
-      "cat exam preparation",
-      "cat preparation",
-      "cat 2026 preparation",
-      "free cat coaching",
-      "cat preparation online",
-      "adaptive learning for cat",
-      "ai cat coaching",
-      "mba entrance exam preparation",
-      "cat mock test analytics",
-      "cat self study",
-    ],
     indexPage: {
       title: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
       description:
-        "Free CAT 2026 prep with adaptive study plans, Socratic AI coaching, and analytics for QA, DILR & VARC. Built for 99th percentile — lifetime free.",
-      keywords: [
-        "cat exam preparation",
-        "cat 2026 preparation",
-        "free cat coaching",
-        "cat preparation online",
-        "adaptive learning cat",
-        "ai cat coaching",
-        "cat prep platform",
-        "mba entrance exam",
-      ],
+        "Free CAT 2026 prep with adaptive study plans, Socratic AI coaching, and analytics for QA, DILR & VARC. Built for 99th percentile — currently free.",
     },
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
       description:
         "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 66 questions, 120 minutes, marking scheme, and high-yield topics.",
-      keywords: [
-        "cat syllabus",
-        "cat syllabus 2026",
-        "cat exam topics",
-        "cat qa syllabus",
-        "cat dilr syllabus",
-        "cat varc syllabus",
-        "cat exam pattern 2026",
-        "cat marking scheme",
-      ],
     },
     pricing: {
-      title: "Free CAT Preparation Online — Lifetime Free | AdaptHub",
+      title: "Free CAT Preparation Online — currently free | AdaptHub",
       description:
-        "AdaptHub is lifetime free CAT preparation — no credit card. Adaptive study plans, AI coaching, and analytics at ₹0 for every aspirant.",
-      keywords: [
-        "free cat preparation",
-        "free cat coaching",
-        "free cat preparation online",
-        "adapthub pricing",
-        "affordable cat prep",
-        "cat mocks free",
-        "lifetime free cat platform",
-      ],
+        "AdaptHub is currently free CAT preparation — no credit card. Adaptive study plans, AI coaching, and analytics at ₹0 for every aspirant.",
     },
     about: {
       title: "How AdaptHub's ZPD Adaptive Algorithm Works | About",
       description:
         "How AdaptHub uses Zone of Proximal Development (ZPD) adaptive learning to help CAT aspirants hit the 99th percentile with AI coaching.",
-      keywords: [
-        "adapthub about",
-        "zpd algorithm cat",
-        "adaptive learning platform",
-        "ai cat coaching methodology",
-        "about adapthub",
-        "zone of proximal development cat",
-      ],
     },
     contact: {
       title: "Contact AdaptHub | Free CAT Prep Support",
       description:
         "Contact AdaptHub for platform help, feedback, or partnerships on free adaptive CAT prep. Every message gets a personal response.",
-      keywords: [
-        "adapthub contact",
-        "adapthub support",
-        "adapthub email",
-        "contact adapthub",
-      ],
     },
     blog: {
       title: "CAT Prep Blog 2026 | Strategy & Section Insights",
       description:
         "CAT 2026 strategy, VARC/DILR/QA breakdowns, and cognitive techniques to grow percentile. Free AdaptHub strategy blog.",
-      keywords: [
-        "cat preparation blog",
-        "cat strategy 2026",
-        "mba entrance tips",
-        "how to crack cat",
-        "cat 99 percentile strategy",
-        "varc strategy cat",
-        "dilr tips cat",
-      ],
     },
     docs: {
       title: "AdaptHub Docs | Adaptive CAT Prep Platform Guide",
       description:
         "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start free CAT prep today.",
-      keywords: [
-        "adapthub documentation",
-        "adapthub guide",
-        "how to use adapthub",
-        "adapthub tutorial",
-        "adapthub help",
-      ],
     },
     privacyPolicy: {
       title: "Privacy Policy | AdaptHub CAT Prep Platform",
       description:
         "How AdaptHub collects, uses, and protects data on our free adaptive CAT preparation platform.",
-      keywords: [
-        "adapthub privacy policy",
-        "privacy policy",
-        "data protection",
-        "data usage",
-      ],
     },
     termsOfService: {
       title: "Terms of Service | AdaptHub CAT Prep Platform",
       description:
         "Terms of Service for AdaptHub free adaptive learning platform for CAT exam preparation.",
-      keywords: [
-        "adapthub terms of service",
-        "terms of service",
-        "terms of use",
-        "user agreement",
-      ],
     },
     ogImageFallback: "/og-image.png",
   },
@@ -559,7 +477,7 @@ export const CONTENT = {
       {
         question: "Is AdaptHub really free?",
         answer:
-          "Yes. AdaptHub is Lifetime Free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
+          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
       },
       {
         question: "Why is it free?",
@@ -567,7 +485,7 @@ export const CONTENT = {
           "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep — not to build another EdTech subscription. The goal is impact at scale.",
       },
       {
-        question: "Will it stay free forever?",
+        question: "Will it stay currently free for individual learners?",
         answer:
           "Yes. The core engine — daily personalized study plans, AI Coach, and granular analytics — stays free. AdaptHub may add enterprise tools for coaching institutes later. Individual aspirant access stays free, always.",
       },

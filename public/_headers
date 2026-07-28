@@ -53,6 +53,7 @@
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
   Access-Control-Allow-Origin: *
+  X-Robots-Tag: noindex, follow
 /md/*
   ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
@@ -60,6 +61,7 @@
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
   Access-Control-Allow-Origin: *
+  X-Robots-Tag: noindex, follow
 /humans.txt
   ! Cache-Control
   Cache-Control: public, max-age=86400
@@ -84,9 +86,11 @@
   Access-Control-Allow-Origin: *
 /.well-known/agent-skills/index.json
   Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: noindex, follow
 # Deeper glob to avoid matching index.json (Cloudflare deduplicates Content-Type)
 /.well-known/agent-skills/*/*
   Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex, follow
 /auth.md
   ! Cache-Control
   Cache-Control: public, max-age=3600
@@ -94,6 +98,7 @@
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
   Access-Control-Allow-Origin: *
+  X-Robots-Tag: noindex, follow
 
 # Partytown service worker + sandbox assets
 /~partytown/*

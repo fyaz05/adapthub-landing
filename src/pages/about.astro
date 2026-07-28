@@ -26,7 +26,6 @@ const siteUrl = Astro.site || "https://adapthub.in/";
 <Layout 
   title={CONTENT.metadata.about.title}
   description={CONTENT.metadata.about.description}
-  keywords={CONTENT.metadata.about.keywords}
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -214,7 +213,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
               AdaptHub started as a personal tool — built by a solo founder who was frustrated with the one-size-fits-all approach of existing CAT preparation platforms.
             </p>
             <p class="text-zinc-400 leading-[1.75] font-sans text-base md:text-lg tracking-wide">
-              What began as a solution for personal use grew into something worth sharing. That is why the core platform is, and always will be, <span class="text-white font-medium">Lifetime Free — no credit card needed</span>. It is the tool every aspirant deserves but never had.
+              What began as a solution for personal use grew into something worth sharing. That is why the core platform is, and always will be, <span class="text-white font-medium">currently free — no credit card needed</span>. It is the tool every aspirant deserves but never had.
             </p>
           </div>
         </div>
@@ -226,7 +225,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
       <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-zinc-400">
         <li><a href="/adaptive-learning-cat" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Adaptive learning for CAT (ZPD)</a></li>
         <li><a href="/how-to-score-99-percentile-cat" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">99 percentile blueprint</a></li>
-        <li><a href="/pricing" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Lifetime free access</a></li>
+        <li><a href="/pricing" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">currently free access</a></li>
         <li><a href="/docs" class="hover:text-brand-teal underline underline-offset-4 decoration-white/10">Platform docs</a></li>
       </ul>
     </nav>

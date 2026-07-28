@@ -1,0 +1,29 @@
+---
+import type { EditorialImages } from "../constants/editorial";
+
+interface Props {
+  images: EditorialImages;
+  eager?: boolean;
+  class?: string;
+}
+
+const { images, eager = false, class: className = "" } = Astro.props;
+const hero = images.sixteenByNine;
+---
+
+<figure class={`overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] ${className}`}>
+  <picture>
+    <source media="(max-width: 640px)" srcset={images.square.url} />
+    <source media="(max-width: 960px)" srcset={images.fourByThree.url} />
+    <img
+      src={hero.url}
+      alt={hero.alt}
+      width={hero.width}
+      height={hero.height}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "auto"}
+      decoding="async"
+      class="block h-auto w-full object-cover"
+    />
+  </picture>
+</figure>

@@ -1,0 +1,43 @@
+---
+import { EDITORIAL_AUTHOR, type EditorialReviewState } from "../constants/editorial";
+
+interface Props {
+  datePublished: string;
+  dateModified: string;
+  reviewState?: EditorialReviewState;
+}
+
+const {
+  datePublished,
+  dateModified,
+  reviewState = "reviewed",
+} = Astro.props;
+const published = new Intl.DateTimeFormat("en-IN", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+}).format(new Date(datePublished));
+const modified = new Intl.DateTimeFormat("en-IN", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+}).format(new Date(dateModified));
+const reviewLabel =
+  reviewState === "product-verified" ? "Product documentation reviewed" : "Editorially reviewed";
+---
+
+<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-zinc-400" data-editorial-byline>
+  <span>
+    By <a class="text-zinc-200 hover:text-brand-teal underline underline-offset-4" href={EDITORIAL_AUTHOR.url}>{EDITORIAL_AUTHOR.name}</a>
+  </span>
+  <span aria-hidden="true">·</span>
+  <span>Published <time datetime={datePublished}>{published}</time></span>
+  {dateModified !== datePublished && (
+    <>
+      <span aria-hidden="true">·</span>
+      <span>Updated <time datetime={dateModified}>{modified}</time></span>
+    </>
+  )}
+  <span aria-hidden="true">·</span>
+  <span>{reviewLabel}</span>
+</div>

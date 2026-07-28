@@ -15,25 +15,14 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.indexPage?.description ||
         "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC.",
-      keywords: BASE_CONTENT?.metadata?.indexPage?.keywords || [
-        "cat exam preparation",
-        "cat 2026 preparation",
-        "free cat coaching",
-        "adaptive learning cat",
-      ],
     },
     pricing: {
       title:
         BASE_CONTENT?.metadata?.pricing?.title ||
-        "Free CAT Preparation Online — Lifetime Free | AdaptHub",
+        "Free CAT Preparation Online — currently free | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.pricing?.description ||
-        "Lifetime free adaptive learning for CAT — no credit card required.",
-      keywords: BASE_CONTENT?.metadata?.pricing?.keywords || [
-        "free cat preparation",
-        "free cat coaching",
-        "free cat preparation online",
-      ],
+        "currently free adaptive learning for CAT — no credit card required.",
     },
     about: {
       title:
@@ -42,11 +31,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.about?.description ||
         "How AdaptHub uses ZPD adaptive learning for CAT 99th percentile prep.",
-      keywords: BASE_CONTENT?.metadata?.about?.keywords || [
-        "zpd algorithm cat",
-        "adaptive learning platform",
-        "about adapthub",
-      ],
     },
     catSyllabus: {
       title:
@@ -55,11 +39,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.catSyllabus?.description ||
         "Data-driven CAT syllabus mapping for VARC, DILR, and QA.",
-      keywords: BASE_CONTENT?.metadata?.catSyllabus?.keywords || [
-        "cat syllabus 2026",
-        "cat exam pattern",
-        "cat qa syllabus",
-      ],
     },
     docs: {
       title:
@@ -68,11 +47,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.docs?.description ||
         "Guides for adaptive difficulty, AI coaching, and analytics.",
-      keywords: BASE_CONTENT?.metadata?.docs?.keywords || [
-        "adapthub documentation",
-        "how to use adapthub",
-        "adapthub guide",
-      ],
     },
     contact: {
       title:
@@ -81,11 +55,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.contact?.description ||
         "Reach AdaptHub for platform support and feedback.",
-      keywords: BASE_CONTENT?.metadata?.contact?.keywords || [
-        "adapthub contact",
-        "adapthub support",
-        "contact adapthub",
-      ],
     },
     blog: {
       title:
@@ -94,11 +63,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.blog?.description ||
         "CAT 2026 strategy breakdowns and cognitive techniques.",
-      keywords: BASE_CONTENT?.metadata?.blog?.keywords || [
-        "cat preparation blog",
-        "cat strategy 2026",
-        "how to crack cat",
-      ],
     },
     defaultTitle:
       BASE_CONTENT?.metadata?.defaultTitle ||
@@ -106,14 +70,6 @@ export const resolvedContent = {
     defaultDescription:
       BASE_CONTENT?.metadata?.defaultDescription ||
       "Free adaptive learning for CAT 2026 with AI coaching and analytics.",
-    defaultKeywords: Array.isArray(BASE_CONTENT?.metadata?.defaultKeywords)
-      ? BASE_CONTENT?.metadata?.defaultKeywords
-      : [
-          "cat exam preparation",
-          "cat 2026 preparation",
-          "free cat coaching",
-          "adaptive learning for cat",
-        ],
     privacyPolicy: {
       title:
         BASE_CONTENT?.metadata?.privacyPolicy?.title ||
@@ -121,10 +77,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.privacyPolicy?.description ||
         "Privacy Policy for AdaptHub",
-      keywords: BASE_CONTENT?.metadata?.privacyPolicy?.keywords || [
-        "privacy",
-        "policy",
-      ],
     },
     termsOfService: {
       title:
@@ -133,10 +85,6 @@ export const resolvedContent = {
       description:
         BASE_CONTENT?.metadata?.termsOfService?.description ||
         "Terms of Service for AdaptHub",
-      keywords: BASE_CONTENT?.metadata?.termsOfService?.keywords || [
-        "terms",
-        "service",
-      ],
     },
     ogImageFallback: BASE_CONTENT?.metadata?.ogImageFallback || "/og-image.png",
   },

@@ -1,13 +1,16 @@
-interface DocSection {
+import { type ArticleEditorialMeta, getArticleEditorial } from "./editorial";
+
+export interface DocSection {
   slug: string;
   sysRef: string;
   title: string;
   description: string;
+  editorial?: ArticleEditorialMeta;
   body: { heading?: string; paragraphs: string[] }[];
   faqs?: { question: string; answer: string }[];
 }
 
-export const DOC_SECTIONS: DocSection[] = [
+const DOC_SECTION_RECORDS: DocSection[] = [
   {
     slug: "calibration-sequence",
     sysRef: "01.00",
@@ -31,7 +34,7 @@ export const DOC_SECTIONS: DocSection[] = [
       {
         heading: "If the Baseline Feels Wrong",
         paragraphs: [
-          "The initial matrix cannot be manually flushed. The engine self-corrects continuously via Bayesian updating — each new question answer updates the probability distribution over your true proficiency level. If you believe your diagnostic result was skewed (due to fatigue, distraction, or a bad day), simply complete three Daily Modules at your current level. The system detects statistical anomalies and automatically recalibrates your proficiency estimate by Day 4.",
+          "If the initial matrix feels unrepresentative, continue with normal practice so later evidence can refine the estimate. The current application may adjust recommendations as more responses are recorded; no fixed recalibration day is promised.",
           "Do not attempt to game the diagnostic by intentionally answering incorrectly. The algorithm is designed to detect implausible response patterns. If your responses are inconsistent with any coherent skill level, the system will flag the calibration and initiate a re-test on your next login.",
         ],
       },
@@ -185,7 +188,7 @@ export const DOC_SECTIONS: DocSection[] = [
       {
         heading: "Weighted Accuracy & Speed Score",
         paragraphs: [
-          "<strong>Weighted Accuracy</strong> applies a recency weight to your accuracy history — recent sessions count more than older ones. This prevents a strong early performance from masking a recent decline. The weight decay function has a half-life of approximately 14 days.",
+          "<strong>Weighted Accuracy</strong> can give recent sessions more influence than older ones so a strong early performance does not mask a recent decline. The exact weighting window is a product configuration, not a published scientific constant.",
           "<strong>Speed Score</strong> measures time efficiency relative to question difficulty. A Level 3 question solved in 45 seconds scores higher than the same question solved in 3 minutes. Speed Score is not rewarded at the expense of accuracy — it is only a positive signal when accuracy is above the 70% threshold.",
         ],
       },
@@ -267,11 +270,18 @@ export const DOC_SECTIONS: DocSection[] = [
   },
 ];
 
+export const DOC_SECTIONS: DocSection[] = DOC_SECTION_RECORDS.map(
+  (section) => ({
+    ...section,
+    editorial: getArticleEditorial("docs", section.slug, section.title),
+  }),
+);
+
 export const DOC_FAQS: { question: string; answer: string }[] = [
   {
     question: "How do I reset my calibration baseline?",
     answer:
-      "The initial diagnostic matrix cannot be manually flushed. The engine self-corrects continuously via Bayesian updating. If you believe your diagnostic result was skewed — for example, due to fatigue or distraction — simply complete three Daily Modules at your current level. The system detects statistical anomalies and automatically recalibrates your proficiency estimate by Day 4.",
+      "If the initial diagnostic feels unrepresentative, continue normal practice so later evidence can refine recommendations. AdaptHub does not promise recalibration on a fixed day.",
   },
   {
     question: "Why does using a hint count as an incorrect attempt?",

@@ -14,7 +14,8 @@
       "!.astro",
       "!**/*.astro",
       "!src/styles/global.css",
-      "!astro.config.mjs"
+      "!astro.config.mjs",
+      "!seo-crawl-data.json"
     ]
   },
   "formatter": {

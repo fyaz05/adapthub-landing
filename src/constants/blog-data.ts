@@ -1,15 +1,19 @@
-interface BlogArticle {
+import { type ArticleEditorialMeta, getArticleEditorial } from "./editorial";
+
+export interface BlogArticle {
   slug: string;
   title: string;
+  seoTitle?: string;
   category: string;
   date: string;
+  editorial?: ArticleEditorialMeta;
   readTime: string;
   excerpt: string;
   sources?: { label: string; url: string }[];
   body: { heading?: string; paragraphs: string[] }[];
 }
 
-export const BLOG_ARTICLES: BlogArticle[] = [
+const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   {
     slug: "zone-of-proximal-development-cat-algebra",
     title: "The Zone of Proximal Development in CAT Algebra",
@@ -60,12 +64,12 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     slug: "decoding-2025-dilr-trap-sets",
-    title: "Decoding the 2025 DILR Trap Sets",
+    title: "How to Diagnose DILR Trap Sets",
     category: "Structural Analysis",
     date: "2026-02-23",
     readTime: "12_MIN",
     excerpt:
-      "A post-mortem of the infamously opaque routing puzzles from last year's paper, and the precise moment where 90% of candidates lost their 99th percentile.",
+      "A practical framework for recognizing routing-puzzle traps, parsing asymmetric constraints, and improving DILR set selection under time pressure.",
     sources: [
       {
         label: "IIM CAT Official Website",
@@ -75,8 +79,8 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     body: [
       {
         paragraphs: [
-          "The 2025 CAT DILR section produced one of the sharpest performance cliffs in recent memory. The median score in the top decile dropped by approximately 4 scaled points compared to 2024, and the distribution of correct attempts in the routing puzzle sets showed a peculiar pattern: most candidates who attempted these sets got the first two questions correct and the final two wrong. This is not randomness. It is a structural trap.",
-          "The routing puzzles in Slot 2 were designed around a single, non-obvious constraint. The constraint was <strong>not hidden</strong> — it was stated in the second line of the problem description. But it was stated in a way that the vast majority of candidates, under time pressure, pattern-matched to a more familiar constraint type and proceeded on an incorrect assumption.",
+          "DILR trap sets often create a plausible partial model that fails only after several deductions. The useful lesson is not a claimed cohort statistic; it is to identify the first assumption that makes the model internally inconsistent.",
+          "A common routing-puzzle trap is an asymmetric constraint that resembles a familiar bidirectional rule. Under time pressure, a candidate may silently strengthen the rule and build a table that appears workable until a later question exposes the contradiction.",
         ],
       },
       {
@@ -302,3 +306,15 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     ],
   },
 ];
+
+export const BLOG_ARTICLES: BlogArticle[] = BLOG_ARTICLE_RECORDS.map(
+  (article) => ({
+    ...article,
+    editorial: getArticleEditorial(
+      "blog",
+      article.slug,
+      article.title,
+      article.date,
+    ),
+  }),
+);

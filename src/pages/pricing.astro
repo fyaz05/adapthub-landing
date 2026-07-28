@@ -3,37 +3,19 @@ import CatLayout from "../layouts/CatLayout.astro";
 import FaqSection from "../components/FaqSection.astro";
 import SpotlightButton from "../components/SpotlightButton";
 import { resolvedContent as CONTENT } from "../utils/config";
-import { buildOffer } from "../utils/schema";
 
 const faqs = CONTENT.pricing.faqs;
 const features = CONTENT.pricing.features;
 
 const siteUrl = Astro.site || "https://adapthub.in/";
-const pricingURL = new URL("pricing", siteUrl).href;
 ---
 <CatLayout
   title={CONTENT.metadata.pricing.title}
   description={CONTENT.metadata.pricing.description}
-  keywords={CONTENT.metadata.pricing.keywords}
   maxWidth="max-w-[1800px]"
   head={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Product",
-        "@id": `${siteUrl}pricing#product`,
-        "name": "AdaptHub Lifetime Free CAT Prep",
-        "description": "Complete access to adaptive study plans, AI-powered coaching, and CAT analytics at ₹0.",
-        "brand": { "@type": "Brand", "name": "AdaptHub" },
-        "image": [new URL("/og-image.png", siteUrl).href],
-        "category": "EducationalApplication",
-        "url": pricingURL,
-        "offers": buildOffer({
-          url: pricingURL,
-          siteUrl: String(siteUrl),
-          priceValidUntil: "2027-12-31",
-        })
-      },
       {
         "@type": "FAQPage",
         "@id": `${siteUrl}pricing#faq`,
@@ -53,13 +35,13 @@ const pricingURL = new URL("pricing", siteUrl).href;
         <h1 class="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-none mb-6 page-stagger" style="--i:1">
           Free CAT preparation — <br class="hidden lg:block"/>
           <span class="italic text-brand-teal relative inline-block pb-2 tracking-normal mt-2">
-            lifetime free.
+            currently free.
             <svg class="absolute -bottom-2 left-0 w-full h-[3px] text-brand-teal/70" viewBox="0 0 100 3" preserveAspectRatio="none"><path d="M0 1.5 Q 50 4.5 100 1.5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
           </span>
         </h1>
         
         <p data-speakable class="speakable-content text-zinc-300 font-sans text-base md:text-lg leading-[1.75] max-w-lg mb-4 tracking-wide page-stagger" style="--i:2">
-          AdaptHub is lifetime free CAT preparation: adaptive study plans, Socratic AI coaching, and analytics at ₹0 with no credit card required. The core engine stays free for individual aspirants—no trial cliff.
+          AdaptHub is currently free CAT preparation: adaptive study plans, Socratic AI coaching, and analytics at ₹0 with no credit card required. The core engine stays free for individual aspirants—no trial cliff.
         </p>
         <p class="text-zinc-400 font-sans text-base md:text-lg leading-[1.75] max-w-lg mb-10 tracking-wide page-stagger" style="--i:2">
           Quality education is a baseline, not a privilege. Start calibration and use the full adaptive system unrestricted.
