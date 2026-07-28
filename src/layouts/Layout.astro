@@ -1,20 +1,8 @@
 ---
 import "../styles/global.css";
-/* Geist ships as static weights only (no variable build on npm). The bare
-   specifier resolves to index.css, which is weight 400 alone — every
-   font-medium/semibold/bold in the app was therefore being synthesized by the
-   browser as faux bold. Import each weight the stylesheet actually uses. */
-import "@fontsource/geist-sans/300.css";
-import "@fontsource/geist-sans/400.css";
-import "@fontsource/geist-sans/500.css";
-import "@fontsource/geist-sans/600.css";
-import "@fontsource/geist-sans/700.css";
-import "@fontsource/geist-sans/800.css";
-import "@fontsource/geist-mono/400.css";
-import "@fontsource/geist-mono/600.css";
-import "@fontsource/geist-mono/700.css";
-import "@fontsource-variable/lora/wght.css";
-import "@fontsource-variable/lora/wght-italic.css";
+/* Project-owned Latin-only WOFF2 declarations keep all used weights real
+   without shipping every Fontsource subset and legacy WOFF fallback. */
+import "../styles/fonts.css";
 import { ClientRouter } from "astro:transitions";
 import { resolvedContent as CONTENT } from "../utils/config";
 import { buildOffer } from "../utils/schema";

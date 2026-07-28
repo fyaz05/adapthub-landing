@@ -1,0 +1,9 @@
+/* Homepage-only script face used by Hero.astro. */
+@font-face {
+  font-family: "Dancing Script Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("@fontsource-variable/dancing-script/files/dancing-script-latin-wght-normal.woff2")
+    format("woff2-variations");
+}
