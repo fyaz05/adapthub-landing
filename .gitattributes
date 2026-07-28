@@ -20,6 +20,9 @@
 *.md text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+bun.lock text eol=lf
 
 # Files that should NOT have their line endings modified
 *.png binary

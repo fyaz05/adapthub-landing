@@ -615,8 +615,8 @@ html {
    on bg-void (#050505), well above the 3:1 minimum for non-text UI components.
    Pages and components that set their own focus-visible:outline-* will override
    this baseline — that is intentional for visually-rich components. */
-/* Layered so component-level `focus-visible:outline-none` (a Tailwind utility,
-   and therefore higher specificity within the same layer) can override this
+/* Layered so component-level focus outline utilities (which have higher
+   specificity within the same layer) can override this
    baseline — which the comment above always claimed but an unlayered rule
    prevented. No border-radius here: the outline already follows each element's
    own radius, and forcing 4px visibly squared pill and circular controls at
