@@ -114,10 +114,10 @@ const pricingURL = new URL("pricing", siteUrl).href;
 
           {/* The Telemetry Readout */}
           <div class="text-center relative py-4">
-            <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(13,148,136,0.05)_50%,transparent_100%)] pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgb(var(--brand-teal-rgb)/0.05)_50%,transparent_100%)] pointer-events-none"></div>
             <div class="flex items-start justify-center text-white select-none">
               <span class="text-3xl md:text-5xl font-sans font-light text-zinc-500 mt-2 mr-1">₹</span>
-              <span class="text-[6rem] md:text-[9rem] font-serif leading-[0.8] tracking-tighter drop-shadow-[0_0_30px_rgba(13,148,136,0.2)]">0</span>
+              <span class="text-[6rem] md:text-[9rem] font-serif leading-[0.8] tracking-tighter drop-shadow-[0_0_30px_rgb(var(--brand-teal-rgb)/0.2)]">0</span>
             </div>
             <span class="block font-mono text-xs text-zinc-400 uppercase tracking-[0.3em] mt-6">Cost / Platform Access</span>
           </div>
@@ -150,7 +150,7 @@ const pricingURL = new URL("pricing", siteUrl).href;
             
             <div class="flex justify-between items-start mb-12 relative z-10">
               <span class="font-mono text-[10px] text-zinc-500 group-hover:text-brand-teal transition-colors duration-300 tracking-[0.2em]">MOD.{feature.id}</span>
-              <span class="w-1.5 h-1.5 bg-zinc-700 group-hover:bg-brand-teal rounded-full transition-colors duration-500 shadow-[0_0_0_rgba(13,148,136,0)] group-hover:shadow-[0_0_10px_rgba(13,148,136,0.8)]"></span>
+              <span class="w-1.5 h-1.5 bg-zinc-700 group-hover:bg-brand-teal rounded-full transition-colors duration-500 shadow-[0_0_0_rgb(var(--brand-teal-rgb)/0)] group-hover:shadow-[0_0_10px_rgb(var(--brand-teal-rgb)/0.8)]"></span>
             </div>
             <h3 class="text-lg md:text-xl font-sans text-zinc-300 group-hover:text-white font-medium transition-colors duration-300 relative z-10 leading-snug">
               {feature.name}
@@ -200,8 +200,8 @@ const pricingURL = new URL("pricing", siteUrl).href;
     position: absolute;
     inset-inline: 0;
     height: 2px;
-    background: rgba(13, 148, 136, 0.8);
-    box-shadow: 0 0 15px 2px rgba(13, 148, 136, 0.5);
+    background: rgb(var(--brand-teal-rgb) / 0.8);
+    box-shadow: 0 0 15px 2px rgb(var(--brand-teal-rgb) / 0.5);
     z-index: 20;
     opacity: 0;
     animation: scanPulse 4s ease-in-out infinite;

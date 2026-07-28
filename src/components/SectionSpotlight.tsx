@@ -23,7 +23,8 @@ interface SectionSpotlightProps {
 }
 
 export default function SectionSpotlight({
-  color = "rgba(13, 148, 136, 0.12)", // Brand Teal (calibrated opacity)
+  // Shared brand teal, so a contract retune moves this with the app.
+  color = "rgb(var(--brand-teal-rgb) / 0.12)",
   size = 500, // Slightly larger base size for smoother falloff
   opacity = 1,
   blendMode = "screen", // Screen creates a more realistic additive light effect

@@ -42,7 +42,7 @@ const AnnouncementBar = () => {
           className="fixed top-0 inset-x-0 z-[60] h-auto min-h-10 py-2 flex items-center justify-center bg-void/80 backdrop-blur-md border-b border-white/5 px-4 md:px-12"
         >
           {/* Living Atmosphere: Radial Gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.08)_0%,transparent_60%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--brand-teal-rgb)/0.08)_0%,transparent_60%)] pointer-events-none" />
 
           {/* Content Container */}
           <div className="relative flex items-center justify-center gap-2.5 text-xs md:text-sm text-center max-w-4xl pr-8 md:pr-0">

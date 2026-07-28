@@ -1,14 +1,20 @@
-// Color values that need to be accessed in JS/TS (e.g., Framer Motion variants).
-// All other theme colors live as CSS variables in src/styles/global.css.
+import contract from "../../design-system/color-contract.json";
+import { parseCubicBezier } from "../utils/design-contract";
 
+// JS/TS consumers derive shared values from the same contract validated against CSS.
 export const THEME_COLORS = {
   brand: {
-    teal: "#2dd4bf", // 400 (Upgraded for AAA contrast on bg-void)
-    tealLight: "#5eead4", // 300
+    teal: contract.brandTeal,
+    tealLight: "#5eead4", // Landing-only primitive, outside the shared contract.
   },
   accent: {
-    pink: "#ec4899", // 500
-    red: "#ef4444", // 500
-    violetLight: "#7c3aed", // 600
+    pink: contract.accentPink,
+    red: "#ef4444", // Landing-only primitive.
+    violetLight: "#7c3aed", // Landing-only primitive.
+    gold: contract.reward300,
+  },
+  motion: {
+    easeCinematic: parseCubicBezier(contract.easeCinematic),
+    easePrecise: parseCubicBezier(contract.easePrecise),
   },
 } as const;

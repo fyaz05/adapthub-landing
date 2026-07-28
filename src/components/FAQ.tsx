@@ -10,7 +10,7 @@ const FAQ = () => {
 
   return (
     <section className="py-20 sm:py-32 bg-void relative" id="faq">
-      <SectionSpotlight color="rgba(13, 148, 136, 0.15)" />
+      <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.15)" />
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-12 sm:mb-20 text-center">
           <span className="font-mono text-[9px] sm:text-[10px] text-brand-teal uppercase tracking-widest mb-3 sm:mb-4 block">

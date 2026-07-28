@@ -1,0 +1,11 @@
+{
+  "brandTeal": "#2dd4bf",
+  "brandTealRgb": "45 212 191",
+  "accentPink": "#ec4899",
+  "reward300": "#fcd34d",
+  "easeCinematic": "cubic-bezier(0.16, 1, 0.3, 1)",
+  "easePrecise": "cubic-bezier(0.4, 0, 0.2, 1)",
+  "durationFast": "0.3s",
+  "durationNormal": "0.6s",
+  "durationSlow": "0.8s"
+}

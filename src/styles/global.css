@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-    /* TYPOGRAPHY TOKENS */
-    --font-serif: "Lora", serif;
+    /* TYPOGRAPHY TOKENS.
+       Cross-surface note: only the SERIF (Lora) is shared with the app.
+       The app uses Manrope + JetBrains Mono for body+mono; landing keeps
+       Geist deliberately (Geist migration deferred per the design-sync risk
+       assessment, commit 3a3a362). Do not "sync" sans/mono without a design
+       decision. */
+    --font-serif: "Lora Variable", "Lora", serif;
     --font-sans: "Geist Sans", sans-serif;
     --font-mono: "Geist Mono", monospace;
 
@@ -18,6 +23,47 @@
     --color-accent-pink: #ec4899;
     --color-accent-red: #ef4444;
     --color-accent-violet-light: #7c3aed;
+    /* Matches the app's --color-success-500 (apps/web/src/css/theme.css). */
+    --color-success-500: #10b981;
+
+    /* === Landing ↔ App Sync: Semantic aliases + primitives ===========
+       Additive only — no existing tokens modified. These match the
+       token vocabulary established in the app's theme.css so both
+       surfaces share the same semantic layer. */
+    --brand-teal-rgb: 45 212 191; /* RGB triple for rgba() usage */
+    /* Alias of accent-yellow. NOTE the surfaces differ deliberately: in the APP
+       gold means earned reward and generic CTAs use --color-action-accent; on
+       LANDING gold is also the conversion CTA colour (see CtaBlock.astro). Both
+       are intentional — don't "unify" them. */
+    --color-accent-gold: #fcd34d;
+    --color-focus-ring: var(--color-brand-teal); /* Teal focus — unified across dark contexts */
+    --color-ambient-glow: rgb(var(--brand-teal-rgb) / 0.14); /* Ambient spatial glow */
+    /* Shared action/reward/analysis vocabulary. Teal is action; gold is earned
+       reward; amber remains reserved for warnings. */
+    --color-action-accent: var(--color-brand-teal);
+    --action-accent-rgb: 45 212 191;
+    --color-action-bg: rgb(var(--action-accent-rgb) / 0.12);
+    --color-action-border: rgb(var(--action-accent-rgb) / 0.28);
+    --color-action-glow: rgb(var(--action-accent-rgb) / 0.18);
+    --color-analysis-accent: #60a5fa;
+    --color-analysis-bg: rgb(96 165 250 / 0.1);
+    --color-analysis-border: rgb(96 165 250 / 0.22);
+    --color-reward-300: #fcd34d;
+    --color-reward-400: #fbbf24;
+    --color-reward-500: #f59e0b;
+    --color-saved-accent: var(--color-accent-pink);
+    --color-saved-bg: rgb(236 72 153 / 0.1);
+    --color-saved-border: rgb(236 72 153 / 0.24);
+    --color-cta-accent: var(--color-action-accent);
+
+    /* === Landing ↔ App Sync: Motion tokens ========================
+       Cinematic Easing — no ad-hoc cubic-bezier anywhere.
+       These match the app's motion tokens for cross-surface coherence. */
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1); /* Strong ease-out — arrive with authority */
+    --ease-precise: cubic-bezier(0.4, 0, 0.2, 1); /* Measured ease — change without drama */
+    --duration-fast: 0.3s;
+    --duration-normal: 0.6s;
+    --duration-slow: 0.8s;
 
     /* SHAPE TOKENS */
     --radius-pill: 9999px;
@@ -156,12 +202,24 @@
     pointer-events: none;
     z-index: 1;
     /* Elevated to show through opaque sections */
-    opacity: 0.15;
-    /* Increased opacity for baseline visibility */
+    opacity: 0.1;
+    /* Calibrated for #050505 void — 0.1 is lighter than app's 0.12 for
+       #0b0c0f raised obsidian, because the deeper void bg requires less
+       grid contrast to achieve the same perceived intensity (P1: Contextual Depth) */
     background-size: 40px 40px;
+    /* Consumes the shared brand teal so a contract retune moves both surfaces.
+       Matches the app's bg-architectural-grid, which already uses this token. */
     background-image:
-        linear-gradient(to right, rgba(13, 148, 136, 0.1) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(13, 148, 136, 0.1) 1px, transparent 1px);
+        linear-gradient(
+            to right,
+            rgb(var(--brand-teal-rgb) / 0.1) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgb(var(--brand-teal-rgb) / 0.1) 1px,
+            transparent 1px
+        );
     mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
     mix-blend-mode: plus-lighter;
     /* Better visibility on dark, subtle on light */
@@ -367,7 +425,7 @@ html {
     .page-stagger {
         opacity: 0;
         transform: translateY(24px) translateZ(0);
-        animation: pageReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: pageReveal 0.9s var(--ease-cinematic) forwards;
         animation-delay: calc(var(--i, 0) * 120ms + 100ms);
         will-change: transform, opacity;
     }
@@ -383,7 +441,7 @@ html {
     .hero-stagger {
         opacity: 0;
         transform: translateY(24px) translateZ(0);
-        animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: heroReveal 0.9s var(--ease-cinematic) forwards;
         animation-delay: calc(var(--i, 0) * 120ms + 100ms);
         will-change: transform, opacity;
     }
@@ -557,10 +615,17 @@ html {
    on bg-void (#050505), well above the 3:1 minimum for non-text UI components.
    Pages and components that set their own focus-visible:outline-* will override
    this baseline — that is intentional for visually-rich components. */
-:focus-visible {
-    outline: 2px solid var(--color-brand-teal);
-    outline-offset: 2px;
-    border-radius: 4px;
+/* Layered so component-level focus outline utilities (which have higher
+   specificity within the same layer) can override this
+   baseline — which the comment above always claimed but an unlayered rule
+   prevented. No border-radius here: the outline already follows each element's
+   own radius, and forcing 4px visibly squared pill and circular controls at
+   the moment of focus. */
+@layer utilities {
+    :focus-visible {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 2px;
+    }
 }
 
 /* ── 1e. Reduced-Motion Global Guardrail ── */
