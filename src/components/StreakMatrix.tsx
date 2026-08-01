@@ -176,7 +176,7 @@ export default function StreakMatrix() {
             Meaningful Gamification
           </span>
           <h2 className="text-3xl md:text-5xl font-serif text-white mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-            <span>The Quality</span>
+            <span>The Practice</span>
             <span className="relative inline-block text-zinc-400 px-1">
               <span className="absolute left-[-5%] top-1/2 w-[110%] h-[3px] bg-red-900/60 -translate-y-1/2 -rotate-6 rounded-full"></span>
               Login
@@ -203,7 +203,7 @@ export default function StreakMatrix() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "100px" }}
             className="overflow-x-auto custom-scrollbar pb-6 mb-2"
-            aria-label="Quality Streaks Matrix showing 52 weeks of practice data"
+            aria-label="Practice Streaks Matrix showing 52 weeks of practice data"
           >
             <MatrixGrid
               stats={stats}

@@ -237,13 +237,13 @@ const DOC_SECTION_RECORDS: DocSection[] = [
   {
     slug: "quality-streaks",
     sysRef: "07.00",
-    title: "Quality Streaks",
+    title: "Practice Streaks",
     description:
       "The anti-gaming streak mechanics, what counts as a qualifying session, and how streaks reflect your D-Day readiness trajectory.",
     body: [
       {
         paragraphs: [
-          "Streak mechanics are calibrated against meaningful learning, not login frequency. The Quality Streak counter reflects genuine, high-performance engagement with the platform — and is designed to be ungameable.",
+          "Streak mechanics are calibrated against meaningful learning, not login frequency. The Practice Streak counter reflects genuine, high-performance engagement with the platform — and is designed to be ungameable.",
         ],
       },
       {
@@ -262,7 +262,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Streaks as a Performance Predictor",
         paragraphs: [
-          "Your streak count is surfaced in your Analytics Dashboard as a leading indicator of D-Day performance. Research on deliberate practice consistently shows that session <em>consistency</em> is a stronger predictor of exam outcome than total hours logged. A student with a 45-day quality streak has demonstrated 45 sessions meeting the accuracy and duration thresholds — a directly measurable input to exam readiness.",
+          "Your streak count is surfaced in your Analytics Dashboard as a leading indicator of D-Day performance. Research on deliberate practice consistently shows that session <em>consistency</em> is a stronger predictor of exam outcome than total hours logged. A student with a 45-day practice streak has demonstrated 45 sessions meeting the accuracy and duration thresholds — a directly measurable input to exam readiness.",
           "A broken streak resets to zero but does not delete historical data. Your Analytics Dashboard preserves the full history of your streak performance, including longest streak and streak frequency distribution. Streak history is used by the AI Digest to identify engagement patterns and flag potential burnout risk when session frequency drops sharply after a long streak.",
         ],
       },

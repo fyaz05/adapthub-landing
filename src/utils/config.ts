@@ -43,7 +43,7 @@ export const resolvedContent = {
     docs: {
       title:
         BASE_CONTENT?.metadata?.docs?.title ||
-        "AdaptHub Docs | Adaptive CAT Prep Platform Guide",
+        "AdaptHub Docs | Adaptive CAT Practice Platform Guide",
       description:
         BASE_CONTENT?.metadata?.docs?.description ||
         "Guides for adaptive difficulty, AI coaching, and analytics.",
@@ -90,27 +90,21 @@ export const resolvedContent = {
   },
   bentoGrid: BASE_CONTENT?.bentoGrid || {
     header: {
-      eyebrow: "System Protocol",
-      title: "Mastery",
-      highlight: "Engineered.",
+      eyebrow: "Learning workspace",
+      title: "Your learning workspace",
+      highlight: "for practice, review, and progress.",
     },
     cards: [
       {
-        title: "SYS.01",
+        title: "Practice",
         description: "Loading...",
-        visualCheck: { deltaValue: "0" },
       },
       {
-        title: "SYS.02",
+        title: "Feedback and hints",
         description: "Loading...",
-        tabs: ["Accuracy", "Growth"],
-        progress: {
-          accuracy: { value: 0, label: "" },
-          growth: { value: 0, label: "" },
-        },
       },
-      { title: "SYS.03", description: "Loading..." },
-      { title: "SYS.04", description: "Loading..." },
+      { title: "Spaced review", description: "Loading..." },
+      { title: "Progress tracking", description: "Loading..." },
     ],
   },
 };

@@ -62,7 +62,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 - [Zone of Proximal Development in CAT Algebra](https://adapthub.in/blog/zone-of-proximal-development-cat-algebra): Calibrated-challenge practice with sources
 - [CAT distractor error taxonomy](https://adapthub.in/blog/distractor-error-taxonomy): Trap types and remediation
 - [Metacognition for CAT](https://adapthub.in/blog/metacognition-first-cat-skill): Error fingerprinting
-- [Quality streaks vs study hours](https://adapthub.in/blog/quality-streaks-vs-raw-study-hours): Session quality metric
+- [Practice Streaks vs Study Hours](https://adapthub.in/blog/quality-streaks-vs-raw-study-hours): Session consistency metric
 
 ## Discovery
 

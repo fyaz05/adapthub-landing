@@ -338,7 +338,7 @@ const BentoGrid = () => {
               Delta Velocity
             </span>
             <span className="font-serif text-2xl md:text-3xl lg:text-4xl text-white flex items-baseline gap-1">
-              +{gridContent.cards[0]?.visualCheck?.deltaValue || "0"}{" "}
+              {gridContent.cards[0]?.visualCheck?.deltaValue || "0"}{" "}
               <span className="text-brand-teal text-sm md:text-lg">Pts</span>
             </span>
           </div>

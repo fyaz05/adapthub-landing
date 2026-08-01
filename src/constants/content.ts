@@ -100,18 +100,18 @@ export const CONTENT = {
       { label: "Pricing", href: "/pricing" },
       { label: "Contact", href: "/contact" },
     ] satisfies NavLink[],
-    cta: "Start Calibration",
+    cta: "Start free practice",
   },
 
   hero: {
     title: {
-      line1: "Adaptive CAT Prep",
+      line1: "Adaptive CAT Practice",
       highlight: "Engine",
     },
     description:
       "Free AI-powered adaptive learning for CAT 2026. AdaptHub maps how you think across QA, DILR & VARC, closes weak areas faster, and builds your path to the 99th percentile — and IIM admission.",
     cta: {
-      primary: "Start Free Calibration",
+      primary: "Start free practice",
     },
   },
 
@@ -440,9 +440,9 @@ export const CONTENT = {
         "CAT 2026 strategy, VARC/DILR/QA breakdowns, and cognitive techniques to grow percentile. Free AdaptHub strategy blog.",
     },
     docs: {
-      title: "AdaptHub Docs | Adaptive CAT Prep Platform Guide",
+      title: "AdaptHub Docs | Adaptive CAT Practice Platform Guide",
       description:
-        "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start free CAT prep today.",
+        "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start free CAT practice today.",
     },
     privacyPolicy: {
       title: "Privacy Policy | AdaptHub CAT Prep Platform",

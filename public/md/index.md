@@ -1,7 +1,7 @@
 # AdaptHub — free AI-powered adaptive CAT preparation
 
 **URL:** https://adapthub.in/  
-**Updated:** 2026-07-15
+**Updated:** 2026-08-02
 
 ## Direct answer
 
@@ -11,10 +11,10 @@ AdaptHub is a **free AI-powered adaptive learning platform for CAT exam preparat
 
 - **Adaptive Diagnostic Calibration (ZPD Algorithm):** Assesses and adapts question difficulty to the learner's current level in real time.
 - **Socratic AI Coaching:** Guided problem-solving with a progressive hint system and penalty scoring.
-- **Learning Velocity Telemetry:** 7-day rolling window performance metrics and learning-velocity tracking.
+- **Progress tracking:** 7-day rolling window performance metrics and consistency tracking.
 - **Spaced Repetition Queue (SRS):** Memory-decay prevention with adaptive review scheduling.
-- **Quality Streaks:** Session-quality scoring based on accuracy (a calibrated challenge range) and duration (15+ min).
-- **Distractor Error Tagging:** Classifies errors into trap-identification and calculation-error categories.
+- **Practice Streaks:** Session-consistency scoring based on accuracy (a calibrated challenge range) and duration (15+ min).
+- **Error classification:** Classifies errors into trap-identification and calculation-error categories.
 
 ## Sections covered
 

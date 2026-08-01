@@ -183,7 +183,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
         heading: "The Gap Between Intuition and Accuracy",
         paragraphs: [
           "Most CAT aspirants dramatically overestimate their performance on questions they find 'familiar'. Familiarity is not the same as mastery. A question type that you have encountered dozens of times will feel easy even when the specific instance contains a novel twist that breaks your standard approach. This false familiarity is responsible for a disproportionate share of incorrect answers in the 90–95th percentile band.",
-          "The Confidence Rating system in AdaptHub is designed to surface this gap. After each question, you rate your confidence on a 1–5 scale. Over time, the system calculates your <strong>Calibration Score</strong> — the correlation between your confidence and your actual accuracy. A well-calibrated student who rates a question 5/5 gets it right nearly 90% of the time. A poorly calibrated student who rates a question 5/5 gets it right 60% of the time. The gap between these two numbers is the metacognitive deficit.",
+          "The Confidence Rating system in AdaptHub is designed to surface this gap. After each question, you rate your confidence on a 1–5 scale. Over time, the system calculates your <strong>Calibration Score</strong> — the correlation between your confidence and your actual accuracy. A well-calibrated student's confidence tracks their accuracy closely: when they rate a question 5/5, they usually know it. A poorly calibrated student's confidence stays high even when accuracy does not. The gap between the two is the metacognitive deficit.",
         ],
       },
       {
@@ -259,12 +259,12 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "quality-streaks-vs-raw-study-hours",
-    title: "Quality Streaks vs Study Hours for CAT Percentile",
+    title: "Practice Streaks vs Study Hours for CAT Percentile",
     category: "Performance Science",
     date: "2026-02-23",
     readTime: "07_MIN",
     excerpt:
-      "Study hours alone are a weak signal. Quality streaks built on focused, >70% accuracy sessions predict stronger CAT percentile outcomes.",
+      "Study hours alone are a weak signal. Practice Streaks built on focused, >70% accuracy sessions predict stronger CAT percentile outcomes.",
     sources: [
       {
         label: "Roediger & Karpicke (2006): Test-enhanced learning (Science)",
@@ -290,10 +290,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
         ],
       },
       {
-        heading: "The Quality Streak Mechanics",
+        heading: "The Practice Streak Mechanics",
         paragraphs: [
-          "AdaptHub's Quality Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more. Logging in without substantive practice does not extend a streak. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
-          "The streak counter is not a gamification gimmick. It is a behavioral signal that accurately reflects whether your preparation is on a trajectory toward the 99th percentile. A student with a 30-day quality streak has logged a minimum of 30 sessions meeting the accuracy and duration thresholds. That is a directly measurable input to D-Day performance.",
+          "AdaptHub's Practice Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more. Logging in without substantive practice does not extend a streak. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
+          "The streak counter is not a gamification gimmick. It is a behavioral signal that accurately reflects whether your preparation is on a trajectory toward the 99th percentile. A student with a 30-day practice streak has logged a minimum of 30 sessions meeting the accuracy and duration thresholds. That is a directly measurable input to D-Day performance.",
         ],
       },
       {
