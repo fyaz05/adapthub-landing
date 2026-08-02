@@ -19,10 +19,10 @@ export const resolvedContent = {
     pricing: {
       title:
         BASE_CONTENT?.metadata?.pricing?.title ||
-        "Free CAT Preparation Online — currently free | AdaptHub",
+        "Free CAT Preparation Online | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.pricing?.description ||
-        "currently free adaptive learning for CAT — no credit card required.",
+        "Free adaptive learning for CAT — start today.",
     },
     about: {
       title:
@@ -109,7 +109,7 @@ export const resolvedContent = {
   },
   trustStrip: BASE_CONTENT?.trustStrip || {
     questions: "10,000+ curated questions",
-    free: "Free for individual learners",
+    free: "Free for all aspirants",
     sections: "QA · DILR · VARC",
   },
 };

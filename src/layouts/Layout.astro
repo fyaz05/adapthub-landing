@@ -154,6 +154,7 @@ const partytownConfig = {
     <meta name="format-detection" content="telephone=no" />
     <meta name="geo.region" content="IN" />
     <meta name="geo.placename" content="India" />
+    <link rel="alternate" hreflang="en-IN" href="https://adapthub.in/" />
     <link rel="author" type="text/plain" href="/humans.txt" />
 
     {/* Canonical on noindex pages too — keeps graph linking clean and avoids hreflang warnings. */}
@@ -198,8 +199,8 @@ const partytownConfig = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:image:alt" content={ogImageAlt || `${CONTENT.global.brandName} — ${description}`} />
-    {/* <meta name="twitter:site" content="@adapthublabs" /> */}
-    {/* <meta name="twitter:creator" content="@adapthublabs" /> */}
+    <meta name="twitter:site" content="@adapthublabs" />
+    <meta name="twitter:creator" content="@adapthublabs" />
 
     {/* Structured Data — Single @graph for sitewide entities.
         Page-specific schemas (FAQPage, BlogPosting, Product, Course)

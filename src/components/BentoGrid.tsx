@@ -539,7 +539,7 @@ const BentoGrid = () => {
                 <br />
                 82% cohort failed.
                 <br />
-                Type: False Causation.
+                Type: Conceptual gap.
               </motion.div>
 
               <motion.div

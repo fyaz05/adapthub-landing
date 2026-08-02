@@ -208,6 +208,45 @@ export default function CoachDemo() {
                   </p>
                 </motion.div>
               )}
+
+              {/* Error Forensics Panel */}
+              {hintLevel >= 1 && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="bg-surface/80 border border-border rounded-3xl rounded-tl-sm p-6 max-w-[90%] md:max-w-[85%] self-start relative mt-2"
+                >
+                  <div className="text-red-400 font-mono text-xs uppercase tracking-widest mb-3 font-semibold">
+                    {data.errorAnalysis.title}
+                  </div>
+                  <p className="text-fg text-sm md:text-base font-sans leading-relaxed">
+                    {data.errorAnalysis.distractorExplanation}
+                  </p>
+                  <div className="mt-5">
+                    <div className="text-fg-muted font-mono text-[10px] md:text-[11px] mb-3 uppercase tracking-widest font-semibold">
+                      {data.errorAnalysis.whyWrongQuestion}
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-orange-400 font-mono text-[10px] md:text-xs uppercase tracking-widest border border-orange-400/20 bg-orange-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
+                          {data.errorAnalysis.studentReport}
+                        </span>
+                        <span className="text-fg-subtle font-mono text-[10px] uppercase tracking-widest">
+                          Your answer
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-green-400 font-mono text-[10px] md:text-xs uppercase tracking-widest border border-green-400/20 bg-green-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
+                          {data.errorAnalysis.systemAnalysis}
+                        </span>
+                        <span className="text-fg-subtle font-mono text-[10px] uppercase tracking-widest">
+                          System analysis
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
             </div>
 
             {/* Action Bar */}

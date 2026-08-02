@@ -16,7 +16,7 @@ The productive practice band is often near **70–85% accuracy**: below it, fail
 - **AI mock analysis:** Post-test dashboards after a full mock (error clusters, peer compare).  
 - **Adaptive coaching during learning:** Difficulty and remediation change *while* you practice.  
 
-AdaptHub focuses on the second loop (ZPD + two-tier hints + distractor tags), currently free for individual learners for the core engine. External mocks (free or paid) still help for national benchmarking.
+AdaptHub focuses on the second loop (ZPD + two-tier hints + distractor tags), free for all aspirants for the core engine. External mocks (free or paid) still help for national benchmarking.
 
 ## Cite
 

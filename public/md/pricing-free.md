@@ -1,16 +1,15 @@
-# AdaptHub pricing — currently available at ₹0
+# AdaptHub pricing — available at ₹0
 
 **URL:** https://adapthub.in/pricing/  
 **Updated:** 2026-07-13
 
 ## Direct answer
 
-AdaptHub’s core CAT preparation platform is **currently available at ₹0**. No credit card is required to start. There is no paid tier required for adaptive study plans, AI hints and explanations, or core performance analytics for individual aspirants.
+AdaptHub’s core CAT preparation platform is **available at ₹0**. No payment is required to start. There is no paid tier required for adaptive study plans, AI hints and explanations, or core performance analytics for aspirants.
 
 ## What “free” means
 
-- Price: **₹0**  
-- Card: **not required**  
+- Price: **₹0**
 - Intent: full adaptive engine access for serious CAT aspirants  
 
 ## What free does not mean

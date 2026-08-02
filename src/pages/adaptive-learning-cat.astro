@@ -10,7 +10,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
 const faqs = [
   {
     question: "What is adaptive learning in the context of CAT preparation?",
-    answer: "Adaptive learning is an AI-driven educational methodology where the difficulty, sequence, and type of questions presented to a student are continuously adjusted based on their real-time performance data. In CAT preparation, this means the system identifies a student's specific cognitive gaps across VARC, DILR, and QA topics and serves progressively targeted questions within their Zone of Proximal Development (ZPD) — the zone where learning is maximally efficient.",
+    answer: "Adaptive learning is an AI-driven educational methodology where the difficulty, sequence, and type of questions presented to a student are continuously adjusted based on their real-time performance data. In CAT preparation, this means the system identifies a student's specific cognitive gaps across VARC, DILR, and QA topics and serves progressively targeted questions within their Zone of Proximal Development (ZPD): the zone where learning is maximally efficient.",
   },
   {
     question: "How is adaptive learning different from traditional CAT coaching?",
@@ -18,15 +18,15 @@ const faqs = [
   },
   {
     question: "What is the Zone of Proximal Development (ZPD) algorithm?",
-    answer: "The Zone of Proximal Development is a concept from developmental psychology (Vygotsky, 1978) that defines the optimal difficulty level for learning — the gap between what a student can solve independently and what they can solve with support. AdaptHub's ZPD algorithm continuously estimates this zone for each student across all CAT topics using error telemetry, response time analysis, and mastery level tracking, then serves questions precisely within that zone.",
+    answer: "The Zone of Proximal Development is a concept from developmental psychology (Vygotsky, 1978) that defines the optimal difficulty level for learning: the gap between what a student can solve independently and what they can solve with support. AdaptHub's ZPD algorithm continuously estimates this zone for each student across all CAT topics using error telemetry, response time analysis, and mastery level tracking, then serves questions precisely within that zone.",
   },
   {
     question: "Does adaptive testing give easier questions to lower-ranked students?",
-    answer: "No — the goal is not easier questions, but optimally challenging questions. Adaptive systems increase difficulty when performance is strong and route to foundational concepts when specific errors are detected. The objective is always to operate at the leading edge of a student's capability, maximizing learning velocity regardless of their current baseline.",
+    answer: "No. The goal is not easier questions, but optimally challenging questions. Adaptive systems increase difficulty when performance is strong and route to foundational concepts when specific errors are detected. The objective is always to operate at the leading edge of a student's capability, maximizing learning velocity regardless of their current baseline.",
   },
   {
     question: "Is AdaptHub's adaptive learning system free?",
-    answer: "Yes. AdaptHub's full adaptive learning engine — including the ZPD algorithm, AI hints system, error telemetry, and personalized analytics dashboard — is completely free with no hidden tiers or credit card requirements.",
+    answer: "Yes. AdaptHub's full adaptive learning engine, including the ZPD algorithm, AI hints system, error telemetry, and personalized analytics dashboard, is completely free with no hidden tiers or payment required.",
   },
 ];
 ---
@@ -64,7 +64,7 @@ const faqs = [
       {
         "@type": "DefinedTerm",
         "name": "Zone of Proximal Development (ZPD)",
-        "description": "The optimal difficulty level for learning — the gap between what a student can solve independently and what they can solve with support. AdaptHub's algorithm continuously estimates this zone per topic.",
+        "description": "The optimal difficulty level for learning: the gap between what a student can solve independently and what they can solve with support. AdaptHub's algorithm continuously estimates this zone per topic.",
         "inDefinedTermSet": {
           "@type": "DefinedTermSet",
           "name": "AdaptHub EdTech Glossary"
@@ -81,19 +81,19 @@ const faqs = [
   <article>
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight mb-8 text-white">What is Adaptive Learning in CAT Prep? | Free ZPD Engine</h1>
     <p class="text-zinc-400 text-lg md:text-xl leading-[1.8] mb-12">
-      Most CAT prep platforms call themselves "adaptive" when they really just shuffle questions. True adaptive learning continuously estimates your Zone of Proximal Development per topic and serves the next question at the edge of your competence — the point where learning velocity is highest. Here is how that engine actually works under the hood.
+      Most CAT prep platforms call themselves "adaptive" when they really just shuffle questions. True adaptive learning continuously estimates your Zone of Proximal Development per topic and serves the next question at the edge of your competence: the point where learning velocity is highest. Here is how that engine actually works under the hood.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why fixed curricula fail CAT aspirants</h2>
     <p class="text-zinc-400 leading-[1.8] mb-6">
-      Traditional coaching assumes everyone learns at the same speed. A static course cannot know which of the 48 CAT topics you've mastered and which have hidden gaps. Adaptive learning inverts this: the system maps your competence per topic, then serves the exact next question at the edge of your competence — the Zone of Proximal Development.
+      Traditional coaching assumes everyone learns at the same speed. A static course cannot know which of the 48 CAT topics you've mastered and which have hidden gaps. Adaptive learning inverts this: the system maps your competence per topic, then serves the exact next question at the edge of your competence: the Zone of Proximal Development.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How AdaptHub's ZPD engine works</h2>
     <ol class="list-decimal pl-6 text-zinc-400 space-y-4 mb-10 leading-[1.75]">
-      <li><strong class="text-zinc-200">Calibration (15 min)</strong> — A short diagnostic across VARC, DILR, QA maps your per-topic mastery.</li>
-      <li><strong class="text-zinc-200">ZPD targeting</strong> — Every subsequent question lands in your 70–85% accuracy band per topic.</li><li><strong class="text-zinc-200">AI hints system</strong> — Hints with escalating specificity; penalty for hint use keeps you in the growth band.</li><li><strong class="text-zinc-200">Distractor tagging</strong> — Every wrong answer is auto-classified (concept gap / calc error / trap / time sink).</li>
-      <li><strong class="text-zinc-200">Spaced Repetition Queue (SRS)</strong> — Tagged errors retested at 3 / 7 / 14 days until mastery.</li>
+      <li><strong class="text-zinc-200">Calibration (15 min)</strong>: A short diagnostic across VARC, DILR, QA maps your per-topic mastery.</li>
+      <li><strong class="text-zinc-200">ZPD targeting</strong>: Every subsequent question lands in your 70–85% accuracy band per topic.</li><li><strong class="text-zinc-200">AI hints system</strong>: Hints with escalating specificity; penalty for hint use keeps you in the growth band.</li><li><strong class="text-zinc-200">Distractor tagging</strong>: Every wrong answer is auto-classified (concept gap / calc error / trap / time sink).</li>
+      <li><strong class="text-zinc-200">Spaced Repetition Queue (SRS)</strong>: Tagged errors retested at 3 / 7 / 14 days until mastery.</li>
     </ol>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The three adaptive loops</h2>
@@ -103,7 +103,7 @@ const faqs = [
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How it differs from "AI coaching" add-ons</h2>
     <p class="text-zinc-400 leading-[1.8] mb-10">
-      Many platforms bolt an LLM onto a fixed question bank. AdaptHub's adaptivity is <strong>structural</strong> — the question bank is indexed by difficulty, cognitive demand, and distractor type; the ZPD algorithm selects, the AI Coach explains. No fixed sets, no "level up" gatekeeping, no credit card.
+      Many platforms bolt an LLM onto a fixed question bank. AdaptHub's adaptivity is <strong>structural</strong>: the question bank is indexed by difficulty, cognitive demand, and distractor type; the ZPD algorithm selects, the AI Coach explains. No fixed sets, no "level up" gatekeeping.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why practice velocity matters</h2>
@@ -111,7 +111,7 @@ const faqs = [
       The improvement comes from eliminating "wasted reps" on mastered content and preventing frustration spirals on premature difficulty.
     </p>
 
-    <CtaBlock text="Start free practice" variant="yellow" />
+    <CtaBlock text="Start practicing" variant="yellow" />
 
   </article>
 

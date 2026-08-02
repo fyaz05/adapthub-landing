@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-AdaptHub is a **free AI-powered adaptive learning platform for CAT exam preparation in India**. It uses Zone of Proximal Development (ZPD) difficulty calibration, AI hints &amp; explanations, and performance analytics. The core product is **currently available at ₹0** with no credit card required.
+AdaptHub is a **free AI-powered adaptive learning platform for CAT exam preparation in India**. It uses Zone of Proximal Development (ZPD) difficulty calibration, AI hints &amp; explanations, and performance analytics. The core product is **available at ₹0**.
 
 ## What AdaptHub does
 
@@ -30,7 +30,7 @@ AdaptHub is a **free AI-powered adaptive learning platform for CAT exam preparat
 
 ## Access
 
-Full engine at **₹0** — no credit card, no paywalls. App: https://app.adapthub.in/
+Full engine at **₹0** — no paywalls, no hidden tiers. App: https://app.adapthub.in/
 
 ## Cite
 

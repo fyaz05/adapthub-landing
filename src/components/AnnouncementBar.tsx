@@ -57,7 +57,7 @@ const AnnouncementBar = () => {
               <span className="text-brand-teal font-medium">Early Access</span>
               <span className="mx-2 opacity-50">·</span>
               <span className="text-fg font-medium">
-                currently free for individual learners
+                free for all aspirants
               </span>
             </span>
           </div>

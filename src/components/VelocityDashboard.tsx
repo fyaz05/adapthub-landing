@@ -43,7 +43,7 @@ export default function VelocityDashboard() {
           <div className="mb-16 lg:mb-20">
             <p data-speakable className="sr-only">
               Raw mock scores are vanity metrics. AdaptHub tracks Learning
-              Velocity — a 7-day measure of how efficiently you absorb new
+              Velocity, a 7-day measure of how efficiently you absorb new
               concepts. High accuracy with low velocity means you are practicing
               in your comfort zone.
             </p>
@@ -56,9 +56,9 @@ export default function VelocityDashboard() {
             <p className="text-fg-muted text-lg mx-auto text-center max-w-3xl font-sans leading-relaxed">
               Raw mock scores mean nothing. AdaptHub tracks{" "}
               <strong className="text-brand-teal font-medium">
-                Learning Velocity
+                Learning Velocity,
               </strong>{" "}
-              — a 7-day composite diagnostic of how efficiently you absorb new
+              a 7-day composite diagnostic of how efficiently you absorb new
               concepts.
             </p>
             <div className="flex justify-center mt-6">
@@ -246,7 +246,7 @@ export default function VelocityDashboard() {
                     Tilt Detected
                   </h4>
                   <p className="text-fg-muted text-xs font-sans leading-relaxed">
-                    3 consecutive errors in &lt; 45s — you may be guessing.
+                    3 consecutive errors in &lt; 45s. You may be guessing.
                   </p>
                 </div>
               </motion.div>
@@ -261,24 +261,24 @@ export default function VelocityDashboard() {
             >
               <div className="mb-8">
                 <h3 className="text-fg font-serif text-2xl italic mb-3">
-                  The Blindspot Matrix
+                  Confidence Calibration
                 </h3>
                 <p className="text-fg-muted text-sm leading-relaxed">
-                  AdaptHub correlates your confidence with your accuracy to
-                  identify hidden liabilities before exam day.
+                  AdaptHub tracks how well you judge your own answers.
+                  See whether you are overconfident, underconfident, or well calibrated, and close the gaps.
                 </p>
               </div>
 
               {/* 2x2 Grid */}
               <div className="grid grid-cols-2 grid-rows-2 gap-px bg-zinc-800 rounded-2xl overflow-hidden aspect-square z-10 relative">
-                {/* High Conf + Incorrect -> Dangerous Blindspot */}
+                {/* High Conf + Incorrect -> Overconfident */}
                 {/* biome-ignore lint/a11y/useSemanticElements: Quadrant acts as a large touch target, rendered as a div for strict flexbox properties */}
                 <div
                   className="bg-red-950/20 p-2 sm:p-4 lg:p-6 flex flex-col justify-between group cursor-help relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-red-500/50"
                   // biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard focus required for CSS tooltips
                   tabIndex={0}
                   role="region"
-                  aria-label="High Confidence, Incorrect quadrant indicates a Dangerous Blindspot"
+                  aria-label="High Confidence, Incorrect. You are overconfident in this area"
                 >
                   <div className="absolute inset-0 bg-red-950/40 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
                   <div className="text-[8px] sm:text-[9px] md:text-[10px] text-red-500/70 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
@@ -286,9 +286,7 @@ export default function VelocityDashboard() {
                     <span className="hidden sm:inline">, Incorrect</span>
                   </div>
                   <div className="text-red-400 font-bold font-sans text-sm sm:text-base md:text-lg lg:text-xl relative z-10 leading-tight">
-                    Dangerous
-                    <br />
-                    Blindspot
+                    Overconfident
                   </div>
                 </div>
 
@@ -299,15 +297,15 @@ export default function VelocityDashboard() {
                   // biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard focus required for CSS tooltips
                   tabIndex={0}
                   role="region"
-                  aria-label="High Confidence, Correct quadrant indicates Verified Mastery"
+                  aria-label="High Confidence, Correct quadrant indicates Well Calibrated"
                 >
                   <div className="absolute inset-0 bg-brand-teal/10 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
                   <div className="text-[8px] sm:text-[9px] md:text-[10px] text-brand-teal/50 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
                     High Conf<span className="hidden sm:inline">, Correct</span>
                   </div>
                   <div className="text-brand-teal font-bold font-sans text-sm sm:text-base md:text-lg lg:text-xl relative z-10 leading-tight">
-                    Verified
-                    <br className="sm:hidden" /> Mastery
+                    Well
+                    <br className="sm:hidden" /> Calibrated
                   </div>
                 </div>
 

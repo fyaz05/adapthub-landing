@@ -30,6 +30,10 @@ const SYSTEMS = [
     ...CONTENT.theLens.systems[2],
     color: THEME_COLORS.accent.pink, // Pink
   },
+  {
+    ...CONTENT.theLens.systems[3],
+    color: THEME_COLORS.accent.gold, // Gold
+  },
 ];
 
 // -----------------------------------------------------------------------------
@@ -67,10 +71,10 @@ const DataDot = ({
 };
 
 const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
-  const pathLength = useTransform(progress, [0.05, 0.25], [0, 1]);
-  const highlightOpacity = useTransform(progress, [0.25, 0.28], [0, 1]);
-  const baselineOpacity = useTransform(progress, [0.28, 0.32], [0, 1]);
-  const baselineY = useTransform(progress, [0.28, 0.32], [-5, 0]);
+  const pathLength = useTransform(progress, [0.02, 0.22], [0, 1]);
+  const highlightOpacity = useTransform(progress, [0.20, 0.23], [0, 1]);
+  const baselineOpacity = useTransform(progress, [0.22, 0.25], [0, 1]);
+  const baselineY = useTransform(progress, [0.22, 0.25], [-5, 0]);
 
   // Data for the 15-dot calibration path
   // Y-axis: 0 is highest difficulty (Anxiety), 150 is lowest (Boredom)
@@ -238,14 +242,14 @@ const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
 // -----------------------------------------------------------------------------
 const RoadmapVisual = ({ progress }: { progress: MotionValue<number> }) => {
   const isReduced = useReducedMotion();
-  const blockScale = useTransform(progress, [0.35, 0.4], [0, 1]);
-  const blockPathLength = useTransform(progress, [0.38, 0.42], [0, 1]);
-  const detourPathLength = useTransform(progress, [0.42, 0.55], [0, 1]);
-  const headDistance = useTransform(progress, [0.42, 0.55], ["0%", "100%"]);
-  const destScale = useTransform(progress, [0.55, 0.6], [0, 1]);
-  const gapOpacity = useTransform(progress, [0.35, 0.38], [0, 1]);
-  const gapX = useTransform(progress, [0.35, 0.38], [-10, 0]);
-  const optOpacity = useTransform(progress, [0.42, 0.45], [0, 1]);
+  const blockScale = useTransform(progress, [0.28, 0.33], [0, 1]);
+  const blockPathLength = useTransform(progress, [0.31, 0.35], [0, 1]);
+  const detourPathLength = useTransform(progress, [0.35, 0.47], [0, 1]);
+  const headDistance = useTransform(progress, [0.35, 0.47], ["0%", "100%"]);
+  const destScale = useTransform(progress, [0.47, 0.50], [0, 1]);
+  const gapOpacity = useTransform(progress, [0.28, 0.31], [0, 1]);
+  const gapX = useTransform(progress, [0.28, 0.31], [-10, 0]);
+  const optOpacity = useTransform(progress, [0.36, 0.39], [0, 1]);
   const optX = useTransform(progress, [0.42, 0.45], [10, 0]);
 
   // 5x5 Grid
@@ -435,11 +439,11 @@ const RoadmapVisual = ({ progress }: { progress: MotionValue<number> }) => {
 // VISUAL 3: DIAGNOSTICS (RADAR)
 // -----------------------------------------------------------------------------
 const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
-  const polyScale = useTransform(progress, [0.7, 0.85], [0, 1]);
-  const p1Scale = useTransform(progress, [0.72, 0.78], [0, 1]);
-  const p2Scale = useTransform(progress, [0.74, 0.8], [0, 1]);
-  const p3Scale = useTransform(progress, [0.76, 0.82], [0, 1]);
-  const p4Scale = useTransform(progress, [0.78, 0.84], [0, 1]);
+  const polyScale = useTransform(progress, [0.53, 0.72], [0, 1]);
+  const p1Scale = useTransform(progress, [0.55, 0.61], [0, 1]);
+  const p2Scale = useTransform(progress, [0.57, 0.63], [0, 1]);
+  const p3Scale = useTransform(progress, [0.59, 0.65], [0, 1]);
+  const p4Scale = useTransform(progress, [0.61, 0.67], [0, 1]);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-8">
@@ -550,6 +554,71 @@ const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
 };
 
 // -----------------------------------------------------------------------------
+// VISUAL 4: CONCEPT LIBRARY (CURATED ARTICLES)
+// -----------------------------------------------------------------------------
+const LibraryVisual = () => {
+  const categories = [
+    { label: "QA", count: "128 articles", accent: "text-brand-teal" },
+    { label: "DILR", count: "96 articles", accent: "text-violet-400" },
+    { label: "VARC", count: "142 articles", accent: "text-pink-400" },
+  ];
+
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-6 md:p-8 bg-bg">
+      {/* Header */}
+      <div className="absolute top-4 left-6 right-6 flex justify-between items-center pb-2 border-b border-border z-20">
+        <span className="font-mono text-[9px] uppercase tracking-widest text-fg-muted">
+          Curated Concepts
+        </span>
+        <span className="font-mono text-[9px] uppercase tracking-widest text-amber-400 flex items-center gap-1">
+          <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+          Gold
+        </span>
+      </div>
+
+      {/* Article Card Grid */}
+      <div className="grid grid-cols-3 gap-3 mt-10 w-full max-w-sm">
+        {categories.map((cat) => (
+          <div
+            key={cat.label}
+            className="rounded-lg bg-surface border border-border-subtle p-3 space-y-3 shadow-xl"
+          >
+            <div className="flex items-center justify-center w-8 h-8 rounded-md bg-white/5 border border-border-subtle">
+              <svg
+                className="w-4 h-4 text-amber-400/80"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z" />
+              </svg>
+            </div>
+            <div>
+              <div className={`font-mono text-sm font-bold ${cat.accent}`}>
+                {cat.label}
+              </div>
+              <div className="text-[9px] text-fg-subtle mt-1 leading-snug">
+                {cat.count}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ZPD Badge */}
+      <div className="mt-6 flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10">
+        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+        <span className="font-mono text-[9px] uppercase tracking-widest text-amber-300">
+          Tailored to your ZPD
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// -----------------------------------------------------------------------------
 // MAIN COMPONENT
 // -----------------------------------------------------------------------------
 
@@ -574,14 +643,16 @@ const TheLens = () => {
   });
 
   // 2. Deterministic State derivation from pure scroll progress
-  // Stages roughly divided to 30% / 40% / 30% for pacing with extra middle emphasis
+  // Stages roughly divided to 25% each for pacing across 4 systems
   useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (latest < 0.3) {
+    if (latest < 0.25) {
       if (activeIndex !== 0) setActiveIndex(0);
-    } else if (latest >= 0.3 && latest < 0.7) {
+    } else if (latest >= 0.25 && latest < 0.5) {
       if (activeIndex !== 1) setActiveIndex(1);
-    } else {
+    } else if (latest >= 0.5 && latest < 0.75) {
       if (activeIndex !== 2) setActiveIndex(2);
+    } else {
+      if (activeIndex !== 3) setActiveIndex(3);
     }
   });
 
@@ -607,6 +678,7 @@ const TheLens = () => {
               {activeIndex === 0 && "Keep scrolling"}
               {activeIndex === 1 && "Keep scrolling"}
               {activeIndex === 2 && "Keep scrolling"}
+              {activeIndex === 3 && "Continue exploring"}
             </motion.span>
           </AnimatePresence>
           <div className="w-[1px] h-10 sm:h-16 relative overflow-hidden bg-white/10">
@@ -706,6 +778,7 @@ const TheLens = () => {
                     {activeIndex === 2 && (
                       <DiagnosticsVisual progress={smoothProgress} />
                     )}
+                    {activeIndex === 3 && <LibraryVisual />}
                   </motion.div>
                 </AnimatePresence>
               </div>
