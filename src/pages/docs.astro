@@ -15,7 +15,7 @@ import { DOC_SECTIONS } from "../constants/docs-data";
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
-  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-bg selection:bg-[rgb(252,211,77,0.3)]">
 
     <div class="background-pulse" aria-hidden="true"></div>
 
@@ -62,7 +62,7 @@ import { DOC_SECTIONS } from "../constants/docs-data";
           {DOC_SECTIONS.map((section, index) => (
             <a
               href={`/docs/${section.slug}`}
-              class="doc-row group block relative bg-void py-10 md:py-12 pl-4 sm:pl-8 pr-6 overflow-hidden transition-colors duration-500 page-stagger"
+              class="doc-row group block relative bg-bg py-10 md:py-12 pl-4 sm:pl-8 pr-6 overflow-hidden transition-colors duration-500 page-stagger"
               style={`--i:${3 + index}`}
             >
               {/* Active line */}
@@ -106,7 +106,7 @@ import { DOC_SECTIONS } from "../constants/docs-data";
           {/* Troubleshooting row */}
           <a
             href="/docs/troubleshooting"
-            class="doc-row group block relative bg-void py-10 md:py-12 pl-4 sm:pl-8 pr-6 overflow-hidden transition-colors duration-500 border-t border-white/[0.04] page-stagger"
+            class="doc-row group block relative bg-bg py-10 md:py-12 pl-4 sm:pl-8 pr-6 overflow-hidden transition-colors duration-500 border-t border-white/[0.04] page-stagger"
             style={`--i:${3 + DOC_SECTIONS.length}`}
           >
             <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-amber-500 scale-y-0 group-hover:scale-y-100 group-focus-visible:scale-y-100 transition-transform duration-500 origin-top pointer-events-none z-20" aria-hidden="true"></div>

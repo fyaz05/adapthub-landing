@@ -196,7 +196,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
       {
         heading: "The Weekly Metacognitive Review",
         paragraphs: [
-          "Set aside 20 minutes at the end of each week to review not your accuracy numbers but your error classification distribution. If 70% of your errors are Conceptual Gaps, the intervention is more concept study. If 70% are Execution Errors, the intervention is slower, more deliberate practice with explicit self-checking steps. If 70% are Traps, you need to study your distractor patterns — and AdaptHub's AI Digest provides exactly this analysis, citing the specific question IDs where each trap type was triggered.",
+          "Set aside 20 minutes at the end of each week to review not your accuracy numbers but your error classification distribution. If 70% of your errors are Conceptual Gaps, the intervention is more concept study. If 70% are Execution Errors, the intervention is slower, more deliberate practice with explicit self-checking steps. If 70% are Traps, you need to study your distractor patterns — AdaptHub supports this by classifying every incorrect attempt by error type, providing two-tier hints that guide your reasoning without revealing the answer, and tracking your Quality Streaks as a reliable signal of genuine improvement.",
           "The metacognitive review is not comfortable. It requires honest confrontation with exactly the reasoning patterns you have been avoiding. But it is the fastest path to the percentile jump you are working toward — because it converts random practice into targeted remediation of your specific, identified failure modes.",
         ],
       },
@@ -252,7 +252,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
         heading: "Building the System",
         paragraphs: [
           "The practical implementation is a personal distractor log. Every time you select a wrong answer, record its type, the question ID, and the specific reasoning step where you diverged from the correct path. After 20 entries, your personal trap profile becomes visible. Most students find that 60–70% of their errors concentrate in one or two distractor types — which means eliminating those two types eliminates the majority of your CAT error budget.",
-          "AdaptHub automates this process. The AI Coach tags every incorrect attempt with its distractor error type and surfaces your accumulated pattern in the weekly digest. The weekly digest does not describe your errors in aggregate — it cites the specific question IDs, the specific step failures, and the targeted remediation recommended for each. This is the data layer that converts practice sessions into deliberate improvement.",
+          "AdaptHub automates this process by classifying every incorrect attempt with its distractor error type, so your personal trap profile becomes visible over time. The platform provides two-tier hints that guide your reasoning without revealing the answer, and your Quality Streaks track sustained, high-accuracy practice sessions — giving you a reliable signal of genuine improvement rather than just time spent.",
         ],
       },
     ],

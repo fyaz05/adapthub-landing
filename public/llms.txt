@@ -53,7 +53,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 
 - [Docs hub](https://adapthub.in/docs): How the product works
 - [Calibration sequence](https://adapthub.in/docs/calibration-sequence): Adaptive diagnostic
-- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Socratic hints and penalties
+- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Two-tier hints with level-progression penalty
 - [Telemetry metrics](https://adapthub.in/docs/telemetry-performance-metrics): Learning velocity and related metrics
 - [Spaced repetition](https://adapthub.in/docs/spaced-repetition-system): SRS queue
 

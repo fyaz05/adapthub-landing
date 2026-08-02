@@ -124,7 +124,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     sysRef: "04.00",
     title: "AI Coach & Hint System",
     description:
-      "How the Socratic two-tier hint system works, error classification, and how the AI Digest builds your personal error fingerprint over time.",
+      "How the two-tier hint system works, error classification, and how error analysis builds your personal error fingerprint over time.",
     body: [
       {
         paragraphs: [
@@ -132,7 +132,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         ],
       },
       {
-        heading: "Tier 1: Socratic Prompt",
+        heading: "Tier 1: Guided Hint",
         paragraphs: [
           "<strong>Tier 1</strong> provides directional guidance without revealing the answer. The prompt is dynamically generated based on the question's topic tag and the specific error type detected in your response. Examples: <em>'Consider what happens at boundary values when x approaches zero.'</em> Or: <em>'Check whether the exclusion condition in row 3 is bidirectional or unidirectional.'</em>",
           "Tier 1 hints are designed to activate the reasoning chain you should have used, not to summarize the solution. If you can bridge the gap after a Tier 1 hint, your reasoning is retrievable — it was a momentary block, not a conceptual gap.",
@@ -141,21 +141,20 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Tier 2: Answer Reveal",
         paragraphs: [
-          "<strong>Tier 2</strong> shows the complete solution with step-by-step reasoning, including the specific point where the correct approach diverges from your submitted answer. Both tiers are logged to your Telemetry profile. Hint usage counts appear in your session summary and weekly AI Digest.",
+          "<strong>Tier 2</strong> shows the complete solution with step-by-step reasoning, including the specific point where the correct approach diverges from your submitted answer. Both tiers are logged to your Telemetry profile. Hint usage counts appear in your session summary.",
         ],
       },
       {
         heading: "Error Classification",
         paragraphs: [
           "After every incorrect attempt (with or without hints), the AI Coach tags the error with a <strong>Distractor Error Type</strong>: <strong>Conceptual Gap</strong> (the underlying principle was unknown), <strong>Execution Error</strong> (the principle was known but a calculation or logical step failed), or <strong>Trap: Distractor</strong> (a specifically engineered wrong answer exploited a predictable reasoning shortcut).",
-          "Sub-types include: <em>Trap: Negation</em> (a logically negated version of the correct answer), <em>Root Cause Mismatch</em> (a downstream effect selected instead of the cause), and <em>Calculation Error</em> (sign errors, boundary failures, unit mismatches). These tags are not cosmetic — they are the input to the weekly AI Digest and the SRS trigger logic.",
+          "Sub-types include: <em>Trap: Negation</em> (a logically negated version of the correct answer), <em>Root Cause Mismatch</em> (a downstream effect selected instead of the cause), and <em>Calculation Error</em> (sign errors, boundary failures, unit mismatches). These tags are not cosmetic — they are the input to the SRS trigger logic.",
         ],
       },
       {
-        heading: "The Weekly AI Digest",
+        heading: "AI-Generated Content Transparency",
         paragraphs: [
-          "Once per week, the AI Coach generates a personalized digest analyzing your error pattern distribution. The digest surfaces your top two or three error types by frequency, cites the specific question IDs where each pattern appeared, and recommends targeted remediation: Concept Library resources for Conceptual Gaps, slow-repetition practice sets for Execution Errors, and specific trap-awareness drills for Distractor patterns.",
-          "Every AI-generated piece of content visible to you — including digest analysis and Socratic prompts — is labeled with an <strong>AI-Generated</strong> badge. This is a transparency requirement, not optional. You should always know when you are receiving machine-authored feedback.",
+          "Every AI-generated piece of content visible to you — including hints, error classifications, and AI-generated prompts — is labeled with an <strong>AI-Generated</strong> badge. This is a transparency requirement, not optional. You should always know when you are receiving machine-authored feedback.",
         ],
       },
     ],
@@ -263,7 +262,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         heading: "Streaks as a Performance Predictor",
         paragraphs: [
           "Your streak count is surfaced in your Analytics Dashboard as a leading indicator of D-Day performance. Research on deliberate practice consistently shows that session <em>consistency</em> is a stronger predictor of exam outcome than total hours logged. A student with a 45-day practice streak has demonstrated 45 sessions meeting the accuracy and duration thresholds — a directly measurable input to exam readiness.",
-          "A broken streak resets to zero but does not delete historical data. Your Analytics Dashboard preserves the full history of your streak performance, including longest streak and streak frequency distribution. Streak history is used by the AI Digest to identify engagement patterns and flag potential burnout risk when session frequency drops sharply after a long streak.",
+          "A broken streak resets to zero but does not delete historical data. Your Analytics Dashboard preserves the full history of your streak performance, including longest streak and streak frequency distribution. Streak history helps identify engagement patterns and flag potential burnout risk when session frequency drops sharply after a long streak.",
         ],
       },
     ],

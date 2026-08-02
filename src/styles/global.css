@@ -54,7 +54,26 @@
     --color-saved-accent: var(--color-accent-pink);
     --color-saved-bg: rgb(236 72 153 / 0.1);
     --color-saved-border: rgb(236 72 153 / 0.24);
-    --color-cta-accent: var(--color-action-accent);
+    --color-cta-accent: var(--color-action-accent); /* Required by cross-repo contract; landing CTAs use gold via --shadow-cta-gold */
+
+    /* === App-aligned RGB triples (for rgba() usage) === */
+    --brand-violet-rgb: 91 33 182;                /* matches app --brand-primary-rgb */
+    --saved-accent-rgb: 236 72 153;                /* matches app --saved-accent-rgb */
+    --analysis-accent-rgb: 96 165 250;             /* matches app --analysis-accent-rgb */
+    --color-action-fg: #062b27;                    /* dark teal text on teal bg */
+    --color-obsidian: #050507;                     /* matches app obsidian token */
+
+    /* === App-aligned gold scale (additive) === */
+    --color-gold-100: #fbf2e0;
+    --color-gold-200: #f9e7bf;
+    --color-gold-500: #f59e0b;
+
+    /* === App-aligned shadow tokens === */
+    --shadow-golden-glow: 0 0 40px rgba(253, 230, 138, 0.15), 0 0 80px rgba(245, 158, 11, 0.05);
+    --shadow-gilded: 0 8px 24px -4px rgba(245, 158, 11, 0.32), 0 0 40px rgba(253, 230, 138, 0.16);
+    --shadow-cta-gold: 0 0 32px rgba(252, 211, 77, 0.2);
+    --shadow-cta-gold-hover: 0 0 56px rgba(252, 211, 77, 0.35);
+    --shadow-obsidian: 0 24px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 158, 11, 0.02);
 
     /* === Landing ↔ App Sync: Motion tokens ========================
        Cinematic Easing — no ad-hoc cubic-bezier anywhere.
@@ -64,6 +83,32 @@
     --duration-fast: 0.3s;
     --duration-normal: 0.6s;
     --duration-slow: 0.8s;
+
+    /* === Semantic Surface Ladder (dark) — matches app theme.css === */
+    --color-bg: #0b0c0f;
+    --color-surface: #101013;
+    --color-surface-2: #16161a;
+    --color-surface-glass: rgba(18, 19, 22, 0.72);
+
+    /* === Semantic Text Hierarchy (dark) === */
+    --color-fg: #faf3e9;
+    --color-fg-muted: rgba(250, 243, 233, 0.60);
+    --color-fg-subtle: rgba(250, 243, 233, 0.40);
+
+    /* === Semantic Borders (dark) === */
+    --color-border: rgba(244, 244, 246, 0.14);
+    --color-border-subtle: rgba(244, 244, 246, 0.08);
+    --color-border-strong: rgba(244, 244, 246, 0.20);
+
+    /* === Action / Reward / Saved Ink (text-on-tint) === */
+    --color-action-ink: var(--color-brand-teal);
+    --color-reward-ink: var(--color-reward-400);
+    --color-saved-ink: var(--color-accent-pink);
+
+    /* === App-aligned gold scale === */
+    --color-gold-300: #fcd34d;
+    --color-gold-400: #fbbf24;
+    --color-gold-600: #d97706;
 
     /* SHAPE TOKENS */
     --radius-pill: 9999px;
@@ -147,8 +192,8 @@
     .backdrop-blur-3xl {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
-        background-color: rgba(10, 10, 10, 0.9) !important;
-        /* Fallback opacity */
+        background-color: var(--color-bg) !important;
+        /* Fallback opacity — uses semantic surface token */
     }
 
     /* Reduce grain overhead on mobile */
@@ -286,8 +331,8 @@ html {
 
     /* Custom Text Selection */
     ::selection {
-        background-color: #7c3aed4d;
-        /* Accent Violet Light at ~30% for visibility on dark & light */
+        background-color: rgb(252 211 77 / 0.3);
+        /* Gold 30% — matches app dark-mode selection */
         color: inherit;
     }
 
@@ -572,15 +617,10 @@ html {
         }
 
         /* Extended guardrails: collapse entrance choreography + dot pulses */
-        .mask-laser,
-        .laser-scanner {
+        .mask-laser {
             display: none !important;
         }
 
-        .access-card {
-            animation: none !important;
-            transform: rotateY(-12deg) rotateX(8deg) translateZ(0) !important;
-        }
 
         .animate-in {
             animation-duration: 0.01ms !important;

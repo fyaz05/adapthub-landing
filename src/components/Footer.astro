@@ -11,7 +11,7 @@ import SectionSpotlight from "./SectionSpotlight";
  * footer from the main `bg-void` content above while staying inside the
  * dark design language.
  *
- * Text/border palette inverted: `text-charcoal/*` → `text-zinc-400/500` and
+ * Text/border palette inverted: `text-charcoal/*` → `text-fg-muted/500` and
  * `text-paper`; borders → `border-white/[0.06]` (matches site convention).
  *
  * Image: the brand mark is a decorative SVG served from /public/. SVGs are
@@ -24,7 +24,7 @@ import SectionSpotlight from "./SectionSpotlight";
 ---
 
 <footer
-  class="relative overflow-hidden bg-charcoal pt-16 md:pt-32 pb-10 border-t border-white/[0.06]"
+  class="relative overflow-hidden bg-surface-2 pt-16 md:pt-32 pb-10 border-t border-border-subtle"
   id="footer"
   data-footer
 >
@@ -71,7 +71,7 @@ import SectionSpotlight from "./SectionSpotlight";
             <p class="max-w-md text-paper/80 leading-relaxed font-serif text-base sm:text-lg italic border-l-2 border-brand-teal/30 pl-4">
               {CONTENT.footer.brand.quote}
             </p>
-            <span class="block text-zinc-400 font-sans text-sm not-italic mt-4 leading-relaxed max-w-sm">
+            <span class="block text-fg-muted font-sans text-sm not-italic mt-4 leading-relaxed max-w-sm">
               {CONTENT.footer.brand.description}
             </span>
           </div>
@@ -82,7 +82,7 @@ import SectionSpotlight from "./SectionSpotlight";
       <div class="md:col-span-3 pl-0 md:pl-8">
         <p
           id="footer-directory-heading"
-          class="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-[0.2em] mb-5 sm:mb-7 footer-fade"
+          class="font-mono text-xs font-semibold text-fg-subtle uppercase tracking-[0.2em] mb-5 sm:mb-7 footer-fade"
           style="--d:2"
           role="heading"
           aria-level="2"
@@ -96,7 +96,7 @@ import SectionSpotlight from "./SectionSpotlight";
                 <a
                   href={link.href}
                   rel="noopener noreferrer"
-                  class="group relative flex items-center py-3 text-zinc-400 hover:text-paper focus-visible:text-paper transition-colors duration-300 min-h-[44px] touch-manipulation rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                  class="group relative flex items-center py-3 text-fg-muted hover:text-paper focus-visible:text-paper transition-colors duration-300 min-h-[44px] touch-manipulation rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                 >
                   <span
                     class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 rounded-full bg-brand-teal/60 group-hover:h-5 group-focus-visible:h-5 transition-all duration-400 ease-out"
@@ -116,7 +116,7 @@ import SectionSpotlight from "./SectionSpotlight";
       <div class="md:col-span-3">
         <p
           id="footer-connect-heading"
-          class="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-[0.2em] mb-5 sm:mb-7 footer-fade"
+          class="font-mono text-xs font-semibold text-fg-subtle uppercase tracking-[0.2em] mb-5 sm:mb-7 footer-fade"
           style="--d:2"
           role="heading"
           aria-level="2"
@@ -132,7 +132,7 @@ import SectionSpotlight from "./SectionSpotlight";
                 <li class="footer-fade" style={`--d:${i + 3}`}>
                   <a
                     href={link.href}
-                    class="group relative flex items-center py-3 text-zinc-400 hover:text-paper focus-visible:text-paper transition-colors duration-300 min-h-[44px] touch-manipulation rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                    class="group relative flex items-center py-3 text-fg-muted hover:text-paper focus-visible:text-paper transition-colors duration-300 min-h-[44px] touch-manipulation rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                     {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   >
                     <span
@@ -221,16 +221,16 @@ import SectionSpotlight from "./SectionSpotlight";
 
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-5 relative z-10">
         <div class="flex flex-col gap-1.5">
-          <span class="font-mono text-[11px] text-zinc-500">
+          <span class="font-mono text-[11px] text-fg-subtle">
             {CONTENT.footer.legal.copyright(currentYear)}
           </span>
         </div>
 
-        <nav aria-label="Legal links" class="flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] text-zinc-500 uppercase tracking-wider">
+        <nav aria-label="Legal links" class="flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] text-fg-subtle uppercase tracking-wider">
           {CONTENT.footer.legal.links.map(link => (
             <a
               href={link.href}
-              class="hover:text-brand-teal focus-visible:text-brand-teal active:scale-95 transition-all duration-300 underline decoration-white/10 hover:decoration-brand-teal/40 underline-offset-4 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+              class="hover:text-brand-teal focus-visible:text-brand-teal active:scale-95 transition-all duration-300 underline decoration-border-subtle hover:decoration-brand-teal/40 underline-offset-4 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
               {link.label}
             </a>

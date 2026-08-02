@@ -1,0 +1,125 @@
+---
+import { CONTENT } from "../constants/content";
+import SectionSpotlight from "./SectionSpotlight";
+---
+
+<section
+  class="relative w-full py-32 md:py-48 lg:py-56 bg-bg text-fg overflow-hidden"
+  aria-labelledby="how-it-works-heading"
+>
+  {/* ── Environment & Atmosphere ── */}
+  <SectionSpotlight client:visible color="rgba(45, 212, 191, 0.12)" size={600} />
+
+  {/* High-Fidelity Noise Texture */}
+  <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.025]" aria-hidden="true">
+    <filter id="how-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#how-noise)" />
+  </svg>
+
+  {/* Ambient Architectural Grid Lines */}
+  <div class="absolute inset-0 pointer-events-none flex justify-center z-[1] opacity-30" aria-hidden="true">
+    <div class="w-full max-w-[1800px] h-full flex justify-between px-4 sm:px-6 md:px-12 lg:px-24">
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden md:block"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent hidden lg:block"></div>
+      <div class="w-px h-full bg-gradient-to-b from-transparent via-white/[0.05] to-transparent"></div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
+
+    {/* ── Section Header ── */}
+    <div class="flex items-center justify-center gap-3 mb-20 md:mb-32 page-stagger" style="--i:0">
+      <span class="block w-8 sm:w-12 h-px bg-brand-teal/60" aria-hidden="true"></span>
+      <span class="font-mono text-[10px] md:text-xs text-brand-teal/60 uppercase tracking-[0.25em] select-none text-center m-0 p-0">
+        How it works
+      </span>
+      <span class="block w-8 sm:w-12 h-px bg-brand-teal/60" aria-hidden="true"></span>
+    </div>
+
+    {/* ── Monumental Editorial Typography ── */}
+    <div class="max-w-6xl mx-auto text-center relative z-20 mb-32 md:mb-48">
+
+      <h2 id="how-it-works-heading" class="font-serif text-[2.75rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-none tracking-tighter text-fg text-balance flex flex-col items-center">
+
+        <span class="block text-fg-muted page-stagger" style="--i:1">
+          {CONTENT.howItWorks.headline.line1}
+        </span>
+        <span class="block mt-2 md:mt-4 page-stagger" style="--i:2">
+          {CONTENT.howItWorks.headline.line2}
+        </span>
+
+      </h2>
+
+    </div>
+
+    {/* ── 3-Column Step Matrix ── */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-x-12 lg:gap-x-20 relative z-10 border-t border-border-subtle pt-16 md:pt-24">
+
+      {/* Absolute Optical Brackets on the border line */}
+      <div class="absolute top-0 left-0 w-px h-4 bg-brand-teal/50" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-px h-4 bg-brand-teal/50" aria-hidden="true"></div>
+
+      {CONTENT.howItWorks.steps.map((step, index) => (
+        <div class="group relative flex flex-col page-stagger" style={`--i:${5 + index}`}>
+
+          {/* Active Hover Line indicator */}
+          <div class="absolute -top-16 md:-top-24 left-0 w-[2px] h-12 bg-brand-teal scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-cinematic pointer-events-none" aria-hidden="true"></div>
+
+          <div class="flex items-center gap-3 mb-6 lg:mb-8">
+            <span class="font-mono text-[9px] md:text-[10px] lg:text-xs text-brand-teal bg-brand-teal/5 border border-brand-teal/20 px-2 py-0.5 uppercase tracking-[0.2em] transition-colors duration-300">
+              {step.step}
+            </span>
+            <div class="h-px bg-white/5 flex-1 group-hover:bg-brand-teal/30 transition-colors duration-500"></div>
+          </div>
+
+          <h3 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-fg-muted group-hover:text-fg leading-tight tracking-tight mb-4 md:mb-6 transition-colors duration-300 text-balance">
+            {step.title}
+          </h3>
+
+          <p class="font-sans text-sm md:text-base lg:text-[1.0625rem] text-fg-subtle group-hover:text-fg-muted leading-[1.75] md:leading-[1.8] tracking-wide transition-colors duration-300 text-pretty">
+            {step.description}
+          </p>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Intersection Observer Animation ── */
+  .page-stagger {
+    opacity: 0;
+    transform: translateY(24px) translateZ(0);
+    animation: pageReveal 0.9s var(--ease-cinematic) forwards;
+    animation-delay: calc(var(--i, 0) * 120ms);
+    will-change: transform, opacity;
+  }
+
+  @keyframes pageReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0) translateZ(0);
+    }
+  }
+
+  /* ── Reduced Motion Guardrails ── */
+  @media (prefers-reduced-motion: reduce) {
+    .page-stagger { opacity: 1; transform: none; animation: none; }
+    .animate-pulse { animation: none; opacity: 0.8; }
+  }
+
+  @media (max-width: 768px) {
+    .backdrop-blur-md,
+    .backdrop-blur-xl {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      background-color: var(--color-bg) !important;
+    }
+  }
+</style>

@@ -105,11 +105,11 @@ export const CONTENT = {
 
   hero: {
     title: {
-      line1: "Adaptive CAT Practice",
-      highlight: "Engine",
+      line1: "CAT Prep That",
+      highlight: "Adapts to You",
     },
     description:
-      "Free AI-powered adaptive learning for CAT 2026. AdaptHub maps how you think across QA, DILR & VARC, closes weak areas faster, and builds your path to the 99th percentile — and IIM admission.",
+      "Free adaptive practice for CAT 2026. Start with a diagnostic that finds your level, get daily plans built for your weak areas, practice with AI hints that teach instead of spoon-feeding, and track real progress — not vanity scores.",
     cta: {
       primary: "Start free practice",
     },
@@ -144,15 +144,15 @@ export const CONTENT = {
       },
       {
         id: "03",
-        title: "Cognitive Locks",
+        title: "Mastery-Based Levels",
         description:
-          "The engine locks Level 5 CAT questions until you prove mastery. You need 75%+ accuracy at Level 4 to earn access. Every unlock must be earned.",
+          "5 difficulty levels per topic. Prove 75%+ accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
       },
       {
         id: "04",
-        title: "Socratic AI Coach",
+        title: "AI Hints & Explanations",
         description:
-          "Context-aware AI coaching that targets your specific CAT error patterns and forces active recall before revealing solutions.",
+          "Two-tier hints that teach instead of spoon-feeding. A strategic nudge gets you thinking; the full explanation shows you the way. Using a hint means no level progress — earn your mastery.",
       },
     ],
   },
@@ -191,8 +191,8 @@ export const CONTENT = {
         delta: { label: "DELTA", value: "+4%" },
       },
       roadmap: {
-        gapDetected: "GAP_DETECTED",
-        optimizing: "OPTIMIZING_ROUTE",
+        gapDetected: "Gap found",
+        optimizing: "Rerouting",
       },
     },
   },
@@ -209,9 +209,9 @@ export const CONTENT = {
       },
       {
         id: "faq-02",
-        question: "Why does the AI Coach penalize hints during CAT practice?",
+        question: "How do the AI hints work?",
         answer:
-          "AdaptHub penalizes passive reading. When you hit a wall, the Socratic AI coach does not reveal the full solution immediately; it gives progressive hints that force active reasoning before final explanation — the same skill CAT rewards under time pressure.",
+          "AdaptHub uses a two-tier hint system. Tier 1 gives you a strategic nudge — a conceptual push to get you thinking. Tier 2 reveals the full explanation. Using either hint means that attempt won't count toward leveling up, so you earn your mastery honestly.",
       },
       {
         id: "faq-03",
@@ -229,7 +229,7 @@ export const CONTENT = {
         id: "faq-05",
         question: "Is AdaptHub free for CAT 2026 preparation?",
         answer:
-          "Yes. AdaptHub's core CAT 2026 platform is currently free for individual learners with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and Socratic AI coaching for serious aspirants.",
+          "Yes. AdaptHub's core CAT 2026 platform is currently free for individual learners with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and AI hints and concept explanations for serious aspirants.",
       },
       {
         id: "faq-06",
@@ -240,15 +240,15 @@ export const CONTENT = {
     ],
   },
 
-  socraticCoach: {
+  coachDemo: {
     header: {
       titleLine1: "The",
-      titleHighlight: "Socratic",
-      titleLine2: "Engine",
+      titleHighlight: "AI",
+      titleLine2: "Coach",
       description:
-        "AdaptHub never hands you the answer. It breaks down how you think and forces you to close the logical gap. Hints require active reasoning — passive reading is penalized.",
+        "The AI coach gives you two chances to solve on your own. Tier 1 is a strategic nudge — a conceptual push. Tier 2 is the full explanation. Using a hint means no level progress for that question.",
       linkText: "Explore the Adaptive Syllabus",
-      pillText: "Protocol: Active Recall",
+      pillText: "Two-Tier Hint System",
     },
     question: {
       category: "Quant",
@@ -271,7 +271,7 @@ export const CONTENT = {
       errorFlag: "Error Flag: Arithmetic Error in Solving",
     },
     hint: {
-      tier: "Tier 1: Socratic Prompt",
+      tier: "Tier 1: Guided Hint",
       textP1:
         "Translate each speed change into a time difference equation, then solve the system of equations for the original speed ",
       textHighlight1: "V",
@@ -289,7 +289,7 @@ export const CONTENT = {
       name: "AdaptHub",
       quote: '"Learning should adapt to you."',
       description:
-        "Telemetry-driven cognitive preparation for CAT 2026. Predict failure patterns, force active recall, and secure elite percentiles without vanity metrics.",
+        "Free adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants who want to improve, not just practice.",
     },
     directory: {
       title: "Directory",
@@ -377,31 +377,44 @@ export const CONTENT = {
     daysPerWeek: 7,
   },
 
-  philosophy: {
+  howItWorks: {
     headline: {
-      line1: "AdaptHub believes learning",
-      line2: "should be",
-      line3: "personal, adaptive, and",
-      highlight: "intelligence-driven",
-      line4: "by default.",
+      line1: "How AdaptHub",
+      line2: "Works",
     },
-    pillars: [
+    steps: [
       {
-        title: "Cognitive Precision",
+        step: "01",
+        title: "Diagnostic Calibration",
         description:
-          "AdaptHub controls information density and difficulty to maximize deep focus and accelerate breakthroughs.",
+          "Start with a 15–20 question adaptive diagnostic across QA, DILR, and VARC. The algorithm finds your baseline in each topic — your Zone of Proximal Development.",
       },
       {
-        title: "Active Recall",
+        step: "02",
+        title: "Daily Adaptive Practice",
         description:
-          "Active retrieval drives learning, not passive consumption.",
+          "Get personalized daily plans targeting your weak areas. Difficulty adjusts with every answer. 15 focused minutes a day beats 3 hours of unfocused study.",
       },
       {
-        title: "Metacognitive Feedback",
+        step: "03",
+        title: "Track Real Progress",
         description:
-          "AdaptHub surfaces how you think — exposing bias, hesitation, and hidden gaps for radical self-improvement.",
+          "Quality streaks, learning velocity, and mastered levels — not mock scores. See what you actually know and what needs work, backed by 10,200+ curated questions.",
       },
     ],
+  },
+
+  trustStrip: {
+    questions: "10,200+ curated questions",
+    free: "Free for individual learners",
+    sections: "QA · DILR · VARC",
+  },
+
+  ctaBand: {
+    headline: "Start practicing for free",
+    description:
+      "No credit card. No trial period. Full adaptive engine, AI hints, and analytics — ₹0.",
+    cta: "Start free practice",
   },
 
   metadata: {
@@ -410,9 +423,9 @@ export const CONTENT = {
     defaultDescription:
       "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster — no credit card.",
     indexPage: {
-      title: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
+      title: "Free CAT 2026 Prep — Adaptive Practice & AI Hints | AdaptHub",
       description:
-        "Free CAT 2026 prep with adaptive study plans, Socratic AI coaching, and analytics for QA, DILR & VARC. Built for 99th percentile — currently free.",
+        "Free CAT 2026 prep with adaptive study plans, two-tier AI hints, and progress tracking for QA, DILR & VARC. Currently free — no credit card.",
     },
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
@@ -477,7 +490,7 @@ export const CONTENT = {
       {
         question: "Is AdaptHub really free?",
         answer:
-          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
+          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, 10,200+ question bank, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
       },
       {
         question: "Why is it free?",
@@ -500,7 +513,7 @@ export const CONTENT = {
       { id: "02", name: "Adaptive Difficulty (ZPD)" },
       { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
       { id: "04", name: "Granular Performance Analytics" },
-      { id: "05", name: "Socratic AI Mistake Analysis" },
+      { id: "05", name: "Error Classification & AI Feedback" },
       { id: "06", name: "Mastery-Based Cognitive Locks" },
     ],
   },

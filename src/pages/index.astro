@@ -13,8 +13,10 @@ import VelocityDashboard from "../components/VelocityDashboard";
 import StreakMatrix from "../components/StreakMatrix";
 import TheLens from "../components/TheLens";
 import FAQ from "../components/FAQ";
-import PhilosophySection from "../components/PhilosophySection.astro";
-import SocraticCoach from "../components/SocraticCoach";
+import HowItWorks from "../components/HowItWorks.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import CtaBand from "../components/CtaBand.astro";
+import CoachDemo from "../components/CoachDemo";
 import Footer from "../components/Footer.astro";
 import { resolvedContent as CONTENT } from "../utils/config";
 
@@ -178,13 +180,21 @@ const siteUrl = Astro.site || "https://adapthub.in/";
   <main id="main-content" class="relative isolate">
     <div class="background-pulse" aria-hidden="true"></div>
     <Hero />
-    <PhilosophySection />
-    <SocraticCoach client:visible />
+    <TrustStrip />
+    <HowItWorks />
+    <CoachDemo client:visible />
     <TheLens client:visible />
     <BentoGrid client:visible />
     <VelocityDashboard client:visible />
     <StreakMatrix client:visible />
+    <CtaBand
+      variant="free-access"
+      headline="Everything included at ₹0"
+      description="Adaptive diagnostic, daily study plans, two-tier AI hints, mastery-based levels, quality streaks, and 10,200+ curated questions — currently free for individual learners."
+      cta="Start free practice"
+    />
     <FAQ client:visible />
+    <CtaBand />
 
     {/* SEO topical depth + internal link cluster (visually quiet, crawlable) */}
     <section
@@ -204,7 +214,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
           </h2>
           <p class="text-zinc-400 font-sans text-base md:text-lg leading-relaxed" data-speakable>
             AdaptHub is a free AI-powered adaptive learning platform for CAT 2026 preparation in India.
-            It uses <a href="/docs/calibration-sequence" class="text-brand-teal hover:underline decoration-brand-teal/30">ZPD difficulty calibration</a>, Socratic AI coaching, and performance analytics.
+            It uses <a href="/docs/calibration-sequence" class="text-brand-teal hover:underline decoration-brand-teal/30">ZPD difficulty calibration</a>, two-tier AI hints, and performance analytics.
             The core product is currently free with no credit card required.
           </p>
         </div>
