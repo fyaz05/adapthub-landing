@@ -15,7 +15,7 @@ import SpotlightButton from "../components/SpotlightButton";
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
   
-  <main id="main-content" class="relative isolate flex flex-col justify-center flex-1 min-h-[100svh] pt-32 pb-24 overflow-hidden bg-void selection:bg-amber-500/30 selection:text-white">
+  <main id="main-content" class="relative isolate flex flex-col justify-center flex-1 min-h-[100svh] pt-32 pb-24 overflow-hidden bg-bg selection:bg-[rgba(252,211,77,0.3)] selection:text-white">
     
     {/* ── Environment & Atmosphere ── */}
     <div class="background-pulse" aria-hidden="true"></div>
@@ -75,31 +75,31 @@ import SpotlightButton from "../components/SpotlightButton";
               </span>
               <div class="h-px w-8 bg-amber-500/40" aria-hidden="true"></div>
               <span class="font-mono text-[10px] md:text-xs text-amber-500 uppercase tracking-[0.25em] select-none">
-                Sys.Err // 0x404
+                404
               </span>
             </div>
 
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-serif text-white tracking-tight leading-[1.05] mb-8">
-              Lost in the <br />
-              <span class="italic text-amber-500 block pb-2">Lattice.</span>
+              Page not <br />
+              <span class="italic text-amber-500 block pb-2">found.</span>
             </h1>
             
             <div class="space-y-6 text-zinc-400 font-sans text-base md:text-lg leading-[1.75] tracking-wide mb-12 max-w-md">
               <p>
-                The cognitive pathway you are attempting to access does not exist. 
+                The page you're looking for doesn't exist or has been moved.
               </p>
               <div class="pl-4 border-l border-white/10 font-mono text-xs text-zinc-400 uppercase tracking-[0.1em] space-y-2 py-1">
                 <div class="flex justify-between">
-                  <span>Target Node:</span>
-                  <span class="text-amber-500/80">Unreachable</span>
+                  <span>Status:</span>
+                  <span class="text-amber-500/80">Not Found</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>Lattice ID:</span>
-                  <span class="text-zinc-500">Undefined</span>
+                  <span>URL:</span>
+                  <span class="text-fg-subtle">Invalid path</span>
                 </div>
               </div>
               <p>
-                The node has either been decommissioned, re-routed, or the transmission URI is malformed.
+                Check the URL or head back to the homepage to find what you need.
               </p>
             </div>
             
@@ -110,11 +110,11 @@ import SpotlightButton from "../components/SpotlightButton";
                 <SpotlightButton 
                   client:load
                   href="/"
-                  className="w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-accent-yellow text-black font-bold text-sm md:text-[0.9375rem] rounded-full shadow-[0_0_32px_rgba(252,211,77,0.2)] hover:shadow-[0_0_56px_rgba(252,211,77,0.35)] flex items-center justify-center gap-2.5 transition-all duration-500 touch-manipulation whitespace-nowrap"
+                  className="w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-accent-yellow text-black font-bold text-sm md:text-[0.9375rem] rounded-full shadow-cta-gold hover:shadow-cta-gold-hover flex items-center justify-center gap-2.5 transition-all duration-500 touch-manipulation whitespace-nowrap"
                 >
                   <div class="absolute inset-0 rounded-full border border-white/40 pointer-events-none mix-blend-overlay"></div>
                   <span class="relative z-10 flex items-center gap-2">
-                    Re-route to Terminal
+                    Back to Home
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-400 group-hover:translate-x-1 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                     </svg>
@@ -128,7 +128,7 @@ import SpotlightButton from "../components/SpotlightButton";
                 class="group inline-flex items-center gap-3 py-3 font-mono text-[10px] md:text-xs text-zinc-400 uppercase tracking-[0.2em] hover:text-white active:scale-95 transition-all duration-300 outline-none focus-visible:text-amber-500"
               >
                 <span class="block w-4 h-px bg-zinc-700 group-hover:w-8 group-hover:bg-amber-500 transition-all duration-500 ease-out" aria-hidden="true"></span>
-                Trace Back
+                Go back
               </button>
 
             </div>

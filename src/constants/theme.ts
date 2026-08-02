@@ -13,6 +13,17 @@ export const THEME_COLORS = {
     violetLight: "#7c3aed", // Landing-only primitive.
     gold: contract.reward300,
   },
+  surface: {
+    bg: "#0b0c0f",
+    surface: "#101013",
+    surface2: "#16161a",
+    glass: "rgba(18, 19, 22, 0.72)",
+  },
+  text: {
+    fg: "#faf3e9",
+    muted: "rgba(250, 243, 233, 0.60)",
+    subtle: "rgba(250, 243, 233, 0.40)",
+  },
   motion: {
     easeCinematic: parseCubicBezier(contract.easeCinematic),
     easePrecise: parseCubicBezier(contract.easePrecise),

@@ -92,12 +92,12 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         className="w-full origin-center z-elevate will-change-transform"
       >
-        <div className="relative rounded-xl bg-zinc-900 shadow-[0_24px_60px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
+        <div className="relative rounded-xl bg-surface shadow-[0_24px_60px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
           {/* Photon Edge (Enhanced) */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-80 z-20"></div>
 
           {/* Window Chrome */}
-          <div className="h-8 sm:h-10 border-b border-white/5 flex items-center px-4 sm:px-5 justify-between bg-zinc-900/40 relative z-10">
+          <div className="h-8 sm:h-10 border-b border-border-subtle flex items-center px-4 sm:px-5 justify-between bg-surface/40 relative z-10">
             <div className="flex gap-1.5 sm:gap-2">
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF5F57] shadow-inner" />
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FEBC2E] shadow-inner" />
@@ -154,7 +154,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="relative bg-zinc-950/85 backdrop-blur-xl rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_24px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(20,184,166,0.05)] border border-white/10 overflow-hidden group hover:border-brand-teal/30 transition-colors duration-300"
+          className="relative bg-bg/85 backdrop-blur-xl rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_24px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(20,184,166,0.05)] border border-border overflow-hidden group hover:border-brand-teal/30 transition-colors duration-300"
         >
           {/* Shimmer overlay */}
           {!isReduced && (
@@ -163,7 +163,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
 
           {/* Top Header Row */}
           <div className="flex items-center justify-between mb-3 sm:mb-4">
-            <span className="text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-[0.15em] text-zinc-400 uppercase">
+            <span className="text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-[0.15em] text-fg-muted uppercase">
               {CONTENT.parallaxDashboard.growth.label}
             </span>
             {/* Breathing Active Dot Indicator */}
@@ -175,10 +175,10 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
 
           {/* Main Stats Value */}
           <div className="flex items-baseline gap-2 mb-2 sm:mb-3">
-            <span className="text-2xl sm:text-3xl lg:text-[2.75rem] font-sans font-extrabold text-white tracking-tight">
+            <span className="text-2xl sm:text-3xl lg:text-[2.75rem] font-sans font-extrabold text-fg tracking-tight">
               <motion.span>{countText}</motion.span>
             </span>
-            <span className="text-[10px] sm:text-xs text-zinc-400 font-medium">
+            <span className="text-[10px] sm:text-xs text-fg-muted font-medium">
               {CONTENT.parallaxDashboard.growth.comparison}
             </span>
           </div>

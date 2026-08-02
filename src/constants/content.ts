@@ -100,18 +100,18 @@ export const CONTENT = {
       { label: "Pricing", href: "/pricing" },
       { label: "Contact", href: "/contact" },
     ] satisfies NavLink[],
-    cta: "Start free practice",
+    cta: "Start practicing",
   },
 
   hero: {
     title: {
-      line1: "Adaptive CAT Practice",
-      highlight: "Engine",
+      line1: "CAT Prep That",
+      highlight: "Adapts to You",
     },
     description:
-      "Free AI-powered adaptive learning for CAT 2026. AdaptHub maps how you think across QA, DILR & VARC, closes weak areas faster, and builds your path to the 99th percentile — and IIM admission.",
+      "Free adaptive practice for CAT 2026. Sign in with Google, take a diagnostic that finds your level, get daily plans built for your weak areas, practice with AI hints that teach instead of spoon-feeding, and track real progress, not vanity scores.",
     cta: {
-      primary: "Start free practice",
+      primary: "Start practicing",
     },
   },
 
@@ -135,7 +135,7 @@ export const CONTENT = {
         id: "02",
         title: "Performance Analytics",
         description:
-          "Granular CAT mock-style analytics across accuracy, learning velocity, and topic mastery — not vanity scores.",
+          "Granular CAT mock-style analytics across accuracy, learning velocity, and topic mastery. Not vanity scores.",
         tabs: ["Accuracy", "Growth"],
         progress: {
           accuracy: { label: "Accuracy", value: 94 },
@@ -144,15 +144,15 @@ export const CONTENT = {
       },
       {
         id: "03",
-        title: "Cognitive Locks",
+        title: "Mastery-Based Levels",
         description:
-          "The engine locks Level 5 CAT questions until you prove mastery. You need 75%+ accuracy at Level 4 to earn access. Every unlock must be earned.",
+          "5 difficulty levels per topic. Prove 75%+ accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
       },
       {
         id: "04",
-        title: "Socratic AI Coach",
+        title: "AI Hints & Explanations",
         description:
-          "Context-aware AI coaching that targets your specific CAT error patterns and forces active recall before revealing solutions.",
+          "Two-tier hints that teach instead of spoon-feeding. A strategic nudge gets you thinking; the full explanation shows you the way. Using a hint means no level progress. Earn your mastery.",
       },
     ],
   },
@@ -164,14 +164,14 @@ export const CONTENT = {
         title: "Adaptive Difficulty",
         subtitle: "Always Optimal",
         description:
-          "Difficulty adjusts continuously to keep you in the optimal learning zone — where challenge and comprehension intersect for maximum growth.",
+          "Difficulty adjusts continuously to keep you in the optimal learning zone, where challenge and comprehension intersect for maximum growth.",
       },
       {
         id: "roadmap",
-        title: "Dynamic Roadmap",
+        title: "Adaptive Daily Plan",
         subtitle: "Personalized Progress",
         description:
-          "Your curriculum restructures dynamically, prioritizing the concepts required to unlock your next level of mastery.",
+          "Your daily practice adapts continuously, prioritizing the topics and difficulty levels required to close your gaps and unlock the next level of mastery.",
       },
       {
         id: "audit",
@@ -179,6 +179,13 @@ export const CONTENT = {
         subtitle: "Deep Insight",
         description:
           "AdaptHub breaks down every mistake into actionable learning signals. Each error reveals a hidden gap in logic, memory, or execution.",
+      },
+      {
+        id: "library",
+        title: "Concept Library",
+        subtitle: "Learn, Don't Just Practise",
+        description:
+          "Access curated articles tailored to your current level across QA, DILR, and VARC. When a topic exposes a gap, review the concept before retrying. Build deep understanding instead of muscle memory.",
       },
     ],
     visuals: {
@@ -191,8 +198,8 @@ export const CONTENT = {
         delta: { label: "DELTA", value: "+4%" },
       },
       roadmap: {
-        gapDetected: "GAP_DETECTED",
-        optimizing: "OPTIMIZING_ROUTE",
+        gapDetected: "Gap found",
+        optimizing: "Rerouting",
       },
     },
   },
@@ -205,13 +212,13 @@ export const CONTENT = {
         id: "faq-01",
         question: "How does AdaptHub help me reach the 99th percentile in CAT?",
         answer:
-          "AdaptHub keeps you in the Zone of Proximal Development (ZPD). It continuously adjusts question difficulty across QA, DILR, and VARC so you stay in the 70–85% accuracy band for sustained CAT 2026 progress — the zone where learning velocity peaks.",
+          "AdaptHub keeps you in the Zone of Proximal Development (ZPD). It continuously adjusts question difficulty across QA, DILR, and VARC so you stay in the 70–85% accuracy band for sustained CAT 2026 progress, the zone where learning velocity peaks.",
       },
       {
         id: "faq-02",
-        question: "Why does the AI Coach penalize hints during CAT practice?",
+        question: "How do the AI hints work?",
         answer:
-          "AdaptHub penalizes passive reading. When you hit a wall, the Socratic AI coach does not reveal the full solution immediately; it gives progressive hints that force active reasoning before final explanation — the same skill CAT rewards under time pressure.",
+          "AdaptHub uses a two-tier hint system. Tier 1 gives you a strategic nudge, a conceptual push to get you thinking. Tier 2 reveals the full explanation. Using either hint means that attempt won't count toward leveling up, so you earn your mastery honestly.",
       },
       {
         id: "faq-03",
@@ -223,32 +230,38 @@ export const CONTENT = {
         id: "faq-04",
         question: "How does AdaptHub calculate CAT performance?",
         answer:
-          "AdaptHub measures Learning Velocity — a composite view of how quickly you absorb concepts. It complements raw accuracy by tracking Distractor Errors to detect repeat failure patterns early across VARC, DILR, and QA.",
+          "AdaptHub measures Learning Velocity, a composite view of how quickly you absorb concepts. It complements raw accuracy by tracking Distractor Errors to detect repeat failure patterns early across VARC, DILR, and QA.",
       },
       {
         id: "faq-05",
         question: "Is AdaptHub free for CAT 2026 preparation?",
         answer:
-          "Yes. AdaptHub's core CAT 2026 platform is currently free for individual learners with no credit card required. It includes adaptive routing, performance analytics, spaced repetition queues, and Socratic AI coaching for serious aspirants.",
+          "Yes. AdaptHub's core CAT 2026 platform is free. It includes adaptive routing, performance analytics, spaced repetition queues, and AI hints and concept explanations for serious aspirants.",
       },
       {
         id: "faq-06",
         question: "Can I prepare for CAT without paid coaching using AdaptHub?",
         answer:
-          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalized adaptive practice, diagnostics, and AI coaching — so you can prepare for CAT at home without expensive institute fees.",
+          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalized adaptive practice, diagnostics, and AI coaching. So you can prepare for CAT at home without expensive institute fees.",
+      },
+      {
+        id: "faq-07",
+        question: "What happens after I start practicing?",
+        answer:
+          "You will sign in with Google, complete a quick profile, and take the adaptive diagnostic. Based on your results, AdaptHub builds your personalized daily plan. Each session ends with a reflection: AI insights, mood tracking, and error analysis so you know exactly what to work on next.",
       },
     ],
   },
 
-  socraticCoach: {
+  coachDemo: {
     header: {
       titleLine1: "The",
-      titleHighlight: "Socratic",
-      titleLine2: "Engine",
+      titleHighlight: "AI",
+      titleLine2: "Coach",
       description:
-        "AdaptHub never hands you the answer. It breaks down how you think and forces you to close the logical gap. Hints require active reasoning — passive reading is penalized.",
+        "The AI coach gives you two chances to solve on your own. Tier 1 is a strategic nudge, a conceptual push. Tier 2 is the full explanation. Using a hint means no level progress for that question.",
       linkText: "Explore the Adaptive Syllabus",
-      pillText: "Protocol: Active Recall",
+      pillText: "Two-Tier Hint System",
     },
     question: {
       category: "Quant",
@@ -268,10 +281,10 @@ export const CONTENT = {
       analysisP3: " instead of ",
       analysisHighlight3: "3.5 hours",
       analysisP4: " to calculate the distance.",
-      errorFlag: "Error Flag: Arithmetic Error in Solving",
+      errorFlag: "Flag: Calculation slip",
     },
     hint: {
-      tier: "Tier 1: Socratic Prompt",
+      tier: "Tier 1: Guided Hint",
       textP1:
         "Translate each speed change into a time difference equation, then solve the system of equations for the original speed ",
       textHighlight1: "V",
@@ -282,6 +295,15 @@ export const CONTENT = {
       textHighlight3: "T",
       textP5: ".",
     },
+    errorAnalysis: {
+      title: "Why Your Answer Was Incorrect",
+      distractorExplanation:
+        "Option D (150 km) is the most common trap among aspirants. It uses the correct speed but plugs in a wrong travel time, a classic false-premise error that distractor tagging flags instantly.",
+      whyWrongQuestion: "Why do you think you got this wrong?",
+      studentReport: "Calculation",
+      systemAnalysis:
+        "Our analysis: Conceptual gap. You set up the equations correctly but used the wrong time value. Review the Time-Speed-Distance concept before retrying.",
+    },
   },
 
   footer: {
@@ -289,7 +311,7 @@ export const CONTENT = {
       name: "AdaptHub",
       quote: '"Learning should adapt to you."',
       description:
-        "Telemetry-driven cognitive preparation for CAT 2026. Predict failure patterns, force active recall, and secure elite percentiles without vanity metrics.",
+        "Adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants who want to improve, not just practice.",
     },
     directory: {
       title: "Directory",
@@ -377,42 +399,61 @@ export const CONTENT = {
     daysPerWeek: 7,
   },
 
-  philosophy: {
+  howItWorks: {
     headline: {
-      line1: "AdaptHub believes learning",
-      line2: "should be",
-      line3: "personal, adaptive, and",
-      highlight: "intelligence-driven",
-      line4: "by default.",
+      line1: "How AdaptHub",
+      line2: "Works",
     },
-    pillars: [
+    steps: [
       {
-        title: "Cognitive Precision",
+        step: "01",
+        title: "Diagnostic Calibration",
         description:
-          "AdaptHub controls information density and difficulty to maximize deep focus and accelerate breakthroughs.",
+          "Start with a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, and VARC. The algorithm finds your baseline in each topic, your Zone of Proximal Development.",
       },
       {
-        title: "Active Recall",
+        step: "02",
+        title: "Daily Adaptive Practice",
         description:
-          "Active retrieval drives learning, not passive consumption.",
+          "Get a structured daily plan (Warm-Up, Core Focus, Integration) targeting your weak areas. Difficulty adjusts with every answer. 15 focused minutes a day beats 3 hours of unfocused study.",
       },
       {
-        title: "Metacognitive Feedback",
+        step: "03",
+        title: "Track Real Progress",
         description:
-          "AdaptHub surfaces how you think — exposing bias, hesitation, and hidden gaps for radical self-improvement.",
+          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. Not mock scores. See what you actually know and what needs work, backed by 10,000+ curated questions.",
+      },
+      {
+        step: "04",
+        title: "Reflect & Improve",
+        description:
+          "After every session, get an AI-generated insight about your performance. Track your mood, review error patterns with specific tips for each mistake type, and see your quality streak. Improvement comes from understanding your errors, not just counting hours.",
       },
     ],
+  },
+
+  trustStrip: {
+    questions: "10,000+ curated questions",
+    free: "Free for all aspirants",
+    sections: "QA · DILR · VARC",
+  },
+
+  ctaBand: {
+    headline: "Start practicing",
+    description:
+      "Full adaptive engine, AI hints, and analytics. Completely free.",
+    cta: "Start practicing",
   },
 
   metadata: {
     // Titles targeted ~50–60 chars; descriptions ~140–155 chars (SERP-safe).
     defaultTitle: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
-      "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster — no credit card.",
+      "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster. Start today.",
     indexPage: {
-      title: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
+      title: "Free CAT 2026 Prep — Adaptive Practice & AI Hints | AdaptHub",
       description:
-        "Free CAT 2026 prep with adaptive study plans, Socratic AI coaching, and analytics for QA, DILR & VARC. Built for 99th percentile — currently free.",
+        "Free adaptive practice — start today. Adaptive study plans, two-tier AI hints, and progress tracking for QA, DILR & VARC.",
     },
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
@@ -420,9 +461,9 @@ export const CONTENT = {
         "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 66 questions, 120 minutes, marking scheme, and high-yield topics.",
     },
     pricing: {
-      title: "Free CAT Preparation Online — currently free | AdaptHub",
+      title: "Free CAT Preparation Online | AdaptHub",
       description:
-        "AdaptHub is currently free CAT preparation — no credit card. Adaptive study plans, AI coaching, and analytics at ₹0 for every aspirant.",
+        "Free CAT preparation: adaptive study plans, AI coaching, and analytics at ₹0 for every aspirant.",
     },
     about: {
       title: "How AdaptHub's ZPD Adaptive Algorithm Works | About",
@@ -442,7 +483,7 @@ export const CONTENT = {
     docs: {
       title: "AdaptHub Docs | Adaptive CAT Practice Platform Guide",
       description:
-        "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start free CAT practice today.",
+        "Guides for AdaptHub adaptive difficulty, AI coach, spaced repetition, and analytics. Start adaptive CAT practice today.",
     },
     privacyPolicy: {
       title: "Privacy Policy | AdaptHub CAT Prep Platform",
@@ -459,6 +500,7 @@ export const CONTENT = {
 
   links: {
     app: "https://app.adapthub.in",
+    login: "https://app.adapthub.in/login",
     support: "mailto:support@adapthub.in",
   },
 
@@ -477,22 +519,22 @@ export const CONTENT = {
       {
         question: "Is AdaptHub really free?",
         answer:
-          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, concept library, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
+          "Yes. AdaptHub is free. No paywalls, no hidden tiers. The full adaptive engine, question bank, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
       },
       {
         question: "Why is it free?",
         answer:
-          "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep — not to build another EdTech subscription. The goal is impact at scale.",
+          "Precision learning tools should be accessible, not paywalled. The market is full of static courses and expensive test series. AdaptHub was built to close cognitive gaps in CAT prep, not to build another EdTech subscription. The goal is impact at scale.",
       },
       {
-        question: "Will it stay currently free for individual learners?",
+        question: "Will it stay free?",
         answer:
-          "Yes. The core engine — daily personalized study plans, AI Coach, and granular analytics — stays free. AdaptHub may add enterprise tools for coaching institutes later. Individual aspirant access stays free, always.",
+          "Yes. The core engine, daily personalized study plans, AI Coach, and granular analytics, stays free. AdaptHub may add enterprise tools for coaching institutes later. Aspirant access stays free, always.",
       },
       {
-        question: "Do I need a credit card to start?",
+        question: "How do I create an account?",
         answer:
-          "No. You only need an email to create an account and begin your initial diagnostic calibration. No payment details required.",
+          "Sign in with your Google account to get started. No payment details needed. Just sign in and begin your diagnostic calibration.",
       },
     ],
     features: [
@@ -500,8 +542,10 @@ export const CONTENT = {
       { id: "02", name: "Adaptive Difficulty (ZPD)" },
       { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
       { id: "04", name: "Granular Performance Analytics" },
-      { id: "05", name: "Socratic AI Mistake Analysis" },
-      { id: "06", name: "Mastery-Based Cognitive Locks" },
+      { id: "05", name: "Error Classification & AI Feedback" },
+      { id: "06", name: "Mastery-Based Levels" },
+      { id: "07", name: "Session Reflection & Mood Tracking" },
+      { id: "08", name: "Post-Session Error Forensics" },
     ],
   },
 };

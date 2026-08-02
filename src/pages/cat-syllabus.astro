@@ -40,7 +40,7 @@ const syllabusData = [
     time: "40 Mins",
     note: "Pure chart DI is rare. Modern CAT tests Hybrid Sets that mix logic with arithmetic and data.",
     topics: [
-      { name: "Data Interpretation", weight: "10-12 Qs", rank: 2, details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure.", strategy: "Never standalone now — learn calculation shortcuts (growth rates, pie-degree→%) to deploy inside Hybrid sets." },
+      { name: "Data Interpretation", weight: "10-12 Qs", rank: 2, details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure.", strategy: "Never standalone now; learn calculation shortcuts (growth rates, pie-degree→%) to deploy inside Hybrid sets." },
       { name: "Logical Reasoning", weight: "10-12 Qs", rank: 2, details: "Linear & Circular Seating Arrangements, Constraint-based Puzzles, Binary Logic, Scheduling, Matrix Arrangements, Blood Relations, Truth & Lie, Selection with Conditions, Quant-based LR.", strategy: "Practise full constraint parsing; hybrid sets dominate the modern paper." },
       { name: "Games & Tournaments", weight: "0-1 Set", rank: 1, details: "Knockout Tournaments, Round Robin formats, Seeding logic, League-based scoring, and Logic-driven games.", strategy: "High ROI. Master win/loss/draw point logic and bracket structures." },
       { name: "Venn Diagrams & Sets", weight: "0-1 Set", rank: 1, details: "2-Set, 3-Set, 4-Set Venn diagrams, Maxima-Minima intersecting logic in sets.", strategy: "Master the algebraic equations for 3-4 variable intersections and at-least/at-most constraints." }
@@ -55,8 +55,8 @@ const syllabusData = [
     topics: [
       { name: "Arithmetic", weight: "8-10 Qs (~40%)", rank: 1, details: "Percentages, Successive Changes, Profit & Loss, Discounts, Simple & Compound Interest, Installments, Ratio & Proportion, Time Speed & Distance, Time & Work, Averages, Weighted Average, Mixtures & Alligations.", strategy: "Foundation first: Percentages, Ratio, TSD, Time & Work, P&L under adaptive difficulty before anything else." },
       { name: "Algebra", weight: "5-6 Qs", rank: 1, details: "Linear & Quadratic Equations, Polynomials, Inequalities, Logarithms, Functions, Sequences & Series, Maxima & Minima.", strategy: "Treat Equations, Inequalities, Functions and Logs as one continuum; focus on integer/root behaviour." },
-      { name: "Geometry & Mensuration", weight: "4-5 Qs", rank: 2, details: "Lines & Angles, Triangles, Quadrilaterals, Circles, Polygons, Coordinate Geometry, 2D/3D Mensuration.", strategy: "Formula fluency plus visualization — triangles and circles carry the most tested sub-topics." },
-      { name: "Number System", weight: "1-2 Qs", rank: 2, details: "LCM/HCF, Divisibility Rules, Remainders, Factorials, Base Systems, Last Digits, Units Digit.", strategy: "Properties, divisibility, cyclicity — quick wins once the concepts click." },
+      { name: "Geometry & Mensuration", weight: "4-5 Qs", rank: 2, details: "Lines & Angles, Triangles, Quadrilaterals, Circles, Polygons, Coordinate Geometry, 2D/3D Mensuration.", strategy: "Formula fluency plus visualization; triangles and circles carry the most tested sub-topics." },
+      { name: "Number System", weight: "1-2 Qs", rank: 2, details: "LCM/HCF, Divisibility Rules, Remainders, Factorials, Base Systems, Last Digits, Units Digit.", strategy: "Properties, divisibility, cyclicity, quick wins once the concepts click." },
       { name: "Modern Math", weight: "1-2 Qs", rank: 1, details: "Progressions, Permutations & Combinations, Probability, Set Theory.", strategy: "PnC and Probability are Rank 1 priorities; link the Venn work heavily to DILR." }
     ]
   }
@@ -111,7 +111,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
   <AnnouncementBar client:idle transition:persist />
   <Navbar client:load transition:persist />
 
-  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-void selection:bg-brand-teal/30 selection:text-white">
+  <main id="main-content" class="relative isolate pt-32 md:pt-40 pb-32 overflow-x-clip min-h-[100svh] bg-bg selection:bg-[rgba(252,211,77,0.3)]">
     
     {/* ── Environment & Atmosphere ── */}
     <div class="background-pulse" aria-hidden="true"></div>
@@ -193,7 +193,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
         <div class="border border-white/10 bg-white/[0.01] p-6 sm:p-8">
           <p class="font-mono text-[10px] md:text-xs text-brand-teal uppercase tracking-[0.2em] mb-4">[ How to use this tracker ]</p>
           <p class="text-zinc-300 font-sans text-sm md:text-base leading-relaxed mb-5">
-            Topics are grouped by a <strong>70/20/10 study-priority model</strong> — a planning heuristic, not official IIM weightage.
+            Topics are grouped by a <strong>70/20/10 study-priority model</strong>, a planning heuristic, not official IIM weightage.
             Master the <strong>Core</strong> block first, then <strong>Secondary</strong>, then <strong>Niche</strong>.
           </p>
           <div class="flex flex-wrap gap-3">
@@ -245,7 +245,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                   SEC.0{index + 1}
                 </span>
                 <h2 class="text-xl md:text-2xl font-serif text-white tracking-tight truncate">
-                  <span class="hidden sm:inline-block font-bold mr-2">{section.id} —</span>
+                  <span class="hidden sm:inline-block font-bold mr-2">{section.id}:</span>
                   {section.title}
                 </h2>
               </div>
@@ -332,7 +332,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
             { label: "CAT strategy blog", href: "/blog" },
           ]}
         />
-        <CtaBlock text="Start free practice" />
+        <CtaBlock text="Start practicing" />
       </div>
 
     </div>

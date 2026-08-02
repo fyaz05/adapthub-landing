@@ -30,6 +30,10 @@ const SYSTEMS = [
     ...CONTENT.theLens.systems[2],
     color: THEME_COLORS.accent.pink, // Pink
   },
+  {
+    ...CONTENT.theLens.systems[3],
+    color: THEME_COLORS.accent.gold, // Gold
+  },
 ];
 
 // -----------------------------------------------------------------------------
@@ -67,10 +71,10 @@ const DataDot = ({
 };
 
 const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
-  const pathLength = useTransform(progress, [0.05, 0.25], [0, 1]);
-  const highlightOpacity = useTransform(progress, [0.25, 0.28], [0, 1]);
-  const baselineOpacity = useTransform(progress, [0.28, 0.32], [0, 1]);
-  const baselineY = useTransform(progress, [0.28, 0.32], [-5, 0]);
+  const pathLength = useTransform(progress, [0.02, 0.22], [0, 1]);
+  const highlightOpacity = useTransform(progress, [0.20, 0.23], [0, 1]);
+  const baselineOpacity = useTransform(progress, [0.22, 0.25], [0, 1]);
+  const baselineY = useTransform(progress, [0.22, 0.25], [-5, 0]);
 
   // Data for the 15-dot calibration path
   // Y-axis: 0 is highest difficulty (Anxiety), 150 is lowest (Boredom)
@@ -98,22 +102,22 @@ const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
   const d = `M${points.map((p) => `${p.x},${p.y}`).join(" L")}`;
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center p-6 md:p-8 bg-black">
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-6 md:p-8 bg-bg">
       {/* Terminal Header */}
-      <div className="absolute top-4 left-6 right-6 flex justify-between items-center pb-2 border-b border-white/10 z-20">
-        <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">
-          ZPD_Calibration.exe
+      <div className="absolute top-4 left-6 right-6 flex justify-between items-center pb-2 border-b border-border z-20">
+        <span className="font-mono text-[9px] uppercase tracking-widest text-fg-muted">
+          Adaptive Calibration
         </span>
         <span className="font-mono text-[9px] uppercase tracking-widest text-brand-teal flex items-center gap-1">
           <span className="w-1.5 h-1.5 bg-brand-teal rounded-full animate-pulse"></span>
-          Running
+          Live
         </span>
       </div>
 
       {/* Main Graph Area */}
       <div className="relative w-full h-48 mt-8">
         {/* Background Grids */}
-        <div className="absolute inset-x-0 bottom-0 top-0 border-l border-b border-white/5 pointer-events-none">
+        <div className="absolute inset-x-0 bottom-0 top-0 border-l border-b border-border-subtle pointer-events-none">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={`hz-${i}`}
@@ -211,19 +215,19 @@ const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
         </svg>
 
         {/* Dynamic Y-Axis Labels */}
-        <div className="absolute top-1 left-2 text-[8px] font-mono text-red-500/70 uppercase tracking-widest bg-black px-1">
+        <div className="absolute top-1 left-2 text-[8px] font-mono text-red-500/70 uppercase tracking-widest bg-bg px-1">
           Anxiety Zone
         </div>
-        <div className="absolute top-[35%] left-2 text-[8px] font-mono text-brand-teal uppercase tracking-widest bg-black px-1 font-bold">
+        <div className="absolute top-[35%] left-2 text-[8px] font-mono text-brand-teal uppercase tracking-widest bg-bg px-1 font-bold">
           Flow State (75% Acc)
         </div>
-        <div className="absolute bottom-2 left-2 text-[8px] font-mono text-zinc-500 uppercase tracking-widest bg-black px-1">
+        <div className="absolute bottom-2 left-2 text-[8px] font-mono text-fg-subtle uppercase tracking-widest bg-bg px-1">
           Boredom Zone
         </div>
 
         {/* Baseline Reached Label */}
         <motion.div
-          className="absolute right-4 top-2 bg-zinc-950 border border-brand-teal/50 px-2 py-1 text-[8px] font-mono text-brand-teal uppercase tracking-widest rounded shadow-xl z-30 pointer-events-none"
+          className="absolute right-4 top-2 bg-bg border border-brand-teal/50 px-2 py-1 text-[8px] font-mono text-brand-teal uppercase tracking-widest rounded shadow-xl z-30 pointer-events-none"
           style={{ opacity: baselineOpacity, y: baselineY }}
         >
           Baseline Found (Q15)
@@ -238,14 +242,14 @@ const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
 // -----------------------------------------------------------------------------
 const RoadmapVisual = ({ progress }: { progress: MotionValue<number> }) => {
   const isReduced = useReducedMotion();
-  const blockScale = useTransform(progress, [0.35, 0.4], [0, 1]);
-  const blockPathLength = useTransform(progress, [0.38, 0.42], [0, 1]);
-  const detourPathLength = useTransform(progress, [0.42, 0.55], [0, 1]);
-  const headDistance = useTransform(progress, [0.42, 0.55], ["0%", "100%"]);
-  const destScale = useTransform(progress, [0.55, 0.6], [0, 1]);
-  const gapOpacity = useTransform(progress, [0.35, 0.38], [0, 1]);
-  const gapX = useTransform(progress, [0.35, 0.38], [-10, 0]);
-  const optOpacity = useTransform(progress, [0.42, 0.45], [0, 1]);
+  const blockScale = useTransform(progress, [0.28, 0.33], [0, 1]);
+  const blockPathLength = useTransform(progress, [0.31, 0.35], [0, 1]);
+  const detourPathLength = useTransform(progress, [0.35, 0.47], [0, 1]);
+  const headDistance = useTransform(progress, [0.35, 0.47], ["0%", "100%"]);
+  const destScale = useTransform(progress, [0.47, 0.50], [0, 1]);
+  const gapOpacity = useTransform(progress, [0.28, 0.31], [0, 1]);
+  const gapX = useTransform(progress, [0.28, 0.31], [-10, 0]);
+  const optOpacity = useTransform(progress, [0.36, 0.39], [0, 1]);
   const optX = useTransform(progress, [0.42, 0.45], [10, 0]);
 
   // 5x5 Grid
@@ -435,11 +439,11 @@ const RoadmapVisual = ({ progress }: { progress: MotionValue<number> }) => {
 // VISUAL 3: DIAGNOSTICS (RADAR)
 // -----------------------------------------------------------------------------
 const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
-  const polyScale = useTransform(progress, [0.7, 0.85], [0, 1]);
-  const p1Scale = useTransform(progress, [0.72, 0.78], [0, 1]);
-  const p2Scale = useTransform(progress, [0.74, 0.8], [0, 1]);
-  const p3Scale = useTransform(progress, [0.76, 0.82], [0, 1]);
-  const p4Scale = useTransform(progress, [0.78, 0.84], [0, 1]);
+  const polyScale = useTransform(progress, [0.53, 0.72], [0, 1]);
+  const p1Scale = useTransform(progress, [0.55, 0.61], [0, 1]);
+  const p2Scale = useTransform(progress, [0.57, 0.63], [0, 1]);
+  const p3Scale = useTransform(progress, [0.59, 0.65], [0, 1]);
+  const p4Scale = useTransform(progress, [0.61, 0.67], [0, 1]);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-8">
@@ -514,36 +518,106 @@ const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
       </svg>
 
       {/* Labels */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-zinc-400 font-mono">
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.memory}
       </div>
-      <div className="absolute right-4 top-1/2 text-[9px] text-zinc-400 font-mono">
+      <div className="absolute right-4 top-1/2 text-[9px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.logic}
       </div>
-      <div className="absolute left-4 top-1/2 text-[9px] text-zinc-400 font-mono">
+      <div className="absolute left-4 top-1/2 text-[9px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.speed}
       </div>
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] text-zinc-400 font-mono">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.focus}
       </div>
 
-      <div className="absolute top-8 right-8 bg-zinc-900 border border-white/10 p-2 rounded text-[10px] space-y-1">
+      <div className="absolute top-8 right-8 bg-surface border border-border p-2 rounded text-[10px] space-y-1">
         <div className="flex justify-between gap-4">
-          <span className="text-zinc-400">
+          <span className="text-fg-muted">
             {CONTENT.theLens.visuals.diagnostics.score.label}
           </span>
-          <span className="text-white font-mono">
+          <span className="text-fg font-mono">
             {CONTENT.theLens.visuals.diagnostics.score.value}
           </span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="text-zinc-400">
+          <span className="text-fg-muted">
             {CONTENT.theLens.visuals.diagnostics.delta.label}
           </span>
           <span className="text-pink-500 font-mono">
             {CONTENT.theLens.visuals.diagnostics.delta.value}
           </span>
         </div>
+      </div>
+    </div>
+  );
+};
+
+// -----------------------------------------------------------------------------
+// VISUAL 4: CONCEPT LIBRARY (CURATED ARTICLES)
+// -----------------------------------------------------------------------------
+const LibraryVisual = () => {
+  const isReduced = useReducedMotion();
+  const categories = [
+    { label: "QA", count: "128 articles", accent: "text-brand-teal" },
+    { label: "DILR", count: "96 articles", accent: "text-violet-400" },
+    { label: "VARC", count: "142 articles", accent: "text-pink-400" },
+  ];
+
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-6 md:p-8 bg-bg">
+      {/* Header */}
+      <div className="absolute top-4 left-6 right-6 flex justify-between items-center pb-2 border-b border-border z-20">
+        <span className="font-mono text-[9px] uppercase tracking-widest text-fg-muted">
+          Curated Concepts
+        </span>
+        <span className="font-mono text-[9px] uppercase tracking-widest text-amber-400 flex items-center gap-1">
+          <span
+            className={`w-1.5 h-1.5 bg-amber-400 rounded-full ${!isReduced && "animate-pulse"}`}
+          ></span>
+          Gold
+        </span>
+      </div>
+
+      {/* Article Card Grid */}
+      <div className="grid grid-cols-3 gap-3 mt-10 w-full max-w-sm">
+        {categories.map((cat) => (
+          <div
+            key={cat.label}
+            className="rounded-lg bg-surface border border-border-subtle p-3 space-y-3 shadow-xl"
+          >
+            <div className="flex items-center justify-center w-8 h-8 rounded-md bg-white/5 border border-border-subtle">
+              <svg
+                className="w-4 h-4 text-amber-400/80"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z" />
+              </svg>
+            </div>
+            <div>
+              <div className={`font-mono text-sm font-bold ${cat.accent}`}>
+                {cat.label}
+              </div>
+              <div className="text-[9px] text-fg-subtle mt-1 leading-snug">
+                {cat.count}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ZPD Badge */}
+      <div className="mt-6 flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10">
+        <span
+          className={`w-1.5 h-1.5 bg-amber-400 rounded-full ${!isReduced && "animate-pulse"}`}
+        ></span>
+        <span className="font-mono text-[9px] uppercase tracking-widest text-amber-300">
+          Tailored to your ZPD
+        </span>
       </div>
     </div>
   );
@@ -574,21 +648,23 @@ const TheLens = () => {
   });
 
   // 2. Deterministic State derivation from pure scroll progress
-  // Stages roughly divided to 30% / 40% / 30% for pacing with extra middle emphasis
+  // Stages roughly divided to 25% each for pacing across 4 systems
   useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (latest < 0.3) {
+    if (latest < 0.25) {
       if (activeIndex !== 0) setActiveIndex(0);
-    } else if (latest >= 0.3 && latest < 0.7) {
+    } else if (latest >= 0.25 && latest < 0.5) {
       if (activeIndex !== 1) setActiveIndex(1);
-    } else {
+    } else if (latest >= 0.5 && latest < 0.75) {
       if (activeIndex !== 2) setActiveIndex(2);
+    } else {
+      if (activeIndex !== 3) setActiveIndex(3);
     }
   });
 
   return (
     <section
       ref={containerRef}
-      className={`bg-zinc-950 relative ${isMobile ? "h-[200vh]" : "h-[250vh]"}`}
+      className={`bg-bg relative ${isMobile ? "h-[150vh]" : "h-[200vh]"}`}
     >
       {/* Visuals - Sticky Container */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden z-10 pointer-events-none">
@@ -602,11 +678,12 @@ const TheLens = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
               transition={{ duration: 0.3 }}
-              className="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.3em] text-center whitespace-nowrap"
+              className="font-mono text-[9px] text-fg-muted uppercase tracking-[0.3em] text-center whitespace-nowrap"
             >
-              {activeIndex === 0 && "Scroll to Calibrate"}
-              {activeIndex === 1 && "Scroll to Optimize"}
-              {activeIndex === 2 && "Scroll to Continue"}
+              {activeIndex === 0 && "Keep scrolling"}
+              {activeIndex === 1 && "Keep scrolling"}
+              {activeIndex === 2 && "Keep scrolling"}
+              {activeIndex === 3 && "Continue exploring"}
             </motion.span>
           </AnimatePresence>
           <div className="w-[1px] h-10 sm:h-16 relative overflow-hidden bg-white/10">
@@ -644,15 +721,15 @@ const TheLens = () => {
                 className="space-y-4 sm:space-y-6 [grid-area:1/1]"
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest px-2 py-1 rounded bg-white/5 border border-white/5 text-zinc-400">
+                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest px-2 py-1 rounded bg-white/5 border border-border-subtle text-fg-muted">
                     {SYSTEMS[activeIndex].subtitle}
                   </span>
                   <div className="h-px flex-1 bg-white/10" />
                 </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-fg leading-[1.1]">
                   {SYSTEMS[activeIndex].title}
                 </h2>
-                <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-md opacity-90">
+                <p className="text-base sm:text-lg text-fg-muted leading-relaxed max-w-md opacity-90">
                   {SYSTEMS[activeIndex].description}
                 </p>
               </motion.div>
@@ -666,10 +743,10 @@ const TheLens = () => {
           >
             {/* The Glass Frame */}
             <div
-              className={`absolute inset-0 rounded-[20px] bg-zinc-900/40 ${!isReduced && "backdrop-blur-xl"} border border-white/10 shadow-2xl overflow-hidden ring-1 ring-white/5`}
+              className={`absolute inset-0 rounded-[20px] bg-surface/40 ${!isReduced && "backdrop-blur-xl"} border border-border shadow-2xl overflow-hidden ring-1 ring-white/5`}
             >
               {/* Top Bar Chrome */}
-              <div className="h-8 sm:h-10 border-b border-white/5 flex items-center px-4 sm:px-5 justify-between bg-zinc-900/50">
+              <div className="h-8 sm:h-10 border-b border-border-subtle flex items-center px-4 sm:px-5 justify-between bg-surface/50">
                 <div className="flex gap-1.5 sm:gap-2">
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF5F57] shadow-inner" />
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FEBC2E] shadow-inner" />
@@ -706,6 +783,7 @@ const TheLens = () => {
                     {activeIndex === 2 && (
                       <DiagnosticsVisual progress={smoothProgress} />
                     )}
+                    {activeIndex === 3 && <LibraryVisual />}
                   </motion.div>
                 </AnimatePresence>
               </div>

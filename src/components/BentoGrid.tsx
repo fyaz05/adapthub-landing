@@ -126,14 +126,14 @@ const RadialProgress = ({ value, label }: { value: number; label: string }) => {
 
       {/* Telemetry Readout */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-20 m-auto pointer-events-none">
-        <div className="bg-void border border-white/10 w-[64px] h-[64px] md:w-[72px] md:h-[72px] flex flex-col items-center justify-center shadow-2xl">
-          <span className="text-lg md:text-2xl font-serif text-white tracking-tighter leading-none mb-1">
+        <div className="bg-bg border border-border w-[64px] h-[64px] md:w-[72px] md:h-[72px] flex flex-col items-center justify-center shadow-2xl">
+          <span className="text-lg md:text-2xl font-serif text-fg tracking-tighter leading-none mb-1">
             {value}
             <span className="text-brand-teal text-[9px] md:text-[10px] ml-0.5">
               %
             </span>
           </span>
-          <span className="font-mono text-[6px] md:text-[7px] uppercase tracking-[0.2em] text-zinc-400">
+          <span className="font-mono text-[6px] md:text-[7px] uppercase tracking-[0.2em] text-fg-muted">
             {label}
           </span>
         </div>
@@ -152,14 +152,14 @@ const CardStack = () => {
     <div className="relative w-36 h-44 md:w-48 md:h-56 perspective-[1000px] md:group-hover:scale-105 transition-transform duration-700 ease-cinematic mx-auto">
       {/* Plane 3 (Base) */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 h-28 md:h-36 bg-void border border-white/5 shadow-2xl origin-bottom"
+        className="absolute inset-x-0 bottom-0 h-28 md:h-36 bg-bg border border-border-subtle shadow-2xl origin-bottom"
         initial={{ y: 15, rotateX: 30, scale: 0.9 }}
         whileHover={isReduced ? {} : { y: 25, rotateX: 45, scale: 0.85 }}
         transition={{ type: "spring", stiffness: 120, damping: 20 }}
       />
       {/* Plane 2 (Mid) */}
       <motion.div
-        className="absolute inset-x-0 bottom-4 h-28 md:h-36 bg-white/[0.02] border border-white/10 shadow-2xl origin-bottom flex items-center justify-center"
+        className="absolute inset-x-0 bottom-4 h-28 md:h-36 bg-white/[0.02] border border-border shadow-2xl origin-bottom flex items-center justify-center"
         initial={{ y: 5, rotateX: 15, scale: 0.95 }}
         whileHover={isReduced ? {} : { y: 10, rotateX: 25, scale: 0.9 }}
         transition={{
@@ -178,10 +178,10 @@ const CardStack = () => {
         whileHover={isReduced ? {} : { y: 0, rotateX: 0, scale: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.1 }}
       >
-        <div className="flex items-center gap-2 mb-3 md:mb-4 border-b border-white/10 pb-2 md:pb-3">
+        <div className="flex items-center gap-2 mb-3 md:mb-4 border-b border-border pb-2 md:pb-3">
           <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-brand-teal animate-pulse" />
           <span className="font-mono text-[7px] md:text-[8px] text-brand-teal uppercase tracking-widest">
-            Cognitive Lock
+            Mastery level
           </span>
         </div>
         <div className="w-full h-[2px] bg-white/10 mb-2" />
@@ -218,7 +218,7 @@ const BentoCard = ({ card }: { card: CardData }) => {
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: purely visual flashlight effect
     <div
-      className={`group relative flex flex-col min-w-0 overflow-hidden bg-void outline-none ${card.gridClass}`}
+      className={`group relative flex flex-col min-w-0 overflow-hidden bg-bg outline-none ${card.gridClass}`}
       onMouseMove={handleMouseMove}
     >
       {/* ── Internal Radial Glow (Flashlight) ── */}
@@ -265,17 +265,17 @@ const BentoCard = ({ card }: { card: CardData }) => {
         <div
           className={`
           flex flex-col justify-start p-5 sm:p-6 md:p-8 lg:p-10 min-w-0
-          ${isWide ? "lg:w-[35%] xl:w-[30%] lg:border-r border-white/5" : "border-b border-white/5"}
+          ${isWide ? "lg:w-[35%] xl:w-[30%] lg:border-r border-border-subtle" : "border-b border-border-subtle"}
           bg-gradient-to-br from-white/[0.02] to-transparent
         `}
         >
           <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <span className="font-mono text-[9px] md:text-[10px] text-zinc-400 uppercase tracking-[0.2em] border border-white/10 px-2 py-0.5 lg:group-hover:text-brand-teal lg:group-hover:border-brand-teal/30 transition-colors duration-300 shrink-0">
+            <span className="font-mono text-[9px] md:text-[10px] text-fg-muted uppercase tracking-[0.2em] border border-border px-2 py-0.5 lg:group-hover:text-brand-teal lg:group-hover:border-brand-teal/30 transition-colors duration-300 shrink-0">
               {card.id}
             </span>
           </div>
           {/* Internal Linking: Connect features to relevant pages */}
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white tracking-tight leading-snug mb-3 md:mb-4 text-balance">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-fg tracking-tight leading-snug mb-3 md:mb-4 text-balance">
             {card.href ? (
               <a
                 href={card.href}
@@ -288,7 +288,7 @@ const BentoCard = ({ card }: { card: CardData }) => {
               card.title
             )}
           </h3>
-          <p className="text-xs sm:text-sm md:text-base font-sans text-zinc-400 leading-[1.6] md:leading-[1.7] tracking-wide text-pretty">
+          <p className="text-xs sm:text-sm md:text-base font-sans text-fg-muted leading-[1.6] md:leading-[1.7] tracking-wide text-pretty">
             {card.description}
           </p>
         </div>
@@ -327,17 +327,17 @@ const BentoGrid = () => {
           className="relative w-full h-full flex flex-col justify-end p-5 md:p-0"
           aria-hidden="true"
         >
-          <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[8px] md:text-[9px] text-zinc-400 tracking-[0.2em] uppercase z-20">
+          <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[8px] md:text-[9px] text-fg-muted tracking-[0.2em] uppercase z-20">
             [ Live Telemetry ]
           </div>
 
           <DataSpectrum />
 
-          <div className="relative md:absolute md:bottom-8 md:left-8 z-20 bg-void/80 backdrop-blur-md p-4 border border-white/5 shadow-2xl w-max">
-            <span className="block font-mono text-[8px] md:text-[9px] text-zinc-400 uppercase tracking-widest mb-1">
+          <div className="relative md:absolute md:bottom-8 md:left-8 z-20 bg-bg/80 backdrop-blur-md p-4 border border-border-subtle shadow-2xl w-max">
+            <span className="block font-mono text-[8px] md:text-[9px] text-fg-muted uppercase tracking-widest mb-1">
               Delta Velocity
             </span>
-            <span className="font-serif text-2xl md:text-3xl lg:text-4xl text-white flex items-baseline gap-1">
+            <span className="font-serif text-2xl md:text-3xl lg:text-4xl text-fg flex items-baseline gap-1">
               {gridContent.cards[0]?.visualCheck?.deltaValue || "0"}{" "}
               <span className="text-brand-teal text-sm md:text-lg">Pts</span>
             </span>
@@ -353,11 +353,11 @@ const BentoGrid = () => {
       visual: (
         <div className="h-full w-full flex flex-col p-5 sm:p-6 pt-0 justify-center">
           {/* ── Hardware Toggle Matrix ── */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.05] pb-4 mb-6 mt-6 md:mt-0 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border-subtle pb-4 mb-6 mt-6 md:mt-0 gap-4">
             <div
               role="tablist"
               aria-label="Analysis metric"
-              className="flex bg-black/40 border border-white/10 p-[1px] w-full sm:w-auto"
+              className="flex bg-bg/40 border border-border p-[1px] w-full sm:w-auto"
             >
               {(gridContent.cards[1]?.tabs || ["Accuracy", "Growth"]).map(
                 (tab: string) => {
@@ -376,7 +376,7 @@ const BentoGrid = () => {
                       className={`relative flex-1 sm:flex-none px-4 py-2 sm:py-1.5 text-[9px] uppercase tracking-[0.2em] font-mono transition-all active:scale-95 outline-none select-none touch-manipulation focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 ${
                         isActive
                           ? "text-brand-teal"
-                          : "text-zinc-400 hover:text-zinc-300"
+                          : "text-fg-muted hover:text-fg"
                       }`}
                     >
                       {isActive && !isReduced && (
@@ -400,7 +400,7 @@ const BentoGrid = () => {
               )}
             </div>
             {/* Hex Memory Address Readout */}
-            <span className="font-mono text-[8px] text-zinc-400 tracking-widest hidden xl:block shrink-0">
+            <span className="font-mono text-[8px] text-fg-muted tracking-widest hidden xl:block shrink-0">
               0x{activeTab === "accuracy" ? "F4A1" : "E2B9"}
             </span>
           </div>
@@ -494,17 +494,17 @@ const BentoGrid = () => {
           </div>
 
           {/* ── Active Threat Console (Bottom on Mobile, Right on Desktop) ── */}
-          <div className="w-full md:w-[240px] xl:w-[320px] border-t md:border-t-0 md:border-l border-white/[0.05] bg-black/40 flex flex-col relative z-20 shrink-0 min-w-0 max-h-[250px] md:max-h-none overflow-y-auto">
+          <div className="w-full md:w-[240px] xl:w-[320px] border-t md:border-t-0 md:border-l border-border-subtle bg-bg/40 flex flex-col relative z-20 shrink-0 min-w-0 max-h-[250px] md:max-h-none overflow-y-auto">
             {/* Console Header */}
-            <div className="sticky top-0 z-30 px-4 py-3 border-b border-white/[0.05] flex items-center justify-between bg-black/80 backdrop-blur-md">
-              <span className="font-mono text-[8px] md:text-[9px] text-zinc-400 uppercase tracking-[0.2em]">
+            <div className="sticky top-0 z-30 px-4 py-3 border-b border-border-subtle flex items-center justify-between bg-bg/80 backdrop-blur-md">
+              <span className="font-mono text-[8px] md:text-[9px] text-fg-muted uppercase tracking-[0.2em]">
                 Live Analysis Log
               </span>
               <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
             </div>
 
             {/* Console Output Terminal */}
-            <div className="p-4 flex-1 font-mono text-[8px] md:text-[9px] xl:text-[10px] uppercase tracking-wider text-zinc-400 space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
+            <div className="p-4 flex-1 font-mono text-[8px] md:text-[9px] xl:text-[10px] uppercase tracking-wider text-fg-muted space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
               {/* Scanline overlay over text */}
               <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgb(var(--brand-teal-rgb)/0.05)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
 
@@ -539,7 +539,7 @@ const BentoGrid = () => {
                 <br />
                 82% cohort failed.
                 <br />
-                Type: False Causation.
+                Type: Conceptual gap.
               </motion.div>
 
               <motion.div
@@ -547,7 +547,7 @@ const BentoGrid = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.4, delay: 1.2 }}
-                className="text-white pt-1 md:pt-2"
+                className="text-fg pt-1 md:pt-2"
               >
                 <span className="text-brand-teal font-bold">&gt;</span>{" "}
                 Re-calibrating lock...
@@ -569,7 +569,7 @@ const BentoGrid = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-void relative overflow-hidden">
+    <section className="py-20 md:py-32 bg-bg relative overflow-hidden">
       {/* Background Atmosphere */}
       <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.12)" />
 
@@ -595,28 +595,17 @@ const BentoGrid = () => {
                 {gridContent.header?.eyebrow || "System Protocol"}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-serif tracking-tight leading-[1.1] text-balance">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-fg font-serif tracking-tight leading-[1.1] text-balance">
               {gridContent.header?.title || "Mastery"}{" "}
               <span className="italic text-brand-teal">
                 {gridContent.header?.highlight || "Engineered."}
               </span>
             </h2>
           </motion.div>
-
-          <motion.div
-            className="hidden lg:flex items-center gap-3 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em] border border-white/10 px-4 py-2"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <span className="w-1.5 h-1.5 bg-brand-teal rounded-full animate-pulse" />
-            Grid Status: Active
-          </motion.div>
         </div>
 
         {/* ── The 1px Hairline Blueprint Grid Container ── */}
-        <div className="bg-white/[0.08] border border-white/[0.08] p-px shadow-2xl overflow-hidden w-full">
+        <div className="bg-white/[0.08] border border-border-subtle p-px shadow-2xl overflow-hidden w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] w-full">
             {cards.map((card) => (
               <BentoCard key={card.id} card={card} />

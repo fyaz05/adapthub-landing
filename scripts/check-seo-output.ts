@@ -94,6 +94,8 @@ const retired = [
   /free forever/gi,
   /90% of candidates/gi,
   /median score in the top decile/gi,
+  /socratic/gi,
+  /cognitive lock/gi,
 ];
 for (const file of [
   resolve(root, "public", "llms.txt"),

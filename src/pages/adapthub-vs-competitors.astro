@@ -10,23 +10,23 @@ const siteUrl = Astro.site || "https://adapthub.in/";
 const faqs = [
   {
     question: "Is AdaptHub really completely free?",
-    answer: "Yes. AdaptHub is 100% free, forever, with no credit card required. There are no hidden fees, locked features, or 'premium' tiers. The entire adaptive engine and analytics dashboard are open to all students.",
+    answer: "Yes. AdaptHub is 100% free, forever, with no payment required. There are no hidden fees, locked features, or 'premium' tiers. The entire adaptive engine and analytics dashboard are open to all students.",
   },
   {
     question: "How is AdaptHub's AI different from platforms like iQuanta, TIME, or IMS?",
-    answer: "Many platforms use AI mainly for post-mock dashboards or fixed test packs. AdaptHub uses a Zone of Proximal Development (ZPD) loop: every response can recalibrate difficulty so practice stays in your growth band — plus Socratic hints and distractor-level error tags during learning, not only after a mock.",
+    answer: "Many platforms use AI mainly for post-mock dashboards or fixed test packs. AdaptHub uses a Zone of Proximal Development (ZPD) loop: every response can recalibrate difficulty so practice stays in your growth band, plus two-tier hints and distractor-level error tags during learning, not only after a mock.",
   },
   {
     question: "Does AdaptHub offer live classes?",
-    answer: "No. Live classes force uniform pacing, which hurts both fast and slow learners. We replace passive live lectures with active, algorithmic practice and a Socratic AI Coach that intervenes when you fail.",
+    answer: "No. Live classes force uniform pacing, which hurts both fast and slow learners. We replace passive live lectures with active, algorithmic practice and AI hints that intervene when you fail.",
   },
   {
     question: "Can I use AdaptHub with Cracku, CL, or IMS mocks?",
-    answer: "Yes — that hybrid is often ideal. Use national free or paid mocks for benchmarking, analyse them with a strict error taxonomy, then remediate weak topics on AdaptHub's free adaptive engine between mock days.",
+    answer: "Yes, that hybrid is often ideal. Use national free or paid mocks for benchmarking, analyse them with a strict error taxonomy, then remediate weak topics on AdaptHub's free adaptive engine between mock days.",
   },
   {
     question: "When should I still pay for coaching?",
-    answer: "If you need live accountability, peer energy, or a full GD-PI package, paid coaching can help. If your bottleneck is personalisation and wasted study on already-mastered topics, paywalls rarely fix that — adaptive practice does.",
+    answer: "If you need live accountability, peer energy, or a full GD-PI package, paid coaching can help. If your bottleneck is personalisation and wasted study on already-mastered topics, paywalls rarely fix that: adaptive practice does.",
   },
 ];
 ---
@@ -56,7 +56,7 @@ const faqs = [
     ],
   })} />
   <Callout label="Executive Comparison" cornerTabs>
-    <p><strong>AdaptHub:</strong> currently free adaptive engine (ZPD), active recall, distractor-level error tags — no credit card, no batch pacing.</p><p><strong>Paid online / offline coaching (iQuanta, TIME, IMS, Cracku courses, CL, etc.):</strong> Typically ₹15,000–₹75,000 depending on online vs classroom; live batches, peer groups, and large mock libraries. Free tiers are usually acquisition (limited mocks/PDFs), not a full free OS.</p><p class="text-sm text-zinc-500 font-mono">Fee bands are approximate public ranges as of 2026-07 — always re-check institute sites before purchase.</p>
+    <p><strong>AdaptHub:</strong> free adaptive engine (ZPD), active recall, distractor-level error tags: free access, no batch pacing.</p><p><strong>Paid online / offline coaching (iQuanta, TIME, IMS, Cracku courses, CL, etc.):</strong> Typically ₹15,000–₹75,000 depending on online vs classroom; live batches, peer groups, and large mock libraries. Free tiers are usually acquisition (limited mocks/PDFs), not a full free OS.</p><p class="text-sm text-zinc-500 font-mono">Fee bands are approximate public ranges as of 2026-07. Always re-check institute sites before purchase.</p>
   </Callout>
 
   <article class="prose prose-invert prose-brand max-w-none">
@@ -88,7 +88,7 @@ const faqs = [
         <tbody class="divide-y divide-white/5">
           <tr class="hover:bg-white/[0.01] transition-colors">
             <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Pricing Model</th>
-            <td class="px-6 py-4 border-l border-white/10 text-emerald-400">100% currently free</td>
+            <td class="px-6 py-4 border-l border-white/10 text-emerald-400">100% free</td>
             <td class="px-6 py-4 border-l border-white/10 text-amber-500">Premium Paid Subscription</td>
           </tr>
           <tr class="hover:bg-white/[0.01] transition-colors">
@@ -108,7 +108,7 @@ const faqs = [
           </tr>
           <tr class="hover:bg-white/[0.01] transition-colors">
             <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Free surface</th>
-            <td class="px-6 py-4 border-l border-white/10 text-emerald-400">Full core engine currently free for individual learners</td>
+            <td class="px-6 py-4 border-l border-white/10 text-emerald-400">Full core engine free for all aspirants</td>
             <td class="px-6 py-4 border-l border-white/10">Usually limited mocks/PDFs/daily targets as acquisition</td>
           </tr>
         </tbody>
@@ -117,7 +117,7 @@ const faqs = [
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Player-by-player snapshot (2026)</h2>
     <p class="text-zinc-400 leading-[1.8] mb-6">
-      Not every rival is the same. Free mock hubs, live community coaching, and content publishers attack different jobs. Use this snapshot to pick a hybrid stack — not a tribal identity.
+      Not every rival is the same. Free mock hubs, live community coaching, and content publishers attack different jobs. Use this snapshot to pick a hybrid stack, not a tribal identity.
     </p>
     <div class="overflow-x-auto my-8 border border-white/10">
       <table class="w-full text-left text-sm text-zinc-400">
@@ -170,19 +170,19 @@ const faqs = [
       </table>
     </div>
     <p class="text-zinc-500 text-sm mb-10">
-      Full research notes live in our competitor system; public fees change with discounts — verify on each site before purchase.
+      Full research notes live in our competitor system; public fees change with discounts. Verify on each site before purchase.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Who Should Still Consider Paid Coaching?</h2>
     <p class="text-zinc-400 leading-[1.8] mb-6">
-      Paid CAT coaching can still help if you need external accountability, prefer live peer energy, or want a structured GD-PI package after the exam. It is a weak default if your main bottleneck is personalisation — which is where most 90–99 percentile plateaus form.
+      Paid CAT coaching can still help if you need external accountability, prefer live peer energy, or want a structured GD-PI package after the exam. It is a weak default if your main bottleneck is personalisation, which is where most 90–99 percentile plateaus form.
     </p>
     <p class="text-zinc-400 leading-[1.8] mb-12">
       A hybrid path works for many aspirants: free adaptive daily practice on AdaptHub for concept gaps, plus a paid mock series (IMS SIMCATs, CL, TIME AIMCATs, etc.) for national benchmarking. Read the method on <a href="/adaptive-learning-cat" class="text-brand-teal hover:underline underline-offset-4">what adaptive learning means for CAT</a>, the full <a href="/cat-preparation-without-coaching" class="text-brand-teal hover:underline underline-offset-4">self-study blueprint</a>, and the <a href="/how-to-score-99-percentile-cat" class="text-brand-teal hover:underline underline-offset-4">99 percentile plan</a>.
     </p>
 
     <h3 class="text-2xl font-serif text-white mb-6 text-center">Stop watching videos. Start solving.</h3>
-    <CtaBlock text="Start free practice" />
+    <CtaBlock text="Start practicing" />
   </article>
 
   <FaqSection faqs={faqs} title="Frequently Asked Questions" />

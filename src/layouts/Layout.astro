@@ -96,7 +96,7 @@ const partytownConfig = {
 ---
 
 <!DOCTYPE html>
-<html lang="en-IN" class="bg-void relative" style="color-scheme: dark">
+<html lang="en-IN" class="bg-bg relative" style="color-scheme: dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -148,12 +148,13 @@ const partytownConfig = {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0b0c0f" />
     <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="geo.region" content="IN" />
     <meta name="geo.placename" content="India" />
+    <link rel="alternate" hreflang="en-IN" href={canonicalURL.href} />
     <link rel="author" type="text/plain" href="/humans.txt" />
 
     {/* Canonical on noindex pages too — keeps graph linking clean and avoids hreflang warnings. */}
@@ -198,8 +199,8 @@ const partytownConfig = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:image:alt" content={ogImageAlt || `${CONTENT.global.brandName} — ${description}`} />
-    {/* <meta name="twitter:site" content="@adapthublabs" /> */}
-    {/* <meta name="twitter:creator" content="@adapthublabs" /> */}
+    <meta name="twitter:site" content="@adapthublabs" />
+    <meta name="twitter:creator" content="@adapthublabs" />
 
     {/* Structured Data — Single @graph for sitewide entities.
         Page-specific schemas (FAQPage, BlogPosting, Product, Course)
@@ -309,11 +310,11 @@ const partytownConfig = {
           "offers": buildOffer({ url: String(siteUrl) }),
           "featureList": [
             "Adaptive Diagnostic Calibration (ZPD Algorithm)",
-            "Socratic AI Coaching with Hint Penalties",
+            "Two-tier AI hints with level-progression penalty",
             "Progress tracking (7-day rolling window)",
             "Spaced Repetition Queue (SRS) for memory decay prevention",
-            "Mastery-Based Cognitive Locks (5-level progression)",
-            "Practice Streaks (>70% accuracy, 15-min minimum sessions)",
+            "Mastery-based level progression (5 levels per topic)",
+            "Practice Streaks (15-min minimum daily sessions)",
             "Error classification (Trap identification & Calculation Errors)",
             "Dynamic Daily Study Plans for CAT 2026",
             "QA, DILR & VARC concept coverage"

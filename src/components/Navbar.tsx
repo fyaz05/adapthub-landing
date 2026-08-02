@@ -175,13 +175,13 @@ const Navbar = () => {
           ref={navRef}
           aria-label="Main navigation"
           className={`
-            relative pointer-events-auto w-full max-w-[1100px] rounded-full
+            relative pointer-events-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl rounded-full
             ${
               scrolled || mobileMenuOpen
-                ? "bg-zinc-950/80 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.06)]"
-                : "bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_24px_-6px_rgba(0,0,0,0.3)]"
+                ? "bg-bg/70 backdrop-blur-xl border border-border shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                : "bg-bg/25 backdrop-blur-lg border border-white/[0.06] shadow-[0_2px_24px_-8px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
             }
-            transition-[background-color,border-color,box-shadow] duration-[600ms] ease-cinematic
+            transition-[background-color,border-color,box-shadow,padding] duration-[600ms] ease-cinematic
           `}
         >
           {/* Surface Grain */}
@@ -216,46 +216,37 @@ const Navbar = () => {
           <div
             className={`
               relative flex items-center justify-between w-full
-              ${scrolled || mobileMenuOpen ? "py-2 px-3 md:px-4" : "py-2.5 px-4 md:px-5"}
+              ${scrolled || mobileMenuOpen ? "py-2 px-4" : "py-3.5 px-6"}
               transition-[padding] duration-[600ms] ease-cinematic
             `}
           >
-            {/* ── Brand Lockup ── */}
+            {/* ── Brand Lockup — matches app HeaderLogo treatment ── */}
             <a
               href="/"
-              className="flex items-center gap-2.5 group outline-none rounded-full focus-visible:ring-2 focus-visible:ring-brand-teal z-20 shrink-0"
+              className="relative flex items-center gap-3 group outline-none rounded-full focus-visible:ring-2 focus-visible:ring-brand-teal z-20 shrink-0 active:scale-95 transition-transform"
               aria-label="AdaptHub Home"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] overflow-hidden group-hover:border-brand-teal/40 group-hover:bg-brand-teal/5 transition-[border-color,background-color] duration-300">
-                {/* React island (.tsx) — Astro's
-                    <Image> from astro:assets is not usable here. The brand
-                    mark is a decorative SVG served from /public/
-                    (CONTENT.assets.logoLight = "/logo-light.svg"). SVGs are
-                    vector and don't benefit from raster optimization, and
-                    importing them via @assets would require moving them out
-                    of /public/. Keeping
-                    <img> with explicit width/height/loading="eager"/
-                    fetchPriority="high" is the correct call for an
-                    above-the-fold nav SVG logo. */}
-                <img
-                  src={CONTENT.assets.logoLight}
-                  alt={CONTENT.global.logoAlt}
-                  width={22}
-                  height={22}
-                  className="w-[22px] h-[22px] opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-[opacity,transform] duration-[400ms]"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </div>
-              <span className="font-serif text-[19px] text-white/90 font-medium tracking-tight group-hover:text-white transition-colors duration-300 hidden sm:inline">
+              {/* Hover glow — matches app's bg-brand-primary/10 blur expansion */}
+              <div className="absolute inset-0 bg-brand-violet/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-75 group-hover:scale-110 -z-10" />
+
+              <img
+                src={CONTENT.assets.logoLight}
+                alt={CONTENT.global.logoAlt}
+                width={48}
+                height={48}
+                className="w-10 h-10 sm:w-12 sm:h-12 opacity-90 group-hover:opacity-100 transition-all duration-500"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <span className="font-serif font-medium tracking-tighter text-fg text-base sm:text-xl">
                 {CONTENT.global.brandName}
               </span>
             </a>
 
-            {/* ── Desktop Links with Sliding Pill ── */}
+            {/* ── Desktop Links with Sliding Pill — inner sub-pill matches app ── */}
             <div
-              className="hidden lg:flex items-center gap-0.5 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="hidden lg:flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/5 backdrop-blur-md border border-white/5 rounded-full px-[6px] py-[3px] shadow-[inset_0_2px_5px_rgba(0,0,0,0.5)]"
               aria-hidden={mobileMenuOpen || undefined}
               inert={mobileMenuOpen}
               onMouseLeave={() => {
@@ -294,7 +285,7 @@ const Navbar = () => {
                       <a
                         href={item.href}
                         className={`
-                          relative px-4 py-2 text-[11px] font-mono uppercase tracking-[0.15em]
+                          relative px-3 sm:px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em]
                           outline-none focus-visible:ring-2 focus-visible:ring-brand-teal
                           rounded-full flex items-center z-10 transition-colors duration-200
                           ${isActive ? "text-white" : "text-zinc-400"}
@@ -319,7 +310,7 @@ const Navbar = () => {
                           setActiveDropdown(isOpen ? null : item.label)
                         }
                         className={`
-                          relative px-4 py-2 text-[11px] font-mono uppercase tracking-[0.15em]
+                          relative px-3 sm:px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em]
                           outline-none focus-visible:ring-2 focus-visible:ring-brand-teal
                           rounded-full flex items-center gap-1.5 z-10 transition-colors duration-200
                           ${isActive ? "text-white" : "text-zinc-400"}
@@ -389,7 +380,7 @@ const Navbar = () => {
                               const grainId = `dd-grain-${item.label.replace(/\s+/g, "-").toLowerCase()}`;
                               return (
                                 <div
-                                  className={`relative ${isLarge ? "w-[680px]" : "w-[360px]"} max-w-[92vw] bg-zinc-950/95 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden`}
+                                  className={`relative ${isLarge ? "w-[680px]" : "w-[360px]"} max-w-[92vw] bg-bg/95 backdrop-blur-3xl border border-border rounded-2xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden`}
                                 >
                                   {/* Panel Grain */}
                                   <svg
@@ -479,9 +470,18 @@ const Navbar = () => {
               })}
             </div>
 
-            {/* ── Right Action Cluster ── */}
-            <div className="flex items-center gap-2.5 z-20 shrink-0">
-              {/* Desktop CTA */}
+            {/* ── Right Action Cluster — matches app's profile spacing ── */}
+            <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 z-20 shrink-0 pl-2">
+              {/* Sign in link — existing users who already have an account */}
+              <a
+                href={CONTENT.links.login}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:inline text-[11px] font-mono text-fg-muted hover:text-fg uppercase tracking-[0.15em] transition-colors duration-200"
+              >
+                Sign in
+              </a>
+              {/* Desktop CTA — new user conversion */}
               <div
                 className="hidden lg:block"
                 aria-hidden={mobileMenuOpen || undefined}
@@ -491,7 +491,7 @@ const Navbar = () => {
                   href={CONTENT.links.app}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-9 px-5 bg-white text-zinc-950 text-[10px] font-bold uppercase tracking-[0.16em] rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_24px_rgba(255,255,255,0.3)] flex items-center justify-center transition-shadow duration-500"
+                  className="h-11 px-4 sm:px-4.5 bg-accent-yellow text-black text-[11px] font-bold uppercase tracking-[0.1em] rounded-full shadow-cta-gold hover:shadow-cta-gold-hover flex items-center justify-center transition-shadow duration-500"
                 >
                   {CONTENT.nav.cta}
                 </SpotlightButton>
@@ -670,7 +670,7 @@ const Navbar = () => {
                 href={CONTENT.links.app}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto py-4 sm:py-3.5 px-8 bg-white text-zinc-950 font-bold text-xs uppercase tracking-[0.16em] rounded-full flex items-center justify-center gap-2.5 touch-manipulation hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-shadow duration-500"
+                className="w-full sm:w-auto py-4 sm:py-3.5 px-8 bg-accent-yellow text-black font-bold text-xs uppercase tracking-[0.12em] rounded-full flex items-center justify-center gap-2.5 touch-manipulation shadow-cta-gold hover:shadow-cta-gold-hover transition-shadow duration-500"
               >
                 {CONTENT.nav.cta}
                 <svg
@@ -690,9 +690,9 @@ const Navbar = () => {
               </SpotlightButton>
 
               <div className="flex items-center gap-3 font-mono text-[10px] text-zinc-500 uppercase tracking-[0.2em]">
-                <span className="flex items-center gap-2 text-emerald-400/90 bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-400/20">
-                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                  System Online
+                <span className="flex items-center gap-2 text-fg-muted bg-surface px-3 py-1.5 rounded-full border border-border-subtle">
+                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                  Free for learners
                 </span>
               </div>
             </motion.div>

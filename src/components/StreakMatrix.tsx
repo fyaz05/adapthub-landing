@@ -43,14 +43,14 @@ const DayCell = React.memo(
         disabled={dayData.future || !dayData.practiced}
         tabIndex={dayData.future || !dayData.practiced ? -1 : 0}
         className={`relative block p-0 outline-none w-3 h-3 md:w-4 md:h-4 rounded-[2px] border cursor-default animate-pulse-fade-in opacity-0
-          focus-visible:ring-1 focus-visible:ring-brand-teal focus-visible:ring-offset-1 focus-visible:ring-offset-black
+          focus-visible:ring-1 focus-visible:ring-brand-teal focus-visible:ring-offset-1 focus-visible:ring-offset-bg
           transition-all duration-300 active:scale-95 active:duration-75 ease-[cubic-bezier(0.23,1,0.32,1)]
           ${
             dayData.future
               ? "bg-zinc-900/20 border-transparent"
               : dayData.practiced
                 ? `${dayData.intensityClass} hover:brightness-110 hover:-translate-y-0.5 hover:scale-110 hover:shadow-[0_4px_12px_rgba(45,212,191,0.3)] hover:z-10`
-                : "bg-zinc-950 border-zinc-900/40 hover:bg-zinc-900/50 hover:border-zinc-800/80 active:bg-zinc-900/80"
+                : "bg-bg border-border-subtle hover:bg-surface/50 hover:border-border/80 active:bg-surface/80"
           }`}
         style={{ animationDelay: `${delay}s`, animationFillMode: "forwards" }}
         onMouseEnter={(e) => onHover(e, dayData)}
@@ -163,7 +163,7 @@ export default function StreakMatrix() {
 
   return (
     <section
-      className="relative py-24 bg-black border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 bg-bg border-t border-border-subtle overflow-hidden"
       id="mastery"
     >
       {/* Background */}
@@ -173,11 +173,11 @@ export default function StreakMatrix() {
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-5xl relative z-10">
         <div className="text-center mb-12">
           <span className="font-mono text-xs text-brand-teal uppercase tracking-widest bg-brand-teal/10 border border-brand-teal/20 px-3 py-1.5 rounded-full mb-6 inline-block">
-            Meaningful Gamification
+            Daily practice
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          <h2 className="text-3xl md:text-5xl font-serif text-fg mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             <span>The Practice</span>
-            <span className="relative inline-block text-zinc-400 px-1">
+            <span className="relative inline-block text-fg-muted px-1">
               <span className="absolute left-[-5%] top-1/2 w-[110%] h-[3px] bg-red-900/60 -translate-y-1/2 -rotate-6 rounded-full"></span>
               Login
             </span>
@@ -185,18 +185,18 @@ export default function StreakMatrix() {
           </h2>
           <p
             data-speakable
-            className="text-zinc-400 font-sans max-w-2xl mx-auto"
+            className="text-fg-muted font-sans max-w-2xl mx-auto"
           >
             AdaptHub cannot be tricked by simply opening the app. You only light
             up the grid if you engage in active learning and hit your accuracy
             threshold.{" "}
-            <strong className="text-white font-medium">
+            <strong className="text-fg font-medium">
               Earned, never given.
             </strong>
           </p>
         </div>
 
-        <div className="bg-zinc-950/80 border border-zinc-800/80 rounded-3xl p-6 md:p-10 shadow-2xl backdrop-blur max-w-[1000px] mx-auto">
+        <div className="bg-bg/80 border border-border/80 rounded-3xl p-6 md:p-10 shadow-2xl backdrop-blur max-w-[1000px] mx-auto">
           {/* The Matrix */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -213,13 +213,13 @@ export default function StreakMatrix() {
           </motion.div>
 
           {/* Legend */}
-          <div className="flex flex-col md:flex-row items-center justify-between border-t border-zinc-800/50 pt-6 gap-6 px-2">
-            <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
-              Grid_Scale: 52_Weeks
+          <div className="flex flex-col md:flex-row items-center justify-between border-t border-border/50 pt-6 gap-6 px-2">
+            <div className="font-mono text-[10px] text-fg-muted uppercase tracking-widest">
+              52 weeks of practice
             </div>
-            <div className="flex items-center gap-2 font-mono text-[9px] text-zinc-400 uppercase tracking-widest">
+            <div className="flex items-center gap-2 font-mono text-[9px] text-fg-muted uppercase tracking-widest">
               <span>Less</span>
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-black border border-zinc-800/50" />
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-bg border border-border/50" />
               <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/20 border border-brand-teal/10" />
               <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/40 border border-brand-teal/30" />
               <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/60 border border-brand-teal/50" />
@@ -232,10 +232,10 @@ export default function StreakMatrix() {
         <div className="mt-8 text-center text-sm">
           <a
             href="/pricing"
-            className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-brand-teal transition-colors duration-300"
+            className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-fg-muted hover:text-brand-teal transition-colors duration-300"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Review Cognitive Locks in Pricing
+              Everything included: ₹0
               <span className="transform transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-2">
                 →
               </span>
@@ -259,15 +259,15 @@ export default function StreakMatrix() {
         }}
       >
         <div
-          className="bg-zinc-950/95 backdrop-blur-md border border-zinc-800 text-white px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-2xl whitespace-pre-line text-center leading-relaxed font-sans text-[10px] md:text-xs w-max max-w-[200px]"
+          className="bg-bg/95 backdrop-blur-md border border-border text-fg px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-2xl whitespace-pre-line text-center leading-relaxed font-sans text-[10px] md:text-xs w-max max-w-[200px]"
           aria-hidden="true"
         >
-          <span className="text-zinc-300">{hoveredDay.tooltip}</span>
-          <div className="text-brand-teal mt-2 border-t border-zinc-800/80 pt-2 font-mono text-[9px] md:text-[10px] uppercase tracking-widest font-semibold flex items-center justify-center gap-1.5">
+          <span className="text-fg">{hoveredDay.tooltip}</span>
+          <div className="text-brand-teal mt-2 border-t border-border/80 pt-2 font-mono text-[9px] md:text-[10px] uppercase tracking-widest font-semibold flex items-center justify-center gap-1.5">
             <span className="text-emerald-400">⚡</span>
             <span>{hoveredDay.streakAmt} Day Streak</span>
           </div>
-          <div className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-zinc-800" />
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-border" />
         </div>
       </div>
     </section>

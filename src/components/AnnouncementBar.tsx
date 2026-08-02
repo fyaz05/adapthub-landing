@@ -39,7 +39,7 @@ const AnnouncementBar = () => {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           role="region"
           aria-label="Announcement"
-          className="fixed top-0 inset-x-0 z-[60] h-auto min-h-10 py-2 flex items-center justify-center bg-void/80 backdrop-blur-md border-b border-white/5 px-4 md:px-12"
+          className="fixed top-0 inset-x-0 z-[60] h-auto min-h-10 py-2 flex items-center justify-center bg-bg/80 backdrop-blur-md border-b border-border-subtle px-4 md:px-12"
         >
           {/* Living Atmosphere: Radial Gradient */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--brand-teal-rgb)/0.08)_0%,transparent_60%)] pointer-events-none" />
@@ -52,12 +52,12 @@ const AnnouncementBar = () => {
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-teal" />
             </span>
 
-            <span className="text-zinc-300 font-sans tracking-wide text-xs md:text-sm truncate">
+            <span className="text-fg font-sans tracking-wide text-xs md:text-sm truncate">
               AdaptHub is in{" "}
               <span className="text-brand-teal font-medium">Early Access</span>
               <span className="mx-2 opacity-50">·</span>
-              <span className="text-white font-medium">
-                currently free for individual learners
+              <span className="text-fg font-medium">
+                free for all aspirants
               </span>
             </span>
           </div>
@@ -66,7 +66,7 @@ const AnnouncementBar = () => {
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-2 md:right-4 p-3 md:p-2 text-zinc-400 hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
+            className="absolute right-2 md:right-4 p-3 md:p-2 text-fg-muted hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
             aria-label="Dismiss announcement"
           >
             <svg

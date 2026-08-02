@@ -64,7 +64,7 @@ export default function SpotlightButton({
       whileHover={!isMobile && !isReduced ? { scale: 1.01 } : undefined}
       whileTap={{ scale: 0.96 }}
       transition={{ type: "spring", stiffness: 700, damping: 25, mass: 0.5 }}
-      className={`relative inline-flex items-center justify-center overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void focus-visible:ring-brand-teal touch-manipulation transform-gpu ${className}`}
+      className={`relative inline-flex items-center justify-center overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:ring-brand-teal touch-manipulation transform-gpu ${className}`}
     >
       {/* ── 1. Physical Bevel & Press Occlusion ── */}
       {/*

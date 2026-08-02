@@ -1,0 +1,56 @@
+---
+import { resolvedContent as CONTENT } from "../utils/config";
+import SpotlightButton from "./SpotlightButton";
+
+interface Props {
+  headingId: string;
+  headline?: string;
+  description?: string;
+  cta?: string;
+  variant?: "default" | "free-access";
+}
+
+const {
+  headingId,
+  headline = CONTENT.ctaBand.headline,
+  description = CONTENT.ctaBand.description,
+  cta = CONTENT.ctaBand.cta,
+  variant = "default",
+} = Astro.props;
+
+const isFreeAccess = variant === "free-access";
+---
+
+<section
+  class={`relative py-20 md:py-28 bg-bg overflow-hidden ${isFreeAccess ? "" : "border-t border-border-subtle"}`}
+  aria-labelledby={headingId}
+>
+  {/* Ambient Glow */}
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(var(--brand-teal-rgb)/0.08)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px] text-center">
+    {isFreeAccess && (
+      <span class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.2em] mb-4 block">
+        Free access
+      </span>
+    )}
+    <h2 id={headingId} class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-fg tracking-tight leading-tight mb-6 text-balance">
+      {headline}
+    </h2>
+    <p class="text-fg-muted text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed" data-speakable>
+      {description}
+    </p>
+    <SpotlightButton
+      client:load
+      href={CONTENT.links.app}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative overflow-hidden w-auto px-8 sm:px-10 py-4 sm:py-5 bg-accent-yellow text-black font-bold text-sm md:text-base rounded-full shadow-cta-gold hover:shadow-cta-gold-hover flex items-center justify-center gap-3 transition-all duration-500 touch-manipulation whitespace-nowrap inline-flex group"
+    >
+      <span class="relative z-10 flex items-center gap-2 tracking-wide">
+        {cta}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-400 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </SpotlightButton>
+  </div>
+</section>

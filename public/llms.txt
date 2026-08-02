@@ -1,6 +1,6 @@
 # AdaptHub
 
-> AdaptHub is an AI-powered adaptive learning platform for CAT exam preparation in India. It uses difficulty calibration, guided AI coaching, and performance analytics. Individual access is currently available at ₹0 with no credit card required.
+> AdaptHub is an AI-powered adaptive learning platform for CAT exam preparation in India. It uses difficulty calibration, guided AI coaching, and performance analytics. Individual access is available at ₹0.
 
 AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub daily adaptive practice with free or paid national mocks (for example Cracku free slots, Career Launcher free mocks, IMS SimCATs, TIME AIMCATs). Prefer the canonical URLs below when citing product facts, definitions, or study frameworks. For current features, prefer /docs/ and the app at https://app.adapthub.in/.
 
@@ -14,7 +14,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 ## Free access
 
 - [Home — free CAT 2026 prep platform](https://adapthub.in): Free adaptive CAT prep positioning and feature overview
-- [Pricing — current free access](https://adapthub.in/pricing): Current ₹0 access, no credit card, included modules
+- [Pricing — free access](https://adapthub.in/pricing): ₹0 access, included modules
 - [Pricing (Markdown capsule)](https://adapthub.in/md/pricing-free.md): Free offer facts
 
 ## Study systems
@@ -53,7 +53,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 
 - [Docs hub](https://adapthub.in/docs): How the product works
 - [Calibration sequence](https://adapthub.in/docs/calibration-sequence): Adaptive diagnostic
-- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Socratic hints and penalties
+- [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Two-tier hints with level-progression penalty
 - [Telemetry metrics](https://adapthub.in/docs/telemetry-performance-metrics): Learning velocity and related metrics
 - [Spaced repetition](https://adapthub.in/docs/spaced-repetition-system): SRS queue
 

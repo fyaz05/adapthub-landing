@@ -6,7 +6,7 @@
 
 ## Summary
 
-AdaptHub is a free AI-powered adaptive learning platform for CAT (Common Admission Test) preparation in India. Founded by Fyaz Mohammed, it applies Zone of Proximal Development (ZPD) difficulty calibration, Socratic AI coaching, distractor-level error tagging, and performance analytics. The core product is currently available at ₹0 with no credit card required.
+AdaptHub is a free AI-powered adaptive learning platform for CAT (Common Admission Test) preparation in India. Founded by Fyaz Mohammed, it applies Zone of Proximal Development (ZPD) difficulty calibration, AI hints and explanations, distractor-level error tagging, and performance analytics. The core product is available at ₹0.
 
 ## What AdaptHub is not
 
