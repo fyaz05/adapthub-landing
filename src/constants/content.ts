@@ -100,7 +100,7 @@ export const CONTENT = {
       { label: "Pricing", href: "/pricing" },
       { label: "Contact", href: "/contact" },
     ] satisfies NavLink[],
-    cta: "Start free practice",
+    cta: "Start practicing",
   },
 
   hero: {
@@ -399,13 +399,13 @@ export const CONTENT = {
         step: "03",
         title: "Track Real Progress",
         description:
-          "Quality streaks, learning velocity, and mastered levels — not mock scores. See what you actually know and what needs work, backed by 10,200+ curated questions.",
+          "Quality streaks, learning velocity, and mastered levels — not mock scores. See what you actually know and what needs work, backed by 10,000+ curated questions.",
       },
     ],
   },
 
   trustStrip: {
-    questions: "10,200+ curated questions",
+    questions: "10,000+ curated questions",
     free: "Free for individual learners",
     sections: "QA · DILR · VARC",
   },
@@ -472,6 +472,7 @@ export const CONTENT = {
 
   links: {
     app: "https://app.adapthub.in",
+    login: "https://app.adapthub.in/login",
     support: "mailto:support@adapthub.in",
   },
 
@@ -490,7 +491,7 @@ export const CONTENT = {
       {
         question: "Is AdaptHub really free?",
         answer:
-          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, 10,200+ question bank, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
+          "Yes. AdaptHub is currently free — no credit card needed. There are no paywalls, no hidden subscription tiers, and no trial periods. The full adaptive engine, 10,000+ question bank, and analytics dashboard are open to every serious CAT aspirant at ₹0.",
       },
       {
         question: "Why is it free?",

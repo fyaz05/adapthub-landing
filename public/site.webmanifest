@@ -1,7 +1,7 @@
 {
   "name": "AdaptHub — Free Adaptive CAT Prep",
   "short_name": "AdaptHub",
-  "description": "Free AI-powered adaptive learning platform for CAT 2026 exam preparation. Personalized study plans, Socratic AI coaching, and performance analytics.",
+  "description": "Free AI-powered adaptive learning platform for CAT 2026 exam preparation. Personalized study plans, AI hints and explanations, and performance analytics.",
   "start_url": "/",
   "scope": "/",
   "id": "/",

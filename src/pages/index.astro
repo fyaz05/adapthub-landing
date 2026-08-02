@@ -14,7 +14,6 @@ import StreakMatrix from "../components/StreakMatrix";
 import TheLens from "../components/TheLens";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks.astro";
-import TrustStrip from "../components/TrustStrip.astro";
 import CtaBand from "../components/CtaBand.astro";
 import CoachDemo from "../components/CoachDemo";
 import Footer from "../components/Footer.astro";
@@ -180,7 +179,6 @@ const siteUrl = Astro.site || "https://adapthub.in/";
   <main id="main-content" class="relative isolate">
     <div class="background-pulse" aria-hidden="true"></div>
     <Hero />
-    <TrustStrip />
     <HowItWorks />
     <CoachDemo client:visible />
     <TheLens client:visible />
@@ -190,7 +188,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
     <CtaBand
       variant="free-access"
       headline="Everything included at ₹0"
-      description="Adaptive diagnostic, daily study plans, two-tier AI hints, mastery-based levels, quality streaks, and 10,200+ curated questions — currently free for individual learners."
+      description="Adaptive diagnostic, daily study plans, two-tier AI hints, mastery-based levels, quality streaks, and 10,000+ curated questions — currently free for individual learners."
       cta="Start free practice"
     />
     <FAQ client:visible />

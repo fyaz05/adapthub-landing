@@ -175,7 +175,7 @@ const Navbar = () => {
           ref={navRef}
           aria-label="Main navigation"
           className={`
-            relative pointer-events-auto w-full max-w-3xl lg:max-w-4xl rounded-full
+            relative pointer-events-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl rounded-full
             ${
               scrolled || mobileMenuOpen
                 ? "bg-bg/70 backdrop-blur-xl border border-border shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.06)]"
@@ -246,7 +246,7 @@ const Navbar = () => {
 
             {/* ── Desktop Links with Sliding Pill — inner sub-pill matches app ── */}
             <div
-              className="hidden lg:flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="hidden lg:flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/5 backdrop-blur-md border border-white/5 rounded-full px-[6px] py-[3px] shadow-[inset_0_2px_5px_rgba(0,0,0,0.5)]"
               aria-hidden={mobileMenuOpen || undefined}
               inert={mobileMenuOpen}
               onMouseLeave={() => {
@@ -285,7 +285,7 @@ const Navbar = () => {
                       <a
                         href={item.href}
                         className={`
-                          relative px-4 py-2 text-[11px] font-mono uppercase tracking-[0.15em]
+                          relative px-3 sm:px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em]
                           outline-none focus-visible:ring-2 focus-visible:ring-brand-teal
                           rounded-full flex items-center z-10 transition-colors duration-200
                           ${isActive ? "text-white" : "text-zinc-400"}
@@ -310,7 +310,7 @@ const Navbar = () => {
                           setActiveDropdown(isOpen ? null : item.label)
                         }
                         className={`
-                          relative px-4 py-2 text-[11px] font-mono uppercase tracking-[0.15em]
+                          relative px-3 sm:px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em]
                           outline-none focus-visible:ring-2 focus-visible:ring-brand-teal
                           rounded-full flex items-center gap-1.5 z-10 transition-colors duration-200
                           ${isActive ? "text-white" : "text-zinc-400"}
@@ -471,10 +471,10 @@ const Navbar = () => {
             </div>
 
             {/* ── Right Action Cluster — matches app's profile spacing ── */}
-            <div className="flex items-center gap-3 sm:gap-4 z-20 shrink-0 pl-2">
+            <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 z-20 shrink-0 pl-2">
               {/* Sign in link — existing users who already have an account */}
               <a
-                href={CONTENT.links.app}
+                href={CONTENT.links.login}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:inline text-[11px] font-mono text-fg-muted hover:text-fg uppercase tracking-[0.15em] transition-colors duration-200"
@@ -491,7 +491,7 @@ const Navbar = () => {
                   href={CONTENT.links.app}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-11 px-6 bg-accent-yellow text-black text-xs font-bold uppercase tracking-[0.12em] rounded-full shadow-cta-gold hover:shadow-cta-gold-hover flex items-center justify-center transition-shadow duration-500"
+                  className="h-11 px-4 sm:px-4.5 bg-accent-yellow text-black text-[11px] font-bold uppercase tracking-[0.1em] rounded-full shadow-cta-gold hover:shadow-cta-gold-hover flex items-center justify-center transition-shadow duration-500"
                 >
                   {CONTENT.nav.cta}
                 </SpotlightButton>

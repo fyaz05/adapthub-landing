@@ -5,7 +5,8 @@ import HeroBackground from "./HeroBackground";
 import SectionSpotlight from "./SectionSpotlight";
 import ParallaxDashboard from "./ParallaxDashboard";
 import SpotlightButton from "./SpotlightButton";
-import { CONTENT } from "../constants/content";
+import TrustStrip from "./TrustStrip.astro";
+import { resolvedContent as CONTENT } from "../utils/config";
 import heroImage from "../assets/hero.avif";
 import { getImage } from "astro:assets";
 const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, format: 'avif' });
@@ -138,8 +139,10 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
             <path d="M12 5v14" /><path d="m19 12-7 7-7-7" />
           </svg>
         </div>
-
       </div>
+
+      {/* Integrated Trust Indicator Pill */}
+      <TrustStrip />
     </div>
 
   </div>
