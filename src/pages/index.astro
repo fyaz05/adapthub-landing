@@ -186,13 +186,14 @@ const siteUrl = Astro.site || "https://adapthub.in/";
     <VelocityDashboard client:visible />
     <StreakMatrix client:visible />
     <CtaBand
+      headingId="cta-band-free-access"
       variant="free-access"
       headline="Everything included at ₹0"
       description="Adaptive diagnostic, daily study plans, two-tier AI hints, mastery-based levels, quality streaks, and 10,000+ curated questions. Free for all aspirants."
       cta="Start practicing"
     />
     <FAQ client:visible />
-    <CtaBand />
+    <CtaBand headingId="cta-band-get-started" />
 
     {/* SEO topical depth + internal link cluster (visually quiet, crawlable) */}
     <section

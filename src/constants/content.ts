@@ -543,7 +543,7 @@ export const CONTENT = {
       { id: "03", name: "Full Concept Library (QA, DILR, VARC)" },
       { id: "04", name: "Granular Performance Analytics" },
       { id: "05", name: "Error Classification & AI Feedback" },
-      { id: "06", name: "Mastery-Based Cognitive Locks" },
+      { id: "06", name: "Mastery-Based Levels" },
       { id: "07", name: "Session Reflection & Mood Tracking" },
       { id: "08", name: "Post-Session Error Forensics" },
     ],

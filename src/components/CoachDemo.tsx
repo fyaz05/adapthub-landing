@@ -8,8 +8,8 @@ export default function CoachDemo() {
   const data = CONTENT.coachDemo;
 
   const handleReveal = () => {
-    if (hintLevel < 1) {
-      setHintLevel(1);
+    if (hintLevel < 2) {
+      setHintLevel(hintLevel + 1);
     }
   };
 
@@ -209,8 +209,8 @@ export default function CoachDemo() {
                 </motion.div>
               )}
 
-              {/* Error Forensics Panel */}
-              {hintLevel >= 1 && (
+              {/* Error Forensics Panel — Tier 2: full explanation */}
+              {hintLevel >= 2 && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -257,14 +257,22 @@ export default function CoachDemo() {
                   onClick={handleReveal}
                   className="group w-full py-4 bg-surface/50 hover:bg-zinc-800 text-fg font-mono text-xs md:text-sm uppercase tracking-widest rounded-xl border border-border hover:border-zinc-700 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden relative touch-manipulation"
                 >
-                  {/* Hover glare effect */}
                   <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"></div>
-                  <span>Ask for a hint</span>
+                  <span>Tier 1: Ask for a hint</span>
+                </button>
+              ) : hintLevel === 1 ? (
+                <button
+                  type="button"
+                  onClick={handleReveal}
+                  className="group w-full py-4 bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal font-mono text-xs md:text-sm uppercase tracking-widest rounded-xl border border-brand-teal/30 hover:border-brand-teal/50 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden relative touch-manipulation"
+                >
+                  <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-brand-teal/10 to-transparent skew-x-12"></div>
+                  <span>Tier 2: Reveal full explanation</span>
                 </button>
               ) : (
                 <div className="w-full py-4 bg-bg/50 text-brand-teal/70 font-mono text-xs md:text-sm uppercase tracking-widest text-center border border-dashed border-brand-teal/20 rounded-xl flex items-center justify-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-ping"></span>
-                  Hint revealed
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-teal"></span>
+                  Full explanation revealed
                 </div>
               )}
             </div>

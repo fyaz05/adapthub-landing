@@ -270,7 +270,7 @@ export default function VelocityDashboard() {
               </div>
 
               {/* 2x2 Grid */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-px bg-zinc-800 rounded-2xl overflow-hidden aspect-square z-10 relative">
+              <div className="grid grid-cols-2 grid-rows-2 gap-px bg-border rounded-2xl overflow-hidden aspect-square z-10 relative">
                 {/* High Conf + Incorrect -> Overconfident */}
                 {/* biome-ignore lint/a11y/useSemanticElements: Quadrant acts as a large touch target, rendered as a div for strict flexbox properties */}
                 <div

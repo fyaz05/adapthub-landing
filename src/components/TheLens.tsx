@@ -557,6 +557,7 @@ const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
 // VISUAL 4: CONCEPT LIBRARY (CURATED ARTICLES)
 // -----------------------------------------------------------------------------
 const LibraryVisual = () => {
+  const isReduced = useReducedMotion();
   const categories = [
     { label: "QA", count: "128 articles", accent: "text-brand-teal" },
     { label: "DILR", count: "96 articles", accent: "text-violet-400" },
@@ -571,7 +572,9 @@ const LibraryVisual = () => {
           Curated Concepts
         </span>
         <span className="font-mono text-[9px] uppercase tracking-widest text-amber-400 flex items-center gap-1">
-          <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+          <span
+            className={`w-1.5 h-1.5 bg-amber-400 rounded-full ${!isReduced && "animate-pulse"}`}
+          ></span>
           Gold
         </span>
       </div>
@@ -609,7 +612,9 @@ const LibraryVisual = () => {
 
       {/* ZPD Badge */}
       <div className="mt-6 flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10">
-        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+        <span
+          className={`w-1.5 h-1.5 bg-amber-400 rounded-full ${!isReduced && "animate-pulse"}`}
+        ></span>
         <span className="font-mono text-[9px] uppercase tracking-widest text-amber-300">
           Tailored to your ZPD
         </span>

@@ -267,7 +267,7 @@ export default function StreakMatrix() {
             <span className="text-emerald-400">⚡</span>
             <span>{hoveredDay.streakAmt} Day Streak</span>
           </div>
-          <div className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-zinc-800" />
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-border" />
         </div>
       </div>
     </section>

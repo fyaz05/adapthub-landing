@@ -107,9 +107,10 @@ export const resolvedContent = {
       { title: "Progress tracking", description: "Loading..." },
     ],
   },
-  trustStrip: BASE_CONTENT?.trustStrip || {
+  trustStrip: {
     questions: "10,000+ curated questions",
     free: "Free for all aspirants",
     sections: "QA · DILR · VARC",
+    ...BASE_CONTENT?.trustStrip,
   },
 };
