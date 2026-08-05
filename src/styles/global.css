@@ -386,6 +386,16 @@ html {
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.2);
     }
+
+    /* Hide scrollbars while keeping content scrollable (used by horizontal
+       jump-to-section navs). */
+    .no-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @layer components {

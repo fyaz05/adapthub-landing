@@ -66,7 +66,7 @@ const AnnouncementBar = () => {
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-2 md:right-4 p-3 md:p-2 text-fg-muted hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
+            className="absolute right-1 md:right-4 p-3 text-fg-muted hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
             aria-label="Dismiss announcement"
           >
             <svg

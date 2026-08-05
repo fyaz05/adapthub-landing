@@ -23,12 +23,15 @@ function checkPerformance(): boolean {
 /**
  * Hook to detect if the user prefers reduced motion or is on a low-end device.
  *
- * The initial state is computed synchronously on the client's first render via a
- * lazy initializer, so reduced-motion / low-end users never see a motion flash.
- * The returned value is SSR-safe: on the server (no `window`) it is `false`.
+ * This hook is **hydration-safe**: the initial render (both server-side and the
+ * client's first/hydration render) always returns `false`, which guarantees the
+ * server-rendered DOM matches the client on first paint. The real value is
+ * computed and applied in `useEffect` immediately after hydration, so reduced-
+ * motion / low-end users are opted out of heavy motion on the very first
+ * interaction frame.
  */
 export function useReducedMotion(): boolean {
-  const [isReduced, setIsReduced] = useState<boolean>(() => checkPerformance());
+  const [isReduced, setIsReduced] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

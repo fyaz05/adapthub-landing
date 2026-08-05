@@ -5,7 +5,7 @@
   "description": "High-performance adaptive learning interface for competitive examinations.",
   "license": "PolyForm-Noncommercial-1.0.0",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "bun run partytown && astro dev",
     "partytown": "node node_modules/@qwik.dev/partytown/bin/partytown.cjs copylib public/~partytown",
     "prebuild": "bun run test:color-contract && bun run check:color-contract && bun run partytown",
     "build": "astro build",
