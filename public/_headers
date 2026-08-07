@@ -119,7 +119,7 @@
   Cache-Control: public, max-age=0, must-revalidate
   X-Frame-Options: DENY
   # Agent discovery Link headers (RFC 8288)
-  Link: </docs>; rel="service-doc", </auth.md>; rel="auth-md", </llms.txt>; rel="describedby"
+  Link: </docs>; rel="service-doc", </auth.md>; rel="auth-md", </llms.txt>; rel="describedby", </llms-full.txt>; rel="describedby"
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()

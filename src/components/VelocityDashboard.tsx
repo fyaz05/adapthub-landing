@@ -72,10 +72,23 @@ export default function VelocityDashboard() {
     return () => observer.disconnect();
   }, []);
 
+  /* First synchronisation after measurement snaps instantly (spring.jump);
+     later changes glide through the spring. */
+  const firstSync = useRef(true);
   useEffect(() => {
     if (boxWidth <= 0) return;
-    scrubX.set((selectedIndex / lastIndex) * boxWidth);
-  }, [selectedIndex, boxWidth, scrubX, lastIndex]);
+    const x = (selectedIndex / lastIndex) * boxWidth;
+    if (firstSync.current) {
+      firstSync.current = false;
+      const jumpable = springX as typeof springX & {
+        jump?: (v: number) => void;
+      };
+      if (typeof jumpable.jump === "function") jumpable.jump(x);
+      else scrubX.set(x);
+    } else {
+      scrubX.set(x);
+    }
+  }, [selectedIndex, boxWidth, scrubX, springX, lastIndex]);
 
   const indexFromClientX = useCallback(
     (clientX: number) => {
@@ -393,14 +406,26 @@ export default function VelocityDashboard() {
                     onKeyDown={handleKeyDown}
                   />
 
-                  {/* 6. Spring-scrubbed crosshair (transform-only, compositor) */}
+                  {/* 6. Spring-scrubbed crosshair (transform-only, compositor).
+                      SSR/no-JS renders a static marker at the selected day so the
+                      first paint never disagrees with the readout below. */}
                   <div
                     className="absolute inset-0 z-30 pointer-events-none"
                     aria-hidden="true"
                   >
+                    {boxWidth <= 0 && (
+                      <div
+                        className="absolute inset-y-0 -translate-x-1/2 w-px bg-brand-teal/40"
+                        style={{
+                          left: `${(selectedIndex / lastIndex) * 100}%`,
+                        }}
+                      />
+                    )}
                     <motion.div
                       style={{ x: springX }}
-                      className="absolute inset-y-0 left-0 w-0"
+                      className={`absolute inset-y-0 left-0 w-0 ${
+                        boxWidth > 0 ? "" : "invisible"
+                      }`}
                     >
                       <div className="absolute inset-y-0 -translate-x-1/2 w-px bg-brand-teal/60" />
                       <div
@@ -495,7 +520,7 @@ export default function VelocityDashboard() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.5, type: "spring" }}
                 viewport={{ once: true }}
-                className="absolute top-[40%] right-6 md:right-12 bg-bg border border-orange-900/50 p-4 rounded-xl shadow-[0_10px_30px_rgba(234,88,12,0.15)] flex items-start gap-4 max-w-[280px] z-50 pointer-events-none"
+                className="absolute top-[40%] right-6 md:right-12 bg-bg border border-orange-900/50 p-4 rounded-xl shadow-[0_10px_30px_color-mix(in_srgb,var(--color-orange-600)_15%,transparent)] flex items-start gap-4 max-w-[280px] z-50 pointer-events-none"
               >
                 <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-1">
                   <span className="text-orange-500 text-lg font-bold">⚠</span>

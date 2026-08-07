@@ -180,7 +180,7 @@ export default function CoachDemo() {
               {/* Chat History Area */}
               <div
                 ref={chatRef}
-                className="flex-1 p-6 md:p-8 overflow-y-auto flex flex-col justify-end space-y-6 bg-[linear-gradient(to_bottom,transparent_0%,rgba(9,9,11,0.5)_100%)]"
+                className="flex-1 p-6 md:p-8 overflow-y-auto flex flex-col justify-end space-y-6 bg-gradient-to-b from-transparent to-bg/50"
                 aria-live="polite"
               >
                 <AnimatePresence mode="popLayout">

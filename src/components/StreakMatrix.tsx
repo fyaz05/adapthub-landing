@@ -210,10 +210,23 @@ export default function StreakMatrix() {
     return () => observer.disconnect();
   }, []);
 
+  /* First synchronisation after measurement snaps instantly (spring.jump);
+     later scrubs glide through the spring. */
+  const firstSync = useRef(true);
   useEffect(() => {
     if (stripWidth <= 0) return;
-    windowX.set((windowStart / totalWeeks) * stripWidth);
-  }, [windowStart, stripWidth, windowX, totalWeeks]);
+    const x = (windowStart / totalWeeks) * stripWidth;
+    if (firstSync.current) {
+      firstSync.current = false;
+      const jumpable = springWindowX as typeof springWindowX & {
+        jump?: (v: number) => void;
+      };
+      if (typeof jumpable.jump === "function") jumpable.jump(x);
+      else windowX.set(x);
+    } else {
+      windowX.set(x);
+    }
+  }, [windowStart, stripWidth, windowX, springWindowX, totalWeeks]);
 
   const weekFromClientX = useCallback(
     (clientX: number) => {
@@ -442,17 +455,29 @@ export default function StreakMatrix() {
                   />
                 ))}
               </div>
-              {/* Spring-tracked window bracket (transform-only) */}
+              {/* Spring-tracked window bracket (transform-only). SSR/no-JS gets
+                  a static fallback at the same window so the two never disagree. */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 aria-hidden="true"
               >
+                {stripWidth <= 0 && (
+                  <div
+                    className="absolute inset-y-0 border-y border-x-2 border-brand-teal/40 bg-brand-teal/5 rounded-md"
+                    style={{
+                      left: `${(windowStart / totalWeeks) * 100}%`,
+                      width: `${(WINDOW_WEEKS / totalWeeks) * 100}%`,
+                    }}
+                  />
+                )}
                 <motion.div
                   style={{
                     x: springWindowX,
                     width: `${(WINDOW_WEEKS / totalWeeks) * 100}%`,
                   }}
-                  className="absolute inset-y-0 left-0 border-y border-x-2 border-brand-teal/70 bg-brand-teal/10 rounded-md shadow-[0_0_18px_rgb(var(--brand-teal-rgb)/0.25)]"
+                  className={`absolute inset-y-0 left-0 border-y border-x-2 border-brand-teal/70 bg-brand-teal/10 rounded-md shadow-[0_0_18px_rgb(var(--brand-teal-rgb)/0.25)] ${
+                    stripWidth > 0 ? "" : "invisible"
+                  }`}
                 />
               </div>
             </div>

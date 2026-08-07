@@ -725,7 +725,7 @@ const Navbar = () => {
             className="fixed inset-x-3 z-[80] lg:hidden"
             style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
           >
-            <div className="bg-bg/85 backdrop-blur-xl border border-border rounded-2xl shadow-[0_16px_48px_-12px_rgba(0,0,0,0.85)] p-2.5 pl-4 flex items-center justify-between gap-3">
+            <div className="bg-bg/85 backdrop-blur-xl border border-border rounded-2xl shadow-[0_16px_48px_-12px_color-mix(in_srgb,var(--color-obsidian)_85%,transparent)] p-2.5 pl-4 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2.5 min-w-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-fg-muted truncate">

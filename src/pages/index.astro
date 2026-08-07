@@ -370,17 +370,18 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                 };
               }
               if (lastAnswerCorrect) {
-                const nextLevel = Math.min(5, level + 1);
+                const projectedUnlockLevel = Math.min(5, level + 1);
                 return {
                   outcome:
                     level === 5 ? "expert-hold" : "progress-toward-unlock",
-                  nextLevel,
+                  nextLevel: level,
+                  projectedUnlockLevel,
                   masteryCredit: true,
                   rule: "Level N unlocks only after sustained accuracy above 75% at level N-1 across at least 8 attempts.",
                   nextAction:
                     level === 5
                       ? "Stay at Level 5 (CAT-equivalent). Slot into harder mixed sets and mock-paced timing."
-                      : `Correct answer credited. Keep accuracy above 75% across 8+ attempts to unlock Level ${nextLevel} in ${topic} (${section}).`,
+                      : `Correct answer credited at Level ${level}. Hold accuracy above 75% across 8+ attempts to unlock Level ${projectedUnlockLevel} in ${topic} (${section}).`,
                   growthBand: "70-85% accuracy",
                   sectionTip: SECTION_DEPTH[section] ?? null,
                   exemplar:
