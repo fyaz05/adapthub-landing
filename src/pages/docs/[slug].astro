@@ -177,6 +177,11 @@ const editorial =
                     {block.heading}
                   </h2>
                 )}
+                {block.heading && block.summary && (
+                  <p data-speakable class="sr-only">
+                    {block.summary}
+                  </p>
+                )}
                 <div class="space-y-5 md:space-y-7">
                   {block.paragraphs.map((para) => (
                     <p

@@ -48,7 +48,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 ## 5. CAT 2026 score telemetry
 
 - Learning Velocity: how quickly a learner converts sessions into accuracy gains; tracked over rolling 7-day windows.
-- Weighted Accuracy: accuracy adjusted by difficulty level attempted, so Level 5 performance is not averaged flat with Level 1.
+- Weighted Accuracy: recent sessions weighted more strongly than older ones, so an early strong performance cannot mask a recent decline.
 - Speed Score: pacing telemetry that flags tilt patterns (e.g., repeated ultra-fast errors signalling guessing).
 - Trend Detection: surfaces improving or deteriorating topic trajectories before mocks do.
 - Quality streaks: a day counts only after a minimum 15-minute active session that meets the accuracy threshold — opening the app earns nothing.

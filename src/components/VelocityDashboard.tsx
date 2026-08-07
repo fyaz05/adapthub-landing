@@ -41,7 +41,6 @@ export default function VelocityDashboard() {
   const [selectedIndex, setSelectedIndex] = useState(lastIndex);
   const [boxWidth, setBoxWidth] = useState(0);
   const anchorRef = useRef<HTMLDivElement>(null);
-  const draggingRef = useRef(false);
 
   /* Hardware-accelerated scrub position: pointer/keyboard writes the motion
      value, the spring smooths it, transform-only rendering keeps it on the
@@ -102,7 +101,6 @@ export default function VelocityDashboard() {
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      draggingRef.current = true;
       e.currentTarget.setPointerCapture(e.pointerId);
       const next = indexFromClientX(e.clientX);
       if (next !== null) setSelectedIndex(next);
@@ -110,8 +108,12 @@ export default function VelocityDashboard() {
     [indexFromClientX],
   );
 
+  /* Drag-gated via pointer capture (same contract as the streak window
+     scrubber): an active press scrubs; a passive hover does not hijack the
+     selected day, so the readout stays stable while reading the chart. */
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
       const next = indexFromClientX(e.clientX);
       if (next !== null) setSelectedIndex(next);
     },
@@ -120,7 +122,6 @@ export default function VelocityDashboard() {
 
   const handlePointerEnd = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      draggingRef.current = false;
       if (e.currentTarget.hasPointerCapture(e.pointerId)) {
         e.currentTarget.releasePointerCapture(e.pointerId);
       }

@@ -1,7 +1,7 @@
 # AdaptHub — free AI-powered adaptive CAT preparation
 
 **URL:** https://adapthub.in/  
-**Updated:** 2026-08-07
+**Updated:** 2026-08-08  
 
 ## Direct answer
 
