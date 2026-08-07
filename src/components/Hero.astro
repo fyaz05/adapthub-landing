@@ -33,7 +33,7 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
   </svg>
 
   {/* ── Core Layout Container ── */}
-  <div class="relative z-elevate flex-1 flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-16">
+  <div class="relative z-elevate flex-1 flex flex-col items-center justify-start w-full max-w-[1200px] mx-auto pt-32 sm:pt-36 lg:pt-40 pb-8 sm:pb-12 lg:pb-16">
       
     {/* Typographic Drama */}
     <div class="relative z-20 text-center hero-stagger w-full px-4 mb-5" style="--i:0">
@@ -132,7 +132,7 @@ const { src: optimizedHeroImg } = await getImage({ src: heroImage, width: 1200, 
 
         {/* Downward Intent Vector */}
         <div class="hidden lg:flex flex-col items-center gap-3 select-none pb-1" aria-hidden="true">
-          <span class="font-mono text-[9px] text-fg-subtle tracking-[0.2em] uppercase origin-bottom -rotate-90 translate-y-2 opacity-0 hero-fade" style="--delay: 1500ms">
+          <span class="font-mono text-[11px] text-fg-subtle tracking-[0.2em] uppercase origin-bottom -rotate-90 translate-y-2 opacity-0 hero-fade" style="--delay: 1500ms">
             Scroll
           </span>
           <div class="w-px h-12 bg-gradient-to-b from-zinc-800 to-transparent"></div>

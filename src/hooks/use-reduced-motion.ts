@@ -43,9 +43,9 @@ export function useReducedMotion(): boolean {
     const update = () => setIsReduced(checkPerformance());
     update();
 
-    mql.addEventListener("change", update);
+    mql.addEventListener?.("change", update);
     return () => {
-      mql?.removeEventListener("change", update);
+      mql?.removeEventListener?.("change", update);
     };
   }, []);
 

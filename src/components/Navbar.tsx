@@ -404,7 +404,7 @@ const Navbar = () => {
 
                                   {/* Section Header */}
                                   <div className="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
-                                    <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-[0.25em]">
+                                    <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-[0.25em]">
                                       Index {"//"} {item.label}
                                     </span>
                                   </div>
@@ -427,7 +427,7 @@ const Navbar = () => {
                                           }}
                                           className="group/sub relative flex items-start gap-4 p-3 rounded-xl outline-none hover:bg-white/[0.04] focus-visible:bg-white/[0.04] focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-inset transition-[background-color] duration-200"
                                         >
-                                          <span className="font-mono text-[10px] text-zinc-600 mt-1 group-hover/sub:text-brand-teal/70 group-focus-visible/sub:text-brand-teal/70 transition-colors duration-200 shrink-0 tabular-nums">
+                                          <span className="font-mono text-[11px] text-zinc-600 mt-1 group-hover/sub:text-brand-teal/70 group-focus-visible/sub:text-brand-teal/70 transition-colors duration-200 shrink-0 tabular-nums">
                                             {String(idx + 1).padStart(2, "0")}
                                           </span>
                                           <div className="flex flex-col gap-1 min-w-0 flex-1">
@@ -620,7 +620,7 @@ const Navbar = () => {
                 >
                   {/* Section Divider */}
                   <div className="flex items-center gap-4 mb-5">
-                    <span className="font-mono text-[10px] text-brand-teal tracking-[0.2em] shrink-0">
+                    <span className="font-mono text-[11px] text-brand-teal tracking-[0.2em] shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div
@@ -689,7 +689,7 @@ const Navbar = () => {
                 </svg>
               </SpotlightButton>
 
-              <div className="flex items-center gap-3 font-mono text-[10px] text-zinc-500 uppercase tracking-[0.2em]">
+              <div className="flex items-center gap-3 font-mono text-[11px] text-zinc-500 uppercase tracking-[0.2em]">
                 <span className="flex items-center gap-2 text-fg-muted bg-surface px-3 py-1.5 rounded-full border border-border-subtle">
                   <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
                   Free for learners

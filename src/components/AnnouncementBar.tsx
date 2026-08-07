@@ -2,18 +2,18 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 const AnnouncementBar = () => {
-  // Use a lazy initializer for initial state to check the attribute set in Layout.astro
-  const [isVisible, setIsVisible] = useState(() => {
-    if (typeof document !== "undefined") {
-      return (
-        document.documentElement.getAttribute("data-announcement") !==
-        "dismissed"
-      );
-    }
-    return true;
-  });
+  const [isVisible, setIsVisible] = useState(true);
 
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    if (
+      typeof document !== "undefined" &&
+      document.documentElement.getAttribute("data-announcement") === "dismissed"
+    ) {
+      setIsVisible(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -45,14 +45,14 @@ const AnnouncementBar = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--brand-teal-rgb)/0.08)_0%,transparent_60%)] pointer-events-none" />
 
           {/* Content Container */}
-          <div className="relative flex items-center justify-center gap-2.5 text-xs md:text-sm text-center max-w-4xl pr-8 md:pr-0">
+          <div className="relative flex items-center justify-center gap-2.5 text-xs md:text-sm text-center max-w-4xl pr-8 md:pr-0 min-w-0">
             {/* Pulsing Status Dot */}
             <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75 duration-1000" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-teal" />
             </span>
 
-            <span className="text-fg font-sans tracking-wide text-xs md:text-sm truncate">
+            <span className="text-fg font-sans tracking-wide text-xs md:text-sm min-w-0 break-words">
               AdaptHub is in{" "}
               <span className="text-brand-teal font-medium">Early Access</span>
               <span className="mx-2 opacity-50">·</span>
@@ -66,7 +66,7 @@ const AnnouncementBar = () => {
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-1 md:right-4 p-3 text-fg-muted hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
+            className="absolute right-1 md:right-4 w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center text-fg-muted hover:text-white transition-all active:scale-95 touch-manipulation outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-full"
             aria-label="Dismiss announcement"
           >
             <svg

@@ -108,9 +108,9 @@ export const resolvedContent = {
     ],
   },
   trustStrip: {
-    questions: "10,000+ curated questions",
-    free: "Free for all aspirants",
-    sections: "QA · DILR · VARC",
-    ...BASE_CONTENT?.trustStrip,
+    questions:
+      BASE_CONTENT?.trustStrip?.questions ?? "10,000+ curated questions",
+    free: BASE_CONTENT?.trustStrip?.free ?? "Free for all aspirants",
+    sections: BASE_CONTENT?.trustStrip?.sections ?? "QA · DILR · VARC",
   },
 };
