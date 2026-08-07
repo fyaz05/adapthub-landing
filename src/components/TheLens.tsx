@@ -72,7 +72,7 @@ const DataDot = ({
 
 const ZPDVisual = ({ progress }: { progress: MotionValue<number> }) => {
   const pathLength = useTransform(progress, [0.02, 0.22], [0, 1]);
-  const highlightOpacity = useTransform(progress, [0.20, 0.23], [0, 1]);
+  const highlightOpacity = useTransform(progress, [0.2, 0.23], [0, 1]);
   const baselineOpacity = useTransform(progress, [0.22, 0.25], [0, 1]);
   const baselineY = useTransform(progress, [0.22, 0.25], [-5, 0]);
 
@@ -246,7 +246,7 @@ const RoadmapVisual = ({ progress }: { progress: MotionValue<number> }) => {
   const blockPathLength = useTransform(progress, [0.31, 0.35], [0, 1]);
   const detourPathLength = useTransform(progress, [0.35, 0.47], [0, 1]);
   const headDistance = useTransform(progress, [0.35, 0.47], ["0%", "100%"]);
-  const destScale = useTransform(progress, [0.47, 0.50], [0, 1]);
+  const destScale = useTransform(progress, [0.47, 0.5], [0, 1]);
   const gapOpacity = useTransform(progress, [0.28, 0.31], [0, 1]);
   const gapX = useTransform(progress, [0.28, 0.31], [-10, 0]);
   const optOpacity = useTransform(progress, [0.36, 0.39], [0, 1]);
@@ -518,20 +518,20 @@ const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
       </svg>
 
       {/* Labels */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.memory}
       </div>
-      <div className="absolute right-4 top-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute right-4 top-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.logic}
       </div>
-      <div className="absolute left-4 top-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute left-4 top-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.speed}
       </div>
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.focus}
       </div>
 
-      <div className="absolute top-8 right-8 bg-surface border border-border p-2 rounded text-[10px] space-y-1">
+      <div className="absolute top-8 right-8 bg-surface border border-border p-2 rounded text-[11px] space-y-1">
         <div className="flex justify-between gap-4">
           <span className="text-fg-muted">
             {CONTENT.theLens.visuals.diagnostics.score.label}
@@ -721,7 +721,7 @@ const TheLens = () => {
                 className="space-y-4 sm:space-y-6 [grid-area:1/1]"
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest px-2 py-1 rounded bg-white/5 border border-border-subtle text-fg-muted">
+                  <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest px-2 py-1 rounded bg-white/5 border border-border-subtle text-fg-muted">
                     {SYSTEMS[activeIndex].subtitle}
                   </span>
                   <div className="h-px flex-1 bg-white/10" />

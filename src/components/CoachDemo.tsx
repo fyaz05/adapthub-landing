@@ -67,10 +67,10 @@ export default function CoachDemo() {
             {/* Top Bar */}
             <div className="flex justify-between items-center border-b border-border pb-5 mb-6">
               <div className="flex gap-2">
-                <span className="px-2.5 py-1 bg-surface/80 rounded bg-clip-padding text-[10px] font-mono text-fg uppercase tracking-widest">
+                <span className="px-2.5 py-1 bg-surface/80 rounded bg-clip-padding text-[11px] font-mono text-fg uppercase tracking-widest">
                   {data.question.category}
                 </span>
-                <span className="px-2.5 py-1 bg-red-950/40 text-red-400 border border-red-900/30 rounded bg-clip-padding text-[10px] font-mono uppercase tracking-widest">
+                <span className="px-2.5 py-1 bg-red-950/40 text-red-400 border border-red-900/30 rounded bg-clip-padding text-[11px] font-mono uppercase tracking-widest">
                   {data.question.level}
                 </span>
               </div>
@@ -119,7 +119,7 @@ export default function CoachDemo() {
                   AI Coach
                 </span>
               </div>
-              <span className="font-mono text-[10px] text-fg-muted uppercase tracking-widest">
+              <span className="font-mono text-[11px] text-fg-muted uppercase tracking-widest">
                 Analyzing your approach
               </span>
             </div>
@@ -140,7 +140,7 @@ export default function CoachDemo() {
                   .
                   <br />
                   <br />
-                  <span className="text-fg-muted font-mono text-[10px] md:text-[11px] block mb-2 uppercase tracking-widest font-semibold">
+                  <span className="text-fg-muted font-mono text-[11px] md:text-xs block mb-2 uppercase tracking-widest font-semibold">
                     Feedback
                   </span>
                   {data.diagnostic.analysisP1}
@@ -158,7 +158,7 @@ export default function CoachDemo() {
                   {data.diagnostic.analysisP4}
                   <br />
                   <br />
-                  <span className="text-orange-400 font-mono text-[10px] md:text-xs uppercase tracking-widest border border-orange-400/20 bg-orange-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
+                  <span className="text-orange-400 font-mono text-[11px] md:text-xs uppercase tracking-widest border border-orange-400/20 bg-orange-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
                     {data.diagnostic.errorFlag}
                   </span>
                 </p>
@@ -171,7 +171,7 @@ export default function CoachDemo() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   className="bg-[#051514] border border-brand-teal/30 shadow-[0_0_40px_rgba(45,212,191,0.08)] rounded-3xl rounded-tl-sm p-6 max-w-[90%] md:max-w-[85%] self-start relative mt-2"
                 >
-                  <div className="text-brand-teal font-mono text-[10px] md:text-[11px] font-semibold mb-4 uppercase tracking-widest flex items-center gap-2">
+                  <div className="text-brand-teal font-mono text-[11px] md:text-xs font-semibold mb-4 uppercase tracking-widest flex items-center gap-2">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -223,23 +223,23 @@ export default function CoachDemo() {
                     {data.errorAnalysis.distractorExplanation}
                   </p>
                   <div className="mt-5">
-                    <div className="text-fg-muted font-mono text-[10px] md:text-[11px] mb-3 uppercase tracking-widest font-semibold">
+                    <div className="text-fg-muted font-mono text-[11px] md:text-xs mb-3 uppercase tracking-widest font-semibold">
                       {data.errorAnalysis.whyWrongQuestion}
                     </div>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-orange-400 font-mono text-[10px] md:text-xs uppercase tracking-widest border border-orange-400/20 bg-orange-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
+                        <span className="text-orange-400 font-mono text-[11px] md:text-xs uppercase tracking-widest border border-orange-400/20 bg-orange-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
                           {data.errorAnalysis.studentReport}
                         </span>
-                        <span className="text-fg-subtle font-mono text-[10px] uppercase tracking-widest">
+                        <span className="text-fg-subtle font-mono text-[11px] uppercase tracking-widest">
                           Your answer
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-green-400 font-mono text-[10px] md:text-xs uppercase tracking-widest border border-green-400/20 bg-green-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
+                        <span className="text-green-400 font-mono text-[11px] md:text-xs uppercase tracking-widest border border-green-400/20 bg-green-400/10 px-2.5 py-1.5 rounded-sm inline-block shadow-sm">
                           {data.errorAnalysis.systemAnalysis}
                         </span>
-                        <span className="text-fg-subtle font-mono text-[10px] uppercase tracking-widest">
+                        <span className="text-fg-subtle font-mono text-[11px] uppercase tracking-widest">
                           System analysis
                         </span>
                       </div>

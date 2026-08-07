@@ -163,7 +163,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
 
           {/* Top Header Row */}
           <div className="flex items-center justify-between mb-3 sm:mb-4">
-            <span className="text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-[0.15em] text-fg-muted uppercase">
+            <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.15em] text-fg-muted uppercase">
               {CONTENT.parallaxDashboard.growth.label}
             </span>
             {/* Breathing Active Dot Indicator */}
@@ -178,7 +178,7 @@ const ParallaxDashboard = ({ heroImage }: { heroImage: string }) => {
             <span className="text-2xl sm:text-3xl lg:text-[2.75rem] font-sans font-extrabold text-fg tracking-tight">
               <motion.span>{countText}</motion.span>
             </span>
-            <span className="text-[10px] sm:text-xs text-fg-muted font-medium">
+            <span className="text-[11px] sm:text-xs text-fg-muted font-medium">
               {CONTENT.parallaxDashboard.growth.comparison}
             </span>
           </div>

@@ -129,11 +129,11 @@ const RadialProgress = ({ value, label }: { value: number; label: string }) => {
         <div className="bg-bg border border-border w-[64px] h-[64px] md:w-[72px] md:h-[72px] flex flex-col items-center justify-center shadow-2xl">
           <span className="text-lg md:text-2xl font-serif text-fg tracking-tighter leading-none mb-1">
             {value}
-            <span className="text-brand-teal text-[9px] md:text-[10px] ml-0.5">
+            <span className="text-brand-teal text-[11px] md:text-xs ml-0.5">
               %
             </span>
           </span>
-          <span className="font-mono text-[6px] md:text-[7px] uppercase tracking-[0.2em] text-fg-muted">
+          <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] text-fg-muted">
             {label}
           </span>
         </div>
@@ -180,7 +180,7 @@ const CardStack = () => {
       >
         <div className="flex items-center gap-2 mb-3 md:mb-4 border-b border-border pb-2 md:pb-3">
           <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-brand-teal animate-pulse" />
-          <span className="font-mono text-[7px] md:text-[8px] text-brand-teal uppercase tracking-widest">
+          <span className="font-mono text-[11px] md:text-xs text-brand-teal uppercase tracking-widest">
             Mastery level
           </span>
         </div>
@@ -270,7 +270,7 @@ const BentoCard = ({ card }: { card: CardData }) => {
         `}
         >
           <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <span className="font-mono text-[9px] md:text-[10px] text-fg-muted uppercase tracking-[0.2em] border border-border px-2 py-0.5 lg:group-hover:text-brand-teal lg:group-hover:border-brand-teal/30 transition-colors duration-300 shrink-0">
+            <span className="font-mono text-[11px] md:text-xs text-fg-muted uppercase tracking-[0.2em] border border-border px-2 py-0.5 lg:group-hover:text-brand-teal lg:group-hover:border-brand-teal/30 transition-colors duration-300 shrink-0">
               {card.id}
             </span>
           </div>
@@ -327,14 +327,14 @@ const BentoGrid = () => {
           className="relative w-full h-full flex flex-col justify-end p-5 md:p-0"
           aria-hidden="true"
         >
-          <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[8px] md:text-[9px] text-fg-muted tracking-[0.2em] uppercase z-20">
+          <div className="absolute top-4 md:top-6 right-4 md:right-6 font-mono text-[11px] md:text-xs text-fg-muted tracking-[0.2em] uppercase z-20">
             [ Live Telemetry ]
           </div>
 
           <DataSpectrum />
 
           <div className="relative md:absolute md:bottom-8 md:left-8 z-20 bg-bg/80 backdrop-blur-md p-4 border border-border-subtle shadow-2xl w-max">
-            <span className="block font-mono text-[8px] md:text-[9px] text-fg-muted uppercase tracking-widest mb-1">
+            <span className="block font-mono text-[11px] md:text-xs text-fg-muted uppercase tracking-widest mb-1">
               Delta Velocity
             </span>
             <span className="font-serif text-2xl md:text-3xl lg:text-4xl text-fg flex items-baseline gap-1">
@@ -373,7 +373,7 @@ const BentoGrid = () => {
                       aria-selected={isActive}
                       aria-controls="tab-panel"
                       onClick={() => setActiveTab(tab.toLowerCase())}
-                      className={`relative flex-1 sm:flex-none px-4 py-2 sm:py-1.5 text-[9px] uppercase tracking-[0.2em] font-mono transition-all active:scale-95 outline-none select-none touch-manipulation focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 ${
+                      className={`relative flex-1 sm:flex-none px-4 py-2 sm:py-1.5 text-[11px] uppercase tracking-[0.2em] font-mono transition-all active:scale-95 outline-none select-none touch-manipulation focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-teal/50 ${
                         isActive
                           ? "text-brand-teal"
                           : "text-fg-muted hover:text-fg"
@@ -400,7 +400,7 @@ const BentoGrid = () => {
               )}
             </div>
             {/* Hex Memory Address Readout */}
-            <span className="font-mono text-[8px] text-fg-muted tracking-widest hidden xl:block shrink-0">
+            <span className="font-mono text-[11px] text-fg-muted tracking-widest hidden xl:block shrink-0">
               0x{activeTab === "accuracy" ? "F4A1" : "E2B9"}
             </span>
           </div>
@@ -497,14 +497,14 @@ const BentoGrid = () => {
           <div className="w-full md:w-[240px] xl:w-[320px] border-t md:border-t-0 md:border-l border-border-subtle bg-bg/40 flex flex-col relative z-20 shrink-0 min-w-0 max-h-[250px] md:max-h-none overflow-y-auto">
             {/* Console Header */}
             <div className="sticky top-0 z-30 px-4 py-3 border-b border-border-subtle flex items-center justify-between bg-bg/80 backdrop-blur-md">
-              <span className="font-mono text-[8px] md:text-[9px] text-fg-muted uppercase tracking-[0.2em]">
+              <span className="font-mono text-[11px] md:text-xs text-fg-muted uppercase tracking-[0.2em]">
                 Live Analysis Log
               </span>
               <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
             </div>
 
             {/* Console Output Terminal */}
-            <div className="p-4 flex-1 font-mono text-[8px] md:text-[9px] xl:text-[10px] uppercase tracking-wider text-fg-muted space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
+            <div className="p-4 flex-1 font-mono text-[11px] md:text-xs uppercase tracking-wider text-fg-muted space-y-3 relative min-h-[140px] md:min-h-[180px] break-words whitespace-pre-wrap pb-8">
               {/* Scanline overlay over text */}
               <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgb(var(--brand-teal-rgb)/0.05)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
 
@@ -591,7 +591,7 @@ const BentoGrid = () => {
                 className="block w-6 md:w-8 h-px bg-brand-teal/60"
                 aria-hidden="true"
               />
-              <span className="font-mono text-[9px] md:text-[10px] lg:text-xs text-brand-teal/60 uppercase tracking-[0.25em] select-none">
+              <span className="font-mono text-[11px] md:text-xs text-brand-teal/60 uppercase tracking-[0.25em] select-none">
                 {gridContent.header?.eyebrow || "System Protocol"}
               </span>
             </div>

@@ -13,7 +13,7 @@ const FAQ = () => {
       <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.15)" />
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-12 sm:mb-20 text-center">
-          <span className="font-mono text-[9px] sm:text-[10px] text-brand-teal uppercase tracking-widest mb-3 sm:mb-4 block">
+          <span className="font-mono text-[11px] sm:text-xs text-brand-teal uppercase tracking-widest mb-3 sm:mb-4 block">
             {CONTENT.faq.eyebrow}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-6xl text-fg font-serif italic">

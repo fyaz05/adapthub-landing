@@ -134,7 +134,7 @@ export default function VelocityDashboard() {
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: i * 0.1 }}
                         >
-                          <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-mono text-fg-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono text-fg-muted opacity-0 group-hover:opacity-100 transition-opacity">
                             {acc.value}%
                           </div>
                         </motion.div>
@@ -220,7 +220,7 @@ export default function VelocityDashboard() {
                     return (
                       <div
                         key={d.id}
-                        className="absolute -bottom-8 text-[10px] uppercase tracking-widest font-mono text-fg-muted -translate-x-1/2 text-center"
+                        className="absolute -bottom-8 text-[11px] uppercase tracking-widest font-mono text-fg-muted -translate-x-1/2 text-center"
                         style={{ left: `${(i / (days.length - 1)) * 100}%` }}
                       >
                         {d.label}
@@ -242,7 +242,7 @@ export default function VelocityDashboard() {
                   <span className="text-orange-500 text-lg font-bold">⚠</span>
                 </div>
                 <div>
-                  <h4 className="text-orange-500 font-mono text-[10px] uppercase tracking-widest mb-1">
+                  <h4 className="text-orange-500 font-mono text-[11px] uppercase tracking-widest mb-1">
                     Tilt Detected
                   </h4>
                   <p className="text-fg-muted text-xs font-sans leading-relaxed">
@@ -264,8 +264,9 @@ export default function VelocityDashboard() {
                   Confidence Calibration
                 </h3>
                 <p className="text-fg-muted text-sm leading-relaxed">
-                  AdaptHub tracks how well you judge your own answers.
-                  See whether you are overconfident, underconfident, or well calibrated, and close the gaps.
+                  AdaptHub tracks how well you judge your own answers. See
+                  whether you are overconfident, underconfident, or well
+                  calibrated, and close the gaps.
                 </p>
               </div>
 
@@ -281,7 +282,7 @@ export default function VelocityDashboard() {
                   aria-label="High Confidence, Incorrect. You are overconfident in this area"
                 >
                   <div className="absolute inset-0 bg-red-950/40 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
-                  <div className="text-[8px] sm:text-[9px] md:text-[10px] text-red-500/70 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
+                  <div className="text-[11px] sm:text-xs text-red-500/70 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block min-w-0 break-words pr-1">
                     High Conf
                     <span className="hidden sm:inline">, Incorrect</span>
                   </div>
@@ -300,7 +301,7 @@ export default function VelocityDashboard() {
                   aria-label="High Confidence, Correct quadrant indicates Well Calibrated"
                 >
                   <div className="absolute inset-0 bg-brand-teal/10 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
-                  <div className="text-[8px] sm:text-[9px] md:text-[10px] text-brand-teal/50 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
+                  <div className="text-[11px] sm:text-xs text-brand-teal/50 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block min-w-0 break-words pr-1">
                     High Conf<span className="hidden sm:inline">, Correct</span>
                   </div>
                   <div className="text-brand-teal font-bold font-sans text-sm sm:text-base md:text-lg lg:text-xl relative z-10 leading-tight">
@@ -319,7 +320,7 @@ export default function VelocityDashboard() {
                   aria-label="Low Confidence, Incorrect quadrant indicates a Known Gap"
                 >
                   <div className="absolute inset-0 bg-surface/50 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
-                  <div className="text-[8px] sm:text-[9px] md:text-[10px] text-fg-muted font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
+                  <div className="text-[11px] sm:text-xs text-fg-muted font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block min-w-0 break-words pr-1">
                     Low Conf
                     <span className="hidden sm:inline">, Incorrect</span>
                   </div>
@@ -338,12 +339,12 @@ export default function VelocityDashboard() {
                   aria-label="Low Confidence, Correct quadrant indicates a Lucky Guess"
                 >
                   <div className="absolute inset-0 bg-orange-950/30 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
-                  <div className="text-[8px] sm:text-[9px] md:text-[10px] text-orange-500/60 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block truncate pr-1">
+                  <div className="text-[11px] sm:text-xs text-orange-500/60 font-mono uppercase tracking-wider sm:tracking-widest relative z-10 leading-[1.2] flex-grow-0 block min-w-0 break-words pr-1">
                     Low Conf<span className="hidden sm:inline">, Correct</span>
                   </div>
                   <div className="text-orange-400 font-medium font-sans text-sm sm:text-base md:text-lg lg:text-xl relative z-10 leading-tight">
                     Lucky Guess
-                    <div className="text-[9px] sm:text-[10px] md:text-xs opacity-80 border border-orange-500/30 bg-orange-500/10 px-1 py-0.5 rounded sm:mt-1 inline-block mt-0.5 w-max">
+                    <div className="text-[11px] sm:text-xs md:text-sm opacity-80 border border-orange-500/30 bg-orange-500/10 px-1 py-0.5 rounded sm:mt-1 inline-block mt-0.5 w-max">
                       SRS Flag
                     </div>
                   </div>
@@ -351,10 +352,10 @@ export default function VelocityDashboard() {
               </div>
 
               {/* Axes Labels */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-fg-muted uppercase tracking-widest text-center">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[11px] font-mono text-fg-muted uppercase tracking-widest text-center">
                 Competence →
               </div>
-              <div className="absolute top-1/2 left-2 -translate-y-1/2 -rotate-90 text-[9px] font-mono text-fg-muted uppercase tracking-widest text-center origin-center">
+              <div className="absolute top-1/2 left-2 -translate-y-1/2 -rotate-90 text-[11px] font-mono text-fg-muted uppercase tracking-widest text-center origin-center">
                 Confidence →
               </div>
             </motion.div>

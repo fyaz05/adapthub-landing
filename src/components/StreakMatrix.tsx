@@ -42,7 +42,7 @@ const DayCell = React.memo(
         type="button"
         disabled={dayData.future || !dayData.practiced}
         tabIndex={dayData.future || !dayData.practiced ? -1 : 0}
-        className={`relative block p-0 outline-none w-3 h-3 md:w-4 md:h-4 rounded-[2px] border cursor-default animate-pulse-fade-in opacity-0
+        className={`relative block p-0 outline-none w-6 h-6 rounded-[3px] border cursor-default animate-pulse-fade-in opacity-0
           focus-visible:ring-1 focus-visible:ring-brand-teal focus-visible:ring-offset-1 focus-visible:ring-offset-bg
           transition-all duration-300 active:scale-95 active:duration-75 ease-[cubic-bezier(0.23,1,0.32,1)]
           ${
@@ -214,16 +214,16 @@ export default function StreakMatrix() {
 
           {/* Legend */}
           <div className="flex flex-col md:flex-row items-center justify-between border-t border-border/50 pt-6 gap-6 px-2">
-            <div className="font-mono text-[10px] text-fg-muted uppercase tracking-widest">
+            <div className="font-mono text-[11px] text-fg-muted uppercase tracking-widest">
               52 weeks of practice
             </div>
-            <div className="flex items-center gap-2 font-mono text-[9px] text-fg-muted uppercase tracking-widest">
+            <div className="flex items-center gap-2 font-mono text-[11px] text-fg-muted uppercase tracking-widest">
               <span>Less</span>
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-bg border border-border/50" />
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/20 border border-brand-teal/10" />
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/40 border border-brand-teal/30" />
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal/60 border border-brand-teal/50" />
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-[2px] bg-brand-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] border-brand-teal" />
+              <div className="w-6 h-6 rounded-[3px] bg-bg border border-border/50" />
+              <div className="w-6 h-6 rounded-[3px] bg-brand-teal/20 border border-brand-teal/10" />
+              <div className="w-6 h-6 rounded-[3px] bg-brand-teal/40 border border-brand-teal/30" />
+              <div className="w-6 h-6 rounded-[3px] bg-brand-teal/60 border border-brand-teal/50" />
+              <div className="w-6 h-6 rounded-[3px] bg-brand-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] border-brand-teal" />
               <span>More</span>
             </div>
           </div>
@@ -259,11 +259,11 @@ export default function StreakMatrix() {
         }}
       >
         <div
-          className="bg-bg/95 backdrop-blur-md border border-border text-fg px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-2xl whitespace-pre-line text-center leading-relaxed font-sans text-[10px] md:text-xs w-max max-w-[200px]"
+          className="bg-bg/95 backdrop-blur-md border border-border text-fg px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-2xl whitespace-pre-line text-center leading-relaxed font-sans text-[11px] md:text-xs w-max max-w-[200px]"
           aria-hidden="true"
         >
           <span className="text-fg">{hoveredDay.tooltip}</span>
-          <div className="text-brand-teal mt-2 border-t border-border/80 pt-2 font-mono text-[9px] md:text-[10px] uppercase tracking-widest font-semibold flex items-center justify-center gap-1.5">
+          <div className="text-brand-teal mt-2 border-t border-border/80 pt-2 font-mono text-[11px] md:text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-1.5">
             <span className="text-emerald-400">⚡</span>
             <span>{hoveredDay.streakAmt} Day Streak</span>
           </div>

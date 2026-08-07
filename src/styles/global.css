@@ -386,6 +386,27 @@ html {
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.2);
     }
+
+    /* Hide scrollbars while keeping content scrollable (used by horizontal
+       jump-to-section navs). */
+    .no-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@layer utilities {
+    /* Hide the announcement bar without JS for users who already dismissed it.
+       Layout.astro sets data-announcement="dismissed" on <html> before first
+       paint, so this eliminates the flash the React useEffect otherwise causes
+       (the component still drives dismiss/scroll state after hydration).
+       Lives in @layer utilities so `display: none` beats the `.flex` utility. */
+    html[data-announcement="dismissed"] .announcement-bar {
+        display: none;
+    }
 }
 
 @layer components {
