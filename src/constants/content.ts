@@ -109,7 +109,7 @@ export const CONTENT = {
       highlight: "Adapts to You",
     },
     description:
-      "Free adaptive practice for CAT 2026. Sign in with Google, take a diagnostic that finds your level, get daily plans built for your weak areas, practice with AI hints that teach instead of spoon-feeding, and track real progress, not vanity scores.",
+      "100% free AI adaptive practice for CAT 2026. A 30-minute diagnostic finds your Zone of Proximal Development across QA, DILR, and VARC. Daily plans target your weak areas, two-tier AI hints teach instead of spoon-feeding, and score telemetry shows exactly where your percentile stands.",
     cta: {
       primary: "Start practicing",
     },
@@ -133,9 +133,9 @@ export const CONTENT = {
       },
       {
         id: "02",
-        title: "Performance Analytics",
+        title: "Score Telemetry",
         description:
-          "Granular CAT mock-style analytics across accuracy, learning velocity, and topic mastery. Not vanity scores.",
+          "CAT 2026 score telemetry that tracks where your percentile is heading: accuracy, learning velocity, and topic mastery across QA, DILR, and VARC. Not vanity scores.",
         tabs: ["Accuracy", "Growth"],
         progress: {
           accuracy: { label: "Accuracy", value: 94 },
@@ -392,11 +392,32 @@ export const CONTENT = {
       id: `vel-${i}`,
       value: v,
     })),
+    scrubber: {
+      hint: "Drag the chart or focus it and use arrow keys to inspect each day.",
+      instructionLabel: "Scrub through 7-day learning telemetry",
+      accuracyLabel: "Accuracy",
+      velocityLabel: "Velocity",
+      deltaLabel: "Day-over-day",
+      bands: {
+        zpd: "ZPD growth band · 70–85%",
+        comfort: "Comfort zone — too easy to grow",
+        overreach: "Overreach — collapse risk",
+      },
+    },
   },
 
   streakMatrix: {
     weeks: 52,
     daysPerWeek: 7,
+    readout: {
+      instructionLabel: "Scrub through 52 weeks of practice",
+      windowLabel: "8-week window",
+      weekLabel: "Week",
+      sessionsLabel: "Sessions",
+      minutesLabel: "Min in ZPD",
+      accuracyLabel: "Avg accuracy",
+      streakLabel: "Best streak",
+    },
   },
 
   howItWorks: {
@@ -421,7 +442,7 @@ export const CONTENT = {
         step: "03",
         title: "Track Real Progress",
         description:
-          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. Not mock scores. See what you actually know and what needs work, backed by 10,000+ curated questions.",
+          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. CAT 2026 score telemetry maps your practice to percentile movement, backed by 10,000+ curated questions.",
       },
       {
         step: "04",
@@ -449,11 +470,11 @@ export const CONTENT = {
     // Titles targeted ~50–60 chars; descriptions ~140–155 chars (SERP-safe).
     defaultTitle: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
-      "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster. Start today.",
+      "Free CAT 2026 prep with ZPD-calibrated practice, two-tier AI hints, and score telemetry for QA, DILR & VARC. Close weak areas faster. Start today.",
     indexPage: {
       title: "Free CAT 2026 Prep — Adaptive Practice & AI Hints | AdaptHub",
       description:
-        "Free adaptive practice — start today. Adaptive study plans, two-tier AI hints, and progress tracking for QA, DILR & VARC.",
+        "Free CAT 2026 prep: ZPD-calibrated daily practice, two-tier AI hints, and score telemetry across QA, DILR & VARC. 10,000+ questions at ₹0.",
     },
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",

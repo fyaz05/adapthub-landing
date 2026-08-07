@@ -18,8 +18,12 @@ const EASE_EXPO = THEME_COLORS.motion.easeCinematic;
  */
 const HAMBURGER_Y = 5.5;
 
+/* Show the sticky mobile conversion bar only once the hero has scrolled past. */
+const CONVERSION_BAR_SCROLL_PX = 560;
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -37,13 +41,17 @@ const Navbar = () => {
   /* ── Scroll & Banner ── */
   useEffect(() => {
     setScrolled(window.scrollY > 40);
+    setPastHero(window.scrollY > CONVERSION_BAR_SCROLL_PX);
     if (
       document.documentElement.getAttribute("data-announcement") === "dismissed"
     ) {
       setBannerVisible(false);
     }
 
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      setPastHero(window.scrollY > CONVERSION_BAR_SCROLL_PX);
+    };
     const onDismiss = () => setBannerVisible(false);
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -497,12 +505,12 @@ const Navbar = () => {
                 </SpotlightButton>
               </div>
 
-              {/* Mobile Toggle */}
+              {/* Mobile Toggle — 44px hit area (WCAG 2.5.8) */}
               <button
                 ref={hamburgerRef}
                 type="button"
                 onClick={() => setMobileMenuOpen((v) => !v)}
-                className="lg:hidden w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.08] flex flex-col items-center justify-center gap-[4px] outline-none touch-manipulation hover:bg-white/[0.08] active:scale-95 transition-[background-color,transform] duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal"
+                className="lg:hidden w-11 h-11 rounded-full bg-white/[0.04] border border-white/[0.08] flex flex-col items-center justify-center gap-[4px] outline-none touch-manipulation hover:bg-white/[0.08] active:scale-95 transition-[background-color,transform] duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -636,7 +644,7 @@ const Navbar = () => {
                           key={sub.label}
                           href={sub.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="group outline-none touch-manipulation py-1 focus-visible:ring-2 focus-visible:ring-brand-teal rounded-sm block w-fit"
+                          className="group outline-none touch-manipulation py-2 focus-visible:ring-2 focus-visible:ring-brand-teal rounded-sm block w-fit"
                         >
                           <span className="text-[7vw] sm:text-[5vw] md:text-3xl font-serif text-zinc-400 group-hover:text-brand-teal group-focus-visible:text-brand-teal active:text-brand-teal tracking-tight leading-tight transition-colors duration-200">
                             {sub.label}
@@ -696,6 +704,43 @@ const Navbar = () => {
                 </span>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ━━ Sticky Bottom Conversion Bar (mobile-only) ━━
+       * Appears once the hero scrolls past; always hidden while the menu is
+       * open so it never competes with the dialog or steals focus. */}
+      <AnimatePresence>
+        {pastHero && !mobileMenuOpen && (
+          <motion.div
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 96 }}
+            animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 96 }}
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { type: "spring", stiffness: 300, damping: 30 }
+            }
+            className="fixed inset-x-3 z-[80] lg:hidden"
+            style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+          >
+            <div className="bg-bg/85 backdrop-blur-xl border border-border rounded-2xl shadow-[0_16px_48px_-12px_rgba(0,0,0,0.85)] p-2.5 pl-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-fg-muted truncate">
+                  {CONTENT.trustStrip.free}
+                </span>
+              </div>
+              <SpotlightButton
+                href={CONTENT.links.app}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-11 px-5 bg-accent-yellow text-black text-[11px] font-bold uppercase tracking-[0.1em] rounded-full shadow-cta-gold hover:shadow-cta-gold-hover active:scale-95 flex items-center justify-center transition-[box-shadow,transform] duration-300 touch-manipulation shrink-0"
+              >
+                {CONTENT.nav.cta}
+              </SpotlightButton>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

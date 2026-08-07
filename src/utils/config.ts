@@ -14,7 +14,7 @@ export const resolvedContent = {
         "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.indexPage?.description ||
-        "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC.",
+        "Free CAT 2026 prep with ZPD-calibrated practice, two-tier AI hints, and score telemetry for QA, DILR & VARC.",
     },
     pricing: {
       title:

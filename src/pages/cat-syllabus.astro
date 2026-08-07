@@ -25,6 +25,7 @@ const syllabusData = [
     questions: "24 Qs",
     time: "40 Mins",
     note: "Grammar is not tested in CAT. Focus entirely on comprehension, logical flow, and paragraph structure.",
+    summary: "CAT VARC has 24 questions in 40 minutes. Reading Comprehension dominates with about 16 questions across 4 dense passages; Verbal Ability covers para jumbles, para summary, odd sentence out, and para completion. Grammar is not tested, and most VA items are TITA with no negative marking.",
     topics: [
       { name: "Reading Comprehension", weight: "16 Qs (4 Passages)", rank: 1, details: "Dense passages from Philosophy, Sociology, History, Science, Economics, and Modern Technology. Question types: Central Idea, Inference, Tone, Author's Purpose, Fact vs Judgment.", strategy: "Around 70% of VARC. Build a daily reading habit (Aeon, Guardian, philosophy, sociology) and analyse author intent, not just content." },
       { name: "Para Jumbles", weight: "2-3 Qs", rank: 1, details: "Rearranging 4-5 sentences into a logically coherent paragraph. Primarily TITA format. Requires identification of transitional words, connectors, and logical flow.", strategy: "Usually TITA (no negative marking). Lock mandatory pairs (pronouns, full-name→acronym) before scanning options." },
@@ -39,6 +40,7 @@ const syllabusData = [
     questions: "22 Qs",
     time: "40 Mins",
     note: "Pure chart DI is rare. Modern CAT tests Hybrid Sets that mix logic with arithmetic and data.",
+    summary: "CAT DILR has 22 questions in 40 minutes across 4–5 sets. Modern papers favour hybrid sets that mix logic with data: arrangements, games and tournaments, Venn diagrams, scheduling, and caselets with missing values. Set selection is the highest-leverage skill in the section.",
     topics: [
       { name: "Data Interpretation", weight: "10-12 Qs", rank: 2, details: "Bar Graphs, Line Charts, Pie Charts, Tables, Caselets, Combination Graphs, Scatter Plots, Tables with Missing Values. Data-driven decision-making under time pressure.", strategy: "Never standalone now; learn calculation shortcuts (growth rates, pie-degree→%) to deploy inside Hybrid sets." },
       { name: "Logical Reasoning", weight: "10-12 Qs", rank: 2, details: "Linear & Circular Seating Arrangements, Constraint-based Puzzles, Binary Logic, Scheduling, Matrix Arrangements, Blood Relations, Truth & Lie, Selection with Conditions, Quant-based LR.", strategy: "Practise full constraint parsing; hybrid sets dominate the modern paper." },
@@ -52,6 +54,7 @@ const syllabusData = [
     questions: "22 Qs",
     time: "40 Mins",
     note: "Sorted by the 70/20/10 rule. Arithmetic and core Algebra dominate the exam.",
+    summary: "CAT QA has 22 questions in 40 minutes. Arithmetic carries about 8–10 questions, Algebra 5–6, Geometry 4–5, Number System 1–2, and Modern Math 1–2. Arithmetic plus Algebra is the core block for most high-percentile attempts.",
     topics: [
       { name: "Arithmetic", weight: "8-10 Qs (~40%)", rank: 1, details: "Percentages, Successive Changes, Profit & Loss, Discounts, Simple & Compound Interest, Installments, Ratio & Proportion, Time Speed & Distance, Time & Work, Averages, Weighted Average, Mixtures & Alligations.", strategy: "Foundation first: Percentages, Ratio, TSD, Time & Work, P&L under adaptive difficulty before anything else." },
       { name: "Algebra", weight: "5-6 Qs", rank: 1, details: "Linear & Quadratic Equations, Polynomials, Inequalities, Logarithms, Functions, Sequences & Series, Maxima & Minima.", strategy: "Treat Equations, Inequalities, Functions and Logs as one continuum; focus on integer/root behaviour." },
@@ -270,6 +273,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                   {section.title}
                 </h2>
               </div>
+              <p data-speakable class="sr-only">{section.summary}</p>
 
               <div class="flex items-center gap-6 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.1em] shrink-0">
                 <div class="flex items-center gap-2">

@@ -601,6 +601,13 @@ const BentoGrid = () => {
                 {gridContent.header?.highlight || "Engineered."}
               </span>
             </h2>
+            <p data-speakable className="sr-only">
+              AdaptHub's free CAT 2026 toolkit: dynamic daily study plans
+              recalibrated from accuracy, speed, and concept gaps; score
+              telemetry across QA, DILR, and VARC; five mastery levels per topic
+              unlocked at 75 percent accuracy; and two-tier AI hints that teach
+              instead of spoon-feeding.
+            </p>
           </motion.div>
         </div>
 
