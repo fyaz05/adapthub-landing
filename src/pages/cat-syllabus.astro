@@ -256,8 +256,10 @@ const siteUrl = Astro.site || "https://adapthub.in/";
         {syllabusData.map((section, index) => (
            <section id={`syllabus-${section.id}`} class="page-stagger relative border border-white/10 bg-white/[0.01] scroll-mt-52" style={`--i:${3 + index}`}>
             
-            {/* Sticky Section Control Bar */}
-            <div class="sticky top-[72px] sm:top-20 z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-white/10 py-5 px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            {/* Sticky Section Control Bar — top offset clears the page-level
+                jump navigation (sticky top-[72px] z-40) so the section control
+                pins below it instead of sliding underneath. */}
+            <div class="sticky top-[128px] sm:top-[128px] z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-white/10 py-5 px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
               <div class="flex items-center gap-4 md:gap-6">
                 <span class="font-mono text-[10px] sm:text-xs text-brand-teal uppercase tracking-[0.2em] bg-brand-teal/5 border border-brand-teal/20 px-2 py-1 shrink-0">

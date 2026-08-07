@@ -39,7 +39,7 @@ const AnnouncementBar = () => {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           role="region"
           aria-label="Announcement"
-          className="fixed top-0 inset-x-0 z-[60] h-auto min-h-10 py-2 flex items-center justify-center bg-bg/80 backdrop-blur-md border-b border-border-subtle px-4 md:px-12"
+          className="announcement-bar fixed top-0 inset-x-0 z-[60] h-auto min-h-10 py-2 flex items-center justify-center bg-bg/80 backdrop-blur-md border-b border-border-subtle px-4 md:px-12"
         >
           {/* Living Atmosphere: Radial Gradient */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--brand-teal-rgb)/0.08)_0%,transparent_60%)] pointer-events-none" />

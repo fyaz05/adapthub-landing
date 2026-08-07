@@ -398,6 +398,17 @@ html {
     }
 }
 
+@layer utilities {
+    /* Hide the announcement bar without JS for users who already dismissed it.
+       Layout.astro sets data-announcement="dismissed" on <html> before first
+       paint, so this eliminates the flash the React useEffect otherwise causes
+       (the component still drives dismiss/scroll state after hydration).
+       Lives in @layer utilities so `display: none` beats the `.flex` utility. */
+    html[data-announcement="dismissed"] .announcement-bar {
+        display: none;
+    }
+}
+
 @layer components {
     /* Orchestration Utilities */
     .animate-in {

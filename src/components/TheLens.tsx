@@ -518,13 +518,13 @@ const DiagnosticsVisual = ({ progress }: { progress: MotionValue<number> }) => {
       </svg>
 
       {/* Labels */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.memory}
       </div>
-      <div className="absolute right-4 top-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute right-4 top-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.logic}
       </div>
-      <div className="absolute left-4 top-1/2 text-[9px] text-fg-muted font-mono">
+      <div className="absolute left-4 top-1/2 text-[11px] text-fg-muted font-mono">
         {CONTENT.theLens.visuals.diagnostics.speed}
       </div>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[11px] text-fg-muted font-mono">

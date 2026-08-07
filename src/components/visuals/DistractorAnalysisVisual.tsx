@@ -33,10 +33,10 @@ const DistractorAnalysisVisual = () => {
           className="bg-black/90 border border-zinc-800 rounded-xl p-3.5 w-[280px] flex-shrink-0 shadow-2xl relative z-10"
         >
           <div className="flex justify-between items-start mb-2.5 border-b border-zinc-800/50 pb-2">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded">
+            <span className="font-mono text-xs uppercase tracking-widest text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded">
               VARC_Q42
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-red-500 bg-red-950/30 px-1.5 py-0.5 rounded border border-red-900/30 font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-red-500 bg-red-950/30 px-1.5 py-0.5 rounded border border-red-900/30 font-bold">
               28% Acc
             </span>
           </div>
@@ -47,7 +47,7 @@ const DistractorAnalysisVisual = () => {
             if which were true?
           </p>
 
-          <div className="space-y-1.5 font-mono text-[11px]">
+          <div className="space-y-1.5 font-mono text-xs">
             <div className="px-2.5 py-2 rounded-lg border border-zinc-900 bg-zinc-950 text-zinc-500 flex items-center gap-2">
               <span className="opacity-50">[A]</span>
               <span className="truncate">Ignores historical context.</span>
@@ -103,7 +103,7 @@ const DistractorAnalysisVisual = () => {
           transition={{ delay: 0.9, type: "spring", stiffness: 200 }}
           className="bg-[#0a0505] border border-red-900/50 p-3 rounded-xl shadow-[0_10px_30px_rgba(239,68,68,0.2)] flex-shrink-0 w-[185px] relative z-10"
         >
-          <div className="font-mono text-[11px] text-red-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5 font-bold">
+          <div className="font-mono text-xs text-red-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5 font-bold">
             <svg
               className="w-3 h-3 flex-shrink-0"
               fill="none"
@@ -126,7 +126,7 @@ const DistractorAnalysisVisual = () => {
         </motion.div>
 
         {/* Decorative tag */}
-        <div className="absolute bottom-2 right-4 font-mono text-[11px] text-zinc-700 uppercase tracking-widest pointer-events-none">
+        <div className="absolute bottom-2 right-4 font-mono text-xs text-zinc-700 uppercase tracking-widest pointer-events-none">
           Diagnostic_v4
         </div>
       </div>

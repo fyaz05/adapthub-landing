@@ -108,6 +108,9 @@ export const resolvedContent = {
     ],
   },
   trustStrip: {
+    // Spread first so any future extra keys on BASE_CONTENT.trustStrip are
+    // preserved, then override the three known fields with safe fallbacks.
+    ...BASE_CONTENT?.trustStrip,
     questions:
       BASE_CONTENT?.trustStrip?.questions ?? "10,000+ curated questions",
     free: BASE_CONTENT?.trustStrip?.free ?? "Free for all aspirants",
