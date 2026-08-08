@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-Adaptive learning for CAT is an AI-driven method where question difficulty, topic order, and support (hints) change continuously from each learner’s performance—accuracy, response time, and error patterns—so practice stays in the Zone of Proximal Development (ZPD): challenging enough to grow, not so hard that learning collapses.
+Adaptive learning for CAT is an AI-driven method where question difficulty, topic order, and support (hints) change continuously from each learner’s performance (accuracy, response time, and error patterns), so practice stays in the Zone of Proximal Development (ZPD): challenging enough to grow, not so hard that learning collapses.
 
 ## ZPD in one line
 

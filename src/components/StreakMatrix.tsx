@@ -527,7 +527,7 @@ export default function StreakMatrix() {
                 transition={{ duration: 0.25 }}
                 className="font-serif text-2xl text-brand-teal tabular-nums"
               >
-                {windowStats.sessions > 0 ? `${windowStats.avgAccuracy}%` : "—"}
+                {windowStats.sessions > 0 ? `${windowStats.avgAccuracy}%` : "–"}
               </motion.div>
             </div>
             <div className="border border-border/60 rounded-xl px-4 py-3 bg-surface/40">

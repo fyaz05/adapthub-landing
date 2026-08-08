@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 const getRobotsTxt = (sitemapURL: URL) =>
-  `# AdaptHub robots.txt — https://adapthub.in
+  `# AdaptHub robots.txt - https://adapthub.in
 # Crawl-friendly for classic search + AI answer engines.
 # Visibility goal: allow major AI crawlers (AEO). Block only non-content paths.
 

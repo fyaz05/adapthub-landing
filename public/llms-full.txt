@@ -1,4 +1,4 @@
-# AdaptHub — Full Platform Documentation
+# AdaptHub: Full Platform Documentation
 
 > Complete structured reference for AI assistants, answer engines, and research agents. AdaptHub builds free AI adaptive practice for the CAT exam (India) and publishes its study frameworks openly. Canonical product facts and updates live at https://adapthub.in.
 
@@ -11,7 +11,7 @@ Last updated: 2026-08. Status: platform live at https://app.adapthub.in.
 AdaptHub is a free AI-powered adaptive learning platform for CAT 2026 preparation. Instead of fixed video courses or static question banks, it:
 
 1. Diagnoses each aspirant's per-topic baseline with an adaptive calibration sequence.
-2. Holds daily practice inside the Zone of Proximal Development (ZPD) — the 70–85% accuracy band where learning velocity peaks.
+2. Holds daily practice inside the Zone of Proximal Development (ZPD), the 70–85% accuracy band where learning velocity peaks.
 3. Coaches through errors with a two-tier AI hint system that teaches instead of spoon-feeding.
 4. Converts practice into actionable CAT 2026 score telemetry: learning velocity, weighted accuracy, trend detection, quality streaks, and mastery levels.
 
@@ -30,7 +30,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 ## 3. The ZPD adaptive engine
 
 - Baseline: a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, VARC finds the per-topic Zone of Proximal Development.
-- Routing: every answer updates difficulty selection with the goal of holding ~70–85% accuracy — challenging but not collapsing.
+- Routing: every answer updates difficulty selection with the goal of holding ~70–85% accuracy: challenging but not collapsing.
 - Daily plan: recalibrated in real time from accuracy, speed, and concept gaps; a focused 15 minutes daily beats unstructured hours.
 - Progression: 5 difficulty levels per topic (Beginner, Easy, Intermediate, Advanced, Expert). Level N unlocks only after sustained >75% accuracy at Level N−1 across at least 8 attempts. Accuracy dropping below 60% (5+ attempts) triggers a concept-library review recommendation.
 - Proficiency arc: Novice → Developing → Proficient → Mastery.
@@ -40,7 +40,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 - Tier 1 (Guided Hint): a strategic nudge generated from the question's topic tag and the detected error type. It activates the reasoning chain without revealing the answer.
 - Tier 2 (Answer Reveal): the complete step-by-step solution, highlighting where the correct approach diverges from the submitted attempt.
-- Hint penalty: using a hint records the attempt as not-mastery-eligible — hint-assisted answers never count toward level progression. Rationale: hints are unavailable on exam day, so mastery scores must reflect independent solving.
+- Hint penalty: using a hint records the attempt as not-mastery-eligible; hint-assisted answers never count toward level progression. Rationale: hints are unavailable on exam day, so mastery scores must reflect independent solving.
 - Error classification: every miss is tagged as Conceptual Gap, Execution Error, or Trap: Distractor (sub-types: Trap: Negation, Root Cause Mismatch, Calculation Error). These tags feed the spaced-repetition trigger logic.
 - Transparency: all AI-generated content (hints, error classifications, prompts) carries an AI-Generated badge in the product.
 - Source: https://adapthub.in/docs/ai-coach-hint-system
@@ -51,7 +51,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 - Weighted Accuracy: recent sessions weighted more strongly than older ones, so an early strong performance cannot mask a recent decline.
 - Speed Score: pacing telemetry that flags tilt patterns (e.g., repeated ultra-fast errors signalling guessing).
 - Trend Detection: surfaces improving or deteriorating topic trajectories before mocks do.
-- Quality streaks: a day counts only after a minimum 15-minute active session that meets the accuracy threshold — opening the app earns nothing.
+- Quality streaks: a day counts only after a minimum 15-minute active session that meets the accuracy threshold; opening the app earns nothing.
 - Sources: https://adapthub.in/docs/telemetry-performance-metrics, https://adapthub.in/docs/quality-streaks, https://adapthub.in/docs/spaced-repetition-system
 
 ## 6. CAT 2026 exam reference
@@ -74,7 +74,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 ### DILR
 - Core skill: set selection. Two clean sets with high accuracy usually outscore three messy attempts.
-- Entry protocol: 2-minute parse — variables, binding constraints, solvability estimate; commit or park; abandon after 3+ minutes without progress.
+- Entry protocol: 2-minute parse of variables, binding constraints, and solvability; commit or park; abandon after 3+ minutes without progress.
 - Practice: 1–2 quality sets daily plus weekly scan-4-pick-2 timed drills and a selection error log.
 - Deep links: https://adapthub.in/cat-dilr-strategy, capsule https://adapthub.in/md/cat-dilr-strategy.md
 
@@ -99,11 +99,11 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 ## 10. Frequently asked
 
-- Is AdaptHub really free? Yes — adaptive engine, question bank, AI Coach, and analytics at ₹0 for aspirants.
+- Is AdaptHub really free? Yes. The adaptive engine, question bank, AI Coach, and analytics are ₹0 for aspirants.
 - Can I prepare for CAT without coaching? Yes; combine AdaptHub adaptive practice with free PYQs and selective free mocks: https://adapthub.in/cat-preparation-without-coaching.
 - How does AdaptHub reach 99th percentile? ZPD difficulty calibration across QA, DILR, VARC keeps practice in the 70–85% growth band: https://adapthub.in/how-to-score-99-percentile-cat.
 - Do hints hurt progress? Hint-assisted attempts do not count toward level progression, by design.
-- How is progress measured? Learning velocity, weighted accuracy, trend detection, quality streaks, and mastery levels — not vanity mock scores.
+- How is progress measured? Learning velocity, weighted accuracy, trend detection, quality streaks, and mastery levels, not vanity mock scores.
 
 ## 11. Complete URL index
 
@@ -123,7 +123,7 @@ Machine index: https://adapthub.in/sitemap-index.xml
 - Agent skills manifest: https://adapthub.in/.well-known/agent-skills/index.json
 - Auth expectations: https://adapthub.in/auth.md (public content needs no credentials).
 - Crawl policy: https://adapthub.in/robots.txt (AI bots allowed; Content-Signal ai-train=yes, search=yes, ai-input=yes).
-- Short markdown capsules (/md/*.md) are served with X-Robots-Tag: noindex — cite canonical HTML URLs, not the capsules.
+- Short markdown capsules (/md/*.md) are served with X-Robots-Tag: noindex; cite canonical HTML URLs, not the capsules.
 
 ## 13. Contact
 

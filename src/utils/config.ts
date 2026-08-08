@@ -22,7 +22,7 @@ export const resolvedContent = {
         "Free CAT Preparation Online | AdaptHub",
       description:
         BASE_CONTENT?.metadata?.pricing?.description ||
-        "Free adaptive learning for CAT — start today.",
+        "Free adaptive learning for CAT. Start today.",
     },
     about: {
       title:

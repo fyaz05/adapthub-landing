@@ -121,7 +121,7 @@ const DistractorAnalysisVisual = () => {
           </div>
           <p className="text-xs text-zinc-400 font-sans leading-relaxed">
             <span className="text-zinc-200 font-medium">72% of candidates</span>{" "}
-            chose [C] — misread the negation. High confidence, wrong execution.
+            chose [C]: misread the negation. High confidence, wrong execution.
           </p>
         </motion.div>
 

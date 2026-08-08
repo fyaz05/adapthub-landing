@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-Prioritise Arithmetic, then Algebra—together they usually dominate QA weightage—before heavy Geometry or Modern Math. On exam day, clear sitters first and protect accuracy under −1 MCQ penalty. Practise in a ~calibrated challenge band (ZPD) so sessions neither spam easy items nor panic on impossible ones. Non-engineers should master Arithmetic untimed before timed mixes.
+Prioritise Arithmetic, then Algebra (together they usually dominate QA weightage), before heavy Geometry or Modern Math. On exam day, clear sitters first and protect accuracy under −1 MCQ penalty. Practise in a ~calibrated challenge band (ZPD) so sessions neither spam easy items nor panic on impossible ones. Non-engineers should master Arithmetic untimed before timed mixes.
 
 ## Cite
 

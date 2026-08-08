@@ -499,7 +499,7 @@ export default function VelocityDashboard() {
                     }`}
                   >
                     {selectedIndex === 0
-                      ? "—"
+                      ? "–"
                       : `${velocityDelta > 0 ? "+" : ""}${velocityDelta}%`}
                   </motion.div>
                 </div>

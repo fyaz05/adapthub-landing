@@ -1,4 +1,4 @@
-# AdaptHub pricing — available at ₹0
+# AdaptHub pricing: available at ₹0
 
 **URL:** https://adapthub.in/pricing/  
 **Updated:** 2026-07-13

@@ -25,17 +25,17 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "The first time you authorize access to the AdaptHub engine, you bypass traditional static testing. The system initiates an <strong>Adaptive Diagnostic</strong> spanning QA, DILR, and VARC — beginning at Difficulty Level 3 (Intermediate).",
-          "The engine is not measuring your absolute score. It deploys the <strong>Zone of Proximal Development (ZPD) algorithm</strong> to locate your cognitive ceiling. Every correct answer escalates difficulty by one level; every incorrect answer drops it by one. The diagnostic converges in approximately 15–20 questions, producing a baseline proficiency matrix per topic — not a raw score, but a calibrated starting coordinate for your learning engine.",
+          "The first time you authorize access to the AdaptHub engine, you bypass traditional static testing. The system initiates an <strong>Adaptive Diagnostic</strong> spanning QA, DILR, and VARC, beginning at Difficulty Level 3 (Intermediate).",
+          "The engine is not measuring your absolute score. It deploys the <strong>Zone of Proximal Development (ZPD) algorithm</strong> to locate your cognitive ceiling. Every correct answer escalates difficulty by one level; every incorrect answer drops it by one. The diagnostic converges in approximately 15–20 questions, producing a baseline proficiency matrix per topic: not a raw score, but a calibrated starting coordinate for your learning engine.",
         ],
       },
       {
         heading: "What the Diagnostic Produces",
         summary:
-          "The diagnostic outputs a per-topic proficiency map across QA sub-domains, DILR categories, and VARC types — an absolute position on the content difficulty scale that seeds every Daily Module, deliberately not a percentile estimate.",
+          "The diagnostic outputs a per-topic proficiency map across QA sub-domains, DILR categories, and VARC types: an absolute position on the content difficulty scale that seeds every Daily Module, deliberately not a percentile estimate.",
         paragraphs: [
           "The output is a <strong>per-topic proficiency map</strong>: your current operating level in each QA sub-domain (Arithmetic, Algebra, Geometry, etc.), each DILR category (Sequencing, Arrangement, Games & Tournaments, etc.), and each VARC type (RC Inference, RC Title, Parajumble, Summary). This map is the seed from which every subsequent Daily Module is generated.",
-          "The diagnostic does not produce a percentile estimate. Percentile is a comparison metric; your diagnostic output is an absolute position on a content difficulty scale. The engine uses this position to determine your entry point into the learning curriculum — not to rank you against other students.",
+          "The diagnostic does not produce a percentile estimate. Percentile is a comparison metric; your diagnostic output is an absolute position on a content difficulty scale. The engine uses this position to determine your entry point into the learning curriculum, not to rank you against other students.",
         ],
       },
       {
@@ -54,11 +54,11 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     sysRef: "02.00",
     title: "Daily Learning Module",
     description:
-      "The four-phase session structure — Warm-up, Core Focus, Integration, Reflection — and why each phase exists.",
+      "The four-phase session structure (Warm-up, Core Focus, Integration, Reflection) and why each phase exists.",
     body: [
       {
         paragraphs: [
-          "Each session is a structured four-phase module: <strong>Warm-up → Core Focus → Integration → Reflection</strong>. This is not arbitrary sequencing — it mirrors the neurological rhythm of optimal retrieval practice as established by cognitive science research on the testing effect and spaced repetition.",
+          "Each session is a structured four-phase module: <strong>Warm-up → Core Focus → Integration → Reflection</strong>. This is not arbitrary sequencing: it mirrors the neurological rhythm of optimal retrieval practice as established by cognitive science research on the testing effect and spaced repetition.",
         ],
       },
       {
@@ -66,7 +66,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         summary:
           "Warm-up pulls 3–8 questions from your spaced-repetition queue across your full topic history, priming active retrieval and countering the compartmentalization that hurts mixed-paper performance.",
         paragraphs: [
-          "<strong>Warm-up</strong> surfaces questions from the Spaced Repetition Queue (SRS) — concepts you previously answered incorrectly or rated low confidence on. The number of warm-up questions varies by your SRS backlog, typically 3–8 questions. This phase primes active retrieval and re-engages memory traces before new material is introduced.",
+          "<strong>Warm-up</strong> surfaces questions from the Spaced Repetition Queue (SRS): concepts you previously answered incorrectly or rated low confidence on. The number of warm-up questions varies by your SRS backlog, typically 3–8 questions. This phase primes active retrieval and re-engages memory traces before new material is introduced.",
           "Warm-up questions are drawn from across your full topic history, not just the current session's focus area. This cross-topic priming is intentional: it reduces the compartmentalization that leads to poor integration performance in the actual CAT paper.",
         ],
       },
@@ -75,24 +75,24 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         summary:
           "Core Focus is the primary skill-building phase: new questions at your current mastery level in the day's highest-leverage topic cluster, held in the 70–85% ZPD band with mid-session escalation if accuracy crosses 90%.",
         paragraphs: [
-          "<strong>Core Focus</strong> presents new questions at your current mastery level for the day's designated topic or topic cluster. This is the primary skill-building phase. Questions are drawn from the topic cluster with the highest leverage for your current proficiency level — determined by your accuracy history and the proximity of each topic to an unlock threshold.",
+          "<strong>Core Focus</strong> presents new questions at your current mastery level for the day's designated topic or topic cluster. This is the primary skill-building phase. Questions are drawn from the topic cluster with the highest leverage for your current proficiency level, determined by your accuracy history and the proximity of each topic to an unlock threshold.",
           "The engine applies the ZPD band here: questions are targeted at the difficulty level just above your current operating ceiling, keeping accuracy in the 70–85% range. If you hit above 90% in Core Focus, the engine will escalate difficulty mid-session.",
         ],
       },
       {
         heading: "Phase 3: Integration",
         summary:
-          "Integration tests transfer: mixed-topic questions that force you to synthesize concepts — Ratio reasoning with Work-Time logic, or an RC passage paired with a thematically linked parajumble.",
+          "Integration tests transfer: mixed-topic questions that force you to synthesize concepts, like Ratio reasoning with Work-Time logic, or an RC passage paired with a thematically linked parajumble.",
         paragraphs: [
-          "<strong>Integration</strong> introduces mixed-topic questions that require synthesizing concepts across domains. For example, a question that requires both Ratio reasoning and Work-Time logic, or a RC passage followed by a Parajumble that shares thematic content. This phase tests transfer — your ability to apply learned patterns in unfamiliar combinations.",
+          "<strong>Integration</strong> introduces mixed-topic questions that require synthesizing concepts across domains. For example, a question that requires both Ratio reasoning and Work-Time logic, or a RC passage followed by a Parajumble that shares thematic content. This phase tests transfer: your ability to apply learned patterns in unfamiliar combinations.",
         ],
       },
       {
         heading: "Phase 4: Reflection",
         summary:
-          "Reflection closes the session with attempted counts, per-phase accuracy, hints used, time distribution, and trend versus your 7-day baseline — every recommendation cites the exact accuracy and attempt data that triggered it.",
+          "Reflection closes the session with attempted counts, per-phase accuracy, hints used, time distribution, and trend versus your 7-day baseline. Every recommendation cites the exact accuracy and attempt data that triggered it.",
         paragraphs: [
-          "<strong>Reflection</strong> generates a session summary: questions attempted, accuracy by phase, hints used, time distribution, and performance trend delta versus your 7-day baseline. Every recommendation surfaced in Reflection includes its data source — if the engine recommends revisiting a topic, it will state the exact accuracy and attempt count that triggered the recommendation.",
+          "<strong>Reflection</strong> generates a session summary: questions attempted, accuracy by phase, hints used, time distribution, and performance trend delta versus your 7-day baseline. Every recommendation surfaced in Reflection includes its data source: if the engine recommends revisiting a topic, it states the exact accuracy and attempt count that triggered the recommendation.",
         ],
       },
     ],
@@ -112,9 +112,9 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "The Five Levels",
         summary:
-          "Content runs on five difficulty levels — Beginner, Easy, Intermediate, Advanced, Expert — from single-step formula application to CAT-equivalent synthesis with high distractor density; Level 3 is the diagnostic baseline.",
+          "Content runs on five difficulty levels (Beginner, Easy, Intermediate, Advanced, Expert), from single-step formula application to CAT-equivalent synthesis with high distractor density; Level 3 is the diagnostic baseline.",
         paragraphs: [
-          "<strong>Level 1 — Beginner:</strong> Foundational concepts. Single-step problems. Direct formula application. <br/><strong>Level 2 — Easy:</strong> Two to three step reasoning. Standard question formats. Minimal trap options. <br/><strong>Level 3 — Intermediate:</strong> The diagnostic baseline. Multi-step problems with one non-obvious constraint. <br/><strong>Level 4 — Advanced:</strong> Complex constraint sets. Significant trap density. Requires deliberate strategy selection. <br/><strong>Level 5 — Expert:</strong> CAT-equivalent difficulty. Requires synthesis across concepts and robust distractor immunity.",
+          "<strong>Level 1 (Beginner):</strong> Foundational concepts. Single-step problems. Direct formula application. <br/><strong>Level 2 (Easy):</strong> Two to three step reasoning. Standard question formats. Minimal trap options. <br/><strong>Level 3 (Intermediate):</strong> The diagnostic baseline. Multi-step problems with one non-obvious constraint. <br/><strong>Level 4 (Advanced):</strong> Complex constraint sets. Significant trap density. Requires deliberate strategy selection. <br/><strong>Level 5 (Expert):</strong> CAT-equivalent difficulty. Requires synthesis across concepts and robust distractor immunity.",
         ],
       },
       {
@@ -122,14 +122,14 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         summary:
           "Level N unlocks only after accuracy above 75% at Level N−1 across at least 8 attempts, so one lucky session never suffices; accuracy below 60% over 5-plus attempts triggers a concept-library review recommendation without forcibly locking you out.",
         paragraphs: [
-          "Level N unlocks only when your accuracy at Level N−1 exceeds <strong>75%</strong>, calculated over a statistically significant sample (minimum 8 attempts). A single high-performance session is not sufficient — the system requires sustained performance across multiple sessions to confirm genuine mastery rather than a lucky run.",
+          "Level N unlocks only when your accuracy at Level N−1 exceeds <strong>75%</strong>, calculated over a statistically significant sample (minimum 8 attempts). A single high-performance session is not sufficient: the system requires sustained performance across multiple sessions to confirm genuine mastery rather than a lucky run.",
           "If your accuracy drops below <strong>60%</strong> after five or more attempts at a given level, the engine will surface a targeted recommendation to revisit weak topics in the Concept Library before continuing. The engine will not forcibly lock you out of a level, but the recommendation is data-backed and should be treated as an operational signal.",
         ],
       },
       {
         heading: "Proficiency Statuses",
         summary:
-          "Overall proficiency reads as four composite stages — Novice, Developing, Proficient, Mastery — aggregated across all topics and levels as a high-level indicator on the dashboard, not per-topic labels.",
+          "Overall proficiency reads as four composite stages (Novice, Developing, Proficient, Mastery), aggregated across all topics and levels as a high-level indicator on the dashboard, not per-topic labels.",
         paragraphs: [
           "Your overall proficiency maps to four stages: <strong>Novice → Developing → Proficient → Mastery</strong>. These statuses are composite scores across all topics and levels, not per-topic labels. They are displayed on your dashboard as a high-level indicator of your current position in the learning arc.",
         ],
@@ -137,9 +137,9 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Hint Penalty",
         summary:
-          "Any hint-assisted attempt is recorded as non-mastery-eligible regardless of the final answer, because mastery must measure independent solving under exam conditions — hints do not exist on CAT day.",
+          "Any hint-assisted attempt is recorded as non-mastery-eligible regardless of the final answer, because mastery must measure independent solving under exam conditions, and hints do not exist on CAT day.",
         paragraphs: [
-          "When you use a hint on any question, that attempt is recorded as <strong>incorrect</strong> in your Mastery calculation — regardless of whether you subsequently identify the correct answer. This is architectural, not punitive. The mastery system measures your ability to solve problems independently under exam conditions. Hints are not available on CAT D-Day; therefore, hint-assisted correct answers do not count toward mastery thresholds.",
+          "When you use a hint on any question, that attempt is recorded as <strong>incorrect</strong> in your Mastery calculation, regardless of whether you subsequently identify the correct answer. This is architectural, not punitive. The mastery system measures your ability to solve problems independently under exam conditions. Hints are not available on CAT D-Day; therefore, hint-assisted correct answers do not count toward mastery thresholds.",
         ],
       },
     ],
@@ -159,10 +159,10 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Tier 1: Guided Hint",
         summary:
-          "Tier 1 gives directional guidance generated from the question's topic tag and your detected error type — it activates the reasoning chain you missed without revealing the answer; bridging the gap after Tier 1 signals a momentary block, not a conceptual gap.",
+          "Tier 1 gives directional guidance generated from the question's topic tag and your detected error type. It activates the reasoning chain you missed without revealing the answer; bridging the gap after Tier 1 signals a momentary block, not a conceptual gap.",
         paragraphs: [
           "<strong>Tier 1</strong> provides directional guidance without revealing the answer. The prompt is dynamically generated based on the question's topic tag and the specific error type detected in your response. Examples: <em>'Consider what happens at boundary values when x approaches zero.'</em> Or: <em>'Check whether the exclusion condition in row 3 is bidirectional or unidirectional.'</em>",
-          "Tier 1 hints are designed to activate the reasoning chain you should have used, not to summarize the solution. If you can bridge the gap after a Tier 1 hint, your reasoning is retrievable — it was a momentary block, not a conceptual gap.",
+          "Tier 1 hints are designed to activate the reasoning chain you should have used, not to summarize the solution. If you can bridge the gap after a Tier 1 hint, your reasoning is retrievable; it was a momentary block, not a conceptual gap.",
         ],
       },
       {
@@ -176,18 +176,18 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Error Classification",
         summary:
-          "Every incorrect attempt is tagged Conceptual Gap, Execution Error, or Trap Distractor — with sub-types like Trap Negation, Root Cause Mismatch, and Calculation Error — and these tags, not cosmetics, drive the spaced-repetition trigger logic.",
+          "Every incorrect attempt is tagged Conceptual Gap, Execution Error, or Trap Distractor, with sub-types like Trap Negation, Root Cause Mismatch, and Calculation Error. These tags, not cosmetics, drive the spaced-repetition trigger logic.",
         paragraphs: [
           "After every incorrect attempt (with or without hints), the AI Coach tags the error with a <strong>Distractor Error Type</strong>: <strong>Conceptual Gap</strong> (the underlying principle was unknown), <strong>Execution Error</strong> (the principle was known but a calculation or logical step failed), or <strong>Trap: Distractor</strong> (a specifically engineered wrong answer exploited a predictable reasoning shortcut).",
-          "Sub-types include: <em>Trap: Negation</em> (a logically negated version of the correct answer), <em>Root Cause Mismatch</em> (a downstream effect selected instead of the cause), and <em>Calculation Error</em> (sign errors, boundary failures, unit mismatches). These tags are not cosmetic — they are the input to the SRS trigger logic.",
+          "Sub-types include: <em>Trap: Negation</em> (a logically negated version of the correct answer), <em>Root Cause Mismatch</em> (a downstream effect selected instead of the cause), and <em>Calculation Error</em> (sign errors, boundary failures, unit mismatches). These tags are not cosmetic; they are the input to the SRS trigger logic.",
         ],
       },
       {
         heading: "AI-Generated Content Transparency",
         summary:
-          "All AI-authored content — hints, error classifications, prompts — carries an AI-Generated badge as a standing transparency requirement, so you always know when feedback is machine-authored.",
+          "All AI-authored content (hints, error classifications, prompts) carries an AI-Generated badge as a standing transparency requirement, so you always know when feedback is machine-authored.",
         paragraphs: [
-          "Every AI-generated piece of content visible to you — including hints, error classifications, and AI-generated prompts — is labeled with an <strong>AI-Generated</strong> badge. This is a transparency requirement, not optional. You should always know when you are receiving machine-authored feedback.",
+          "Every AI-generated piece of content visible to you, including hints, error classifications, and AI-generated prompts, is labeled with an <strong>AI-Generated</strong> badge. This is a transparency requirement, not optional. You should always know when you are receiving machine-authored feedback.",
         ],
       },
     ],
@@ -207,7 +207,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "The Five Tracked Events",
         summary:
-          "Every question interaction logs up to five immutable event types — option selected, hint used, confidence rating, report error, and time spent — feeding composite metrics that reflect learning progress rather than comfortable repetition.",
+          "Every question interaction logs up to five immutable event types (option selected, hint used, confidence rating, report error, and time spent), feeding composite metrics that reflect learning progress rather than comfortable repetition.",
         paragraphs: [
           "Every question interaction generates up to five event types: <strong>option_selected</strong> (which option you chose and when), <strong>hint_used</strong> (which tier and at what elapsed time), <strong>confidence_rating</strong> (your 1–5 star self-assessment, if provided), <strong>report_error</strong> (if you flagged the question for review), and <strong>time_spent</strong> (total and per-step where available). These events are immutable once logged.",
         ],
@@ -227,7 +227,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
           "Weighted Accuracy gives recent sessions more influence than older ones so early strength cannot hide a recent decline; Speed Score rewards fast solving relative to difficulty only when accuracy holds above the 70% threshold.",
         paragraphs: [
           "<strong>Weighted Accuracy</strong> can give recent sessions more influence than older ones so a strong early performance does not mask a recent decline. The exact weighting window is a product configuration, not a published scientific constant.",
-          "<strong>Speed Score</strong> measures time efficiency relative to question difficulty. A Level 3 question solved in 45 seconds scores higher than the same question solved in 3 minutes. Speed Score is not rewarded at the expense of accuracy — it is only a positive signal when accuracy is above the 70% threshold.",
+          "<strong>Speed Score</strong> measures time efficiency relative to question difficulty. A Level 3 question solved in 45 seconds scores higher than the same question solved in 3 minutes. Speed Score is not rewarded at the expense of accuracy; it is only a positive signal when accuracy is above the 70% threshold.",
         ],
       },
       {
@@ -235,7 +235,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         summary:
           "Trend Detection classifies your velocity trajectory as Improving, Stable, or Declining: Declining restructures the next Daily Module around your weakest recent topics, Stable-at-high-accuracy triggers the comfort-zone alert, and Improving is acknowledged in Reflection.",
         paragraphs: [
-          "<strong>Trend Detection</strong> is a classifier that evaluates your Learning Velocity trajectory and labels it as <strong>Improving</strong>, <strong>Stable</strong>, or <strong>Declining</strong>. A Declining trend triggers a session alert and prompts the engine to restructure the next Daily Module around your weakest recent topics. An Improving trend is acknowledged in the Reflection phase. A Stable trend — particularly at high accuracy — triggers the comfort-zone alert described above.",
+          "<strong>Trend Detection</strong> is a classifier that evaluates your Learning Velocity trajectory and labels it as <strong>Improving</strong>, <strong>Stable</strong>, or <strong>Declining</strong>. A Declining trend triggers a session alert and prompts the engine to restructure the next Daily Module around your weakest recent topics. An Improving trend is acknowledged in the Reflection phase. A Stable trend, particularly at high accuracy, triggers the comfort-zone alert described above.",
         ],
       },
     ],
@@ -249,7 +249,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "The Spaced Repetition Queue (SRS) is the engine's primary defense against memory decay. Forgetting is not random — it follows a predictable exponential curve. The SRS interrupts this curve by re-presenting flagged material at intervals calibrated to maximize long-term retention with minimum repetition overhead.",
+          "The Spaced Repetition Queue (SRS) is the engine's primary defense against memory decay. Forgetting is not random; it follows a predictable exponential curve. The SRS interrupts this curve by re-presenting flagged material at intervals calibrated to maximize long-term retention with minimum repetition overhead.",
         ],
       },
       {
@@ -257,8 +257,8 @@ const DOC_SECTION_RECORDS: DocSection[] = [
         summary:
           "A question enters the SRS queue on an incorrect answer or a correct answer rated 1–2 stars; the second condition matters most because a lucky correct pick without a reliable model is a false positive that would fail on rephrasing.",
         paragraphs: [
-          "A question enters the SRS queue under two conditions: you answered it <strong>incorrectly</strong>, or you answered it correctly but rated your confidence at <strong>1–2 stars</strong> on the post-question rating. The second condition is the more important one. A correct answer with low confidence is a false positive — you happened to select the right option without a reliable underlying model. If the same question recurred under slightly different phrasing, you would likely fail.",
-          "The Confidence Rating (1–5 stars) is optional but strongly recommended. It is the mechanism through which you communicate genuine uncertainty to the engine. Use it accurately — gaming it upward harms only your own preparation.",
+          "A question enters the SRS queue under two conditions: you answered it <strong>incorrectly</strong>, or you answered it correctly but rated your confidence at <strong>1–2 stars</strong> on the post-question rating. The second condition is the more important one. A correct answer with low confidence is a false positive: you happened to select the right option without a reliable underlying model. If the same question recurred under slightly different phrasing, you would likely fail.",
+          "The Confidence Rating (1–5 stars) is optional but strongly recommended. It is the mechanism through which you communicate genuine uncertainty to the engine. Use it accurately; gaming it upward harms only your own preparation.",
         ],
       },
       {
@@ -289,13 +289,13 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "Streak mechanics are calibrated against meaningful learning, not login frequency. The Practice Streak counter reflects genuine, high-performance engagement with the platform — and is designed to be ungameable.",
+          "Streak mechanics are calibrated against meaningful learning, not login frequency. The Practice Streak counter reflects genuine, high-performance engagement with the platform, and it is designed to be ungameable.",
         ],
       },
       {
         heading: "What Increments a Streak",
         summary:
-          "A streak increments only two ways: completing a full four-phase Daily Module, or holding accuracy above 70% for at least 15 continuous minutes on unfamiliar or Level 3-plus material — both demand substantive cognitive output.",
+          "A streak increments only two ways: completing a full four-phase Daily Module, or holding accuracy above 70% for at least 15 continuous minutes on unfamiliar or Level 3+ material. Both demand substantive cognitive output.",
         paragraphs: [
           "A streak increments under exactly two conditions: (1) completing a full four-phase <strong>Daily Module</strong> (Warm-up through Reflection), or (2) maintaining accuracy above <strong>70%</strong> in a session lasting a minimum of <strong>15 continuous minutes</strong> on unfamiliar or Level 3+ material.",
           "Both conditions require substantive cognitive output. Completing the Warm-up phase alone, logging in to check your dashboard, or reviewing Concept Library articles does not increment the streak.",
@@ -304,17 +304,17 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "What Does Not Increment a Streak",
         summary:
-          "Logins, Warm-up-only sessions, below-70% sessions, and sessions made entirely of mastered Level 1–2 questions never extend a streak — the exclusions are architectural, so the counter cannot reward comfortable non-productive activity.",
+          "Logins, Warm-up-only sessions, below-70% sessions, and sessions made entirely of mastered Level 1–2 questions never extend a streak. The exclusions are architectural, so the counter cannot reward comfortable non-productive activity.",
         paragraphs: [
-          "Logging in without substantive practice does <strong>not</strong> extend a streak. Completing a session with accuracy below 70% does not extend a streak. Completing a session composed entirely of Level 1–2 questions (previously mastered material) does not extend a streak. These exclusions are architectural — they prevent the streak counter from rewarding comfortable, non-productive activity.",
+          "Logging in without substantive practice does <strong>not</strong> extend a streak. Completing a session with accuracy below 70% does not extend a streak. Completing a session composed entirely of Level 1–2 questions (previously mastered material) does not extend a streak. These exclusions are architectural: they prevent the streak counter from rewarding comfortable, non-productive activity.",
         ],
       },
       {
         heading: "Streaks as a Performance Predictor",
         summary:
-          "Session consistency predicts exam outcomes better than raw hours: a broken streak resets to zero but preserves full history — longest streak and frequency distribution — which also flags burnout risk when engagement drops sharply.",
+          "Session consistency predicts exam outcomes better than raw hours: a broken streak resets to zero but preserves full history (longest streak and frequency distribution), which also flags burnout risk when engagement drops sharply.",
         paragraphs: [
-          "Your streak count is surfaced in your Analytics Dashboard as a leading indicator of D-Day performance. Research on deliberate practice consistently shows that session <em>consistency</em> is a stronger predictor of exam outcome than total hours logged. A student with a 45-day practice streak has demonstrated 45 sessions meeting the accuracy and duration thresholds — a directly measurable input to exam readiness.",
+          "Your streak count is surfaced in your Analytics Dashboard as a leading indicator of D-Day performance. Research on deliberate practice consistently shows that session <em>consistency</em> is a stronger predictor of exam outcome than total hours logged. A student with a 45-day practice streak has demonstrated 45 sessions meeting the accuracy and duration thresholds, a directly measurable input to exam readiness.",
           "A broken streak resets to zero but does not delete historical data. Your Analytics Dashboard preserves the full history of your streak performance, including longest streak and streak frequency distribution. Streak history helps identify engagement patterns and flag potential burnout risk when session frequency drops sharply after a long streak.",
         ],
       },
@@ -338,12 +338,12 @@ export const DOC_FAQS: { question: string; answer: string }[] = [
   {
     question: "Why does using a hint count as an incorrect attempt?",
     answer:
-      "Hint usage triggers the Mastery Penalty because the goal is genuine competency, not correct answer accumulation. If you require external scaffolding to identify an answer, you have not independently mastered the concept. The penalty ensures your Mastery level reflects real, transferable understanding — the kind that holds under exam conditions without hints available.",
+      "Hint usage triggers the Mastery Penalty because the goal is genuine competency, not correct answer accumulation. If you require external scaffolding to identify an answer, you have not independently mastered the concept. The penalty ensures your Mastery level reflects real, transferable understanding, the kind that holds under exam conditions without hints available.",
   },
   {
     question: "How is Learning Velocity different from accuracy?",
     answer:
-      "Accuracy tells you how many answers you got right. Learning Velocity tells you how quickly your accuracy on new concepts improves over a 7-day rolling window. A student with 90% accuracy on familiar material but 40% accuracy on new Level 4 questions has high accuracy but low velocity. Velocity is the metric that predicts your trajectory — not where you are today, but how fast you are moving.",
+      "Accuracy tells you how many answers you got right. Learning Velocity tells you how quickly your accuracy on new concepts improves over a 7-day rolling window. A student with 90% accuracy on familiar material but 40% accuracy on new Level 4 questions has high accuracy but low velocity. Velocity is the metric that predicts your trajectory: not where you are today, but how fast you are moving.",
   },
   {
     question: "Why is mobile use discouraged for serious sessions?",

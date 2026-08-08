@@ -400,8 +400,8 @@ export const CONTENT = {
       deltaLabel: "Day-over-day",
       bands: {
         zpd: "ZPD growth band · 70–85%",
-        comfort: "Comfort zone — too easy to grow",
-        overreach: "Overreach — collapse risk",
+        comfort: "Comfort zone · too easy to grow",
+        overreach: "Overreach · collapse risk",
       },
     },
   },
@@ -472,7 +472,7 @@ export const CONTENT = {
     defaultDescription:
       "Free CAT 2026 prep with ZPD-calibrated practice, two-tier AI hints, and score telemetry for QA, DILR & VARC. Close weak areas faster. Start today.",
     indexPage: {
-      title: "Free CAT 2026 Prep — Adaptive Practice & AI Hints | AdaptHub",
+      title: "Free CAT 2026 Prep: Adaptive Practice & AI Hints | AdaptHub",
       description:
         "Free CAT 2026 prep: ZPD-calibrated daily practice, two-tier AI hints, and score telemetry across QA, DILR & VARC. 10,000+ questions at ₹0.",
     },
