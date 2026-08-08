@@ -109,7 +109,7 @@ export const CONTENT = {
       highlight: "Adapts to You",
     },
     description:
-      "100% free AI adaptive practice for CAT 2026. A 30–45 minute diagnostic finds your Zone of Proximal Development across QA, DILR, and VARC. Daily plans zero in on your weak areas, hints nudge before they explain, and score telemetry shows which direction your percentile is moving.",
+      "100% free AI adaptive practice for CAT 2026. A 30–45 minute diagnostic finds exactly where you stand in QA, DILR, and VARC. Daily plans zero in on your weak areas, hints nudge before they explain, and clear score trends show which way your percentile is moving.",
     cta: {
       primary: "Start practicing",
     },
