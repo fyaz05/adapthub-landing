@@ -126,7 +126,7 @@ export const CONTENT = {
         id: "01",
         title: "Dynamic Daily Plans",
         description:
-          "Personalized CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
+          "Personalised CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
         visualCheck: {
           deltaValue: "+14.2",
         },
@@ -169,9 +169,9 @@ export const CONTENT = {
       {
         id: "roadmap",
         title: "Adaptive Daily Plan",
-        subtitle: "Personalized Progress",
+        subtitle: "Personalised Progress",
         description:
-          "Your daily practice adapts continuously, prioritizing the topics and difficulty levels required to close your gaps and unlock the next level of mastery.",
+          "Your daily practice adapts continuously, prioritising the topics and difficulty levels required to close your gaps and unlock the next level of mastery.",
       },
       {
         id: "audit",
@@ -224,7 +224,7 @@ export const CONTENT = {
         id: "faq-03",
         question: "Who is AdaptHub built for?",
         answer:
-          "AdaptHub is built for serious CAT aspirants aiming for top IIMs, including self-study students who want free online CAT coaching with a rigorous adaptive study plan and deep performance feedback.",
+          "AdaptHub is built for serious CAT aspirants aiming for top IIMs, including self-study students who want free online CAT coaching with a rigorous adaptive study plan and deep performance feedback. Whether you prepare from a metro city or a small town in India, the same adaptive engine runs on your phone.",
       },
       {
         id: "faq-04",
@@ -242,13 +242,13 @@ export const CONTENT = {
         id: "faq-06",
         question: "Can I prepare for CAT without paid coaching using AdaptHub?",
         answer:
-          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalized adaptive practice, diagnostics, and AI coaching. So you can prepare for CAT at home without expensive institute fees.",
+          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalised adaptive practice, diagnostics, and AI coaching. So you can prepare for CAT at home without expensive institute fees.",
       },
       {
         id: "faq-07",
         question: "What happens after I start practicing?",
         answer:
-          "You will sign in with Google, complete a quick profile, and take the adaptive diagnostic. Based on your results, AdaptHub builds your personalized daily plan. Each session ends with a reflection: AI insights, mood tracking, and error analysis so you know exactly what to work on next.",
+          "You will sign in with Google, complete a quick profile, and take the adaptive diagnostic. Based on your results, AdaptHub builds your personalised daily plan. Each session ends with a reflection: AI insights, mood tracking, and error analysis so you know exactly what to work on next.",
       },
     ],
   },
@@ -311,7 +311,7 @@ export const CONTENT = {
       name: "AdaptHub",
       quote: '"Learning should adapt to you."',
       description:
-        "Adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants who want to improve, not just practice.",
+        "Adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants across India who want to improve, not just practice.",
     },
     directory: {
       title: "Directory",
@@ -550,7 +550,7 @@ export const CONTENT = {
       {
         question: "Will it stay free?",
         answer:
-          "Yes. The core engine, daily personalized study plans, AI Coach, and granular analytics, stays free. AdaptHub may add enterprise tools for coaching institutes later. Aspirant access stays free, always.",
+          "Yes. The core engine, daily personalised study plans, AI Coach, and granular analytics, stays free. AdaptHub may add enterprise tools for coaching institutes later. Aspirant access stays free, always.",
       },
       {
         question: "How do I create an account?",

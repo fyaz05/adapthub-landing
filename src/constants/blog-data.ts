@@ -86,15 +86,15 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   {
     slug: "decoding-2025-dilr-trap-sets",
     ctaPitch:
-      "Practise trap-style DILR sets with the two-minute entry protocol, timed and tagged by failure mode.",
+      "Practice trap-style DILR sets with the two-minute entry protocol, timed and tagged by failure mode.",
     methodologyNote:
-      "Trap-set patterns summarize external analyses of recent CAT DILR sections; the remediation pointers are AdaptHub editorial recommendations.",
+      "Trap-set patterns summarise external analyses of recent CAT DILR sections; the remediation pointers are AdaptHub editorial recommendations.",
     title: "How to Diagnose DILR Trap Sets",
     category: "Structural Analysis",
     date: "2026-02-23",
     readTime: "12_MIN",
     excerpt:
-      "A practical framework for recognizing routing-puzzle traps, parsing asymmetric constraints, and improving DILR set selection under time pressure.",
+      "A practical framework for recognising routing-puzzle traps, parsing asymmetric constraints, and improving DILR set selection under time pressure.",
     sources: [
       {
         label: "IIM CAT Official Website",
@@ -162,14 +162,14 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
     body: [
       {
         paragraphs: [
-          "The most common failure mode in CAT VARC is not vocabulary or reading speed. It is the inability to distinguish between what a passage <em>states</em> and what its author <em>believes</em>. These are not the same thing. A passage can state multiple competing positions while the author endorses only one. The questions are almost always testing your ability to locate that endorsement, not summarize the content.",
+          "The most common failure mode in CAT VARC is not vocabulary or reading speed. It is the inability to distinguish between what a passage <em>states</em> and what its author <em>believes</em>. These are not the same thing. A passage can state multiple competing positions while the author endorses only one. The questions are almost always testing your ability to locate that endorsement, not summarise the content.",
           "Modern CAT VARC reading comprehension passages are structured with intentional ambiguity. The author presents evidence, cites counterarguments, and qualifies conclusions. Within this structure, the 'correct' inference question answer is always the one that reflects the author's specific evaluative stance, not the most comprehensive summary of the passage content.",
         ],
       },
       {
         heading: "The Signal Words You Are Ignoring",
         summary:
-          "Words like unfortunately, despite, merely, so-called, and ironically encode the author's evaluative stance; CAT trap options summarize passage content accurately but misrepresent that stance, so annotating signal words eliminates them immediately.",
+          "Words like unfortunately, despite, merely, so-called, and ironically encode the author's evaluative stance; CAT trap options summarise passage content accurately but misrepresent that stance, so annotating signal words eliminates them immediately.",
         paragraphs: [
           "Authors encode their judgments in a precise lexical register. Words like <em>unfortunately</em>, <em>despite</em>, <em>merely</em>, <em>so-called</em>, and <em>ironically</em> are not rhetorical flourishes. They are directional signals pointing at the author's evaluative position. A sentence that reads 'Despite widespread enthusiasm for this approach, the evidence remains inconclusive' contains two signals: the enthusiasm is implicitly dismissed (despite) and the author is skeptical (remains inconclusive).",
           "CAT setters routinely construct trap options that are accurate summaries of the passage content but inaccurate reflections of the author's stance. A candidate who has read the passage for information rather than for authorial position will select the trap. A candidate who has been annotating signal words will identify the evaluative direction and eliminate the trap immediately.",
@@ -189,7 +189,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
         summary:
           "After each RC set, split your wrong answers into fact errors and judgment errors; the judgment category costs the percentile and is fixed by annotation practice, because the author's position is always explicitly encoded in the text. Your job is to find it, not infer it.",
         paragraphs: [
-          "The practical drill is simple: after each reading comprehension set, categorize every incorrect answer you selected. Was it incorrect because it stated something the passage didn't say? Or was it incorrect because it accurately described the passage content but misrepresented the author's judgment? The second category is the one that costs percentile. It is also the one that is correctable through targeted annotation practice.",
+          "The practical drill is simple: after each reading comprehension set, categorise every incorrect answer you selected. Was it incorrect because it stated something the passage didn't say? Or was it incorrect because it accurately described the passage content but misrepresented the author's judgment? The second category is the one that costs percentile. It is also the one that is correctable through targeted annotation practice.",
           "Once you develop the habit of annotating authorial signal words in every passage, Fact vs Judgment becomes a retrieval problem rather than an interpretive one. The author's position is always explicitly encoded in the text. Your job is not to infer it; it is to find it.",
         ],
       },
@@ -278,7 +278,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
     body: [
       {
         paragraphs: [
-          "Every wrong answer in a CAT question is engineered. The setters do not randomly generate plausible-looking numbers or statements. They analyze the most common reasoning shortcuts that aspirants at the target difficulty level are likely to take, and they construct the wrong answers to be exactly what those shortcuts produce. Understanding this is the first step toward a systematic defense.",
+          "Every wrong answer in a CAT question is engineered. The setters do not randomly generate plausible-looking numbers or statements. They analyse the most common reasoning shortcuts that aspirants at the target difficulty level are likely to take, and they construct the wrong answers to be exactly what those shortcuts produce. Understanding this is the first step toward a systematic defense.",
           "AdaptHub's content schema classifies every distractor option with an error type tag. The three most prevalent and consequential are: <strong>Trap: Negation</strong>, <strong>Root Cause Mismatch</strong>, and <strong>Calculation Error</strong>. Each has a distinct signature, a specific cognitive mechanism that produces it, and a learnable counter-strategy.",
         ],
       },
@@ -345,7 +345,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
     body: [
       {
         paragraphs: [
-          "The dominant mental model in CAT preparation is hours-as-effort. Students track study hours, compare them with peers, and use them as a proxy for progress. This model is not just inefficient; it actively corrupts preparation by incentivizing the wrong behavior. Time spent is an input metric. What you need is an output metric. And the output metric that most reliably predicts exam performance is <strong>quality-adjusted learning events per week</strong>.",
+          "The dominant mental model in CAT preparation is hours-as-effort. Students track study hours, compare them with peers, and use them as a proxy for progress. This model is not just inefficient; it actively corrupts preparation by incentivising the wrong behavior. Time spent is an input metric. What you need is an output metric. And the output metric that most reliably predicts exam performance is <strong>quality-adjusted learning events per week</strong>.",
           "A quality learning event is a session in which you demonstrate sustained accuracy above 70% on unfamiliar material for a minimum of 15 continuous minutes. This is not an arbitrary threshold. It is the minimum session duration and performance level at which retrieval practice produces measurable long-term retention improvement, based on established cognitive science research on the testing effect.",
         ],
       },
@@ -373,7 +373,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
           "Replace one long mixed study block with three bounded 45–60 minute sessions holding explicit accuracy targets; 60 days yields roughly 180 logged, precisely calibrated quality learning events whose effect compounds rather than merely accumulates.",
         paragraphs: [
           "The practical implication is a restructuring of how you allocate preparation time. Instead of blocking 6–8 hours and filling them with mixed activity, block three 45–60 minute sessions with explicit performance targets: complete the Daily Module, maintain accuracy above 70%, use the Reflection phase to review what broke. Between sessions, close the platform entirely. Passive consumption in the interim is fine: podcasts, articles, light review. But the active learning events must be high-quality and bounded.",
-          "Over a 60-day preparation period, this structure produces approximately 180 quality learning events. Each one is logged, analyzed, and fed into the next session's calibration. The compound effect of 180 high-quality, precisely calibrated retrieval sessions is not additive; it is exponential. This is the mechanism through which AdaptHub's preparation architecture is designed to produce percentile outcomes that raw study hours cannot reliably deliver.",
+          "Over a 60-day preparation period, this structure produces approximately 180 quality learning events. Each one is logged, analysed, and fed into the next session's calibration. The compound effect of 180 high-quality, precisely calibrated retrieval sessions is not additive; it is exponential. This is the mechanism through which AdaptHub's preparation architecture is designed to produce percentile outcomes that raw study hours cannot reliably deliver.",
         ],
       },
     ],

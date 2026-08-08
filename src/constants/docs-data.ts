@@ -25,7 +25,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "The first time you authorize access to the AdaptHub engine, you bypass traditional static testing. The system initiates an <strong>Adaptive Diagnostic</strong> spanning QA, DILR, and VARC, beginning at Difficulty Level 3 (Intermediate).",
+          "The first time you authorise access to the AdaptHub engine, you bypass traditional static testing. The system initiates an <strong>Adaptive Diagnostic</strong> spanning QA, DILR, and VARC, beginning at Difficulty Level 3 (Intermediate).",
           "The engine is not measuring your absolute score. It deploys the <strong>Zone of Proximal Development (ZPD) algorithm</strong> to locate your cognitive ceiling. Every correct answer escalates difficulty by one level; every incorrect answer drops it by one. The diagnostic converges in approximately 15–20 questions, producing a baseline proficiency matrix per topic: not a raw score, but a calibrated starting coordinate for your learning engine.",
         ],
       },
@@ -64,10 +64,10 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Phase 1: Warm-up",
         summary:
-          "Warm-up pulls 3–8 questions from your spaced-repetition queue across your full topic history, priming active retrieval and countering the compartmentalization that hurts mixed-paper performance.",
+          "Warm-up pulls 3–8 questions from your spaced-repetition queue across your full topic history, priming active retrieval and countering the compartmentalisation that hurts mixed-paper performance.",
         paragraphs: [
           "<strong>Warm-up</strong> surfaces questions from the Spaced Repetition Queue (SRS): concepts you previously answered incorrectly or rated low confidence on. The number of warm-up questions varies by your SRS backlog, typically 3–8 questions. This phase primes active retrieval and re-engages memory traces before new material is introduced.",
-          "Warm-up questions are drawn from across your full topic history, not just the current session's focus area. This cross-topic priming is intentional: it reduces the compartmentalization that leads to poor integration performance in the actual CAT paper.",
+          "Warm-up questions are drawn from across your full topic history, not just the current session's focus area. This cross-topic priming is intentional: it reduces the compartmentalisation that leads to poor integration performance in the actual CAT paper.",
         ],
       },
       {
@@ -82,9 +82,9 @@ const DOC_SECTION_RECORDS: DocSection[] = [
       {
         heading: "Phase 3: Integration",
         summary:
-          "Integration tests transfer: mixed-topic questions that force you to synthesize concepts, like Ratio reasoning with Work-Time logic, or an RC passage paired with a thematically linked parajumble.",
+          "Integration tests transfer: mixed-topic questions that force you to synthesise concepts, like Ratio reasoning with Work-Time logic, or an RC passage paired with a thematically linked parajumble.",
         paragraphs: [
-          "<strong>Integration</strong> introduces mixed-topic questions that require synthesizing concepts across domains. For example, a question that requires both Ratio reasoning and Work-Time logic, or a RC passage followed by a Parajumble that shares thematic content. This phase tests transfer: your ability to apply learned patterns in unfamiliar combinations.",
+          "<strong>Integration</strong> introduces mixed-topic questions that require synthesising concepts across domains. For example, a question that requires both Ratio reasoning and Work-Time logic, or a RC passage followed by a Parajumble that shares thematic content. This phase tests transfer: your ability to apply learned patterns in unfamiliar combinations.",
         ],
       },
       {
@@ -153,7 +153,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "Passive reading is penalized at the architectural level. When you log an incorrect answer, the AI Coach activates. Rather than immediately revealing the solution, it presents a structured two-tier intervention designed to force active reasoning.",
+          "Passive reading is penalised at the architectural level. When you log an incorrect answer, the AI Coach activates. Rather than immediately revealing the solution, it presents a structured two-tier intervention designed to force active reasoning.",
         ],
       },
       {
@@ -162,7 +162,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
           "Tier 1 gives directional guidance generated from the question's topic tag and your detected error type. It activates the reasoning chain you missed without revealing the answer; bridging the gap after Tier 1 signals a momentary block, not a conceptual gap.",
         paragraphs: [
           "<strong>Tier 1</strong> provides directional guidance without revealing the answer. The prompt is dynamically generated based on the question's topic tag and the specific error type detected in your response. Examples: <em>'Consider what happens at boundary values when x approaches zero.'</em> Or: <em>'Check whether the exclusion condition in row 3 is bidirectional or unidirectional.'</em>",
-          "Tier 1 hints are designed to activate the reasoning chain you should have used, not to summarize the solution. If you can bridge the gap after a Tier 1 hint, your reasoning is retrievable; it was a momentary block, not a conceptual gap.",
+          "Tier 1 hints are designed to activate the reasoning chain you should have used, not to summarise the solution. If you can bridge the gap after a Tier 1 hint, your reasoning is retrievable; it was a momentary block, not a conceptual gap.",
         ],
       },
       {
@@ -249,7 +249,7 @@ const DOC_SECTION_RECORDS: DocSection[] = [
     body: [
       {
         paragraphs: [
-          "The Spaced Repetition Queue (SRS) is the engine's primary defense against memory decay. Forgetting is not random; it follows a predictable exponential curve. The SRS interrupts this curve by re-presenting flagged material at intervals calibrated to maximize long-term retention with minimum repetition overhead.",
+          "The Spaced Repetition Queue (SRS) is the engine's primary defense against memory decay. Forgetting is not random; it follows a predictable exponential curve. The SRS interrupts this curve by re-presenting flagged material at intervals calibrated to maximise long-term retention with minimum repetition overhead.",
         ],
       },
       {
@@ -348,7 +348,7 @@ export const DOC_FAQS: { question: string; answer: string }[] = [
   {
     question: "Why is mobile use discouraged for serious sessions?",
     answer:
-      "The platform does not block mobile access, but the data density required for DILR scenario mapping and the QA analytics dashboard is architecturally optimized for desktop and tablet viewports. Attempting DILR sets on a small screen introduces unnecessary cognitive load from scrolling and navigation, which contaminates your time_spent telemetry and artificially depresses your Speed Score. For accurate performance tracking, use a horizontal screen.",
+      "The platform does not block mobile access, but the data density required for DILR scenario mapping and the QA analytics dashboard is architecturally optimised for desktop and tablet viewports. Attempting DILR sets on a small screen introduces unnecessary cognitive load from scrolling and navigation, which contaminates your time_spent telemetry and artificially depresses your Speed Score. For accurate performance tracking, use a horizontal screen.",
   },
   {
     question: "How does the Concept Library connect to my practice sessions?",

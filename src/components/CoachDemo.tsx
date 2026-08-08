@@ -173,7 +173,7 @@ export default function CoachDemo() {
                   </span>
                 </div>
                 <span className="font-mono text-[11px] text-fg-muted uppercase tracking-widest">
-                  Analyzing your approach
+                  Analysing your approach
                 </span>
               </div>
 
