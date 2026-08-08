@@ -32,7 +32,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 - Baseline: a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, VARC finds the per-topic Zone of Proximal Development.
 - Routing: every answer updates difficulty selection with the goal of holding ~70–85% accuracy: challenging but not collapsing.
 - Daily plan: recalibrated in real time from accuracy, speed, and concept gaps; a focused 15 minutes daily beats unstructured hours.
-- Progression: 5 difficulty levels per topic (Beginner, Easy, Intermediate, Advanced, Expert). Level N unlocks only after sustained >75% accuracy at Level N−1 across at least 8 attempts. Accuracy dropping below 60% (5+ attempts) triggers a concept-library review recommendation.
+- Progression: 5 difficulty levels per topic (Beginner, Easy, Intermediate, Advanced, Expert). Level N unlocks only after sustained accuracy above 75% at Level N−1 across at least 8 attempts. Accuracy dropping below 60% (5+ attempts) triggers a concept-library review recommendation.
 - Proficiency arc: Novice → Developing → Proficient → Mastery.
 - Sources: https://adapthub.in/docs/calibration-sequence, https://adapthub.in/docs/mastery-progression, https://adapthub.in/adaptive-learning-cat
 
