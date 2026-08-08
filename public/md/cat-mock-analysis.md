@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-Analyse every full CAT mock for at least as long as you spent attempting it. Record section scores and time, classify every wrong answer (concept gap, calculation/execution, trap/misread, time mismanagement, bad set selection), review skips and slow-but-correct items, then schedule the next 3–5 practice sessions only on logged failures, not random syllabus order.
+Analyse every full CAT mock for at least as long as you spent attempting it. Record section scores and time, classify every wrong answer with one primary tag (concept gap, calculation error, trap/misread, time sink, avoidable skip), review skips and slow-but-correct items, then schedule the next 3–5 practice sessions only on logged failures, not random syllabus order.
 
 ## Four layers
 

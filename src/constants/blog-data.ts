@@ -323,7 +323,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   {
     slug: "quality-streaks-vs-raw-study-hours",
     ctaPitch:
-      "Build a streak that counts: a full Daily Module, or 15+ focused minutes above 70% accuracy.",
+      "Build a streak that counts: a full Daily Module, or 15+ focused minutes above 70% accuracy on unfamiliar or Level 3+ material.",
     methodologyNote:
       "Habit-science citations are external; the streak thresholds quoted are AdaptHub's documented eligibility rules, not study results.",
     title: "Practice Streaks vs Study Hours for CAT Percentile",
@@ -361,9 +361,9 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
       {
         heading: "The Practice Streak Mechanics",
         summary:
-          "A practice streak increments only by completing a full four-phase Daily Module or sustaining above-70% accuracy for 15 continuous minutes, never by logging in, making the counter an ungameable record of real practice events rather than productive procrastination.",
+          "A practice streak increments only by completing a full four-phase Daily Module or sustaining above-70% accuracy for 15 continuous minutes on unfamiliar or Level 3+ material, never by logging in, making the counter an ungameable record of real practice events rather than productive procrastination.",
         paragraphs: [
-          "AdaptHub's Practice Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more. Simply opening the app without qualifying practice moves nothing forward. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
+          "AdaptHub's Practice Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more on unfamiliar or Level 3+ material. Simply opening the app without qualifying practice moves nothing forward. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
           "The streak counter is not a gamification gimmick. It is a behavioral signal that accurately reflects whether your preparation is on a trajectory toward the 99th percentile. A student with a 30-day practice streak has logged a minimum of 30 sessions meeting the accuracy and duration thresholds. That is a directly measurable input to D-Day performance.",
         ],
       },

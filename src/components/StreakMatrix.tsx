@@ -79,7 +79,7 @@ const DayCell = React.memo(
         className={`relative block p-0 outline-none w-6 h-6 rounded-[3px] border cursor-default animate-pulse-fade-in opacity-0
           focus-visible:ring-1 focus-visible:ring-brand-teal focus-visible:ring-offset-1 focus-visible:ring-offset-bg
           transition-all duration-300 active:scale-95 active:duration-75 ease-[cubic-bezier(0.23,1,0.32,1)]
-          ${dimmed ? "opacity-30 saturate-50" : ""}
+          ${dimmed ? "brightness-50 saturate-50" : ""}
           ${
             dayData.future
               ? "bg-zinc-900/20 border-transparent"

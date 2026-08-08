@@ -42,14 +42,19 @@ function lastmodFor(path) {
   const candidates = [...sourceFilesFor(path), "src/constants/content.ts"];
   try {
     const out = execSync(
-      `git log -1 --format=%cI -- ${candidates.map((f) => `"${f}"`).join(" ")}`,
+      // ":(literal)" pathspec magic: [slug].astro contains git glob
+      // metacharacters and must be matched as a literal file path. Works on
+      // git 2.16+ (the --literal-pathspecs flag is rejected by git log <2.44).
+      `git log -1 --format=%cI -- ${candidates.map((f) => `":(literal)${f}"`).join(" ")}`,
       { stdio: ["ignore", "pipe", "ignore"] },
     )
       .toString()
       .trim();
-    return out || new Date().toISOString();
+    // No commit timestamp available (shallow clone): omit lastmod entirely.
+    // Stamping build time would be an unverifiable date Google ignores anyway.
+    return out || undefined;
   } catch {
-    return new Date().toISOString();
+    return undefined;
   }
 }
 
@@ -74,10 +79,10 @@ export default defineConfig({
         const path = new URL(page).pathname;
         return path !== "/404" && !path.startsWith("/~partytown");
       },
-      serialize: (item) => ({
-        ...item,
-        lastmod: lastmodFor(new URL(item.url).pathname),
-      }),
+      serialize: (item) => {
+        const lastmod = lastmodFor(new URL(item.url).pathname);
+        return lastmod ? { ...item, lastmod } : item;
+      },
     }),
   ],
   vite: {

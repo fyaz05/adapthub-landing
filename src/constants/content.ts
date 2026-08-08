@@ -146,7 +146,7 @@ export const CONTENT = {
         id: "03",
         title: "Mastery-Based Levels",
         description:
-          "5 difficulty levels per topic. Prove 75%+ accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
+          "5 difficulty levels per topic. Prove over 75% accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
       },
       {
         id: "04",

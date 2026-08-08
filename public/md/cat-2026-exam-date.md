@@ -14,7 +14,7 @@ CAT 2026 will be conducted on **Sunday, 29 November 2026** as a computer-based t
 - Fee: ₹2,700 (General/EWS/NC-OBC); ₹1,350 (SC/ST/PwBD)  
 - Admit card: 4 November 2026  
 - Exam: Sunday, 29 November 2026 (three sessions)  
-- Result: expected late December 2026 – early January 2027  
+- Result: expected in the first week of January 2027, per the notification  
 
 ## Pattern
 

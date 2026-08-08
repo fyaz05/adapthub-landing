@@ -41,7 +41,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 - Tier 1 (Guided Hint): a strategic nudge generated from the question's topic tag and the detected error type. It activates the reasoning chain without revealing the answer.
 - Tier 2 (Answer Reveal): the complete step-by-step solution, highlighting where the correct approach diverges from the submitted attempt.
 - Hint penalty: using a hint records the attempt as not-mastery-eligible; hint-assisted answers never count toward level progression. Rationale: hints are unavailable on exam day, so mastery scores must reflect independent solving.
-- Error classification: every miss is tagged as Conceptual Gap, Execution Error, or Trap: Distractor (sub-types: Trap: Negation, Root Cause Mismatch, Calculation Error). These tags feed the spaced-repetition trigger logic.
+- In-product error classification (AI Coach and spaced repetition): every miss is tagged as Conceptual Gap, Execution Error, or Trap: Distractor (sub-types: Trap: Negation, Root Cause Mismatch, Calculation Error). These tags feed the spaced-repetition trigger logic. The mock-analysis workflow in Section 8 uses a separate 5-tag taxonomy.
 - Transparency: all AI-generated content (hints, error classifications, prompts) carries an AI-Generated badge in the product.
 - Source: https://adapthub.in/docs/ai-coach-hint-system
 
@@ -51,7 +51,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 - Weighted Accuracy: recent sessions weighted more strongly than older ones, so an early strong performance cannot mask a recent decline.
 - Speed Score: pacing telemetry that flags tilt patterns (e.g., repeated ultra-fast errors signalling guessing).
 - Trend Detection: surfaces improving or deteriorating topic trajectories before mocks do.
-- Quality streaks: a day counts only after a minimum 15-minute active session that meets the accuracy threshold; opening the app earns nothing.
+- Quality streaks: a day counts only after a full Daily Module, or a session of at least 15 continuous minutes holding accuracy above 70% on unfamiliar or Level 3+ material; opening the app earns nothing.
 - Sources: https://adapthub.in/docs/telemetry-performance-metrics, https://adapthub.in/docs/quality-streaks, https://adapthub.in/docs/spaced-repetition-system
 
 ## 6. CAT 2026 exam reference
@@ -60,7 +60,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 - Sections: VARC 24 questions (≈16 Reading Comprehension), DILR 22, QA 22.
 - Marking: +3 correct; −1 incorrect MCQ; TITA (Type In The Answer) carries no negative marking.
 - Eligibility: bachelor's degree ≥50% marks (≥45% SC/ST/PwD); final-year students eligible provisionally.
-- Timeline (official, per the CAT 2026 notification at https://iimcat.ac.in): notification released late July 2026; registration 3 August (10:00) – 15 September 2026 (17:00); admit card 4 November 2026; exam Sunday 29 November 2026 in three sessions across ~170 test cities; results expected late December 2026 – early January 2027.
+- Timeline (official, per the CAT 2026 notification at https://iimcat.ac.in): notification released late July 2026; registration 3 August (10:00) – 15 September 2026 (17:00); admit card 4 November 2026; exam Sunday 29 November 2026 in three sessions across ~170 test cities; results expected in the first week of January 2027.
 - Registration fee: ₹2,700 (General/EWS/NC-OBC); ₹1,350 (SC/ST/PwBD).
 - Sources: https://adapthub.in/cat-syllabus, https://adapthub.in/cat-2026-exam-date
 
@@ -86,7 +86,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 ## 8. Mock analysis framework
 
-- Every wrong/skipped answer gets exactly one primary tag from the 5-tag taxonomy: concept gap, calculation slip, trap selection, time pressure, or guess.
+- Every wrong/skipped mock answer gets exactly one primary tag from the 5-tag mock-review taxonomy (distinct from the in-product error classes in Section 4): concept gap, calculation error, trap/misread, time sink, or avoidable skip.
 - Same-day analysis session (90–120 min): log section patterns, re-attempt every miss untimed, tag the primary failure, write the specific fix.
 - Weekly Sunday review: top-3 tags drive next week's drill focus; verify attempt-order stability; percentile growth must come from accuracy, not attempt inflation.
 - Source: https://adapthub.in/cat-mock-analysis

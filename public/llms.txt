@@ -30,7 +30,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 - [Docs hub](https://adapthub.in/docs): How the product works, full index
 - [Calibration sequence](https://adapthub.in/docs/calibration-sequence): The adaptive diagnostic that finds your ZPD baseline
 - [Daily learning module](https://adapthub.in/docs/daily-learning-module): Warm-Up, Core Focus, Integration, Reflection structure
-- [Mastery-based progression](https://adapthub.in/docs/mastery-progression): 5 difficulty levels, 75%+ unlock rule, hint penalty
+- [Mastery-based progression](https://adapthub.in/docs/mastery-progression): 5 difficulty levels, above-75% unlock rule, hint penalty
 - [AI coach hint system](https://adapthub.in/docs/ai-coach-hint-system): Two-tier hints with level-progression penalty
 - [Telemetry metrics](https://adapthub.in/docs/telemetry-performance-metrics): Learning velocity, weighted accuracy, trend detection
 - [Spaced repetition](https://adapthub.in/docs/spaced-repetition-system): SRS queue against memory decay

@@ -292,9 +292,10 @@ const siteUrl = Astro.site || "https://adapthub.in/";
               // Easy slots need MORE marks per percentile; tough slots fewer.
               const effective = score - shift;
               const estimate = estimatePercentile(effective);
-              const targetFor = (p) =>
-                PERCENTILE_ANCHORS.find((a) => a.percentile === p).score +
-                shift;
+              const targetFor = (p) => {
+                const anchor = PERCENTILE_ANCHORS.find((a) => a.percentile === p);
+                return anchor ? anchor.score + shift : null;
+              };
               return {
                 input: { rawScore: score, slotDifficulty },
                 estimatedPercentile: estimate,
