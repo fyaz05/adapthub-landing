@@ -24,6 +24,9 @@ export default defineConfig({
         const path = new URL(page).pathname;
         return path !== "/404" && !path.startsWith("/~partytown");
       },
+      // lastmod = build time: signals freshness on every deploy and nudges
+      // re-crawl of pages Google has seen but not yet indexed (docs cluster).
+      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
     }),
   ],
   vite: {
