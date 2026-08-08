@@ -182,11 +182,11 @@ export default function VelocityDashboard() {
           {/* GEO Semantic Content & Header */}
           <div className="mb-16 lg:mb-20">
             <p data-speakable className="sr-only">
-              Raw mock scores are vanity metrics. AdaptHub tracks Learning
-              Velocity, a 7-day measure of how efficiently you absorb new
-              concepts. High accuracy with low velocity means you are practicing
-              in your comfort zone. The ZPD growth band is 70 to 85 percent
-              accuracy.
+              A single mock score shows where you landed, not how fast you are
+              moving. AdaptHub tracks Learning Velocity, a 7-day measure of how
+              efficiently you absorb new concepts. High accuracy with low
+              velocity means practice is stuck in the comfort zone. The ZPD
+              growth band is 70 to 85 percent accuracy.
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-fg leading-tight tracking-tight mb-6 text-center">
               See what's really happening{" "}
@@ -195,7 +195,8 @@ export default function VelocityDashboard() {
               </span>
             </h2>
             <p className="text-fg-muted text-lg mx-auto text-center max-w-3xl font-sans leading-relaxed">
-              Raw mock scores mean nothing. AdaptHub tracks{" "}
+              One mock score tells you where you landed, not how fast you're
+              moving. AdaptHub tracks{" "}
               <strong className="text-brand-teal font-medium">
                 Learning Velocity,
               </strong>{" "}
@@ -500,7 +501,7 @@ export default function VelocityDashboard() {
                   >
                     {selectedIndex === 0
                       ? "–"
-                      : `${velocityDelta > 0 ? "+" : ""}${velocityDelta}%`}
+                      : `${velocityDelta > 0 ? "+" : ""}${velocityDelta} pts`}
                   </motion.div>
                 </div>
                 <div
@@ -528,10 +529,11 @@ export default function VelocityDashboard() {
                 </div>
                 <div>
                   <h4 className="text-orange-500 font-mono text-[11px] uppercase tracking-widest mb-1">
-                    Tilt Detected
+                    Pace Check
                   </h4>
                   <p className="text-fg-muted text-xs font-sans leading-relaxed">
-                    3 consecutive errors in &lt; 45s. You may be guessing.
+                    3 misses in under 45 seconds each reads as guessing. Slow
+                    down and take the Tier 1 hint.
                   </p>
                 </div>
               </motion.div>

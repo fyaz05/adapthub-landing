@@ -109,7 +109,7 @@ export const CONTENT = {
       highlight: "Adapts to You",
     },
     description:
-      "100% free AI adaptive practice for CAT 2026. A 30–45 minute diagnostic finds your Zone of Proximal Development across QA, DILR, and VARC. Daily plans target your weak areas, two-tier AI hints teach instead of spoon-feeding, and score telemetry shows which direction your percentile is moving.",
+      "100% free AI adaptive practice for CAT 2026. A 30–45 minute diagnostic finds your Zone of Proximal Development across QA, DILR, and VARC. Daily plans zero in on your weak areas, hints nudge before they explain, and score telemetry shows which direction your percentile is moving.",
     cta: {
       primary: "Start practicing",
     },
@@ -128,14 +128,14 @@ export const CONTENT = {
         description:
           "Personalized CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
         visualCheck: {
-          deltaValue: "+14.2%",
+          deltaValue: "+14.2",
         },
       },
       {
         id: "02",
         title: "Score Telemetry",
         description:
-          "CAT 2026 score telemetry that tracks where your percentile is heading: accuracy, learning velocity, and topic mastery across QA, DILR, and VARC. Not vanity scores.",
+          "Track where your percentile is heading: accuracy, learning velocity, and topic mastery across QA, DILR, and VARC. Not vanity scores.",
         tabs: ["Accuracy", "Growth"],
         progress: {
           accuracy: { label: "Accuracy", value: 94 },
@@ -162,9 +162,9 @@ export const CONTENT = {
       {
         id: "zpd",
         title: "Adaptive Difficulty",
-        subtitle: "Always Optimal",
+        subtitle: "70–85% Growth Band",
         description:
-          "Difficulty adjusts continuously to keep you in the optimal learning zone, where challenge and comprehension intersect for maximum growth.",
+          "Difficulty adjusts with every answer to hold you in the band where challenge and comprehension intersect: hard enough to grow, never so hard you stall.",
       },
       {
         id: "roadmap",
@@ -178,12 +178,12 @@ export const CONTENT = {
         title: "Learning Diagnostics",
         subtitle: "Deep Insight",
         description:
-          "AdaptHub breaks down every mistake into actionable learning signals. Each error reveals a hidden gap in logic, memory, or execution.",
+          "AdaptHub breaks down every mistake into actionable learning signals. Each error maps to a hidden gap in logic, memory, speed, or focus.",
       },
       {
         id: "library",
         title: "Concept Library",
-        subtitle: "Learn, Don't Just Practise",
+        subtitle: "Learn, Don't Just Practice",
         description:
           "Access curated articles tailored to your current level across QA, DILR, and VARC. When a topic exposes a gap, review the concept before retrying. Build deep understanding instead of muscle memory.",
       },
@@ -206,7 +206,7 @@ export const CONTENT = {
 
   faq: {
     eyebrow: "Frequently Asked",
-    title: "How AdaptHub Works",
+    title: "Good questions, straight answers.",
     items: [
       {
         id: "faq-01",
@@ -259,7 +259,7 @@ export const CONTENT = {
       titleHighlight: "AI",
       titleLine2: "Coach",
       description:
-        "The AI coach gives you two chances to solve on your own. Tier 1 is a strategic nudge, a conceptual push. Tier 2 is the full explanation. Using a hint means no level progress for that question.",
+        "Stuck mid-question? Tier 1 drops a strategic nudge that keeps you solving; Tier 2 walks through the full method. Hint-assisted attempts never count toward mastery, so nothing is handed to you.",
       linkText: "Explore the Adaptive Syllabus",
       pillText: "Two-Tier Hint System",
     },
@@ -375,7 +375,7 @@ export const CONTENT = {
     growth: {
       label: "Learning Velocity",
       comparison: "vs last week",
-      value: 42,
+      value: 18,
       suffix: "%",
     },
   },
@@ -414,7 +414,7 @@ export const CONTENT = {
       windowLabel: "8-week window",
       weekLabel: "Week",
       sessionsLabel: "Sessions",
-      minutesLabel: "Min in ZPD",
+      minutesLabel: "Minutes in ZPD",
       accuracyLabel: "Avg accuracy",
       streakLabel: "Best streak",
     },
@@ -430,7 +430,7 @@ export const CONTENT = {
         step: "01",
         title: "Diagnostic Calibration",
         description:
-          "Start with a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, and VARC. The algorithm finds your baseline in each topic, your Zone of Proximal Development.",
+          "Start with a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, and VARC. The algorithm finds your baseline in every topic: your Zone of Proximal Development.",
       },
       {
         step: "02",
@@ -442,7 +442,7 @@ export const CONTENT = {
         step: "03",
         title: "Track Real Progress",
         description:
-          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. CAT 2026 score telemetry maps your practice to percentile movement, backed by 10,000+ curated questions.",
+          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. Progress maps to percentile movement, not mock-score spikes.",
       },
       {
         step: "04",

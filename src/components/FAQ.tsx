@@ -21,10 +21,9 @@ const FAQ = () => {
           </h2>
           <p data-speakable className="sr-only">
             AdaptHub is free for CAT 2026: adaptive ZPD difficulty holds
-            practice in the 70–85% growth band, two-tier AI hints teach without
-            spoon-feeding, mastery is earned at 75 percent-plus accuracy per
-            level, and learning velocity plus error forensics replace vanity
-            mock scores.
+            practice in the 70–85% growth band, two-tier AI hints prompt before
+            they solve, mastery levels unlock at 75 percent-plus accuracy, and
+            learning velocity plus error forensics replace vanity mock scores.
           </p>
         </div>
 
