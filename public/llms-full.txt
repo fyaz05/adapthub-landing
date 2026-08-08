@@ -56,11 +56,12 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 ## 6. CAT 2026 exam reference
 
-- Pattern: 66 questions, 198 marks, 120 minutes total, 40 minutes per section, fixed order VARC → DILR → QA.
+- Pattern: 68 questions, 204 marks, 120 minutes total, 40 minutes per section, fixed order VARC → DILR → QA (CAT 2026 notification; format stable since CAT 2024).
 - Sections: VARC 24 questions (≈16 Reading Comprehension), DILR 22, QA 22.
 - Marking: +3 correct; −1 incorrect MCQ; TITA (Type In The Answer) carries no negative marking.
-- Eligibility (recent cycles): bachelor's degree ≥50% marks (≥45% SC/ST/PwD); final-year students eligible provisionally.
-- Timeline (provisional): registration ~August, admit card ~early November, exam last Sunday of November, results late December. Verify at https://iimcat.ac.in.
+- Eligibility: bachelor's degree ≥50% marks (≥45% SC/ST/PwD); final-year students eligible provisionally.
+- Timeline (official, per the CAT 2026 notification at https://iimcat.ac.in): notification released late July 2026; registration 3 August (10:00) – 15 September 2026 (17:00); admit card 4 November 2026; exam Sunday 29 November 2026 in three sessions across ~170 test cities; results expected late December 2026 – early January 2027.
+- Registration fee: ₹2,700 (General/EWS/NC-OBC); ₹1,350 (SC/ST/PwBD).
 - Sources: https://adapthub.in/cat-syllabus, https://adapthub.in/cat-2026-exam-date
 
 ## 7. Section playbooks
@@ -94,7 +95,7 @@ Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; pr
 
 - Sectional + overall cutoffs both matter for IIM shortlists (sectional ≈95–97 percentile, overall ≈99 for top IIMs, shifting by paper difficulty and year).
 - Score-to-percentile mapping is not stable across years; anchor to the current mock series and paper difficulty rather than fixed marks.
-- The homepage exposes a WebMCP tool, calculate_cat_percentile, which returns an indicative estimate from CAT 2023–2024 trend tables with explicit uncertainty notes.
+- The homepage exposes a WebMCP tool, calculate_cat_percentile, which returns an indicative estimate from CAT 2024–2025 trend tables with explicit uncertainty notes.
 
 ## 10. Frequently asked
 

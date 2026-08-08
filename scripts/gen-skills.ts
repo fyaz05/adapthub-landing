@@ -103,10 +103,10 @@ Tools are registered on the homepage (https://adapthub.in) and run in-browser:
 - get_docs_section: platform documentation by topic slug.
 - get_blog_article: CAT strategy blog article by slug.
 - get_study_resources: study resource listing by category.
-- calculate_cat_percentile: indicative CAT percentile from raw score (0–198) and slot difficulty.
+- calculate_cat_percentile: indicative CAT percentile from raw score (0–204) and slot difficulty.
 - simulate_adaptive_question: ZPD routing simulation for a section/topic/level.
 - get_section_strategy: QA, DILR, or VARC strategy capsule.
-- get_exam_pattern: CAT 2026 structure facts (66 questions, 198 marks, marking scheme).`,
+- get_exam_pattern: CAT 2026 structure facts (68 questions, 204 marks, marking scheme).`,
   },
 ];
 

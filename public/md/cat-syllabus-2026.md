@@ -1,11 +1,11 @@
 # CAT syllabus 2026 (VARC, DILR, QA)
 
 **URL:** https://adapthub.in/cat-syllabus/  
-**Updated:** 2026-07-13
+**Updated:** 2026-08-08
 
 ## Direct answer
 
-CAT has no single official topic list from IIMs; the working syllabus is inferred from recent papers. The exam is three timed sections—VARC, DILR, and Quantitative Aptitude—typically on the order of ~66–68 questions in 120 minutes with +3/−1 for MCQs and no negative marking on TITA. High-yield QA areas usually start with Arithmetic and Algebra.
+CAT has no single official topic list from IIMs; the working syllabus is inferred from recent papers. Per the CAT 2026 notification, the exam is three timed sections—VARC, DILR, and Quantitative Aptitude—with 68 questions and 204 marks in 120 minutes, +3/−1 for MCQs and no negative marking on TITA. High-yield QA areas usually start with Arithmetic and Algebra.
 
 ## How the syllabus is prioritised (70/20/10 model)
 

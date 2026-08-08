@@ -33,7 +33,7 @@
       "type": "browser-integration",
       "description": "Expose site tools to browser AI agents via document.modelContext.registerTool().",
       "url": "https://adapthub.in/.well-known/agent-skills/webmcp/SKILL.md",
-      "sha256": "a1860785de6f91adf62c2a868cf475ed1d2e4b468f56bb73c690ebc0f79845c5"
+      "sha256": "863af046d58b87be5b453c2e7ea15074aeeb8cb7e1673e90e6f90a676907cd12"
     }
   ]
 }

@@ -479,7 +479,7 @@ export const CONTENT = {
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
       description:
-        "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 66 questions, 120 minutes, marking scheme, and high-yield topics.",
+        "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 68 questions, 120 minutes, marking scheme, and high-yield topics.",
     },
     pricing: {
       title: "Free CAT Preparation Online | AdaptHub",

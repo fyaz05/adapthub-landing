@@ -7,7 +7,7 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 ## Quick facts
 
 - Price: ₹0 for all aspirant features (adaptive engine, 10,000+ curated questions, AI Coach, analytics)
-- Exam covered: CAT 2026 — 66 questions, 198 marks, 120 minutes (VARC 24, DILR 22, QA 22; +3 correct, −1 wrong MCQ, TITA no negative marking)
+- Exam covered: CAT 2026 — Sunday 29 November 2026 (official notification, iimcat.ac.in); 68 questions, 204 marks, 120 minutes (VARC 24, DILR 22, QA 22; +3 correct, −1 wrong MCQ, TITA no negative marking); registration 3 Aug – 15 Sep 2026
 - Method: ZPD difficulty calibration holding practice in the 70–85% accuracy growth band
 - Coaching: two-tier AI hints (Tier 1 strategic nudge, Tier 2 full explanation); hint use freezes level progress for that attempt
 - Telemetry: learning velocity, weighted accuracy, trend detection, and quality streaks
@@ -62,8 +62,8 @@ AdaptHub does not run live classroom batches. Aspirants may combine AdaptHub dai
 
 - [CAT syllabus 2026](https://adapthub.in/cat-syllabus): VARC, DILR, QA topics, pattern, marking, weightage
 - [Syllabus (Markdown capsule)](https://adapthub.in/md/cat-syllabus-2026.md): Pattern and section takeaways
-- [CAT 2026 exam date](https://adapthub.in/cat-2026-exam-date): Expected timeline, registration, eligibility snapshot
-- [Exam date (Markdown capsule)](https://adapthub.in/md/cat-2026-exam-date.md): Provisional timeline facts
+- [CAT 2026 exam date](https://adapthub.in/cat-2026-exam-date): Official timeline — exam Sunday 29 Nov 2026, registration 3 Aug–15 Sep, eligibility snapshot
+- [Exam date (Markdown capsule)](https://adapthub.in/md/cat-2026-exam-date.md): Official timeline facts
 
 ## Comparisons
 

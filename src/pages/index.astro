@@ -124,7 +124,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
         };
 
         /* Indicative CAT overall scaled-score → percentile anchors, averaged
-           from public CAT 2023–2024 result data. Slot difficulty shifts the
+           from public CAT 2024–2025 result data. Slot difficulty shifts the
            required marks: easier slots demand more marks per percentile. */
         const PERCENTILE_ANCHORS = [
           { percentile: 99, score: 88 },
@@ -267,15 +267,15 @@ const siteUrl = Astro.site || "https://adapthub.in/";
           {
             name: "calculate_cat_percentile",
             description:
-              "Estimate an indicative CAT percentile from an overall raw score (0–198) and slot difficulty, using CAT 2023–2024 trend anchors. Returns the estimate, the score required for 90/95/99 percentile in that slot, and caveats.",
+              "Estimate an indicative CAT percentile from an overall raw score (0–204) and slot difficulty, using CAT 2024–2025 trend anchors. Returns the estimate, the score required for 90/95/99 percentile in that slot, and caveats.",
             inputSchema: {
               type: "object",
               properties: {
                 rawScore: {
                   type: "number",
                   minimum: 0,
-                  maximum: 198,
-                  description: "Overall raw or scaled score out of 198 marks"
+                  maximum: 204,
+                  description: "Overall raw or scaled score out of 204 marks"
                 },
                 slotDifficulty: {
                   type: "string",
@@ -287,7 +287,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
               required: ["rawScore"]
             },
             execute: async ({ rawScore, slotDifficulty = "moderate" }) => {
-              const score = Math.min(198, Math.max(0, Number(rawScore) || 0));
+              const score = Math.min(204, Math.max(0, Number(rawScore) || 0));
               const shift = SLOT_MARK_SHIFT[slotDifficulty] ?? 0;
               // Easy slots need MORE marks per percentile; tough slots fewer.
               const effective = score - shift;
@@ -305,7 +305,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                 },
                 marksTo99Percentile: Math.max(0, targetFor(99) - score),
                 caveat:
-                  "Indicative estimate from CAT 2023–2024 public score-percentile anchors. Actual percentiles vary with slot normalisation, candidate pool, and paper difficulty. Verify against your current mock series.",
+                  "Indicative estimate from CAT 2024–2025 public score-percentile anchors on the 204-mark pattern. Actual percentiles vary with slot normalisation, candidate pool, and paper difficulty. Verify against your current mock series.",
                 strategyGuide: `${siteBase}/how-to-score-99-percentile-cat`
               };
             }
@@ -453,8 +453,8 @@ const siteUrl = Astro.site || "https://adapthub.in/";
             },
             execute: async () => ({
               exam: "CAT 2026",
-              totalQuestions: 66,
-              totalMarks: 198,
+              totalQuestions: 68,
+              totalMarks: 204,
               totalMinutes: 120,
               sectionOrder: ["VARC", "DILR", "QA"],
               sections: [
@@ -547,7 +547,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
               >
                 <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Timeline</span>
                 <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT 2026 exam date &amp; strategy</span>
-                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Expected notification, registration, and prep phases.</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Official dates: registration 3 Aug – 15 Sep, exam Sunday 29 Nov 2026.</span>
               </a>
             </li>
             <li>
