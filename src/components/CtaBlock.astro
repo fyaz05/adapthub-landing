@@ -1,11 +1,16 @@
 ---
+import { CONTENT } from "../constants/content";
+
 interface Props {
   text: string;
   href?: string;
   variant?: 'default' | 'yellow';
 }
 
-const { text, href = '/pricing', variant = 'default' } = Astro.props;
+// Funnel default: acquisition pages end here, so the CTA goes straight to the
+// app (message match with the surrounding guide copy), not to /pricing.
+const { text, href = CONTENT.links.app, variant = 'default' } = Astro.props;
+const isExternal = href.startsWith("http");
 
 const baseClasses = 'inline-flex items-center gap-3 px-8 py-4 font-bold uppercase tracking-wider text-sm transition-all';
 // DELIBERATE CROSS-SURFACE DIFFERENCE — do not "sync" `yellow` to teal.
@@ -21,8 +26,9 @@ const variants = {
 ---
 
 <div class="mt-16 text-center border-t border-white/10 pt-16">
-  <a 
+  <a
     href={href}
+    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     class={`group ${baseClasses} ${variants[variant]} justify-center touch-manipulation whitespace-nowrap`}
   >
     {text}

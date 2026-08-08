@@ -9,6 +9,12 @@ export interface BlogArticle {
   editorial?: ArticleEditorialMeta;
   readTime: string;
   excerpt: string;
+  /** Sidebar CTA pitch: message-matched to this article's core skill so the
+   *  funnel hand-off (article → app) is not a generic repeated block. */
+  ctaPitch: string;
+  /** Sources-section note phrased for this article's evidence base, so the
+   *  standards imprint is not one identical paragraph on every post. */
+  methodologyNote: string;
   sources?: { label: string; url: string }[];
   body: {
     heading?: string;
@@ -21,6 +27,10 @@ export interface BlogArticle {
 const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   {
     slug: "zone-of-proximal-development-cat-algebra",
+    ctaPitch:
+      "Train inside the 70–85% band: AdaptHub recalibrates Algebra difficulty from your live accuracy after every attempt.",
+    methodologyNote:
+      "The ZPD band and challenge-band claims reference external learning science; the Algebra scenarios are illustrative AdaptHub product examples.",
     title: "The Zone of Proximal Development in CAT Algebra",
     category: "Cognitive Science",
     date: "2026-02-23",
@@ -75,6 +85,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "decoding-2025-dilr-trap-sets",
+    ctaPitch:
+      "Practise trap-style DILR sets with the two-minute entry protocol, timed and tagged by failure mode.",
+    methodologyNote:
+      "Trap-set patterns summarize external analyses of recent CAT DILR sections; the remediation pointers are AdaptHub editorial recommendations.",
     title: "How to Diagnose DILR Trap Sets",
     category: "Structural Analysis",
     date: "2026-02-23",
@@ -125,6 +139,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "varc-fact-vs-judgment",
+    ctaPitch:
+      "Drill author-stance annotation on adaptive RC sets that keep pace with your reading accuracy.",
+    methodologyNote:
+      "Passage and option breakdowns reflect external evidence on recent CAT VARC patterns; the annotation workflow is an illustrative product example.",
     title: "VARC: Fact vs Judgment and the Illusion of Choice",
     category: "Verbal Decoding",
     date: "2026-02-23",
@@ -179,6 +197,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "metacognition-first-cat-skill",
+    ctaPitch:
+      "Log, classify, and close recurring error patterns with an error log that drives the next adaptive drill.",
+    methodologyNote:
+      "The research findings cited below are external; AdaptHub's streak, calibration, and error-log references describe documented product mechanics.",
     title: "Metacognition First: The CAT Skill Nobody Teaches",
     category: "Cognitive Science",
     date: "2026-02-23",
@@ -233,6 +255,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "distractor-error-taxonomy",
+    ctaPitch:
+      "AdaptHub tags every miss as concept, calculation, or trap, then drills the distractor type you keep choosing.",
+    methodologyNote:
+      "Distractor categories come from AdaptHub's editorial tagging analysis; the study citations are external and listed separately.",
     title: "Negation Trap Meaning & CAT Distractor Guide",
     category: "Error Analysis",
     date: "2026-02-23",
@@ -296,6 +322,10 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
   },
   {
     slug: "quality-streaks-vs-raw-study-hours",
+    ctaPitch:
+      "Build a streak that counts: a full Daily Module, or 15+ focused minutes above 70% accuracy.",
+    methodologyNote:
+      "Habit-science citations are external; the streak thresholds quoted are AdaptHub's documented eligibility rules, not study results.",
     title: "Practice Streaks vs Study Hours for CAT Percentile",
     category: "Performance Science",
     date: "2026-02-23",
@@ -333,7 +363,7 @@ const BLOG_ARTICLE_RECORDS: BlogArticle[] = [
         summary:
           "A practice streak increments only by completing a full four-phase Daily Module or sustaining above-70% accuracy for 15 continuous minutes, never by logging in, making the counter an ungameable record of real practice events rather than productive procrastination.",
         paragraphs: [
-          "AdaptHub's Practice Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more. Logging in without substantive practice does not extend a streak. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
+          "AdaptHub's Practice Streak system is designed around this physiological reality. A streak increments under exactly two conditions: completing a full structured Daily Module, or maintaining accuracy above 70% for a session of 15 minutes or more. Simply opening the app without qualifying practice moves nothing forward. This single design decision eliminates the most common form of productive procrastination in exam preparation: the feeling of having studied without the actual cognitive output.",
           "The streak counter is not a gamification gimmick. It is a behavioral signal that accurately reflects whether your preparation is on a trajectory toward the 99th percentile. A student with a 30-day practice streak has logged a minimum of 30 sessions meeting the accuracy and duration thresholds. That is a directly measurable input to D-Day performance.",
         ],
       },
