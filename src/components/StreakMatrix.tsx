@@ -569,7 +569,7 @@ export default function StreakMatrix() {
             className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-fg-muted hover:text-brand-teal transition-colors duration-300"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Everything included: ₹0
+              One price, no asterisks: ₹0
               <span className="transform transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-2">
                 →
               </span>

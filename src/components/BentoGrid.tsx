@@ -537,7 +537,7 @@ const BentoGrid = () => {
               >
                 [WARNING]
                 <br />
-                82% cohort failed.
+                72% cohort failed.
                 <br />
                 Type: Negation trap.
               </motion.div>
