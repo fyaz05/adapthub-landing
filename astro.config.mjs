@@ -4,13 +4,31 @@ import tailwindv4 from "@tailwindcss/vite";
 import { execSync } from "node:child_process";
 import { defineConfig } from "astro/config";
 
-// Google only trusts sitemap lastmod when it is "consistently and verifiably
-// accurate" and reflects the last significant update to the page. A build
-// timestamp pasted on every URL fails both tests, so we derive lastmod per
-// page from git: the newest commit touching the page template or any shared
-// content source that feeds it. Footer/FAQ copy lives in content.ts and
-// renders on every page, so it is a legitimate shared source for all pages.
-// Falls back to build time when git history is unavailable (shallow clones).
+// Per-page lastmod comes from the newest commit touching the page template or
+// a shared content source (content.ts copy renders on every page). Google
+// ignores unverifiable dates, and depth-1 CI clones return one identical HEAD
+// date per file, so require real history or omit lastmod entirely.
+const MIN_GIT_DEPTH = 20;
+let gitHistoryDeep;
+
+function gitDatesTrustworthy() {
+  if (gitHistoryDeep === undefined) {
+    try {
+      gitHistoryDeep =
+        Number.parseInt(
+          execSync("git rev-list --count HEAD", {
+            stdio: ["ignore", "pipe", "ignore"],
+          })
+            .toString()
+            .trim(),
+          10,
+        ) >= MIN_GIT_DEPTH;
+    } catch {
+      gitHistoryDeep = false;
+    }
+  }
+  return gitHistoryDeep;
+}
 function sourceFilesFor(path) {
   if (path === "/") return ["src/pages/index.astro"];
   if (path === "/blog")
@@ -39,19 +57,17 @@ function sourceFilesFor(path) {
 }
 
 function lastmodFor(path) {
+  if (!gitDatesTrustworthy()) return undefined;
   const candidates = [...sourceFilesFor(path), "src/constants/content.ts"];
   try {
     const out = execSync(
-      // ":(literal)" pathspec magic: [slug].astro contains git glob
-      // metacharacters and must be matched as a literal file path. Works on
-      // git 2.16+ (the --literal-pathspecs flag is rejected by git log <2.44).
+      // ":(literal)" keeps [slug].astro from being read as a git glob.
       `git log -1 --format=%cI -- ${candidates.map((f) => `":(literal)${f}"`).join(" ")}`,
       { stdio: ["ignore", "pipe", "ignore"] },
     )
       .toString()
       .trim();
-    // No commit timestamp available (shallow clone): omit lastmod entirely.
-    // Stamping build time would be an unverifiable date Google ignores anyway.
+    // Omit rather than stamp an unverifiable date.
     return out || undefined;
   } catch {
     return undefined;
