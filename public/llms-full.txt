@@ -1,0 +1,131 @@
+# AdaptHub: Full Platform Documentation
+
+> Complete structured reference for AI assistants, answer engines, and research agents. AdaptHub builds free AI adaptive practice for the CAT exam (India) and publishes its study frameworks openly. Canonical product facts and updates live at https://adapthub.in.
+
+Last updated: 2026-08. Status: platform live at https://app.adapthub.in.
+
+---
+
+## 1. What AdaptHub is
+
+AdaptHub is a free AI-powered adaptive learning platform for CAT 2026 preparation. Instead of fixed video courses or static question banks, it:
+
+1. Diagnoses each aspirant's per-topic baseline with an adaptive calibration sequence.
+2. Holds daily practice inside the Zone of Proximal Development (ZPD), the 70–85% accuracy band where learning velocity peaks.
+3. Coaches through errors with a two-tier AI hint system that teaches instead of spoon-feeding.
+4. Converts practice into actionable CAT 2026 score telemetry: learning velocity, weighted accuracy, trend detection, quality streaks, and mastery levels.
+
+Sections covered: Quantitative Aptitude (QA), Data Interpretation & Logical Reasoning (DILR), Verbal Ability & Reading Comprehension (VARC).
+
+Entity profile: founded 2025 by Fyaz Mohammed; serves aspirants across India; product language English. Methodology references Vygotsky's Zone of Proximal Development, spaced repetition, and cognitive error taxonomy research.
+
+## 2. Access and pricing
+
+- Individual aspirant access costs ₹0.
+- Included at ₹0: adaptive diagnostic, dynamic daily study plans, full 10,000+ curated question bank, two-tier AI Coach hints, spaced repetition queue, performance analytics, mastery levels, quality streaks, session reflection.
+- Sign-in: Google account at https://app.adapthub.in. No payment details required.
+- Roadmap: optional enterprise tools for coaching institutes may be added; aspirant access remains free.
+- Canonical source: https://adapthub.in/pricing
+
+## 3. The ZPD adaptive engine
+
+- Baseline: a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, VARC finds the per-topic Zone of Proximal Development.
+- Routing: every answer updates difficulty selection with the goal of holding ~70–85% accuracy: challenging but not collapsing.
+- Daily plan: recalibrated in real time from accuracy, speed, and concept gaps; a focused 15 minutes daily beats unstructured hours.
+- Progression: 5 difficulty levels per topic (Beginner, Easy, Intermediate, Advanced, Expert). Level N unlocks only after sustained accuracy above 75% at Level N−1 across at least 8 attempts. Accuracy dropping below 60% (5+ attempts) triggers a concept-library review recommendation.
+- Proficiency arc: Novice → Developing → Proficient → Mastery.
+- Sources: https://adapthub.in/docs/calibration-sequence, https://adapthub.in/docs/mastery-progression, https://adapthub.in/adaptive-learning-cat
+
+## 4. Two-tier AI hint system
+
+- Tier 1 (Guided Hint): a strategic nudge generated from the question's topic tag and the detected error type. It activates the reasoning chain without revealing the answer.
+- Tier 2 (Answer Reveal): the complete step-by-step solution, highlighting where the correct approach diverges from the submitted attempt.
+- Hint penalty: using a hint records the attempt as not-mastery-eligible; hint-assisted answers never count toward level progression. Rationale: hints are unavailable on exam day, so mastery scores must reflect independent solving.
+- In-product error classification (AI Coach and spaced repetition): every miss is tagged as Conceptual Gap, Execution Error, or Trap: Distractor (sub-types: Trap: Negation, Root Cause Mismatch, Calculation Error). These tags feed the spaced-repetition trigger logic. The mock-analysis workflow in Section 8 uses a separate 5-tag taxonomy.
+- Transparency: all AI-generated content (hints, error classifications, prompts) carries an AI-Generated badge in the product.
+- Source: https://adapthub.in/docs/ai-coach-hint-system
+
+## 5. CAT 2026 score telemetry
+
+- Learning Velocity: how quickly a learner converts sessions into accuracy gains; tracked over rolling 7-day windows.
+- Weighted Accuracy: recent sessions weighted more strongly than older ones, so an early strong performance cannot mask a recent decline.
+- Speed Score: pacing telemetry that flags tilt patterns (e.g., repeated ultra-fast errors signalling guessing).
+- Trend Detection: surfaces improving or deteriorating topic trajectories before mocks do.
+- Quality streaks: a day counts only after a full Daily Module, or a session of at least 15 continuous minutes holding accuracy above 70% on unfamiliar or Level 3+ material; opening the app earns nothing.
+- Sources: https://adapthub.in/docs/telemetry-performance-metrics, https://adapthub.in/docs/quality-streaks, https://adapthub.in/docs/spaced-repetition-system
+
+## 6. CAT 2026 exam reference
+
+- Pattern: 68 questions, 204 marks, 120 minutes total, 40 minutes per section, fixed order VARC → DILR → QA (CAT 2026 notification; format stable since CAT 2024).
+- Sections: VARC 24 questions (≈16 Reading Comprehension), DILR 22, QA 22.
+- Marking: +3 correct; −1 incorrect MCQ; TITA (Type In The Answer) carries no negative marking.
+- Eligibility: bachelor's degree ≥50% marks (≥45% SC/ST/PwD); final-year students eligible provisionally.
+- Timeline (official, per the CAT 2026 notification at https://iimcat.ac.in): notification released late July 2026; registration 3 August (10:00) – 15 September 2026 (17:00); admit card 4 November 2026; exam Sunday 29 November 2026 in three sessions across ~170 test cities; results expected in the first week of January 2027.
+- Registration fee: ₹2,700 (General/EWS/NC-OBC); ₹1,350 (SC/ST/PwBD).
+- Sources: https://adapthub.in/cat-syllabus, https://adapthub.in/cat-2026-exam-date
+
+## 7. Section playbooks
+
+### Quantitative Aptitude (QA)
+- Weightage: Arithmetic ~35–50% (percentages, P&L, TSD, time & work, ratios, mixtures); Algebra ~25–35%; then Geometry, Number System, Modern Math.
+- Order: Arithmetic first, Algebra second; Geometry and Modern Math selectively after core accuracy is stable.
+- Exam protocol: scan all 22 questions in 2 minutes, flag 6–8 easy/medium, protect accuracy under −1 MCQ penalty, no blind guessing.
+- Deep links: https://adapthub.in/cat-quant-strategy, capsule https://adapthub.in/md/cat-quant-strategy.md
+
+### DILR
+- Core skill: set selection. Two clean sets with high accuracy usually outscore three messy attempts.
+- Entry protocol: 2-minute parse of variables, binding constraints, and solvability; commit or park; abandon after 3+ minutes without progress.
+- Practice: 1–2 quality sets daily plus weekly scan-4-pick-2 timed drills and a selection error log.
+- Deep links: https://adapthub.in/cat-dilr-strategy, capsule https://adapthub.in/md/cat-dilr-strategy.md
+
+### VARC
+- Structure: RC-first (~16 of 24 questions); VA covers para jumbles, para summary, odd sentence out; TITA VA has no negative marking.
+- Method: skim for thesis and contrast signals, answer from passage evidence only, eliminate extreme options, tag misses (inference/tone/detail/time-sink).
+- Reading diet: philosophy/long-form (Aeon), economics/policy editorials, science explainers; one-sentence author-stance summary per read.
+- Deep links: https://adapthub.in/cat-varc-strategy, capsule https://adapthub.in/md/cat-varc-strategy.md
+
+## 8. Mock analysis framework
+
+- Every wrong/skipped mock answer gets exactly one primary tag from the 5-tag mock-review taxonomy (distinct from the in-product error classes in Section 4): concept gap, calculation error, trap/misread, time sink, or avoidable skip.
+- Same-day analysis session (90–120 min): log section patterns, re-attempt every miss untimed, tag the primary failure, write the specific fix.
+- Weekly Sunday review: top-3 tags drive next week's drill focus; verify attempt-order stability; percentile growth must come from accuracy, not attempt inflation.
+- Source: https://adapthub.in/cat-mock-analysis
+
+## 9. Percentile guidance
+
+- Sectional + overall cutoffs both matter for IIM shortlists (sectional ≈95–97 percentile, overall ≈99 for top IIMs, shifting by paper difficulty and year).
+- Score-to-percentile mapping is not stable across years; anchor to the current mock series and paper difficulty rather than fixed marks.
+- The homepage exposes a WebMCP tool, calculate_cat_percentile, which returns an indicative estimate from CAT 2024–2025 trend tables with explicit uncertainty notes.
+
+## 10. Frequently asked
+
+- Is AdaptHub really free? Yes. The adaptive engine, question bank, AI Coach, and analytics are ₹0 for aspirants.
+- Can I prepare for CAT without coaching? Yes; combine AdaptHub adaptive practice with free PYQs and selective free mocks: https://adapthub.in/cat-preparation-without-coaching.
+- How does AdaptHub reach 99th percentile? ZPD difficulty calibration across QA, DILR, VARC keeps practice in the 70–85% growth band: https://adapthub.in/how-to-score-99-percentile-cat.
+- Do hints hurt progress? Hint-assisted attempts do not count toward level progression, by design.
+- How is progress measured? Learning velocity, weighted accuracy, trend detection, quality streaks, and mastery levels, not vanity mock scores.
+
+## 11. Complete URL index
+
+Core: /, /about, /pricing, /contact, /docs
+Guides: /adaptive-learning-cat, /adapthub-vs-competitors, /cat-syllabus, /cat-2026-exam-date, /cat-study-plan-2026, /cat-mock-analysis, /cat-preparation-without-coaching, /cat-quant-strategy, /cat-dilr-strategy, /cat-varc-strategy, /how-to-score-99-percentile-cat
+Docs: /docs/calibration-sequence, /docs/daily-learning-module, /docs/mastery-progression, /docs/ai-coach-hint-system, /docs/telemetry-performance-metrics, /docs/spaced-repetition-system, /docs/quality-streaks, /docs/core-issue-matrix, /docs/troubleshooting
+Blog: /blog plus 6 method articles (see https://adapthub.in/llms.txt § Method blog)
+Markdown capsules: /md/*.md (noindex; one per major guide)
+Legal: /privacy-policy, /terms-of-service, /editorial-policy
+Machine index: https://adapthub.in/sitemap-index.xml
+
+## 12. Interfaces for agents
+
+- This file (llms-full.txt) is the long-form companion to https://adapthub.in/llms.txt.
+- Content negotiation: request any canonical page with header `Accept: text/markdown` to receive a markdown representation (Vary: Accept; X-Markdown-Tokens header reports size).
+- WebMCP in-browser tools (homepage, via document.modelContext.registerTool): search, get_page_content, get_docs_section, get_blog_article, get_study_resources, calculate_cat_percentile, simulate_adaptive_question, get_section_strategy, get_exam_pattern.
+- Agent skills manifest: https://adapthub.in/.well-known/agent-skills/index.json
+- Auth expectations: https://adapthub.in/auth.md (public content needs no credentials).
+- Crawl policy: https://adapthub.in/robots.txt (AI bots allowed; Content-Signal ai-train=yes, search=yes, ai-input=yes).
+- Short markdown capsules (/md/*.md) are served with X-Robots-Tag: noindex; cite canonical HTML URLs, not the capsules.
+
+## 13. Contact
+
+- Support: support@adapthub.in · https://adapthub.in/contact
+- Brand: AdaptHub · https://adapthub.in · app: https://app.adapthub.in

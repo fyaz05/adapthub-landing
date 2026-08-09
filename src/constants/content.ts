@@ -109,7 +109,7 @@ export const CONTENT = {
       highlight: "Adapts to You",
     },
     description:
-      "Free adaptive practice for CAT 2026. Sign in with Google, take a diagnostic that finds your level, get daily plans built for your weak areas, practice with AI hints that teach instead of spoon-feeding, and track real progress, not vanity scores.",
+      "100% free AI adaptive practice for CAT 2026. A 30–45 minute diagnostic finds exactly where you stand in QA, DILR, and VARC. Daily plans zero in on your weak areas, hints nudge before they explain, and clear score trends show which way your percentile is moving.",
     cta: {
       primary: "Start practicing",
     },
@@ -126,16 +126,16 @@ export const CONTENT = {
         id: "01",
         title: "Dynamic Daily Plans",
         description:
-          "Personalized CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
+          "Personalised CAT study plans recalibrated in real time from accuracy, speed, and concept gaps across QA, DILR, and VARC.",
         visualCheck: {
-          deltaValue: "+14.2%",
+          deltaValue: "+14.2",
         },
       },
       {
         id: "02",
-        title: "Performance Analytics",
+        title: "Score Telemetry",
         description:
-          "Granular CAT mock-style analytics across accuracy, learning velocity, and topic mastery. Not vanity scores.",
+          "Track where your percentile is heading: accuracy, learning velocity, and topic mastery across QA, DILR, and VARC. Not vanity scores.",
         tabs: ["Accuracy", "Growth"],
         progress: {
           accuracy: { label: "Accuracy", value: 94 },
@@ -146,7 +146,7 @@ export const CONTENT = {
         id: "03",
         title: "Mastery-Based Levels",
         description:
-          "5 difficulty levels per topic. Prove 75%+ accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
+          "5 difficulty levels per topic. Prove over 75% accuracy at your current level to unlock the next. Every level-up is earned through demonstrated mastery, not time spent.",
       },
       {
         id: "04",
@@ -162,28 +162,28 @@ export const CONTENT = {
       {
         id: "zpd",
         title: "Adaptive Difficulty",
-        subtitle: "Always Optimal",
+        subtitle: "70–85% Growth Band",
         description:
-          "Difficulty adjusts continuously to keep you in the optimal learning zone, where challenge and comprehension intersect for maximum growth.",
+          "Difficulty adjusts with every answer to hold you in the band where challenge and comprehension intersect: hard enough to grow, never so hard you stall.",
       },
       {
         id: "roadmap",
         title: "Adaptive Daily Plan",
-        subtitle: "Personalized Progress",
+        subtitle: "Personalised Progress",
         description:
-          "Your daily practice adapts continuously, prioritizing the topics and difficulty levels required to close your gaps and unlock the next level of mastery.",
+          "Your daily practice adapts continuously, prioritising the topics and difficulty levels required to close your gaps and unlock the next level of mastery.",
       },
       {
         id: "audit",
         title: "Learning Diagnostics",
         subtitle: "Deep Insight",
         description:
-          "AdaptHub breaks down every mistake into actionable learning signals. Each error reveals a hidden gap in logic, memory, or execution.",
+          "AdaptHub breaks down every mistake into actionable learning signals. Each error maps to a hidden gap in logic, memory, speed, or focus.",
       },
       {
         id: "library",
         title: "Concept Library",
-        subtitle: "Learn, Don't Just Practise",
+        subtitle: "Learn, Don't Just Practice",
         description:
           "Access curated articles tailored to your current level across QA, DILR, and VARC. When a topic exposes a gap, review the concept before retrying. Build deep understanding instead of muscle memory.",
       },
@@ -206,7 +206,7 @@ export const CONTENT = {
 
   faq: {
     eyebrow: "Frequently Asked",
-    title: "How AdaptHub Works",
+    title: "Good questions, straight answers.",
     items: [
       {
         id: "faq-01",
@@ -224,7 +224,7 @@ export const CONTENT = {
         id: "faq-03",
         question: "Who is AdaptHub built for?",
         answer:
-          "AdaptHub is built for serious CAT aspirants aiming for top IIMs, including self-study students who want free online CAT coaching with a rigorous adaptive study plan and deep performance feedback.",
+          "AdaptHub is built for serious CAT aspirants aiming for top IIMs, including self-study students who want free online CAT coaching with a rigorous adaptive study plan and deep performance feedback. Whether you prepare from a metro city or a small town in India, the same adaptive engine runs on your phone.",
       },
       {
         id: "faq-04",
@@ -242,13 +242,13 @@ export const CONTENT = {
         id: "faq-06",
         question: "Can I prepare for CAT without paid coaching using AdaptHub?",
         answer:
-          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalized adaptive practice, diagnostics, and AI coaching. So you can prepare for CAT at home without expensive institute fees.",
+          "Yes. Many 99+ percentilers are self-taught. AdaptHub replaces static batch coaching with personalised adaptive practice, diagnostics, and AI coaching. So you can prepare for CAT at home without expensive institute fees.",
       },
       {
         id: "faq-07",
         question: "What happens after I start practicing?",
         answer:
-          "You will sign in with Google, complete a quick profile, and take the adaptive diagnostic. Based on your results, AdaptHub builds your personalized daily plan. Each session ends with a reflection: AI insights, mood tracking, and error analysis so you know exactly what to work on next.",
+          "You will sign in with Google, complete a quick profile, and take the adaptive diagnostic. Based on your results, AdaptHub builds your personalised daily plan. Each session ends with a reflection: AI insights, mood tracking, and error analysis so you know exactly what to work on next.",
       },
     ],
   },
@@ -259,7 +259,7 @@ export const CONTENT = {
       titleHighlight: "AI",
       titleLine2: "Coach",
       description:
-        "The AI coach gives you two chances to solve on your own. Tier 1 is a strategic nudge, a conceptual push. Tier 2 is the full explanation. Using a hint means no level progress for that question.",
+        "Stuck mid-question? Tier 1 drops a strategic nudge that keeps you solving; Tier 2 walks through the full method. Hint-assisted attempts never count toward mastery, so nothing is handed to you.",
       linkText: "Explore the Adaptive Syllabus",
       pillText: "Two-Tier Hint System",
     },
@@ -311,7 +311,7 @@ export const CONTENT = {
       name: "AdaptHub",
       quote: '"Learning should adapt to you."',
       description:
-        "Adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants who want to improve, not just practice.",
+        "Adaptive CAT prep with daily practice plans, AI hints, and progress tracking. Built for serious aspirants across India who want to improve, not just practice.",
     },
     directory: {
       title: "Directory",
@@ -375,7 +375,7 @@ export const CONTENT = {
     growth: {
       label: "Learning Velocity",
       comparison: "vs last week",
-      value: 42,
+      value: 18,
       suffix: "%",
     },
   },
@@ -392,11 +392,32 @@ export const CONTENT = {
       id: `vel-${i}`,
       value: v,
     })),
+    scrubber: {
+      hint: "Drag the chart or focus it and use arrow keys to inspect each day.",
+      instructionLabel: "Scrub through 7-day learning telemetry",
+      accuracyLabel: "Accuracy",
+      velocityLabel: "Velocity",
+      deltaLabel: "Day-over-day",
+      bands: {
+        zpd: "ZPD growth band · 70–85%",
+        comfort: "Comfort zone · too easy to grow",
+        overreach: "Overreach · collapse risk",
+      },
+    },
   },
 
   streakMatrix: {
     weeks: 52,
     daysPerWeek: 7,
+    readout: {
+      instructionLabel: "Scrub through 52 weeks of practice",
+      windowLabel: "8-week window",
+      weekLabel: "Week",
+      sessionsLabel: "Sessions",
+      minutesLabel: "Minutes in ZPD",
+      accuracyLabel: "Avg accuracy",
+      streakLabel: "Best streak",
+    },
   },
 
   howItWorks: {
@@ -409,7 +430,7 @@ export const CONTENT = {
         step: "01",
         title: "Diagnostic Calibration",
         description:
-          "Start with a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, and VARC. The algorithm finds your baseline in each topic, your Zone of Proximal Development.",
+          "Start with a multi-section adaptive diagnostic (~30–45 minutes) across QA, DILR, and VARC. The algorithm finds your baseline in every topic: your Zone of Proximal Development.",
       },
       {
         step: "02",
@@ -421,7 +442,7 @@ export const CONTENT = {
         step: "03",
         title: "Track Real Progress",
         description:
-          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. Not mock scores. See what you actually know and what needs work, backed by 10,000+ curated questions.",
+          "Quality streaks, learning velocity, mastered levels, and error forensics that explain why you got it wrong. Progress maps to percentile movement, not mock-score spikes.",
       },
       {
         step: "04",
@@ -449,16 +470,16 @@ export const CONTENT = {
     // Titles targeted ~50–60 chars; descriptions ~140–155 chars (SERP-safe).
     defaultTitle: "Free CAT 2026 Prep with AI Adaptive Learning | AdaptHub",
     defaultDescription:
-      "Free CAT 2026 prep with adaptive study plans, AI coaching, and analytics for QA, DILR & VARC. Close weak areas faster. Start today.",
+      "Free CAT 2026 prep with ZPD-calibrated practice, two-tier AI hints, and score telemetry for QA, DILR & VARC. Close weak areas faster. Start today.",
     indexPage: {
-      title: "Free CAT 2026 Prep — Adaptive Practice & AI Hints | AdaptHub",
+      title: "Free CAT 2026 Prep: Adaptive Practice & AI Hints | AdaptHub",
       description:
-        "Free adaptive practice — start today. Adaptive study plans, two-tier AI hints, and progress tracking for QA, DILR & VARC.",
+        "Free CAT 2026 prep: ZPD-calibrated daily practice, two-tier AI hints, and score telemetry across QA, DILR & VARC. 10,000+ questions at ₹0.",
     },
     catSyllabus: {
       title: "CAT Syllabus 2026: VARC, DILR & QA Topics | AdaptHub",
       description:
-        "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 66 questions, 120 minutes, marking scheme, and high-yield topics.",
+        "Full CAT syllabus 2026 with topic weightage for QA, DILR, and VARC. 68 questions, 120 minutes, marking scheme, and high-yield topics.",
     },
     pricing: {
       title: "Free CAT Preparation Online | AdaptHub",
@@ -529,7 +550,7 @@ export const CONTENT = {
       {
         question: "Will it stay free?",
         answer:
-          "Yes. The core engine, daily personalized study plans, AI Coach, and granular analytics, stays free. AdaptHub may add enterprise tools for coaching institutes later. Aspirant access stays free, always.",
+          "Yes. The core engine, daily personalised study plans, AI Coach, and granular analytics, stays free. AdaptHub may add enterprise tools for coaching institutes later. Aspirant access stays free, always.",
       },
       {
         question: "How do I create an account?",

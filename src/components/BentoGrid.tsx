@@ -537,9 +537,9 @@ const BentoGrid = () => {
               >
                 [WARNING]
                 <br />
-                82% cohort failed.
+                72% cohort failed.
                 <br />
-                Type: Conceptual gap.
+                Type: Negation trap.
               </motion.div>
 
               <motion.div
@@ -550,7 +550,7 @@ const BentoGrid = () => {
                 className="text-fg pt-1 md:pt-2"
               >
                 <span className="text-brand-teal font-bold">&gt;</span>{" "}
-                Re-calibrating lock...
+                Re-calibrating difficulty...
               </motion.div>
 
               {/* Blinking Cursor */}
@@ -601,6 +601,13 @@ const BentoGrid = () => {
                 {gridContent.header?.highlight || "Engineered."}
               </span>
             </h2>
+            <p data-speakable className="sr-only">
+              AdaptHub's free CAT 2026 toolkit: dynamic daily study plans
+              recalibrated from accuracy, speed, and concept gaps; score
+              telemetry across QA, DILR, and VARC; five mastery levels per topic
+              unlocked at 75 percent accuracy; and two-tier AI hints that coach
+              instead of answer.
+            </p>
           </motion.div>
         </div>
 

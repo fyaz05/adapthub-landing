@@ -18,6 +18,7 @@ import CtaBand from "../components/CtaBand.astro";
 import CoachDemo from "../components/CoachDemo";
 import Footer from "../components/Footer.astro";
 import { resolvedContent as CONTENT } from "../utils/config";
+import { buildOffer } from "../utils/schema";
 
 const siteUrl = Astro.site || "https://adapthub.in/";
 ---
@@ -44,6 +45,67 @@ const siteUrl = Astro.site || "https://adapthub.in/";
       })),
     })}
   />
+  {/* Course + HowTo structured data: the free CAT 2026 prep program and the
+      four-step adaptive practice loop. SoftwareApplication, BreadcrumbList,
+      and FAQPage are covered by Layout + the block above. */}
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Course",
+          "@id": `${siteUrl}#course`,
+          "name": "Free Adaptive CAT 2026 Preparation Program",
+          "description":
+            "Free adaptive CAT 2026 preparation: ZPD-calibrated daily practice across QA, DILR, and VARC, two-tier AI hints, spaced repetition, and percentile-focused score telemetry. 10,000+ curated questions at ₹0.",
+          "inLanguage": "en-IN",
+          "isAccessibleForFree": true,
+          "provider": { "@id": `${siteUrl}#organization` },
+          "about": {
+            "@type": "Thing",
+            "name": "Common Admission Test (CAT) 2026",
+          },
+          "teaches": [
+            "CAT Quantitative Aptitude (Arithmetic-first weightage)",
+            "CAT Data Interpretation & Logical Reasoning (set selection)",
+            "CAT Verbal Ability & Reading Comprehension (RC-first accuracy)",
+            "Adaptive learning strategy in the Zone of Proximal Development",
+          ],
+          "offers": buildOffer({ url: String(siteUrl) }),
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": CONTENT.links.app,
+            },
+          },
+        },
+        {
+          "@type": "HowTo",
+          "@id": `${siteUrl}#how-it-works`,
+          "name": "How to start free adaptive CAT 2026 practice on AdaptHub",
+          "description":
+            "From Google sign-in to calibrated daily adaptive practice in four steps: diagnostic calibration, daily ZPD practice, score telemetry, and AI-guided reflection.",
+          "totalTime": "PT45M",
+          "step": CONTENT.howItWorks.steps.map((step, i) => ({
+            "@type": "HowToStep",
+            "position": i + 1,
+            "name": step.title,
+            "text": step.description,
+            "url": `${siteUrl}#how-it-works-heading`,
+          })),
+          "tool": {
+            "@type": "HowToTool",
+            "name": "AdaptHub free adaptive practice platform",
+          },
+        },
+      ],
+    })}
+  />
   <!-- WebMCP tools for AI agents -->
   <script is:inline>
     (() => {
@@ -59,6 +121,46 @@ const siteUrl = Astro.site || "https://adapthub.in/";
           const res = await fetch(url, { headers: { Accept: "text/markdown" } });
           if (!res.ok) throw new Error(`Request failed: ${res.status}`);
           return await res.text();
+        };
+
+        /* Indicative CAT overall scaled-score → percentile anchors, averaged
+           from public CAT 2024–2025 result data. Slot difficulty shifts the
+           required marks: easier slots demand more marks per percentile. */
+        const PERCENTILE_ANCHORS = [
+          { percentile: 99, score: 88 },
+          { percentile: 98, score: 80 },
+          { percentile: 95, score: 70 },
+          { percentile: 90, score: 60 },
+          { percentile: 85, score: 52 },
+          { percentile: 80, score: 45 },
+          { percentile: 75, score: 39 },
+          { percentile: 70, score: 34 },
+          { percentile: 60, score: 26 },
+          { percentile: 50, score: 20 },
+        ];
+        const SLOT_MARK_SHIFT = { easy: 8, moderate: 0, tough: -8 };
+
+        const estimatePercentile = (effectiveScore) => {
+          if (effectiveScore >= PERCENTILE_ANCHORS[0].score) return 99;
+          const last = PERCENTILE_ANCHORS[PERCENTILE_ANCHORS.length - 1];
+          if (effectiveScore <= last.score) {
+            return Math.max(
+              1,
+              Math.round((last.percentile * effectiveScore) / last.score),
+            );
+          }
+          for (let i = 0; i < PERCENTILE_ANCHORS.length - 1; i++) {
+            const hi = PERCENTILE_ANCHORS[i];
+            const lo = PERCENTILE_ANCHORS[i + 1];
+            if (effectiveScore <= hi.score && effectiveScore >= lo.score) {
+              const frac =
+                (effectiveScore - lo.score) / (hi.score - lo.score);
+              return Math.round(
+                (lo.percentile + frac * (hi.percentile - lo.percentile)) * 10,
+              ) / 10;
+            }
+          }
+          return null;
         };
 
         const tools = [
@@ -161,6 +263,216 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                     .join("\n");
               return { section, resources: block };
             }
+          },
+          {
+            name: "calculate_cat_percentile",
+            description:
+              "Estimate an indicative CAT percentile from an overall raw score (0–204) and slot difficulty, using CAT 2024–2025 trend anchors. Returns the estimate, the score required for 90/95/99 percentile in that slot, and caveats.",
+            inputSchema: {
+              type: "object",
+              properties: {
+                rawScore: {
+                  type: "number",
+                  minimum: 0,
+                  maximum: 204,
+                  description: "Overall raw or scaled score out of 204 marks"
+                },
+                slotDifficulty: {
+                  type: "string",
+                  enum: ["easy", "moderate", "tough"],
+                  description:
+                    "Perceived difficulty of the paper or slot; shifts the marks required per percentile"
+                }
+              },
+              required: ["rawScore"]
+            },
+            execute: async ({ rawScore, slotDifficulty = "moderate" }) => {
+              const score = Math.min(204, Math.max(0, Number(rawScore) || 0));
+              const shift = SLOT_MARK_SHIFT[slotDifficulty] ?? 0;
+              // Easy slots need MORE marks per percentile; tough slots fewer.
+              const effective = score - shift;
+              const estimate = estimatePercentile(effective);
+              const targetFor = (p) => {
+                const anchor = PERCENTILE_ANCHORS.find((a) => a.percentile === p);
+                return anchor ? anchor.score + shift : null;
+              };
+              return {
+                input: { rawScore: score, slotDifficulty },
+                estimatedPercentile: estimate,
+                marksNeeded: {
+                  "90th": targetFor(90),
+                  "95th": targetFor(95),
+                  "99th": targetFor(99)
+                },
+                marksTo99Percentile: Math.max(0, targetFor(99) - score),
+                caveat:
+                  "Indicative estimate from CAT 2024–2025 public score-percentile anchors on the 204-mark pattern. Actual percentiles vary with slot normalisation, candidate pool, and paper difficulty. Verify against your current mock series.",
+                strategyGuide: `${siteBase}/how-to-score-99-percentile-cat`
+              };
+            }
+          },
+          {
+            name: "simulate_adaptive_question",
+            description:
+              "Simulate one step of AdaptHub's ZPD adaptive routing for a CAT section and mastery level. Shows how a correct answer, a wrong answer, or a hint-used attempt changes level progression (5 levels per topic, 75%+ unlock rule, hint penalty).",
+            inputSchema: {
+              type: "object",
+              properties: {
+                section: {
+                  type: "string",
+                  enum: ["quant", "dilr", "varc"],
+                  description: "CAT section to simulate"
+                },
+                topic: {
+                  type: "string",
+                  description:
+                    "Topic within the section (e.g. time-speed-distance, seating-arrangement, para-jumbles)"
+                },
+                currentLevel: {
+                  type: "integer",
+                  minimum: 1,
+                  maximum: 5,
+                  description: "Current mastery level (1 beginner – 5 expert)"
+                },
+                lastAnswerCorrect: {
+                  type: "boolean",
+                  description: "Whether the simulated attempt was correct"
+                },
+                hintUsed: {
+                  type: "boolean",
+                  description: "Whether a hint was used on the attempt"
+                }
+              },
+              required: ["section", "currentLevel", "lastAnswerCorrect"]
+            },
+            execute: async ({
+              section,
+              topic = "general",
+              currentLevel,
+              lastAnswerCorrect,
+              hintUsed = false
+            }) => {
+              const level = Math.min(5, Math.max(1, Number(currentLevel) || 1));
+              const SECTION_DEPTH = {
+                quant: "Arithmetic and Algebra carry the most marks; stay in the growth band there first.",
+                dilr: "Set selection decides the section; two clean sets beat three messy ones.",
+                varc: "RC accuracy first; TITA verbal items carry no negative marking."
+              };
+              if (hintUsed) {
+                return {
+                  outcome: "hint-penalty",
+                  nextLevel: level,
+                  masteryCredit: false,
+                  rule: "Hint-assisted attempts never count toward level progression, whether Tier 1 or Tier 2.",
+                  nextAction:
+                    "Level progress frozen for this attempt. Solve the next question unaided to keep building mastery.",
+                  growthBand: "70-85% accuracy",
+                  docs: `${siteBase}/docs/ai-coach-hint-system`
+                };
+              }
+              if (lastAnswerCorrect) {
+                const projectedUnlockLevel = Math.min(5, level + 1);
+                return {
+                  outcome:
+                    level === 5 ? "expert-hold" : "progress-toward-unlock",
+                  nextLevel: level,
+                  projectedUnlockLevel,
+                  masteryCredit: true,
+                  rule: "Level N unlocks only after sustained accuracy above 75% at level N-1 across at least 8 attempts.",
+                  nextAction:
+                    level === 5
+                      ? "Stay at Level 5 (CAT-equivalent). Slot into harder mixed sets and mock-paced timing."
+                      : `Correct answer credited at Level ${level}. Hold accuracy above 75% across 8+ attempts to unlock Level ${projectedUnlockLevel} in ${topic} (${section}).`,
+                  growthBand: "70-85% accuracy",
+                  sectionTip: SECTION_DEPTH[section] ?? null,
+                  exemplar:
+                    section === "quant"
+                      ? {
+                          id: "TIME-SPEED-DISTANCE-L5-001",
+                          level: 5,
+                          topic: "time-speed-distance",
+                          text: "A car travels a certain distance at a constant speed. If its speed is increased by 20 km/h, the time taken decreases by 1 hour. If its speed is decreased by 15 km/h, the time taken increases by 1.5 hours. What is the distance?",
+                          options: ["175 km", "120 km", "200 km", "150 km"],
+                          correctAnswer: "175 km",
+                          mostCommonTrap:
+                            "150 km: correct speed (50 km/h) plugged into the wrong travel time (3 h instead of 3.5 h)."
+                        }
+                      : null,
+                  docs: `${siteBase}/docs/mastery-progression`
+                };
+              }
+              return {
+                outcome: "error-flagged",
+                nextLevel: level,
+                masteryCredit: false,
+                rule: "An incorrect attempt is error-classified (conceptual gap, execution error, or distractor trap) and routed into the spaced-repetition queue. Accuracy below 60% over 5+ attempts triggers a concept-library review recommendation.",
+                nextAction: `Review the ${section} concept for ${topic}, then retry at Level ${level} in unaided mode.`,
+                growthBand: "70-85% accuracy",
+                sectionTip: SECTION_DEPTH[section] ?? null,
+                docs: `${siteBase}/docs/core-issue-matrix`
+              };
+            }
+          },
+          {
+            name: "get_section_strategy",
+            description:
+              "Get the high-density CAT section strategy capsule (key facts, weightage, and protocol) for Quant, DILR, or VARC.",
+            inputSchema: {
+              type: "object",
+              properties: {
+                section: {
+                  type: "string",
+                  enum: ["quant", "dilr", "varc"],
+                  description: "CAT section"
+                }
+              },
+              required: ["section"]
+            },
+            execute: async ({ section }) => {
+              const SLUGS = {
+                quant: "cat-quant-strategy",
+                dilr: "cat-dilr-strategy",
+                varc: "cat-varc-strategy"
+              };
+              const slug = SLUGS[section];
+              if (!slug) throw new Error(`Unknown section: ${section}`);
+              return {
+                section,
+                strategy: await fetchText(`${siteBase}/md/${slug}.md`),
+                deepLink: `/${slug}`
+              };
+            }
+          },
+          {
+            name: "get_exam_pattern",
+            description:
+              "Get the CAT 2026 exam structure: sections, question counts, time limits, marking scheme, and eligibility snapshot.",
+            inputSchema: {
+              type: "object",
+              properties: {},
+              required: []
+            },
+            execute: async () => ({
+              exam: "CAT 2026",
+              totalQuestions: 68,
+              totalMarks: 204,
+              totalMinutes: 120,
+              sectionOrder: ["VARC", "DILR", "QA"],
+              sections: [
+                { name: "VARC", questions: 24, minutes: 40, dominantType: "Reading Comprehension (~16 Qs)" },
+                { name: "DILR", questions: 22, minutes: 40, dominantType: "Hybrid logic-data sets" },
+                { name: "QA", questions: 22, minutes: 40, dominantType: "Arithmetic & Algebra" }
+              ],
+              marking: {
+                correct: 3,
+                incorrectMCQ: -1,
+                incorrectTITA: 0,
+                note: "TITA (Type In The Answer) questions have no negative marking."
+              },
+              eligibility:
+                "Bachelor's degree with >=50% marks (>=45% for SC/ST/PwD); final-year students eligible provisionally.",
+              source: `${siteBase}/cat-syllabus`
+            })
           }
         ];
 
@@ -193,7 +505,12 @@ const siteUrl = Astro.site || "https://adapthub.in/";
       cta="Start practicing"
     />
     <FAQ client:visible />
-    <CtaBand headingId="cta-band-get-started" />
+    <CtaBand
+      headingId="cta-band-get-started"
+      headline="Start with a 30–45 minute diagnostic"
+      description="No fees, no locked topics. Your first session sets the baseline."
+      cta="Take the free diagnostic"
+    />
 
     {/* SEO topical depth + internal link cluster (visually quiet, crawlable) */}
     <section
@@ -236,7 +553,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
               >
                 <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Timeline</span>
                 <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">CAT 2026 exam date &amp; strategy</span>
-                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Expected notification, registration, and prep phases.</span>
+                <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Official dates: registration 3 Aug – 15 Sep, exam Sunday 29 Nov 2026.</span>
               </a>
             </li>
             <li>
@@ -335,7 +652,7 @@ const siteUrl = Astro.site || "https://adapthub.in/";
                 class="group block h-full border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-brand-teal/40 hover:bg-white/[0.04] transition-colors"
               >
                 <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.15em] block mb-3">Access</span>
-                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">free CAT preparation</span>
+                <span class="font-serif text-lg text-zinc-200 group-hover:text-white transition-colors">Free CAT preparation</span>
                 <span class="block text-sm text-zinc-500 mt-2 leading-relaxed">Full engine at ₹0. No paywalls, no hidden tiers.</span>
               </a>
             </li>

@@ -1,6 +1,6 @@
 # AdaptHub Authentication
 
-AdaptHub's app (app.adapthub.in) uses **Google sign-in** for human users — there is
+AdaptHub's app (app.adapthub.in) uses **Google sign-in** for human users, and there is
 no separate username/password account and no machine-to-machine (agent) OAuth or
 API authentication.
 
@@ -18,9 +18,9 @@ no token endpoint, and no agent `client_id`/`client_secret` flow.
 AdaptHub does **not** currently expose an authenticated API for agents. Agent
 access to site content is provided read-only and unauthenticated via:
 
-- `llms.txt` — a plain-text map of the site's markdown content
-- `Accept: text/markdown` — HTML pages can be requested as Markdown
-- WebMCP tools registered in the browser — search, page/docs/blog/content lookup
+- `llms.txt`: a plain-text map of the site's markdown content
+- `Accept: text/markdown`: HTML pages can be requested as Markdown
+- WebMCP tools registered in the browser: search, page/docs/blog/content lookup
 - Link headers advertising the resources above
 
 If programmatic authenticated access becomes available later, this document and

@@ -19,6 +19,12 @@ const FAQ = () => {
           <h2 className="text-3xl sm:text-4xl md:text-6xl text-fg font-serif italic">
             {CONTENT.faq.title}
           </h2>
+          <p data-speakable className="sr-only">
+            AdaptHub is free for CAT 2026: adaptive ZPD difficulty holds
+            practice in the 70–85% growth band, two-tier AI hints prompt before
+            they solve, mastery levels unlock at 75 percent-plus accuracy, and
+            learning velocity plus error forensics replace vanity mock scores.
+          </p>
         </div>
 
         <div className="max-w-5xl mx-auto">

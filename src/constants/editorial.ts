@@ -43,7 +43,7 @@ const CAT_DATES: Record<string, { published: string; modified: string }> = {
   },
   "cat-2026-exam-date": {
     published: "2025-11-01T00:00:00.000Z",
-    modified: "2026-07-28T00:00:00.000Z",
+    modified: "2026-08-08T00:00:00.000Z",
   },
   "cat-dilr-strategy": {
     published: "2026-07-13T00:00:00.000Z",

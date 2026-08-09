@@ -20,7 +20,7 @@ const editorial = getArticleEditorial("docs", "troubleshooting", "Troubleshootin
 
 <Layout
   title="Troubleshooting | AdaptHub Docs"
-  description="Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more."
+  description="Common questions and diagnostic answers for the AdaptHub engine: calibration resets, hint penalties, mobile usage, and more."
   ogType="article"
   datePublished={editorial.datePublished}
   dateModified={editorial.dateModified}
@@ -40,7 +40,7 @@ const editorial = getArticleEditorial("docs", "troubleshooting", "Troubleshootin
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "Troubleshooting | AdaptHub Docs",
-    "description": "Common questions and diagnostic answers for the AdaptHub engine — calibration resets, hint penalties, mobile usage, and more.",
+    "description": "Common questions and diagnostic answers for the AdaptHub engine: calibration resets, hint penalties, mobile usage, and more.",
     "datePublished": editorial.datePublished,
     "dateModified": editorial.dateModified,
     "image": absoluteArticleImages(editorial.images, siteUrl),
@@ -125,6 +125,16 @@ const editorial = getArticleEditorial("docs", "troubleshooting", "Troubleshootin
             </h1>
             <p class="text-zinc-400 font-sans text-lg leading-[1.7] max-w-[60ch] tracking-wide border-l-2 border-amber-500/40 pl-6 mb-7">
               Common questions and operational answers for the AdaptHub engine.
+            </p>
+            <p data-speakable class="sr-only">
+              Troubleshooting quick answers: an unrepresentative diagnostic
+              baseline refines through normal practice with no fixed
+              recalibration day; a hint-assisted attempt never counts toward
+              mastery; learning velocity is the 7-day improvement slope on new
+              material, separate from raw accuracy; serious DILR and analytics
+              sessions belong on desktop or tablet; and every incorrect
+              answer's feedback view links the matching Concept Library
+              article on the same topic taxonomy.
             </p>
             <EditorialByline datePublished={editorial.datePublished} dateModified={editorial.dateModified} reviewState={editorial.reviewState} />
           </header>

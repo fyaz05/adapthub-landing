@@ -732,6 +732,13 @@ const TheLens = () => {
                 <p className="text-base sm:text-lg text-fg-muted leading-relaxed max-w-md opacity-90">
                   {SYSTEMS[activeIndex].description}
                 </p>
+                <p data-speakable className="sr-only">
+                  Four adaptive systems power AdaptHub: adaptive difficulty that
+                  holds you in the Zone of Proximal Development, a daily plan
+                  that reroutes around detected gaps, learning diagnostics that
+                  classify every error by logic, memory, speed, or focus, and a
+                  level-matched concept library for QA, DILR, and VARC.
+                </p>
               </motion.div>
             </AnimatePresence>
           </div>

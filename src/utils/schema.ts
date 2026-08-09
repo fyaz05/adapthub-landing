@@ -24,6 +24,9 @@ export function buildOffer(opts: { url: string }) {
     price: "0",
     priceCurrency: "INR",
     availability: "https://schema.org/InStock",
+    // Merchant listings require offers.validFrom. The free aspirant tier has
+    // existed since the 2025 founding, so the founding-year start is accurate.
+    validFrom: "2025-01-01",
     url: opts.url,
   };
 }

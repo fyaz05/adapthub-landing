@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 const getRobotsTxt = (sitemapURL: URL) =>
-  `# AdaptHub robots.txt — https://adapthub.in
+  `# AdaptHub robots.txt - https://adapthub.in
 # Crawl-friendly for classic search + AI answer engines.
 # Visibility goal: allow major AI crawlers (AEO). Block only non-content paths.
 
@@ -80,6 +80,7 @@ Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 # Agent content map (non-standard, listed for operators)
 # llms.txt: https://adapthub.in/llms.txt
+# llms-full.txt: https://adapthub.in/llms-full.txt
 `.trim();
 
 export const GET: APIRoute = ({ site }) => {

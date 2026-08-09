@@ -5,7 +5,7 @@
 
 ## Direct answer
 
-Yes—you can prepare for CAT without paid coaching if you combine disciplined books/PYQs, free or paid national mocks, strict mock analysis, and personalised practice. Coaching is optional; unstructured free content without analysis is not enough. AdaptHub provides a lifetime-free adaptive practice engine for the personalisation layer.
+Yes. You can prepare for CAT without paid coaching if you combine disciplined books/PYQs, free or paid national mocks, strict mock analysis, and personalised practice. Coaching is optional; unstructured free content without analysis is not enough. AdaptHub provides a free adaptive practice engine at ₹0 for the personalisation layer.
 
 ## Free stack (system, not random PDFs)
 

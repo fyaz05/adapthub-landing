@@ -1,12 +1,32 @@
-import { MotionConfig, motion } from "motion/react";
-import { useMemo } from "react";
+import { MotionConfig, motion, useMotionValue, useSpring } from "motion/react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { CONTENT } from "../constants/content";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import SectionSpotlight from "./SectionSpotlight";
 
+/* Physics-aligned with the design-system surgical spring (150/25), tuned
+   slightly stiffer for a scrubber that must track pointer input. */
+const SCRUB_SPRING = { stiffness: 320, damping: 34 };
+
+type DayBand = "zpd" | "comfort" | "overreach";
+
+/** ZPD calibration: the 70–85% accuracy band is where learning velocity peaks. */
+function bandFor(accuracy: number): DayBand {
+  if (accuracy >= 70 && accuracy <= 85) return "zpd";
+  if (accuracy > 85) return "comfort";
+  return "overreach";
+}
+
+const BAND_STYLES: Record<DayBand, string> = {
+  zpd: "text-brand-teal border-brand-teal/30 bg-brand-teal/10",
+  comfort: "text-gold-300 border-gold-500/30 bg-gold-500/10",
+  overreach: "text-orange-400 border-orange-400/30 bg-orange-400/10",
+};
+
 export default function VelocityDashboard() {
-  const { days, accuracy, velocity } = CONTENT.velocityDashboard;
+  const { days, accuracy, velocity, scrubber } = CONTENT.velocityDashboard;
+  const dayCount = days.length;
 
   // wrap the entire dashboard subtree in MotionConfig
   // so that when prefers-reduced-motion (or low-end device per the
@@ -17,16 +37,136 @@ export default function VelocityDashboard() {
   // growth, and dot scaling were previously ungated.
   const prefersReducedMotion = useReducedMotion();
 
+  const lastIndex = dayCount - 1;
+  const [selectedIndex, setSelectedIndex] = useState(lastIndex);
+  const [boxWidth, setBoxWidth] = useState(0);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  /* Hardware-accelerated scrub position: pointer/keyboard writes the motion
+     value, the spring smooths it, transform-only rendering keeps it on the
+     compositor (no layout work per frame). */
+  const scrubX = useMotionValue(0);
+  const springX = useSpring(scrubX, SCRUB_SPRING);
+
   // Calculate SVG points for the velocity line (X is percentage, Y is percentage from top)
   const linePoints = useMemo(() => {
     return velocity
       .map((v, i) => {
-        const x = (i / (velocity.length - 1)) * 100;
+        const x = (i / lastIndex) * 100;
         const y = 100 - v.value;
         return `${x},${y}`;
       })
       .join(" L");
-  }, [velocity]);
+  }, [velocity, lastIndex]);
+
+  /* Track the locked anchor box width so index → pixel mapping stays exact
+     through fluid breakpoints and zoom. */
+  useEffect(() => {
+    const el = anchorRef.current;
+    if (!el) return;
+    const measure = () => setBoxWidth(el.getBoundingClientRect().width);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* First synchronisation after measurement snaps instantly (spring.jump);
+     later changes glide through the spring. */
+  const firstSync = useRef(true);
+  useEffect(() => {
+    if (boxWidth <= 0) return;
+    const x = (selectedIndex / lastIndex) * boxWidth;
+    if (firstSync.current) {
+      firstSync.current = false;
+      const jumpable = springX as typeof springX & {
+        jump?: (v: number) => void;
+      };
+      if (typeof jumpable.jump === "function") jumpable.jump(x);
+      else scrubX.set(x);
+    } else {
+      scrubX.set(x);
+    }
+  }, [selectedIndex, boxWidth, scrubX, springX, lastIndex]);
+
+  const indexFromClientX = useCallback(
+    (clientX: number) => {
+      const rect = anchorRef.current?.getBoundingClientRect();
+      if (!rect || rect.width === 0) return null;
+      const frac = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+      return Math.round(frac * lastIndex);
+    },
+    [lastIndex],
+  );
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.currentTarget.setPointerCapture(e.pointerId);
+      const next = indexFromClientX(e.clientX);
+      if (next !== null) setSelectedIndex(next);
+    },
+    [indexFromClientX],
+  );
+
+  /* Drag-gated via pointer capture (same contract as the streak window
+     scrubber): an active press scrubs; a passive hover does not hijack the
+     selected day, so the readout stays stable while reading the chart. */
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+      const next = indexFromClientX(e.clientX);
+      if (next !== null) setSelectedIndex(next);
+    },
+    [indexFromClientX],
+  );
+
+  const handlePointerEnd = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    },
+    [],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      let next: number | null = null;
+      switch (e.key) {
+        case "ArrowRight":
+        case "ArrowUp":
+          next = Math.min(lastIndex, selectedIndex + 1);
+          break;
+        case "ArrowLeft":
+        case "ArrowDown":
+          next = Math.max(0, selectedIndex - 1);
+          break;
+        case "Home":
+          next = 0;
+          break;
+        case "End":
+          next = lastIndex;
+          break;
+        case "PageUp":
+          next = Math.min(lastIndex, selectedIndex + 2);
+          break;
+        case "PageDown":
+          next = Math.max(0, selectedIndex - 2);
+          break;
+        default:
+          return;
+      }
+      e.preventDefault();
+      setSelectedIndex(next);
+    },
+    [selectedIndex, lastIndex],
+  );
+
+  const selectedBand = bandFor(accuracy[selectedIndex].value);
+  const velocityDelta =
+    selectedIndex > 0
+      ? velocity[selectedIndex].value - velocity[selectedIndex - 1].value
+      : 0;
 
   return (
     <MotionConfig
@@ -36,16 +176,17 @@ export default function VelocityDashboard() {
       <section className="relative py-24 sm:py-32 overflow-hidden bg-bg border-t border-border-subtle">
         {/* Background Atmosphere */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-violet/5 rounded-full blur-[150px] pointer-events-none" />
-        <SectionSpotlight color="rgba(45, 212, 191, 0.12)" />
+        <SectionSpotlight color="rgb(var(--brand-teal-rgb) / 0.12)" />
 
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative z-10 max-w-[1800px]">
           {/* GEO Semantic Content & Header */}
           <div className="mb-16 lg:mb-20">
             <p data-speakable className="sr-only">
-              Raw mock scores are vanity metrics. AdaptHub tracks Learning
-              Velocity, a 7-day measure of how efficiently you absorb new
-              concepts. High accuracy with low velocity means you are practicing
-              in your comfort zone.
+              A single mock score shows where you landed, not how fast you are
+              moving. AdaptHub tracks Learning Velocity, a 7-day measure of how
+              efficiently you absorb new concepts. High accuracy with low
+              velocity means practice is stuck in the comfort zone. The ZPD
+              growth band is 70 to 85 percent accuracy.
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-fg leading-tight tracking-tight mb-6 text-center">
               See what's really happening{" "}
@@ -54,7 +195,8 @@ export default function VelocityDashboard() {
               </span>
             </h2>
             <p className="text-fg-muted text-lg mx-auto text-center max-w-3xl font-sans leading-relaxed">
-              Raw mock scores mean nothing. AdaptHub tracks{" "}
+              One mock score tells you where you landed, not how fast you're
+              moving. AdaptHub tracks{" "}
               <strong className="text-brand-teal font-medium">
                 Learning Velocity,
               </strong>{" "}
@@ -92,19 +234,25 @@ export default function VelocityDashboard() {
                     7-Day Rolling Window Analysis
                   </div>
                 </div>
-                <div className="flex items-center gap-4 text-xs font-mono uppercase tracking-widest">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono uppercase tracking-widest">
                   <div className="flex items-center gap-2 text-fg-muted">
                     <span className="w-3 h-3 bg-zinc-800 rounded-sm"></span>{" "}
-                    Accuracy
+                    {scrubber.accuracyLabel}
                   </div>
                   <div className="flex items-center gap-2 text-brand-teal">
-                    <span className="w-3 h-1 bg-brand-teal"></span> Velocity
+                    <span className="w-3 h-1 bg-brand-teal"></span>{" "}
+                    {scrubber.velocityLabel}
                   </div>
                 </div>
               </div>
 
+              {/* Scrub hint */}
+              <p className="font-mono text-[11px] uppercase tracking-widest text-fg-subtle mb-2 select-none">
+                {scrubber.hint}
+              </p>
+
               {/* Chart Area */}
-              <div className="relative h-[250px] md:h-[300px] w-full z-10 mt-6 mb-8">
+              <div className="relative h-[250px] md:h-[300px] w-full z-10 mt-2 mb-8">
                 {/* Background Grid */}
                 <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 z-0">
                   {[1, 2, 3, 4, 5].map((i) => (
@@ -114,30 +262,33 @@ export default function VelocityDashboard() {
 
                 {/* MATHEMATICALLY LOCKED ANCHOR BOX: Guarantees 0-100% X-Axis sync for all data layers */}
                 <div
+                  ref={anchorRef}
                   className="absolute inset-y-0 z-10"
                   style={{ left: "min(5%, 20px)", right: "min(5%, 20px)" }}
                 >
-                  {/* 1. Bars (Accuracy) */}
+                  {/* 1. Bars (Accuracy) — scaleY growth keeps the entrance
+                      fully on the compositor (no per-frame layout work). */}
                   {accuracy.map((acc, i) => {
+                    const isActive = i === selectedIndex;
                     return (
                       <div
                         key={acc.id}
-                        className="absolute bottom-0 h-full w-[10vw] max-w-[40px] flex items-end justify-center group -translate-x-1/2 pointer-events-auto"
+                        className="absolute bottom-0 h-full w-[10vw] max-w-[40px] flex items-end justify-center -translate-x-1/2 pointer-events-none"
                         style={{
-                          left: `${(i / (accuracy.length - 1)) * 100}%`,
+                          left: `${(i / lastIndex) * 100}%`,
                         }}
                       >
                         <motion.div
-                          className="w-full bg-zinc-800/80 hover:bg-zinc-700/80 border-t border-zinc-600/50 rounded-t-sm transition-colors relative"
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${acc.value}%` }}
+                          className={`w-full h-full border-t rounded-t-sm origin-bottom transition-colors duration-300 ${
+                            isActive
+                              ? "bg-zinc-600/80 border-zinc-500/70"
+                              : "bg-zinc-800/80 border-zinc-600/50"
+                          }`}
+                          initial={{ scaleY: 0 }}
+                          whileInView={{ scaleY: acc.value / 100 }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: i * 0.1 }}
-                        >
-                          <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono text-fg-muted opacity-0 group-hover:opacity-100 transition-opacity">
-                            {acc.value}%
-                          </div>
-                        </motion.div>
+                        />
                       </div>
                     );
                   })}
@@ -160,13 +311,17 @@ export default function VelocityDashboard() {
                       >
                         <stop
                           offset="0%"
-                          stopColor="#2dd4bf"
-                          stopOpacity="0.5"
+                          style={{
+                            stopColor: "var(--color-brand-teal)",
+                            stopOpacity: 0.5,
+                          }}
                         />
                         <stop
                           offset="100%"
-                          stopColor="#2dd4bf"
-                          stopOpacity="0"
+                          style={{
+                            stopColor: "var(--color-brand-teal)",
+                            stopOpacity: 0,
+                          }}
                         />
                       </linearGradient>
                     </defs>
@@ -182,11 +337,11 @@ export default function VelocityDashboard() {
                     <motion.path
                       d={`M${linePoints}`}
                       fill="none"
-                      stroke="#2dd4bf"
-                      strokeWidth="0.8"
                       style={{
+                        stroke: "var(--color-brand-teal)",
+                        strokeWidth: 0.8,
                         filter:
-                          "drop-shadow(0px 0px 6px rgba(45, 212, 191, 0.6))",
+                          "drop-shadow(0 0 6px rgb(var(--brand-teal-rgb) / 0.6))",
                       }}
                       initial={{ pathLength: 0 }}
                       whileInView={{ pathLength: 1 }}
@@ -194,22 +349,26 @@ export default function VelocityDashboard() {
                     />
                   </svg>
 
-                  {/* 3. Data Data Dots */}
+                  {/* 3. Velocity data dots */}
                   {velocity.map((v, i) => {
+                    const isActive = i === selectedIndex;
                     return (
                       <motion.div
                         key={v.id}
-                        className="absolute w-3 h-3 bg-bg border-2 border-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30"
+                        className={`absolute w-3 h-3 bg-bg border-2 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30 ${
+                          isActive
+                            ? "border-brand-teal shadow-[0_0_12px_rgb(var(--brand-teal-rgb)/0.8)]"
+                            : "border-brand-teal/70"
+                        }`}
                         style={{
-                          left: `${(i / (velocity.length - 1)) * 100}%`,
+                          left: `${(i / lastIndex) * 100}%`,
                           top: `${100 - v.value}%`,
                         }}
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
                         transition={{
-                          delay:
-                            0.5 +
-                            Math.max(1.5, (i / (velocity.length - 1)) * 2),
+                          delay: 0.5 + Math.max(1.5, (i / lastIndex) * 2),
                         }}
                       />
                     );
@@ -217,16 +376,143 @@ export default function VelocityDashboard() {
 
                   {/* 4. X-Axis Labels */}
                   {days.map((d, i) => {
+                    const isActive = i === selectedIndex;
                     return (
                       <div
                         key={d.id}
-                        className="absolute -bottom-8 text-[11px] uppercase tracking-widest font-mono text-fg-muted -translate-x-1/2 text-center"
-                        style={{ left: `${(i / (days.length - 1)) * 100}%` }}
+                        className={`absolute -bottom-8 text-[11px] uppercase tracking-widest font-mono -translate-x-1/2 text-center transition-colors duration-300 ${
+                          isActive ? "text-brand-teal" : "text-fg-muted"
+                        }`}
+                        style={{ left: `${(i / lastIndex) * 100}%` }}
                       >
                         {d.label}
                       </div>
                     );
                   })}
+
+                  {/* 5. Interactive scrubber surface (pointer + keyboard) */}
+                  <div
+                    role="slider"
+                    aria-label={scrubber.instructionLabel}
+                    aria-orientation="horizontal"
+                    aria-valuemin={1}
+                    aria-valuemax={dayCount}
+                    aria-valuenow={selectedIndex + 1}
+                    aria-valuetext={`${days[selectedIndex].label}: ${scrubber.accuracyLabel} ${accuracy[selectedIndex].value}%, ${scrubber.velocityLabel} ${velocity[selectedIndex].value}%`}
+                    tabIndex={0}
+                    className="absolute -inset-x-[min(5%,20px)] inset-y-0 z-40 cursor-ew-resize touch-none outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/60 rounded-md"
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerEnd}
+                    onPointerCancel={handlePointerEnd}
+                    onKeyDown={handleKeyDown}
+                  />
+
+                  {/* 6. Spring-scrubbed crosshair (transform-only, compositor).
+                      SSR/no-JS renders a static marker at the selected day so the
+                      first paint never disagrees with the readout below. */}
+                  <div
+                    className="absolute inset-0 z-30 pointer-events-none"
+                    aria-hidden="true"
+                  >
+                    {boxWidth <= 0 && (
+                      <div
+                        className="absolute inset-y-0 -translate-x-1/2 w-px bg-brand-teal/40"
+                        style={{
+                          left: `${(selectedIndex / lastIndex) * 100}%`,
+                        }}
+                      />
+                    )}
+                    <motion.div
+                      style={{ x: springX }}
+                      className={`absolute inset-y-0 left-0 w-0 ${
+                        boxWidth > 0 ? "" : "invisible"
+                      }`}
+                    >
+                      <div className="absolute inset-y-0 -translate-x-1/2 w-px bg-brand-teal/60" />
+                      <div
+                        className="absolute -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-teal shadow-[0_0_10px_rgb(var(--brand-teal-rgb)/0.9)]"
+                        style={{
+                          top: `${100 - velocity[selectedIndex].value}%`,
+                        }}
+                      />
+                      <div className="absolute top-1 left-1/2 -translate-x-1/2 w-max max-w-[140px] text-center bg-bg/90 backdrop-blur-sm border border-brand-teal/25 rounded-md px-2 py-1 shadow-lg">
+                        <span className="font-mono text-[11px] uppercase tracking-widest text-fg">
+                          {days[selectedIndex].label}
+                        </span>{" "}
+                        <span className="font-mono text-[11px] text-brand-teal">
+                          {velocity[selectedIndex].value}%
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Readout: selected day telemetry */}
+              <div
+                className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3"
+                aria-live="polite"
+              >
+                <div className="border border-border/60 rounded-xl px-4 py-3 bg-surface/40">
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-fg-subtle mb-1">
+                    {scrubber.accuracyLabel}
+                  </div>
+                  <motion.div
+                    key={`acc-${selectedIndex}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="font-serif text-2xl text-fg tabular-nums"
+                  >
+                    {accuracy[selectedIndex].value}%
+                  </motion.div>
+                </div>
+                <div className="border border-border/60 rounded-xl px-4 py-3 bg-surface/40">
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-fg-subtle mb-1">
+                    {scrubber.velocityLabel}
+                  </div>
+                  <motion.div
+                    key={`vel-${selectedIndex}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="font-serif text-2xl text-brand-teal tabular-nums"
+                  >
+                    {velocity[selectedIndex].value}%
+                  </motion.div>
+                </div>
+                <div className="border border-border/60 rounded-xl px-4 py-3 bg-surface/40">
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-fg-subtle mb-1">
+                    {scrubber.deltaLabel}
+                  </div>
+                  <motion.div
+                    key={`delta-${selectedIndex}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className={`font-serif text-2xl tabular-nums ${
+                      velocityDelta > 0
+                        ? "text-brand-teal"
+                        : velocityDelta < 0
+                          ? "text-orange-400"
+                          : "text-fg-muted"
+                    }`}
+                  >
+                    {selectedIndex === 0
+                      ? "–"
+                      : `${velocityDelta > 0 ? "+" : ""}${velocityDelta} pts`}
+                  </motion.div>
+                </div>
+                <div
+                  className={`border rounded-xl px-4 py-3 flex flex-col justify-center ${BAND_STYLES[selectedBand]}`}
+                >
+                  <div className="font-mono text-[11px] uppercase tracking-widest opacity-80 mb-1">
+                    Band
+                  </div>
+                  <div className="font-mono text-xs leading-snug">
+                    {scrubber.bands[selectedBand]}
+                  </div>
                 </div>
               </div>
 
@@ -236,17 +522,18 @@ export default function VelocityDashboard() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.5, type: "spring" }}
                 viewport={{ once: true }}
-                className="absolute top-[40%] right-6 md:right-12 bg-[#0a0505] border border-orange-900/50 p-4 rounded-xl shadow-[0_10px_30px_rgba(234,88,12,0.15)] flex items-start gap-4 max-w-[280px] z-30"
+                className="absolute top-[40%] right-6 md:right-12 bg-bg border border-orange-900/50 p-4 rounded-xl shadow-[0_10px_30px_color-mix(in_srgb,var(--color-orange-600)_15%,transparent)] flex items-start gap-4 max-w-[280px] z-50 pointer-events-none"
               >
                 <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-1">
                   <span className="text-orange-500 text-lg font-bold">⚠</span>
                 </div>
                 <div>
                   <h4 className="text-orange-500 font-mono text-[11px] uppercase tracking-widest mb-1">
-                    Tilt Detected
+                    Pace Check
                   </h4>
                   <p className="text-fg-muted text-xs font-sans leading-relaxed">
-                    3 consecutive errors in &lt; 45s. You may be guessing.
+                    3 misses in under 45 seconds each reads as guessing. Slow
+                    down and take the Tier 1 hint.
                   </p>
                 </div>
               </motion.div>

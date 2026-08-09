@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     question: "How is adaptive learning different from traditional CAT coaching?",
-    answer: "Traditional coaching operates on a fixed curriculum delivered at a uniform pace to all students. Adaptive learning, by contrast, creates a unique, personalized trajectory for each student. Where a classroom teaches to the median, an adaptive system like AdaptHub ensures you are never studying content you already know (wasted time) or content too far beyond your current level (frustration zone).",
+    answer: "Traditional coaching operates on a fixed curriculum delivered at a uniform pace to all students. Adaptive learning, by contrast, creates a unique, personalised trajectory for each student. Where a classroom teaches to the median, an adaptive system like AdaptHub ensures you are never studying content you already know (wasted time) or content too far beyond your current level (frustration zone).",
   },
   {
     question: "What is the Zone of Proximal Development (ZPD) algorithm?",
@@ -22,11 +22,11 @@ const faqs = [
   },
   {
     question: "Does adaptive testing give easier questions to lower-ranked students?",
-    answer: "No. The goal is not easier questions, but optimally challenging questions. Adaptive systems increase difficulty when performance is strong and route to foundational concepts when specific errors are detected. The objective is always to operate at the leading edge of a student's capability, maximizing learning velocity regardless of their current baseline.",
+    answer: "No. The goal is not easier questions, but optimally challenging questions. Adaptive systems increase difficulty when performance is strong and route to foundational concepts when specific errors are detected. The objective is always to operate at the leading edge of a student's capability, maximising learning velocity regardless of their current baseline.",
   },
   {
     question: "Is AdaptHub's adaptive learning system free?",
-    answer: "Yes. AdaptHub's full adaptive learning engine, including the ZPD algorithm, AI Coach, error telemetry, and personalized analytics dashboard, is completely free with no hidden tiers or payment required.",
+    answer: "Yes. AdaptHub's full adaptive learning engine, including the ZPD algorithm, AI Coach, error telemetry, and personalised analytics dashboard, is completely free with no hidden tiers or payment required.",
   },
 ];
 ---
@@ -85,33 +85,48 @@ const faqs = [
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why fixed curricula fail CAT aspirants</h2>
+    <p data-speakable class="sr-only">
+      Fixed curricula teach every aspirant the same sequence at the same speed, so mastered topics waste time and hidden gaps never get drilled. Adaptive learning maps competence per topic and serves the next question at the edge of your ability, the Zone of Proximal Development.
+    </p>
     <p class="text-zinc-400 leading-[1.8] mb-6">
       Traditional coaching assumes everyone learns at the same speed. A static course cannot know which of the 48 CAT topics you've mastered and which have hidden gaps. Adaptive learning inverts this: the system maps your competence per topic, then serves the exact next question at the edge of your competence: the Zone of Proximal Development.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How AdaptHub's ZPD engine works</h2>
+    <p data-speakable class="sr-only">
+      AdaptHub runs a short calibration diagnostic across VARC, DILR, and QA to map per-topic mastery, then continuously re-selects question difficulty so practice stays in the 70–85% accuracy band where learning velocity peaks.
+    </p>
     <ol class="list-decimal pl-6 text-zinc-400 space-y-4 mb-10 leading-[1.75]">
-      <li><strong class="text-zinc-200">Calibration (15 min)</strong>: A short diagnostic across VARC, DILR, QA maps your per-topic mastery.</li>
+      <li><strong class="text-zinc-200">Calibration (30–45 min)</strong>: A multi-section adaptive diagnostic across VARC, DILR, QA maps your per-topic mastery.</li>
       <li><strong class="text-zinc-200">ZPD targeting</strong>: Every subsequent question lands in your 70–85% accuracy band per topic.</li><li><strong class="text-zinc-200">AI Coach</strong>: Hints with escalating specificity; penalty for hint use keeps you in the growth band.</li><li><strong class="text-zinc-200">Distractor tagging</strong>: Every wrong answer is auto-classified (concept gap / calc error / trap / time sink).</li>
       <li><strong class="text-zinc-200">Spaced Repetition Queue (SRS)</strong>: Tagged errors retested at 3 / 7 / 14 days until mastery.</li>
     </ol>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">The three adaptive loops</h2>
+    <p data-speakable class="sr-only">
+      AdaptHub adapts at three levels: micro adjustments per question from your last few responses, meso re-sequencing of each daily plan around detected gaps, and macro mastery-level progression across topics.
+    </p>
     <ul class="list-disc pl-6 text-zinc-400 space-y-3 mb-10 leading-[1.75]">
       <li><strong class="text-zinc-200">Micro (per question):</strong> Difficulty adjusts within the session based on last 3 responses.</li>
       <li><strong class="text-zinc-200">Meso (per topic):</strong> Topic mastery level updates after each session; next session pulls from the topic's current ZPD. Learn how the <a href="/docs/daily-learning-module" class="text-brand-teal hover:underline decoration-brand-teal/30">Daily Learning Module</a> structures this sequence.</li><li><strong class="text-zinc-200">Macro (per week):</strong> Mastery vector across all topics feeds the weekly study plan priority order.</li></ul>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">How it differs from "AI coaching" add-ons</h2>
+    <p data-speakable class="sr-only">
+      Most platforms bolt an LLM onto a fixed question bank. AdaptHub's adaptivity is structural: the question bank is indexed by difficulty, cognitive demand, and distractor type, the ZPD algorithm selects what you practice, and the AI Coach explains it.
+    </p>
     <p class="text-zinc-400 leading-[1.8] mb-10">
       Many platforms bolt an LLM onto a fixed question bank. AdaptHub's adaptivity is <strong>structural</strong>: the question bank is indexed by difficulty, cognitive demand, and distractor type; the ZPD algorithm selects, the AI Coach explains. No fixed sets, no "level up" gatekeeping.
     </p>
 
     <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight mt-16 mb-6">Why practice velocity matters</h2>
+    <p data-speakable class="sr-only">
+      Practice velocity rises when you stop wasting reps on mastered content and stop panicking on premature difficulty. Staying in the ZPD growth band converts the same study hours into measurably faster skill acquisition.
+    </p>
     <p class="text-zinc-400 leading-[1.8] mb-10">
       The improvement comes from eliminating "wasted reps" on mastered content and preventing frustration spirals on premature difficulty.
     </p>
 
-    <CtaBlock text="Start practicing" variant="yellow" />
+    <CtaBlock text="Experience adaptive practice" variant="yellow" />
 
   </article>
 

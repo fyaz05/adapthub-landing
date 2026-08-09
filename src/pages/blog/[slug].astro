@@ -28,13 +28,39 @@ const editorial =
 const canonicalURL = new URL(`/blog/${article.slug}`, siteUrl).href;
 const pageTitle = article.seoTitle ?? `${article.title} | AdaptHub`;
 
-const hubBySlug: Record<string, { href: string; label: string }> = {
-  "varc-fact-vs-judgment": { href: "/cat-varc-strategy", label: "CAT VARC Strategy 2026" },
-  "decoding-2025-dilr-trap-sets": { href: "/cat-dilr-strategy", label: "CAT DILR Strategy 2026" },
-  "zone-of-proximal-development-cat-algebra": { href: "/cat-quant-strategy", label: "CAT Quant Strategy 2026" },
-  "metacognition-first-cat-skill": { href: "/how-to-score-99-percentile-cat", label: "99 Percentile CAT Blueprint" },
-  "distractor-error-taxonomy": { href: "/cat-mock-analysis", label: "How to Analyse CAT Mocks" },
-  "quality-streaks-vs-raw-study-hours": { href: "/cat-study-plan-2026", label: "CAT 2026 Study Plan" },
+// Funnel bridge: every article hands off to its pillar guide with a sentence
+// specific to that guide, not one repeated template line.
+const hubBySlug: Record<string, { href: string; label: string; bridge: string }> = {
+  "varc-fact-vs-judgment": {
+    href: "/cat-varc-strategy",
+    label: "CAT VARC Strategy 2026",
+    bridge: "Take the annotation method into a full section plan: reading sources, a VA loop, and a weekly VARC template.",
+  },
+  "decoding-2025-dilr-trap-sets": {
+    href: "/cat-dilr-strategy",
+    label: "CAT DILR Strategy 2026",
+    bridge: "Apply trap recognition inside a complete DILR plan: set selection, time rules, and a weekly cadence.",
+  },
+  "zone-of-proximal-development-cat-algebra": {
+    href: "/cat-quant-strategy",
+    label: "CAT Quant Strategy 2026",
+    bridge: "Put calibrated challenge inside a full Quant plan: Arithmetic first, Algebra second, selective Geometry.",
+  },
+  "metacognition-first-cat-skill": {
+    href: "/how-to-score-99-percentile-cat",
+    label: "99 Percentile CAT Blueprint",
+    bridge: "Metacognition is one of four systems; the blueprint covers the other three.",
+  },
+  "distractor-error-taxonomy": {
+    href: "/cat-mock-analysis",
+    label: "How to Analyse CAT Mocks",
+    bridge: "Run the taxonomy on real mock data with the full analysis framework.",
+  },
+  "quality-streaks-vs-raw-study-hours": {
+    href: "/cat-study-plan-2026",
+    label: "CAT 2026 Study Plan",
+    bridge: "Slot quality streaks into a phase-wise six-month calendar with weekly mock cycles.",
+  },
 };
 const pillarHub = hubBySlug[article.slug];
 ---
@@ -162,6 +188,11 @@ const pillarHub = hubBySlug[article.slug];
                     {section.heading}
                   </h2>
                 )}
+                {section.heading && section.summary && (
+                  <p data-speakable class="sr-only">
+                    {section.summary}
+                  </p>
+                )}
                 <div class="space-y-6 md:space-y-8">
                   {section.paragraphs.map((para) => (
                     <p
@@ -176,14 +207,14 @@ const pillarHub = hubBySlug[article.slug];
 
           <ArticleSources
             sources={article.sources}
-            methodology="This article distinguishes external evidence from AdaptHub's editorial recommendations and illustrative product examples."
+            methodology={article.methodologyNote}
           />
 
           {pillarHub && (
             <div class="mt-16 p-6 border border-brand-teal/20 bg-brand-teal/[0.03]">
               <p class="font-mono text-[10px] text-brand-teal uppercase tracking-[0.2em] mb-3">[ Strategy Hub ]</p>
               <p class="text-fg-muted text-sm md:text-base leading-relaxed mb-4">
-                Continue with the full pillar guide this article supports.
+                {pillarHub.bridge}
               </p>
               <a
                 href={pillarHub.href}
@@ -253,7 +284,7 @@ const pillarHub = hubBySlug[article.slug];
               <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-brand-teal/40 pointer-events-none" aria-hidden="true"></div>
               <span class="font-mono text-[9px] text-brand-teal uppercase tracking-[0.2em] block mb-4">[ Practice ]</span>
               <p class="font-sans text-sm text-fg-muted leading-relaxed mb-6">
-                Apply these principles inside the AdaptHub engine. A 15-minute diagnostic maps your baseline, then adaptive practice keeps you in the zone.
+                {article.ctaPitch}
               </p>
               <a
                 href="https://app.adapthub.in"
