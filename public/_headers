@@ -28,9 +28,6 @@
 /web-app-manifest-*.png
   ! Cache-Control
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-/android-chrome-*.png
-  ! Cache-Control
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /site.webmanifest
   ! Cache-Control
   Cache-Control: public, max-age=86400
